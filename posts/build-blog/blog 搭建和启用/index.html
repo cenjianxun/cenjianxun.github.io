@@ -315,8 +315,11 @@ hugo server
 <p>因为此仓库只存静态页面，即写完blog，运行 <code>hugo</code> 之后编译成的，存在 <code>public</code> 文件夹里的文件。所以需要单独将public/ 专门设 <code>git init</code> 以便提交。但是我记得git仓库不能嵌套<code>.git</code>，而这时 public/ 的父级已经是git包里。于是又踟蹰了，并且思考了一些，那我前端代码的layout等部分要单独建仓库存吗？我博文.md的内容要单独建仓库存吗？之类的问题。</p>
 </li>
 </ul>
-<p>最终设置是，在 myblogsite的大文件夹，添加<code>.gitignore</code>，把 <code>content/</code> 和 <code>public/</code> 屏蔽掉。因为我自己写主题，但是下了一堆别人的主题在 <code>themes/</code> 里学习，所以也把这个文件夹屏蔽掉。然后 <code>cd public</code> 进去，<code>git init</code>创建子层本地仓库。</p>
-<p>接下来的步骤就是最基本的，每次发文章都需执行的步骤。</p>
+<p>最终设置是，在 myblogsite的大文件夹，添加<code>.gitignore</code>，把 <code>content/</code> 和 <code>public/</code> 屏蔽掉。因为我自己写主题，但是下了一堆别人的主题在 <code>themes/</code> 里学习，所以也把这个文件夹屏蔽掉。然后：</p>
+<pre tabindex="0"><code>cd public
+git init # 创建子层本地仓库
+git remote add origin &lt;SSH path&gt;
+</code></pre><p>接下来的步骤就是最基本的，每次发文章都需执行的步骤。</p>
 <h3 id="发布文章步骤">发布文章步骤 <a href="#%e5%8f%91%e5%b8%83%e6%96%87%e7%ab%a0%e6%ad%a5%e9%aa%a4" style="border:none;"></a></h3><pre tabindex="0"><code>  #（写文章）
   # 编译
   hugo
