@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>【MIT 6.824】Lab2 Raft 课堂笔记-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">【MIT 6.824】Lab2 Raft 课堂笔记</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#paper--gfs">paper : GFS</a>
+      <ul>
+        <li><a href="#函数">函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#paper-fault-tolerant-virtual-machineshttpspdoscsailmitedu6824papersvm-ftpdf">paper: <a href="https://pdos.csail.mit.edu/6.824/papers/vm-ft.pdf">Fault-Tolerant Virtual Machines</a></a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>【MIT 6.824】Lab2 Raft 课堂笔记</h1>
+        <div class="post-time">Jul 18 2022</div>
+    </header>
+
+    <div class="post-content"><p>两篇paper</p>
+<h2 id="paper--gfs">paper : GFS <a href="#paper--gfs" style="border:none;"></a></h2><p>需要：
+performance → sharding
+faults → tolerance → replication → in consistency → low performance</p>
+<p>一致性：
+strong consisitency：</p>
+<p>当有许多reqest时，按顺序处理</p>
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>wx = 1</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c2</td>
+<td>wx = 2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>c3</td>
+<td></td>
+<td>rx = ?</td>
+<td></td>
+</tr>
+<tr>
+<td>c4</td>
+<td></td>
+<td></td>
+<td>rx = ?</td>
+</tr>
+</tbody>
+</table>
+<p>如果c1和c2同时写：
+①c3和c4读的是1还是2
+②c3和c4读的一样吗
+③ 如果c1和c2同时向多个s写 （分布独有问题）</p>
+<p>要一样。强一致。</p>
+<p>GFS可以解决③</p>
+<ul>
+<li>big | fast | global | automatic | recovery</li>
+<li>single data centor | internal use | big sequence access | single master</li>
+</ul>
+<p>几千个client，一个master</p>
+<h3 id="函数">函数 <a href="#%e5%87%bd%e6%95%b0" style="border:none;"></a></h3><p>master：
+命名文件 &amp; 查询chunk的位置信息</p>
+<p>维护了一个chunk列表</p>
+<p>（分开）里面有n个chunk，每个chunk有一两个disk</p>
+<p>master里两张表：</p>
+<ol>
+<li>map：文件名→array of chunk handles（disk）</li>
+<li>map: handle → list of chunkserver（not disk）, version （disk）, primaary （not disk）, exptime（not disk）</li>
+</ol>
+<p>这些info都在disk里存，写也在disk。</p>
+<p>GFS管理方式：log，操作会在log后面追加记录，并建立checkpoint。所以每次写一条就会占一些地方。</p>
+<p>and，时不时通过checkpoints将完整状态写入disk。重启时就回滚到最近的checkpoint。</p>
+<p>read：</p>
+<ol>
+<li>client 发request （filename, offset）→ find pos （offset/(each check size = 64MB)）</li>
+<li>master 发 chunk handle，list of service</li>
+<li>（client save it in cache）client → service</li>
+<li>service -data→ client</li>
+</ol>
+<p>write：必须对primary操作</p>
+<p>？no primary：</p>
+<p>master要 find newest data （包含了最新chunk副本的server set）</p>
+<p>（master会分发version id）</p>
+<p>matster从中选一个来作为primary chunk(with exp time)。version更新，写入chunk server</p>
+<p>** 带过期时间的primary，防止一个primary挂掉，另一个上位，挂掉的重启会冲突</p>
+<p>** 只有当master 指定一个新primray时，version才会变；只在primary挂时会发生</p>
+<p>now has primary.</p>
+<p>primary:接受client的write，send reqs → services</p>
+<p>primary让许多2ed写，每个2ed返回yes，</p>
+<pre tabindex="0"><code>if all 2ed返回yes：
+    primary给client返回 succeed
+else:
+    return no → client 重新发起request
+</code></pre><h2 id="paper-fault-tolerant-virtual-machineshttpspdoscsailmitedu6824papersvm-ftpdf">paper: <a href="https://pdos.csail.mit.edu/6.824/papers/vm-ft.pdf" target="_blank" rel="noopener">Fault-Tolerant Virtual Machines</a> <a href="#paper-fault-tolerant-virtual-machineshttpspdoscsailmitedu6824papersvm-ftpdf" style="border:none;"></a></h2><p>Failure：
+可以解决fail-stop问题，不能解决bug问题</p>
+<ul>
+<li>
+<p>status transfer：状态转移
+将primary的副本发给backup
+——&gt; transfer的是memory的内容
+size big . 操作简单</p>
+</li>
+<li>
+<p>replicated state machine：（size smal）&lt;—— 单机方案
+——&gt; send client / 外部输入
+size small . 操作复杂</p>
+</li>
+</ul>
+<p>VMware：<!-- raw HTML omitted -->
+通过LAN 复制content给P和B</p>
+<p>log channel：
+非确定性事件：non-det. events 通过log channel传递
+（它只接受网络数据包形式的input/output）</p>
+<p>input —— packets + ch通知已到达的中断信号</p>
+<p>weird instruction：
+有些指令在不同电脑上有不同结果</p>
+<p>multi-core：
+多核并行</p>
+<p>output rule：
+不向客户端承诺不确定的结果
+不允许client端生成任何输出。</p>
+<p>backup确认它已经接收到了此时所有的log record后才允许primary输出</p>
+<p>如果P和B中断通信，但和client仍然连着，那么会产生脑裂：
+——&gt;用权威server决定谁 当P</p>
+<p>server终止这个网络上的test-and-set服务，send test-and-set给P和B</p>
+<p>p和B都必须获取这个test-and-set flag。</p>
+<p>为了上线，他俩都向server发送t&amp;s请求，第一个拿到的返回return flag→1</p>
+<!-- raw HTML omitted -->
+<p>faults tolerance的方式：</p>
+<ol>
+<li>mapreduce：对计算进行复制，单点master控制计算</li>
+<li>GFS：通过primary-backup scheme复制文件中的实际内容
+单点master选择primary去操作每一块数据</li>
+<li>vmware：ft replicates在主备虚拟机上进行计算写入
+当出现问题时，依赖单点test-and-set server帮服务器选择其中一个备成为主</li>
+</ol>
+<p>单点故障：
+signle point of failure</p>
+<p>投票：
+server必须是奇数 要2f+1</p>
+<p>raft：
+以一个库的形式备包含在某些服务应用程序中。</p>
+<!-- raw HTML omitted -->
+<p>key-value服务器：
+* 3 replica</p>
+<p>kv表:
+raft layer：state：log about 操作
+kv server会在raft中进行函数调用，反复通信保持state
+state是存了一个关于操作的log</p>
+<p>client：
+通过有replica服务的多台服务器组成的整体进行通信</p>
+<p>将请求发送个当前leader所在的应用层</p>
+<p>client 发request给 kv server层，kv层把这个request发给raft层，让它提交至log，完成后return 完成</p>
+<p>raft和每个副本通信，直到半数以上副本把这个操作添加入日志，然后return</p>
+<p>给kv应用层
+这时leader执行这个request，更新kv表
+最终return给client</p>
+<p>** paper讨论state时，是指对kv表进行操作</p>
+<p>** 规则：follower的执行速度落后于leader给出消息的速度</p>
+<!-- raw HTML omitted -->
+<p>一旦leader server意识到一个request被提交了（log state为已提交），它就要告诉其它副本这件事。so会有一条额外消息</p>
+<ul>
+<li>leader状态变化时，就要给replica发消息更新</li>
+<li>client无视replica（的时延），只关注leader。</li>
+<li>如果有n个client给server发消息，leader必须制定出某种顺序，确保所有副本都按顺序执行。</li>
+<li>在上图s3收到的第一个箭头处，此replica不确定这条操作提交执行了没，所以把log先放在一个备用的地方，直到第二个箭头来。</li>
+<li>日志的作用：
+<ul>
+<li>leader要把它的操作记在日志，（如果follower漏了要重发这条）</li>
+<li>如果一台server挂掉重启，会重写它的log</li>
+</ul>
+</li>
+</ul>
+<p>client发送请求后，kv server给raft层发</p>
+<pre tabindex="0"><code>func start（command）（index， …）{
+}
+</code></pre><p>raft层处理好后给kv server 通过applyChannel发applyMsg，包括command，index等等</p>
+<p>只有在start函数返回后，即master收到大于半数响应知道replica已经备份好请求了，该client请求对应的消息才会出现在channel中</p>
+<ol>
+<li>
+<p>leader选举的工作方式
+why用leader：更高效
+follower不用知道leader的id，只要知道当前的term号
+每个term至多只有一个leader
+如何选举：
+每个raft server中会有一个election timer 选举计时器，用来记录时间。</p>
+<ol>
+<li>如果一段时间内server没有收到当前leader的消息，它就假定leader挂掉了，并开始新选举。
+** 网断了或leader很慢也有可能触发选举</li>
+<li>term号+1，follower变candidate，发送请求投票的rpc请求
+**一个新候选人总是给它自己投票，只能投一票</li>
+<li>选举获胜的s需要立即向其他s发送AppendEntries</li>
+<li>AppendEntries then可以重置每个s的election timer，阻止新选举
+** 也有可能一个都选不出，比如大部分s都挂了，比如同时有两个timer重置，然后都投了自己，导致没有人获得过半的票数
+—&gt; 所以要【每次都】给timer设置随机的超时时间：random（min，max）
+min：exp time至少要和2此心跳间隔时间一样长。
+max：最大时间影响系统有多快能从故障中恢复，so取决于多高的性能 &amp; 故障发生的频率
+—&gt; 两个s超时的时间间隔gap，要够长完成一次选举，长于rpc请求到响应的时间。
+** 如果旧leader在少数派网中，它不会影响client收到的讯息</li>
+</ol>
+</li>
+<li>
+<p>leader如何处理不同副本上的日志
+会产生各种crash的情况，导致log里的讯息各种各样</p>
+</li>
+</ol></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/%E5%88%86%E5%B8%83%E5%BC%8F">分布式</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" class="jump-post">【MIT 6.824】Lab1 MapReduce 实验记录</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" class="jump-post">【MIT 6.824】Lab2 Raft 实验记录</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/mit-6.824/">MIT6.824 - 分布式系统</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824go-thread/">index</a>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

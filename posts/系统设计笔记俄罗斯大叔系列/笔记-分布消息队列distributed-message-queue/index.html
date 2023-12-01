@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[笔记] 分布消息队列｜Distributed Message Queue-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[笔记] 分布消息队列｜Distributed Message Queue</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#requirement">Requirement</a></li>
+    <li><a href="#high-level-architecture">High-level Architecture</a></li>
+    <li><a href="#virtual-ip--load-balancer">Virtual IP &amp; Load Balancer</a></li>
+    <li><a href="#frontend-web-service">FrontEnd web service</a></li>
+    <li><a href="#metadata-service">Metadata Service：</a></li>
+    <li><a href="#backend-service">Backend Service</a>
+      <ul>
+        <li><a href="#后端host如何互相connect">后端host如何互相connect</a></li>
+        <li><a href="#in-cluster-manager-vs-out-cluster-manager">in-cluster manager VS out-cluster manager</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它">其它</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[笔记] 分布消息队列｜Distributed Message Queue</h1>
+        <div class="post-time">Jun 6 2022</div>
+    </header>
+
+    <div class="post-content"><p>system design 俄罗斯大叔系列
+分布消息队列</p>
+<p>假设有个producer和consumer，需要互相通信。</p>
+<!-- raw HTML omitted -->
+<p>两个选项：
+① 直接 synchronous communication，等response
+pro：简单 可快速实现
+con：处理失败更困难
+→ 要考虑失败重试、请求过多、加快速度</p>
+<p>② 引入可以异步通信的新组件，called 队列
+它是分布式的，因为数据存在n台机器上
+但是和标题有点不同，标题的情况会发给n个subscriber，这里一个queue有且只有一个customer</p>
+<h2 id="requirement">Requirement <a href="#requirement" style="border:none;"></a></h2><p>Functional：</p>
+<ul>
+<li>sendMessage（messageBody）</li>
+<li>receiveMessage</li>
+<li>可能：添加/删除api</li>
+</ul>
+<p>Non-Functional：</p>
+<ul>
+<li>scalable</li>
+<li>highly available（survives failures）</li>
+<li>highly performant</li>
+<li>durable persistence（可靠不丢）</li>
+<li>可能：不重复提交/安全性/cost</li>
+</ul>
+<h2 id="high-level-architecture">High-level Architecture <a href="#high-level-architecture" style="border:none;"></a></h2><!-- raw HTML omitted -->
+<p>需要一个虚拟ip，把hostname解析给LB system。
+所以也需要一个LB
+next， 一个前端服务，负责处理身份验证等
+一个metadata database，负责存一些信息（名称、日期等）<br>
+db之前需要一个service，处理对db的调用
+需要一个地方来存queue message，所以需要一个backend web service，负责消息的persistence and processing</p>
+<h2 id="virtual-ip--load-balancer">Virtual IP &amp; Load Balancer <a href="#virtual-ip--load-balancer" style="border:none;"></a></h2><!-- raw HTML omitted -->
+<p>（LB很大，除非问否则不要偏离主题）</p>
+<p>但是需要解释LB为什么可以帮助高throughput和availability。</p>
+<p>domain name被hit时，request 被transferred to 其中一个在DNS注册过的VirtualIP上，然后VirtuaIP被resolve to一个LB service上，LB知道这些hostname</p>
+<p>LB似乎是single point of failure，怎么办？</p>
+<p>如果LB到达负载上限limits are reached怎么办？</p>
+<p>解决high availability：</p>
+<ul>
+<li>用primary and secondary nodes的概念</li>
+<li>primary node 接受连接并服务请求，secondary node 监视primary node</li>
+<li>如果主节点挂了，辅助节点上。</li>
+</ul>
+<p>解决scalability：</p>
+<ul>
+<li>使用多个visual IPs，called vip partitioning</li>
+<li>把A记录的副本们分配给多个LB服务的同个DNS name上，这样请求就被分区到多个LB</li>
+</ul>
+<h2 id="frontend-web-service">FrontEnd web service <a href="#frontend-web-service" style="border:none;"></a></h2><ul>
+<li>轻量级 lightweight web service</li>
+<li>由位于多个数据中心的无状态机器stateless service组成deploy</li>
+</ul>
+<p>负责：</p>
+<ul>
+<li>
+<p>request validation 请求验证
+有助于确保请求中存在所有必需的参数，并且这些参数的值符合约束条件,并且消息大小不超过指定阈值</p>
+</li>
+<li>
+<p>authentication / authorization 身份验证和授权
+验证消息发送者是否message queue服务的registered customer
+是否可以发到它想发的那个队列</p>
+</li>
+<li>
+<p>TLS（SSL） termination SSL 终止
+TLS是一种提供隐私和数据完整性的协议
+TLS 终止是指解密请求并将解密的请求传递给后端服务的过程
+最好在frontend 上进行这步，因为LB的TLS很贵
+通常不是由 FrontEnd 服务本身处理，而是由一个单独运行在同一主机上的 HTTP 进程代理处理。</p>
+</li>
+<li>
+<p>server-side data encryption 服务器端数据加密
+保证消息安全存在后端，所以frontend收到消息就加密 encrypt
+只在return 给customer时解密</p>
+</li>
+<li>
+<p>caching 缓存
+缓存副本。
+缓存常用queue的metadata，和用来身份验证和授权的用户身份信息</p>
+</li>
+<li>
+<p>rate limiting (also known as throttling) 速率限制（也称为限制）
+可以用漏桶算法</p>
+</li>
+<li>
+<p>request dispatching 请求调度
+frontend服务至少远程调用两个web：metadata service &amp; backend service
+并为它俩创建http client，且保证它们isolated，means 如果一个服务速度下降，另一个不受影响impacted
+一些常见的模式，like bulkhead he circuit breaker可以帮忙隔离，当远程调用挂的时候让系统更有弹性</p>
+</li>
+<li>
+<p>request deduplication 请求重复数据删除
+如果消息没到达client可能有重复请求，就可能有重复数据。
+所以cache提前存用过的request ID，来过滤</p>
+</li>
+<li>
+<p>usage data collection 使用数据收集</p>
+</li>
+</ul>
+<h2 id="metadata-service">Metadata Service： <a href="#metadata-service" style="border:none;"></a></h2><p>每次创建queue时，就把它的信息存在DB里</p>
+<p>而这个service就是frontend和DB之间的cache层</p>
+<p>它读多写少，只有创建新queue时写，而每次消息到达时读</p>
+<p>强一致性不强求</p>
+<p>有不同的organize缓存集群的方法</p>
+<ol>
+<li>缓存小：将整个数据set存在每个cluster的node上
+frontend host可以随便调一个metadata service host，因为所有cache cluter上都一样有完整信息</li>
+<li>data大：分片
+frontend知道哪个分片存了数据并直接调用这个分片</li>
+<li>仍然分片，但frontend不知道地址
+so frontend随机调metadata service host，host知道转发到哪里</li>
+</ol>
+<p>对①，可以引入LB，因为传到所有host都一样
+对②和③，metadata host代表一个一致性哈希环</p>
+<p>** 刚刚这个组件集：</p>
+<p>visual IP + LB + frontend web service + metadata web service，一个在DB之上的缓存层，非常流行，广泛适用。</p>
+<h2 id="backend-service">Backend Service <a href="#backend-service" style="border:none;"></a></h2><p>如果卡住，先问问题：like:</p>
+<ul>
+<li>
+<p>where and how do we store messages?
+→ DB可以吗？可以但不优。因为分布message queue有高throughput，都会被store到DB里。
+so 问题变成：构建能处理high throughput的DB的问题
+这种DB有现成的。初级回答：用第三方db。高级：需要解释如何构建分布式db
+→ 那么就用RAM 和 local disk of a backend host
+长久存的用本地disk，短暂存的用memory</p>
+</li>
+<li>
+<p>how do we replicate data?
+→ copies of messages send给其它hots 备用
+replicate within a group of hosts 在集群内发送消息的拷贝，防止单点故障</p>
+</li>
+<li>
+<p>frontend host 怎么知道从哪搜？怎么知道data send to哪
+→ metadata service</p>
+<!-- raw HTML omitted -->
+<p>message到达frontend，frontend问metadata service发到哪个backend，message发过去并复制
+当接收消息来的时候，frontend talks to Metadata service确定存的是哪个backend host</p>
+</li>
+</ul>
+<h3 id="后端host如何互相connect">后端host如何互相connect <a href="#%e5%90%8e%e7%ab%afhost%e5%a6%82%e4%bd%95%e4%ba%92%e7%9b%b8connect" style="border:none;"></a></h3><p>两种</p>
+<p>① Leader-Follower 关系</p>
+<!-- raw HTML omitted -->
+<p>这个queue的所有请求（send &amp; receive）都传到这个leader实例上</p>
+<ul>
+<li>send message传到frontend，到达q1队列 ——&gt; 前端服务call metadata service来识别这个q的后端leader实例，like B ——&gt; message传给leader B，B负责复制</li>
+<li>receive message到达frontend ——&gt; 也发个request to metadata找这个q的leader ——&gt;从leader instance里面检索消息，leader负责清理用过的data</li>
+</ul>
+<p>需要一个组件，帮忙进行leader的选举和管理，called in-cluster manager
+它负责维护一个在queues、leaders、followers之间的mapping
+这个组件很复杂，得reliable scalable performant</p>
+<p>② 一个小型集群，每个cluster都有分布在多个数据中心的3-4个机器</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>send message来时，as before 也要调用metadata service识别哪个cluster ——&gt; 然后调这个cluster的随便一个instance，这个instance负责复制这个cluster所有node</li>
+<li>receive message来时，仍然调用metadata service确定哪个cluster ——&gt; 调用这个cluster随便一个host，搜消息，选定的host负责清理message</li>
+</ul>
+<p>不需要选leader的组件，但是仍然需要组件帮忙管理queue到cluster的分配，called out-cluster manager</p>
+<p>它负责维护一个queue和cluster之间的mapping</p>
+<h3 id="in-cluster-manager-vs-out-cluster-manager">in-cluster manager VS out-cluster manager <a href="#in-cluster-manager-vs-out-cluster-manager" style="border:none;"></a></h3><ul>
+<li>
+<p>in管理cluster内的队列分配，out管理跨cluster的队列分配</p>
+</li>
+<li>
+<p>in需要了解cluster里的每个instance，out不了解instance但需要了解每个cluster</p>
+</li>
+<li>
+<p>in监听来自instance的heartbeat，out监控每个cluster的运行状况</p>
+</li>
+<li>
+<p>in 处理host failures，instance可能死亡或新添，</p>
+<p>out 追踪每个cluster的利用率，处理过热cluster，如果容量到上限了就不添加</p>
+</li>
+</ul>
+<p>big queue？</p>
+<p>当一个queue来了太多messages，leader （in A）或cluster（in B）无法负载时：</p>
+<p>in将queue拆成partitions，每个partition都有一个leader</p>
+<p>out可以跨cluster拆分queue，so queue可以在多个cluster之间均分</p>
+<h2 id="其它">其它 <a href="#%e5%85%b6%e5%ae%83" style="border:none;"></a></h2><ul>
+<li>
+<p>queue 创建和删除
+可以自动创建，when 第一条message到达frontend时，也可以创建create API
+delete 要谨慎，所以一般不公开接口，用命令行删</p>
+</li>
+<li>
+<p>消息 删除
+① 消费完不立刻删除
+所以consumer得一直知道它们消费了什么
+所以必须维持有序，并跟踪offset
+几天之后mssage可以通过一些job删除掉
+kafka就这样
+② 也不删除，而是立刻标记为不可见，让其他consumer无法检索到
+amazon SQS就这样
+收到消息的consumer，需要call deleteAPI，从后端来删除，如果没删，message就会可见，可能被重复消费</p>
+</li>
+<li>
+<p>message replication
+可以同步or异步复制
+同步：复制完才return给producer
+持久性高，延迟也高
+异步：存完一份就返回，稍后复制
+性能高，但可能丢</p>
+</li>
+<li>
+<p>messages delivery semantics 传递保证
+三种，只有一次，最多一次，最少一次
+为啥要这么多种？因为分布式系统可能有很多地方出bug，消息没办法处理
+所以要最少一次，保证了持久、可用、性能之间的平衡
+防丢：
+生产消费端：确认机制
+中间：批量，副本 cluster leader
+防重：=幂等
+生产及过程中：全局唯一id
+消费：要考虑入库时丢失：①事务 ② 乐观锁：version</p>
+</li>
+<li>
+<p>push vs pull</p>
+<ul>
+<li>
+<p>push：新消息到达message时，通知consumer
+queue大量写，写能力 存储能力：</p>
+<ul>
+<li>多线程 写入性能好的db引擎</li>
+<li>定期清理</li>
+<li>读之前先判断<br>
+适合订阅/粉丝量小的业务</li>
+</ul>
+</li>
+<li>
+<p>pull：consumer不断发送检索消息的请求，当queue里有新消息时，发给consumer
+解决了推的延迟，存储成本降低，扩展性更好
+但 查询聚合成本高：缓存聚合.
+优化:
+①只缓存最近的
+②增加多个副本
+pull对queue来说简单，push对consumer来说简单</p>
+</li>
+</ul>
+</li>
+<li>
+<p>FIFO
+分布式里很难维持order
+所以要么不要求顺序，要么不要求速度</p>
+</li>
+<li>
+<p>security
+通过https使用ssl加密
+还可以在后端存的时候加密</p>
+</li>
+<li>
+<p>monitoring
+monitor每个组件：fronted ，metadata，backend
+要监控系统的health 并让consumer track它们的队列状态
+每个服务都必须emit metrics且写log
+还要能设置警报，所以要和监控系统集成</p>
+</li>
+</ul>
+<h2 id="总结">总结 <a href="#%e6%80%bb%e7%bb%93" style="border:none;"></a></h2><p>可扩展吗？yes 每个组件都</p>
+<p>高可用吗？yes 没有单点，每个组件都部在多个数据中心</p>
+<p>高性能吗？depend on 软硬件和网络</p>
+<p>耐用吗？yes，有复制数据，保证不丢</p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">System Design</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/" class="jump-post">[笔记] 分布缓存 | Distribute Cache</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/" class="jump-post">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/">系统设计笔记：俄罗斯大叔系列</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">index</a>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

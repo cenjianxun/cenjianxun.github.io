@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[笔记] 通知服务｜Notification Service-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[笔记] 通知服务｜Notification Service</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[笔记] 通知服务｜Notification Service</h1>
+        <div class="post-time">Jun 8 2022</div>
+    </header>
+
+    <div class="post-content"><p>system design 俄罗斯大叔系列
+消息系统</p>
+<p>场景：需要发送消息以响应某些事件</p>
+<p>like：信用卡交易金额超过限额时，需要通知持卡人</p>
+<p>服务监控系统遇到大量API产生的故障，需要通知on-call工程师</p>
+<p>抽象起来就是：一个publisher 生产消息，并传递给订阅者Subscribers</p>
+<p>当发布者以某种顺序调用每个订阅者并等待响应时，我们可以在发布者和订阅者之间建立同步通信</p>
+<p>难点：当订阅者和消息的数量增长时，系统难以扩展，并且难以扩展以支持不同类型的订阅者。</p>
+<p>so，我们可以引入一个新系统，该系统可以注册任意数量的发布者和订阅者，并协调它们之间的消息传递</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be6cdd97-038d-46cc-aacc-1d3ea80dc0e7/Untitled.png" alt="Untitled"></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18037d27-0c51-4ebb-a19f-840ee251c267/Untitled.png" alt="Untitled"></p>
+<p>Requirement：</p>
+<p>Functional：</p>
+<p>define system behavior, or more specifically APIs - a set of operations the system will support.</p>
+<ul>
+<li>createTopic（topicname）</li>
+<li>publish（topicName， message）</li>
+<li>subscribe（topicName， endpoint）</li>
+</ul>
+<p>它相当于一个存储来自发布者的消息的存储桶，所有订阅者都从该存储桶接收消息的副本。</p>
+<p>Non-Functional：
+system qualities</p>
+<ul>
+<li>scalable（support a big number of topics, publishers and subscribers）</li>
+<li>highly available（可以容错，无单点错误）</li>
+<li>highly performant （延迟低）</li>
+</ul>
+<p>也可能要求其它性能like：安全、运营成本</p>
+<p>high-level architecture</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93618c33-f927-4bcb-a28d-590036855f7d/Untitled.png" alt="Untitled"></p>
+<p>client→LB→前端 → temporary storage→ sender</p>
+<pre><code>                 ↓→frontend → metadata service → metadata database
+</code></pre>
+<p>db &amp; service: 前端连一个db，用来存储有关主题和订阅的信息，但是前端和db之间用一个service连接。</p>
+<p>原因：
+① 遵循设计原则：separation of concerns 关注点分离，可以通过定义好的接口访问DB。简化了维护和更改</p>
+<pre><code>② 该service将充当DB和其它components之间的缓存层，不想每条消息都hit DB，可以先从cache里面搜索。
+</code></pre>
+<p>temp storage: 前端后连一个临时storage，如果消息成功发送就会存很短时间，如果失败了，就会存时间稍微长点，以便重试</p>
+<p>sender：还需要一个组件，从storage里检索消息并发送给订阅者</p>
+<p>sender还需要call metadata service来检索订阅者的信息</p>
+<p>当创建topic和调用API时，只需要将所有这些信息存储在数据库中。</p>
+<p>遵循一些常见模式，like</p>
+<p>负载均衡后面有一个前端</p>
+<p>DB前面有一个service</p>
+<p>it&rsquo;s a 分布式缓存微服务 distributed cache microservice</p>
+<p>FrontEnd Service</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66020912-34ac-4158-af56-d765ff06b978/Untitled.png" alt="Untitled"></p>
+<p>a lightweight web service 轻量级web服务</p>
+<p>负责：</p>
+<ul>
+<li>request validation请求验证</li>
+<li>authentication and authorization身份验证和授权</li>
+<li>SSL termination SSL 终止</li>
+<li>server-side encryption 服务器端加密</li>
+<li>caching 缓存, throttling 限制</li>
+<li>request dispatching and deduplucation 请求调度和去重</li>
+<li>usage data collection 使用数据收集.</li>
+</ul>
+<p>request到达host→进入reverse proxy反向代理</p>
+<p>reverse proxy：轻量级服务器，负责：</p>
+<p>① 当来自 HTTPS 的请求被解密并以未加密的形式进一步传递时，负责SSL终止；同时负责在将响应发送回客户端时对其进行加密</p>
+<p>②compression压缩（like gzip）：当响应返回给客户端之前，代理对其进行压缩。减少带宽用量。</p>
+<p>③ 处理过慢的前端服务：如果前端服务变慢或者不可用，返回503</p>
+<p>反向代理then把request给前端web service</p>
+<p>cache：已知：对于每条发布的消息，前端服务都需要调用元数据服务来获取有关消息主题的信息。</p>
+<p>所以，为了尽量减少对元数据服务的调用次数，前端可以使用本地缓存。like guava，或者自己创建LRU。</p>
+<p>local disk：前端service还写了一堆log，记录</p>
+<ul>
+<li>
+<p>service logs agent：服务运行状况service health，服务异常exceptions</p>
+</li>
+<li>
+<p>metrics agent：衡量指标</p>
+<p>key-value data，以后可能会被聚合并用于监控服务运行状况和收集统计信息，like 请求数量、故障faults、调用延迟call latency</p>
+</li>
+<li>
+<p>audit logs agent：审计</p>
+<p>like 记录谁以及何时向系统中的特定 API 发出请求</p>
+</li>
+</ul>
+<p>** frontend service负责写入log，但实际的日志数据处理由其他组件管理，通常称为代理agents。</p>
+<p>agents负责数据聚合aggregation并将日志传输到其他系统，进行后期处理和存储。</p>
+<p>👆 职责分离有助于使前端服务更简单、更快、更健壮</p>
+<p>下个组件：matadata service：</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82308235-0433-4482-993f-a22179b3dc05/Untitled.png" alt="Untitled"></p>
+<p>一个Web 服务，负责在数据库中存储有关主题topic和订阅的信息</p>
+<p>它是个distributed cache（如果消息过多，单个内存放不下）. 在前端和storage之间</p>
+<p>它读多写少</p>
+<p>集群代表一个一致哈希环，每个前端host用某个键like id计算一个hash，like MD5，并根据这个值，前端host选择相应的metadata service</p>
+<p>frontend host 如何知道要调用哪个metadata service？两种方法：</p>
+<p>① 引入一个负责协调的component like zookeeper</p>
+<p>它知道所有metadata service hosts，因为这些host不断给它发heartbeat</p>
+<p>每个frontend service向它循环哪个metadata service host有我这个hash值的数据</p>
+<p>每次scale更多metadata service时，这个configuration service都会知道，并重新映射remap hash</p>
+<p>② 不用协调组件，确保每个frontend host都知道所有metadata host的信息。如果增删serice时，每个frontend host都会收到通知</p>
+<p>有一些机制帮助frontend host发现metadata host，但略过，但提下Gossip 协议</p>
+<p>它基于流行病传播的方式，随机对等选择一个host共享数据</p>
+<hr>
+<p>一致性协议：</p>
+<ol>
+<li>单主：2PC, Paxos, Raft</li>
+<li>多主：Gossip （Redis）</li>
+</ol>
+<hr>
+<p>接下来request来到temp storage，为什么叫temp，因为message停留时间很短。</p>
+<p>Temporary Storage</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0bb10b80-0cc4-41b2-997d-0d1cbb45dbd6/Untitled.png" alt="Untitled"></p>
+<ul>
+<li>必须快，高可用，可扩展，</li>
+<li>也需要持久性，如果订阅者不可用，message需要仍然存在</li>
+</ul>
+<p>可能有多种设计option，like</p>
+<p>DB：</p>
+<p>① 涛SQL和NoSQL的pro con</p>
+<p>→ 这里不需要ACID，不需要复杂的动态查询，不打算用这个存储来分析或当成数据仓库</p>
+<p>但是需要方便读and写scale，高可用，并可以分区。</p>
+<p>in all，用nosql</p>
+<p>→ 消息大小有限（&lt;1MB）,so 不需要文档存储MongoDB</p>
+<p>消息间无特定关系， so不用图形类</p>
+<p>left：列类型 or key-value类型 like Cassandra  Amazon DynamoDB</p>
+<p>② 内存存储</p>
+<p>要选能支持永久存储的 like redis</p>
+<p>③ 消息队列</p>
+<p>like kakfa sqs</p>
+<p>④ further打动面试官： 流处理平台 stream-processing platforms</p>
+<p>like kafka Amazon kinesis</p>
+<p>然后message发送给订阅者</p>
+<p>Sender</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96065fcb-fbf6-4b3a-b4be-dfbdd74db771/Untitled.png" alt="Untitled"></p>
+<p>（which 别种分布式系统也很好用， when 涉及数据检索、处理，and 消息fan out 并行发至多个目的地）</p>
+<p>message retriever：</p>
+<p>send做的第一件事是消息检索。通过一个线程池来实现的，其中每个线程都尝试从临时存储中读取数据。</p>
+<p>可以实现一个简单方法，始终启动事先定好数量的消息检索线程。</p>
+<p>但是有个问题是，有些线程可能是闲的，因为消息没那么多；另一方面，当消息过多时，线程被占满了，就要添加更多sender主机</p>
+<p>→ 更好的方式是：跟踪空闲线程并动态调整它的数量。scalable，高可用。</p>
+<p>如何实现它？：</p>
+<p>semaphores 信号量：</p>
+<p>信号量维护一组permit 许可。</p>
+<p>检索下一条消息之前，线程必须从信号量获取许可。线程读完消息后，向信号量返回一个permit，允许另一个thread读消息</p>
+<p>一般可以根据现存和期望消息量来动态调节permit</p>
+<p>MS client：</p>
+<p>消息检索完之后，需要调用metadata service获取订阅者信息。</p>
+<p>（这时也有可能已经在frontend调用过并传过来了）但是现在才调messag小点，并且如果那时候调，temp storage就得用文档DB</p>
+<p>获得订阅者列表之后，就可以向所有订阅者发消息了。how 发？</p>
+<p>是否应该遍历一遍订阅者然后call everyone？</p>
+<p>如果其中一个失败了咋办，如果其中一个很慢咋办</p>
+<p>→ 所以不用遍历，而是选择将消息拆成任务task，每个task负责传递给一个单独的订阅者。</p>
+<p>这样可以并行传递，并且不受bad case影响。so：</p>
+<p>task caretor &amp; task exector：</p>
+<p>这俩组件负责创建和调度单独的消息任务</p>
+<p>how 实现这俩组件？</p>
+<p>→ 创建一个线程池，每个线程负责执行一个任务，like java里用ThreadPoolExecutor</p>
+<p>也可以用信号量来跟踪池里可用线程，like message retriever</p>
+<p>这样如果线程够，就直接提交处理；如果不够，就推迟或者停止处理，并把消息return给temp storage</p>
+<p>那么就不会出现，有可能有不同的sender host接收pick up到了这个消息，而这个host刚好又没有足够线程，这种情况。现在是每个task负责把message给一个单独的订阅</p>
+<p>现实情况下，task可能把实际work委托给其它微服务，like负责发email或者sms消息的微服务</p>
+<p>其它可能的问题：</p>
+<p>如何确保通知不会作为垃圾邮件发送给用户？</p>
+<p>需要注册订阅者</p>
+<p>每次注册新订阅者时，会 HTTP 或email发送确认消息，端点和电子邮件所有者需要确认订阅请求。</p>
+<p>重复消息：</p>
+<p>frondend service负责解决这个，删除重复消息</p>
+<p>但是sender service 发消息时，有可能因为延迟导致消息重复，所以订阅者也得处理。</p>
+<p>重试？：</p>
+<p>重试保证了消息“至少一次”</p>
+<p>也可以将未传递消息发给不同订阅者，或者将这类消息存在订阅者可以监视的系统中，让订阅者决定怎么处理。</p>
+<p>通知系统可以为订阅者提供一种重试策略</p>
+<p>保证顺序吗？</p>
+<p>no，即使用时间戳或者序列号，消息的传递也不能保证顺序。比如过慢的消息就会过慢，重试的消息就会重试。</p>
+<p>安全：</p>
+<p>很重要。必须保证只有经过身份验证的人才能当发布者，只有注册的人才能当订阅者。而且一定要传准人。</p>
+<p>用https传递，有ssl加密</p>
+<p>存消息时也要加密</p>
+<p>monitoring：</p>
+<p>必须monitor每个微服务，以及端到端的客户加密</p>
+<p>还必须让每个customer能跟踪track它们的topic的状态，like等待投递的消息数，投递失败的消息数。</p>
+<p>which 需要和监控系统集成</p>
+<p>总结：</p>
+<p>可扩展吗？yes，每个组件都可以</p>
+<p>高可用吗？yes，没有单点故障，每个组件都部署在多个数据中心</p>
+<p>性能高吗？seesese，</p>
+<p>前端，很快，负责的东西很小，其它都委托给异步代理了。</p>
+<p>metadata，分布式缓存，在内存里，很快，</p>
+<p>sender，将消息拆分成小task，可并行，快。</p>
+<p>高可靠吗？yes，每个temp storage方案都有replica，且跨数据中心。且会重试，保证至少一次。</p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">System Design</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/" class="jump-post">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/" class="jump-post">[笔记] 限速服务｜Rate Limiting</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/">系统设计笔记：俄罗斯大叔系列</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">index</a>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

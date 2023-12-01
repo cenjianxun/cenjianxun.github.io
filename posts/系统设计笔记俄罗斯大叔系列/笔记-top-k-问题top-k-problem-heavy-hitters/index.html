@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[笔记] Top K 问题｜Top K Problem (Heavy Hitters)-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</h1>
+        <div class="post-time">Jun 6 2022</div>
+    </header>
+
+    <div class="post-content"><p>system design 俄罗斯大叔系列
+top k 问题</p>
+<p>很常见的需求，like google一百个搜索次数最多的key word，或者y2b上观看最多的视频，转发最多的推等</p>
+<p>mapreduce可以解决但不够</p>
+<p>需要尽可能快，返回实时列表，比如最近几分钟的最热。</p>
+<p>是一个流问题stream processing</p>
+<p>Founctional：</p>
+<ul>
+<li>topK（k，startTime，endTime）</li>
+</ul>
+<p>Non-Functional：</p>
+<ul>
+<li>
+<p>scalable（数据增长时候可以scale）</p>
+</li>
+<li>
+<p>highly available（容错）</p>
+</li>
+<li>
+<p>highly performance（few tens of millisecondes to return top 100 list）</p>
+<p>高性能暗示：数据应该已经提前算好了。</p>
+</li>
+<li>
+<p>accurate</p>
+</li>
+</ul>
+<p>从单host开始：</p>
+<p>假设所有data可以导入它的内存。like video观看量</p>
+<p>每当有用户打开视频，就在log里记：把它的video id添加到list</p>
+<p>hash保存：{id:count} —&gt;</p>
+<p>① sort 这个hash  O(nlogn)</p>
+<p>② 把它加入head（更快）O(nlogk)</p>
+<p>不能scale。如何scale：</p>
+<p>引入LB，将每个事件分发到集群中的主机上， called processor hosts，算好再集中存。</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bfddccdd-bf88-4386-b48a-f37e7c8728fb/Untitled.png" alt="Untitled"></p>
+<pre><code>  吞吐增加了，但是内存不够。
+</code></pre>
+<p>这些都是在内存中算的，hash表会变很大。</p>
+<p>和分布式缓存的解决方法一样，这里选择将数据分成更小的块。</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18b7c057-afbf-498c-abe4-1387cba73be8/Untitled.png" alt="Untitled"></p>
+<p>引入新组件，叫 Data Partitioner。用来把每个video id路由到它自己的processor host，这样每个processor host只存部分data</p>
+<p>（每个host）仍然建一个hash，建一个heap，把所有数据放进去，</p>
+<p>这样每个host都内部排好序</p>
+<p>然后——需要合并n个排序列表。</p>
+<p>如果hash所有的数据量可能很大，内存放不下。</p>
+<p>综上：增加了scalability和throughput，但是还有缺点。</p>
+<p>缺点：目前为止的数据集都是有限的，但是数据流本质是无限的。</p>
+<p>主机只能在一段时间内累积数据。假设1分钟内的前k个，那么k之后的其它信息都会丢失。如果所有数据都存，就会又存不下。所以才会有mapreduce，用来将所有数据存在磁盘上，并用批处理框架计算一个top k列表。</p>
+<p>这种架构的另一个问题，不太简单：</p>
+<ul>
+<li>每次引入数据分区，都需要处理数据复制，使得每个分区的副本都存储在
+多个节点。</li>
+<li>需要考虑重新平衡，将新节点添加到集群或从中删除。</li>
+<li>需要处理热分区。</li>
+</ul>
+<p>但是不重要，先跳过。</p>
+<p>研究一下：前k问题有更简便解法吗？有。如果准确性不太重要的话。</p>
+<p>called count-min sketch 一个二维数组</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/17678576-0ea9-464f-a7b5-c1c3adbbe51f/Untitled.png" alt="Untitled"></p>
+<p>width有几千，height很小代表hash  functions</p>
+<p>（原理待补）</p>
+<p>如何选择宽高：一些公式</p>
+<p>用这个sketch代替可能会变大的hash</p>
+<p>目前为止的high-level architecture</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7942fc52-b493-40b1-a509-fa4c27e69eb0/Untitled.png" alt="Untitled"></p>
+<p>用户点击视频→请求进入网关→网关将请求路由到后端</p>
+<p>网关：关注一下日志：</p>
+<p>log generatioin：通常用来监控、审计、计费</p>
+<p>这里用来计算 视频点击数</p>
+<p>实现一个后台进程从log里面读数据，进行一些初始聚合，然后发送给后面进一步处理</p>
+<p>在api gateway host的memory里分配一个缓冲区，读取日志，构建上面那种hash来计数</p>
+<p>缓冲区大小有限制，满了会刷新，如果没满就根据时间刷新flush</p>
+<p>也可以 用其它方案，like</p>
+<p>即时聚合，就不写入log。</p>
+<p>或者完全跳过网关，直接把video信息往后传</p>
+<p>** 最好把数据序列化成二进制，节省资源</p>
+<p>这些都基于api上的资源： memory, CPU, network or disk IO.</p>
+<p>→  初步聚合的数据传到分布消息系统里，like kafka。在kafka里消息被拆到多个分区，每个分区可能在不同的机器上。拆分方法没有特别的，随机比较均匀。</p>
+<p>→ 数据管道分成两部分：快道和慢道</p>
+<p>快道：计算近似值，几秒钟完事</p>
+<p>有个服务called fast processor，可以在很短的时间间隔内创建 count-min 草图并聚合数据。</p>
+<p>由于内存不再是问题，所有不需要再分区。</p>
+<p>只要在内存里存数据，即使时间再短也要考虑replication，否则就不高可用。</p>
+<p>因为count-min 已经算出了近似答案，所以偶尔丢数据可接受，只要slow path不丢，几小时后就会有精确数据。</p>
+<p>→ 每隔几秒，结果就会刷新到storage里。可能会延迟几分钟。</p>
+<p>另外一个pro/con：storage组件是一种db，存最终的前k的结果list存like1分钟or5分钟</p>
+<p>** pipeline如何降低请求率？【对流处理和数据聚合很重要】</p>
+<p>点击几百万→落在gateway主机上（集群可能很大including数千台）→每台主机预聚合（几秒钟但减小很多）→ fast proceesor（比api gateway集群小的多）进一步聚合（又几秒钟）→ 到达db，只有一小部分</p>
+<p>慢道：计算精确值，几分钟或几小时</p>
+<p>仍要聚合，但要精确：</p>
+<p>①用mapreduce。所有数据存到distributed file system like HDFS 或 对象存储like S3</p>
+<p>运行两个mapreduce，一个计数，一个计算实际的top K list</p>
+<p>有点慢</p>
+<p>② 用data partitioner批量读数据并解析成单个事件</p>
+<p>partitioner获取每个视频并将消息发给另一个kafka集群中的对应分区</p>
+<p>** 每次分区时都要考虑hot shard。交给partitioner service处理。</p>
+<p>好，kafka/kinesis里的每个分区都存一个数据子集，kafka之流会复制数据</p>
+<p>需要一个组件来从每个分区读数据并进一步聚合，called partition processor，在几分钟之内聚合数据，处理成预定义大小的文件，并发到分布式文件系统，给mapreduce下一步处理。</p>
+<p>partition processor还可以将汇总信息发到storage service</p>
+<p>——&gt; storage 现在有三个path给它发数据</p>
+<p>可以根据实际情况调整，like 如果不要求精确，可以不要slow path；如果要准确且要快，就要对数据分区并在内存里聚合；如果不要求时间、要准且数据量大，就用mapreduce</p>
+<p>数据流：</p>
+<p>假设user1点开ABC，user2点开AC</p>
+<p>每个请求都发到一个api gateway host上，信息记在log里。然后在这里聚合观看数据，并传到分布式消息系统上。</p>
+<p>聚合就是说记在一个hash表里，计算在最后几秒钟内看了几次。</p>
+<p>当哈希表到达size上限或指定时限时，就发送结果、清空，并建立新表。</p>
+<p>所以host1发A和B，host2发A和C，host3发A</p>
+<p>fast：</p>
+<p>fast processor1接收并处理消息1，fast processor2 do 消息2，几个fast processor合一起就是结果</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2120572f-04db-47b0-8a51-eabbacd3785f/Untitled.png" alt="Untitled"></p>
+<p>slow：</p>
+<p>用data partitioner。like，message1去partitioner1和2，message2去p2和p3，m3去p2</p>
+<p>计数用mapreduce读这些文件并按某个时间间隔（例如 1 小时）创建一个最终列表。</p>
+<p>计算前k的mapreduce计算前k</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/785ab02a-c0b9-40a2-8981-f5ea02d50594/Untitled.png" alt="Untitled"></p>
+<p>mapreduce job：</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/688beeae-d3d3-444b-9ba2-82fefad20143/Untitled.png" alt="Untitled"></p>
+<p>计数 MR：</p>
+<p>input: 一组文件</p>
+<p>split：文件被并行任务分成独立的块</p>
+<p>map：record reader解析数据，以键值对形式传给mapper，在mapper转成中间对intermediate pairs</p>
+<p>然后partitioner从mapper里面拿到键值对并分区写入每个映射器的本地磁盘，分区时，确保同一个键的值都加在一起了，并且去同一个reducer</p>
+<p>shuffle and sort：mapredcue获取partitioners生成的输出文件，并通过http将它们下载到reducer machine里，sort把keys合在一起。</p>
+<p>reducer：轻松迭代值</p>
+<p>output：reduce task的结果写到file system</p>
+<p>topk MR：</p>
+<p>input：上面的output，拆分为块发到本地mapper，</p>
+<p>map：分布计算本地前k list</p>
+<p>reduce：聚合上个结果</p>
+<p>output：输出最终结果</p>
+<p>data retrieval 数据检索：</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a307f35-8ab9-4e56-8d1b-bcd8fdd734af/Untitled.png" alt="Untitled"></p>
+<p>API Gateway 收到检索请求，把数据检索的调用路由到存储service</p>
+<p>storage 从底层db检索数据。</p>
+<p>假设fast path每隔一分钟创建一个近似的topKlist，slow path每隔一小时创建精确的topKlist。</p>
+<p>user请求一个最后五分钟的topK，就just merge5个1min的list，结果是近似的。</p>
+<p>user请求一个一小时topK，返回精确表</p>
+<p>但是user要请i去2小时topK，没办法返回精确表。如果merger两个小时表，结果就不精确了。</p>
+<p>其它：</p>
+<p>API Gateway work a lot: Authentication身份验证, SSL terminationSSL 终止, rate limiting 速率限制, request routing请求路由, response caching 响应缓存 are among the few</p>
+<p>如果它资源不够work了怎么办？</p>
+<p>一般都会有一个进程专门记录日志，发送到专门存的地方进一步处理</p>
+<p>所以可以run日志，并在专门的cluster处理聚合事宜。其余设置不变</p>
+<p>count-min有其它替代方法吗？</p>
+<p>有。like Lossy Counting, Space Saving and Sticky Sampling. 有损计数、节省空间和粘性采样</p>
+<p>k有多大？</p>
+<p>k到处可见：fastpath：检索时合并前k；slowpath：mapper把topK发到reducer</p>
+<p>所以k不能任意arbitrary大。thousand OK，但是上万就会性能下降。</p>
+<p>如果有更大需求，需要带宽和存储</p>
+<p>这个设计的缺点是什么？</p>
+<p>本系统也叫lambda 架构，which是一种在 MapReduce 和流处理引擎之上构建流处理应用程序的方法。</p>
+<p>事件并行被批处理和流处理，在查询时将两个系统的结果拼接在一起。</p>
+<p>缺点就是复杂。</p>
+<p>如果需求不那么高，Kafka + Spark就可以搞定。</p>
+<p>spark内部也是这样的：数据分区+堆计算topKlist→内存聚合</p>
+<p>知识点：count-min sketch 数据结构、MapReduce 范式、数据聚合原理</p>
+<p>topk问题可以解决：</p>
+<p>“流行什么”服务 like Google 趋势、Twitter 趋势</p>
+<p>热门产品列表</p>
+<p>如何识别交易最活跃的股票</p>
+<p>防止 DDoS 攻击的系统：重击者是一些 IP 地址</p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">System Design</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/" class="jump-post">[笔记] 分布消息队列｜Distributed Message Queue</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/" class="jump-post">[笔记] 通知服务｜Notification Service</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/">系统设计笔记：俄罗斯大叔系列</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">index</a>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

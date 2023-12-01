@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>音视频 on XUN</title>
+    <link>https://cenjianxun.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</link>
+    <description>Recent content in 音视频 on XUN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</guid>
+      <description>&lt;p&gt;原文：&lt;a href=&#34;https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;A Design Analysis of Cloud-based Microservices Architecture at Netflix&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/</link>
+      <pubDate>Sat, 06 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/</guid>
+      <description>&lt;p&gt;推衍一下设计视频&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

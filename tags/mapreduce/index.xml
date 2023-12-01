@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MapReduce on XUN</title>
+    <link>https://cenjianxun.github.io/tags/mapreduce/</link>
+    <description>Recent content in MapReduce on XUN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/mapreduce/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;搭建map和reduce （伪）分布式架构。
+记录一些注意事项和坑。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

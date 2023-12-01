@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>github on XUN</title>
+    <link>https://cenjianxun.github.io/tags/github/</link>
+    <description>Recent content in github on XUN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/</guid>
+      <description>&lt;p&gt;记录建此博客的过程。包括前后端技术及决策的点。
+完全从0开始。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

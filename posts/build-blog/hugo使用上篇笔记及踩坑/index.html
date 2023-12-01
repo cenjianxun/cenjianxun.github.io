@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>Hugo使用上篇：笔记及踩坑-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">Hugo使用上篇：笔记及踩坑</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#配置">配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#结构">结构</a>
+      <ul>
+        <li><a href="#模版">模版</a>
+          <ul>
+            <li><a href="#模版类型">模版类型</a></li>
+            <li><a href="#term模版">term模版</a></li>
+          </ul>
+        </li>
+        <li><a href="#页面">页面</a>
+          <ul>
+            <li><a href="#页面类型">页面类型</a></li>
+            <li><a href="#各种分类的区别">各种分类的区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#路由和url设置">路由和url设置</a>
+          <ul>
+            <li><a href="#定义">定义</a></li>
+            <li><a href="#各名词关系">各名词关系</a></li>
+            <li><a href="#疑惑点">疑惑点</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#go-template">Go Template</a>
+      <ul>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#注释">注释</a></li>
+        <li><a href="#参数">参数</a>
+          <ul>
+            <li><a href="#全局--单页参数调用">全局 &amp; 单页参数调用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#高级功能">高级功能</a>
+      <ul>
+        <li><a href="#链接">链接</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>Hugo使用上篇：笔记及踩坑</h1>
+        <div class="post-time">Aug 15 2023</div>
+    </header>
+
+    <div class="post-content"><h3 id="配置">配置 <a href="#%e9%85%8d%e7%bd%ae" style="border:none;"></a></h3><p>三种配置。一个是config页面的全局配置，一个是每篇文章头的单页配置。格式接受toml，yaml，json。</p>
+<p>文章头配置的part有名字，叫front matter。</p>
+<p>还有一个是archetypes/文件夹，设置.md文章的样式，尤其是头部front matter的样式。</p>
+<h2 id="结构">结构 <a href="#%e7%bb%93%e6%9e%84" style="border:none;"></a></h2><p>hugo结构有两个概念，模版和页面，模版就是html，页面就是文档.md，这两者是一一对应的。</p>
+<p>页面内容存在<code>content/</code>中，在此写出内容，通过存在<code>layout/</code>下的默认或指定模版，渲染成最终展示在浏览器的页面，存在<code>public/</code>中。</p>
+<p>类型，英文名kind。又分模版类型，和页面类型。</p>
+<h3 id="模版">模版 <a href="#%e6%a8%a1%e7%89%88" style="border:none;"></a></h3><p>模版，通常有通用的样式，也可以单独定制，就是写前端代码的意思。写的html模版都存在<code>layout/</code>文件夹里。</p>
+<p><code>layout/_default</code>/文件夹存基础的、一类的页面模版。</p>
+<p>其中的<code>layout/_default/baseof.html </code>定义页面最基本结构。</p>
+<h4 id="模版类型">模版类型 <a href="#%e6%a8%a1%e7%89%88%e7%b1%bb%e5%9e%8b" style="border:none;"></a></h4><p>hugo将模版分成两种类型，一种是正常的文章单页，叫signal.html，一种是文章的集合页，好比归档、首页，不展示文章内容，叫list.html。相当于定义世界，需要物品本身，和装物品的框。</p>
+<p>此外还有一个特殊的单页，首页，叫home。</p>
+<p><code>layout/_default/signal.html </code>就定义了单页的结构，将来渲染每一篇博文。<code>layout/_default/list.html</code>定义了文章集合页的结构，将来渲染归档列表页，只要没单独设置，list.html 的渲染范围还包括tags、pages、tags集合下每个tag的页面，因为它们都是一个“类”，装此类文章的框。</p>
+<p>当然也可以指定渲染模版。比如想开一页，全是图片的，<code>图片.md</code>，可以单独写个模版，比如叫<code>layout/partials/image.html</code>，在<code>图片.md</code>的头部注释处可以设置 <code>layout: layout/partials/image.html</code>，以后渲染<code>图片.md</code>页面就指定用这个模版。</p>
+<p>如何识别哪个页面是单页用signal，哪个是集合用list渲染呢，带_index.md的（文件夹页）就是集合，不带的文件夹下的每篇文章就是单页。</p>
+<h4 id="term模版">term模版 <a href="#term%e6%a8%a1%e7%89%88" style="border:none;"></a></h4><p>在list.html和term.html都存在的基础上，**kind为taxonomy类型的才会用term.html渲染，比如总tags页，而类型为term（即具体莫哥tag）和section的都会用list.html渲染。</p>
+<h3 id="页面">页面 <a href="#%e9%a1%b5%e9%9d%a2" style="border:none;"></a></h3><p>页面就是写的文章，存在<code>content/</code>中，要配合类型说。</p>
+<h4 id="页面类型">页面类型 <a href="#%e9%a1%b5%e9%9d%a2%e7%b1%bb%e5%9e%8b" style="border:none;"></a></h4><p>页面类型可以用 {{ .Kind }} 查看，kind类型有：home, page, section, taxonomy, taxonomyTerm, RSS, sitemap, robotsTXT 以及 404。</p>
+<p>后面的先不看，第一个就唯一页面，也不看。page，就是正常的单页面，section是自己定义的按模块的list类型页面（框），taxonomy是按标签、系列、话题等方式分类的list类型页面（框）。</p>
+<p>taxonomy是属性，这种分类方式的名字，它的值统称做term，具体可能有tags、category这些分类。</p>
+<p>如何生成section，有两种方式。1是content的一级目录，都是section，2是带 _index.md的文件夹，则为section。</p>
+<p>如何生成taxonomy，定义在config中，可以自己指定。</p>
+<pre tabindex="0"><code>[taxonomies]
+  tag = &#34;tags&#34;
+  series = &#34;series&#34;
+  category = &#34;categories&#34;
+  year = &#34;years&#34;
+</code></pre><p>分级是 taxonomy（类）— [ tags, series 等项目] — [ css，redis 等值]</p>
+<p>具体讲，即，<code>基础知识</code>是一个tag，它的kind是term，type是tags；而<code>tags</code>是一个种类，它的kind是taxonomy，type是tags。</p>
+<p>相应的页面分配，点开<code>基础知识</code>这个tag，默认通用模版是baseof/list.html（即便有baseof/term.html），它的url是 <code>域名/tags/基础知识</code>；点开<code>tags</code>这个大类，如有term.html则用，如果没有就用list.html，它的url是 <code>域名/tags</code></p>
+<p>此外，进入content/，有posts文件夹，当posts/有_index.md（注意带 <code>_ </code>）时，posts本身（而不是它里面的单篇文章）的kind成为section，type为posts，它的url（被我在 _index.md 的头部设置了 url: archive重定向了）为<code>域名/archive</code>（没有懂为什么在menu处设置没用，非要在 _index.md 头部改）。</p>
+<p>带 _index.md的文件夹里（即 一个section下）的正常文章，type为此文件夹名字（即section名），kind为page。比如<code>content/posts/试试就试试.md</code>的url默认为<code>content/posts/mytitle</code>，mytitle为 _index.md头部设定的title。当然也可以自定义，like：</p>
+<pre tabindex="0"><code>[permalinks]
+  posts = &#34;/posts/:slugorfilename&#34;
+</code></pre><p>如果文件夹下不带 _index.md，比如<code>content/posts/建站记/index.md</code>，则此时建站记的type则为posts，kind不为section而是page，即index.md 为此文件夹同名正常文件，而<code>建站记/</code>下其它文章都不是正常文章，消失了。</p>
+<p>此特性可以用来存.jpg，即将文章变成同名文件夹，正文放index.md，旁边放点此文配图，方便归档。</p>
+<h4 id="各种分类的区别">各种分类的区别 <a href="#%e5%90%84%e7%a7%8d%e5%88%86%e7%b1%bb%e7%9a%84%e5%8c%ba%e5%88%ab" style="border:none;"></a></h4><p>section我理解的意思，比按tag分类大，相当于，想开发不同的大类，不一定是文章，比如搜集书影音，新闻？之类别的大类的东西，也需要写字和页面，或者在文章中分为技术/非技术，就这两大类，而分出的东西。type意思就是某一个section名字。每个section有单独的url分支。</p>
+<p>.kind是页面展现的类型，单页，还是列表集合，还是tags分类。</p>
+<p><code>.Type</code>  是当前页所属 Section</p>
+<p>简单看了一下douban和bilibili的设置。只有很大类才set进path里。比如豆瓣单栏有group/，相当于一个section，各个组首页为 group/topic/组名，相当于一个子section。但各个组都不会在组名后面拼贴帖子id，而是越过组名，直接统一设为group/topic/帖子id。而和topic并列的是explore，探索页。b站也是一样，所有视频都在video下，不分各个区。这里各个区，各个组有点按taxonomy分的意思。</p>
+<p>这样做的好处是只要知道帖子/视频id就可以搜到内容，不用知道它在哪个组、哪个区。</p>
+<h3 id="路由和url设置">路由和url设置 <a href="#%e8%b7%af%e7%94%b1%e5%92%8curl%e8%ae%be%e7%bd%ae" style="border:none;"></a></h3><h4 id="定义">定义 <a href="#%e5%ae%9a%e4%b9%89" style="border:none;"></a></h4><ul>
+<li>baseURL：
+在config首段设置的路径。默认为<code>/</code>， 一般设为服务器地址，比如要用github page架博客，就设为<code>baseURL = &quot;https://&lt;your github name&gt;.github.io/&quot;</code></li>
+</ul>
+<p>然后开发的时候，默认就是去掉baseURL后开始的。
+也可以用相对路径。</p>
+<ul>
+<li>
+<p>permalinks：
+config里的<code> [permalinks]</code>可以动态配置每个页面的路径。
+参数有 section、title、slug。</p>
+</li>
+<li>
+<p>url：
+单页头部注释的url，指除baseURL以外的path</p>
+</li>
+<li>
+<p>aliases：
+aliases:[&lsquo;a&rsquo;, &lsquo;b&rsquo;] 可以把链接a重定向为链接b。</p>
+</li>
+</ul>
+<h4 id="各名词关系">各名词关系 <a href="#%e5%90%84%e5%90%8d%e8%af%8d%e5%85%b3%e7%b3%bb" style="border:none;"></a></h4><p>url = section + slug</p>
+<p>permalink = baseurl + url = baseurl + section + slug</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>                               url <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/posts/my-first-hugo-post/&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                   ⊢------------^----------⊣
+</span></span><span style="display:flex;"><span>       baseurl     section     slug
+</span></span><span style="display:flex;"><span>⊢--------^--------⊣⊢-^--⊣⊢-------^---------⊣
+</span></span><span style="display:flex;"><span>                 permalink
+</span></span><span style="display:flex;"><span>⊢--------------------^---------------------⊣
+</span></span><span style="display:flex;"><span>https://example.com/posts/my-first-hugo-post/index.html
+</span></span></code></pre></div><p>* <em>config设置permalink中动态的section是动态的，比如有很深的section文件夹嵌套，设一个就可以展示全部</em></p>
+<p>* <em>slug默认为title，具体输出可以在archetypes里设置</em></p>
+<h4 id="疑惑点">疑惑点 <a href="#%e7%96%91%e6%83%91%e7%82%b9" style="border:none;"></a></h4><p>hugo有一些默认设置：</p>
+<ul>
+<li>直接的css、js默认路径就是static，所以在html的head定义的时候，路径可以直接省略static名字，从static内开始。</li>
+<li>默认压缩路径为assets，所以想用管道，或者用ts、scss写路径同样可以省略assets，从assets内开始。</li>
+<li>hugo识别路径挺智能的，末尾有没有<code>/</code>都可以识别</li>
+</ul>
+<h2 id="go-template">Go Template <a href="#go-template" style="border:none;"></a></h2><h3 id="变量">变量 <a href="#%e5%8f%98%e9%87%8f" style="border:none;"></a></h3><p>组合按层的，全站变量为.Site，当前页为.Pages，所以全部页就是.Site.Pages。</p>
+<p>下面就只介绍单级的，要变成全站就自动加.Site在前面</p>
+<p>.Pages 是指所有类型的页面，包括列表页，tags，这种</p>
+<p>.RegularPages （当前section的）正常页面，是指所有单页，即kind=page，不包括列表页</p>
+<p>.RegularPagesRecursive 所有section的正常单页，包括它descendant的section里的单页。</p>
+<p>.Paginator.Pages 分页器组织下的页，如果使用这个变量，就会翻页，即便不设置翻页间隔，也会默认按10条一翻页。</p>
+<p>之前首页和归档页用的遍历代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">/*此选择器意思是，设定type为文件夹名字。因为之前把posts/改成了blog/ */</span>
+</span></span><span style="display:flex;"><span>{{<span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">paginator</span> <span style="color:#f92672">:=</span> .<span style="color:#a6e22e">Paginate</span> (<span style="color:#a6e22e">where</span> .<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">RegularPages</span> <span style="color:#e6db74">&#34;Type&#34;</span> <span style="color:#960050;background-color:#1e0010">$</span>.<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">Params</span>.<span style="color:#a6e22e">folder</span>) }} 
+</span></span><span style="display:flex;"><span>{{<span style="color:#f92672">-</span> <span style="color:#66d9ef">range</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">page</span> <span style="color:#f92672">:=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">paginator</span>.<span style="color:#a6e22e">Pages</span> }}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">内容</span>
+</span></span><span style="display:flex;"><span>{{ <span style="color:#a6e22e">end</span> }} {{ <span style="color:#a6e22e">end</span> }}
+</span></span></code></pre></div><p>.Section  当前内容属于的section。<strong>如果是一个nested sections（即嵌套的多层），这个值会是第一层path，posts下面的section里的文章的section会始终是posts</strong></p>
+<p>link: Permalink = BaseURL + RelPermalink</p>
+<p>找了一下没有 nested section 多层section下，子section的定义方法，只能拿.CurrentSection.RelPermalink</p>
+<h3 id="注释">注释 <a href="#%e6%b3%a8%e9%87%8a" style="border:none;"></a></h3><ol>
+<li>Go 注释 {{/* {{ add 0 + 2 }} */}}</li>
+<li>HTML 注释 {{ &ldquo;<!-- raw HTML omitted -->&rdquo; | safeHTML }}</li>
+</ol>
+<p>注意：Hugo 首先加载的 Go 代码，然后渲染 HTML</p>
+<p>如果HTML注释包含了 Go 模板代码，可能导致构建失败</p>
+<h3 id="参数">参数 <a href="#%e5%8f%82%e6%95%b0" style="border:none;"></a></h3><p>可以使用两种参数：</p>
+<ol>
+<li>页面参数，这是定义在 <a href="https://www.wmxliu.cn/archives/hugo/#%e5%a4%b4%e9%83%a8%e6%b3%a8%e9%87%8a" target="_blank" rel="noopener">头部注释 </a>里的</li>
+<li>全局参数，这是定义在 <a href="https://www.wmxliu.cn/archives/hugo/#%e9%85%8d%e7%bd%ae%e5%ad%97%e5%85%b8" target="_blank" rel="noopener">站点配置 </a>的 <code>params</code> 里的</li>
+</ol>
+<p>具体页面的头部注释，只能写死，不能写函数。本来想动态将title关联至文件夹名，起名废就不用不停改名字还要改两次了。但是不能写成动态的。</p>
+<h4 id="全局--单页参数调用">全局 &amp; 单页参数调用 <a href="#%e5%85%a8%e5%b1%80--%e5%8d%95%e9%a1%b5%e5%8f%82%e6%95%b0%e8%b0%83%e7%94%a8" style="border:none;"></a></h4><p>之前疑问，如果在全局定义了参数，在单页又覆盖，怎么调用怎么区分？</p>
+<ul>
+<li>全局和单页变量似乎不相干，不是复制关系，调用的代码也不同。</li>
+<li>全局没定义的参数，单页前面可以直接定义。调用的时候用<code>{{ .Params.myValue }}</code>。多层的我还没研究。这时候单页没设置的此参数不存在，但可以用<code>{{ if .Params.myValue }}</code>判断。</li>
+<li>全局定义参数，只能放在<code>[params]</code>下面，其它地方不能自己初始化参数。调用全局参数用<code>{{ .Site.Params.myValue }}</code></li>
+</ul>
+<h2 id="高级功能">高级功能 <a href="#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd" style="border:none;"></a></h2><p>见下一篇</p>
+<h3 id="链接">链接 <a href="#%e9%93%be%e6%8e%a5" style="border:none;"></a></h3><p><a href="https://www.wmxliu.cn/archives/hugo/#kind" target="_blank" rel="noopener">Hugo 静态网站建站手册</a></p>
+<p><a href="https://lucide.dev/" target="_blank" rel="noopener">lucide</a></p>
+<p><a href="https://orianna-zzo.github.io/" target="_blank" rel="noopener">hugo的toc</a></p>
+<p><a href="https://www.ariesme.com/posts/2019/add_toc_for_hugo/" target="_blank" rel="noopener">Hugo添加文章目录toc</a></p>
+<p><a href="https://gohugo.io/templates/lookup-order/#examples-layout-lookup-for-home-page" target="_blank" rel="noopener">官网 模版选择顺序</a></p>
+<p><a href="https://www.shaohanyun.top/posts/env/hugo_autonumber/" target="_blank" rel="noopener">Hugo博客添加自动编号</a></p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/hugo">hugo</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/" class="jump-post">blog搭建和启用</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8B%E7%AF%87%E5%BC%80%E5%8F%91blog%E6%96%B0%E5%8A%9F%E8%83%BD/" class="jump-post">Hugo使用下篇：开发blog新功能</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/build-blog/">建站记</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8B%E7%AF%87%E5%BC%80%E5%8F%91blog%E6%96%B0%E5%8A%9F%E8%83%BD/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/">index</a>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

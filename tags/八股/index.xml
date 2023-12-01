@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>八股 on XUN</title>
+    <link>https://cenjianxun.github.io/tags/%E5%85%AB%E8%82%A1/</link>
+    <description>Recent content in 八股 on XUN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Sun, 24 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/%E5%85%AB%E8%82%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-redis%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-redis%E6%A6%82%E5%BF%B5/</guid>
+      <description>&lt;p&gt;一些基础概念。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/</guid>
+      <description>&lt;p&gt;一些基础概念。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/</guid>
+      <description>&lt;p&gt;一些基础概念。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

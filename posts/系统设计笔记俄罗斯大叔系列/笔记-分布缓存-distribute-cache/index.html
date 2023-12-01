@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[笔记] 分布缓存 | Distribute Cache-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[笔记] 分布缓存 | Distribute Cache</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[笔记] 分布缓存 | Distribute Cache</h1>
+        <div class="post-time">Jun 6 2022</div>
+    </header>
+
+    <div class="post-content"><p>system design 俄罗斯大叔系列
+分布缓存</p>
+<p>client  ——&gt; web service ——&gt; database</p>
+<p>有一些问题：</p>
+<p>调用db可能花很长时间，或者占用大量系统资源</p>
+<p>→ 需要存在内存</p>
+<p><strong>Requirement：</strong></p>
+<p>Functional：</p>
+<ul>
+<li>put （key, value）</li>
+<li>get （key）</li>
+</ul>
+<p>Non-Functional：</p>
+<ul>
+<li>scalable</li>
+<li>highly available（survives hardware/network failures）</li>
+<li>highly performance（fast）</li>
+</ul>
+<p>（如果persistence很重要还要考虑持久性）</p>
+<p>如果引入CAP， availability 被 consistency取代</p>
+<p><strong>local cache：</strong></p>
+<p>在单个服务器中实现一个容量优先的基本内存数据存储。</p>
+<p>——&gt; 它是个算法问题。</p>
+<p>什么数据结构？hash</p>
+<p>达到饱和之后，怎么移除旧数据？有很多策略like LRU</p>
+<p>但是单hash表无法实现，意味着我们需要另一种数据结构来跟踪何时使用过什么。</p>
+<p>用常量时间复杂度增删的队列：双向链表</p>
+<p><strong>distributed world</strong></p>
+<p>有多台主机，每个的cache只存一部分，called shard 分片</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/af7cb4dc-af88-4668-b20c-d67b32a99847/Untitled.png" alt="Untitled"></p>
+<p>分布式缓存集群</p>
+<p>隔离cache环境，cache和service不share memory和CPU</p>
+<p>可以自行scale</p>
+<p>可以被多个services利用</p>
+<p>选硬件灵活</p>
+<p>协同定位缓存</p>
+<p>不需要单独集群，节省成本</p>
+<p>service和cache同时scale</p>
+<p>调用cache进程用TCP 或 UDP</p>
+<p>如何决定调用哪个shard：</p>
+<p>简单方法：hash 求mod —&gt; 无法扩展</p>
+<p>进一步：用一致性哈希</p>
+<p>👆 知道了怎么put和get，但是谁负责？：</p>
+<p>cache client</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eeccc6ce-bcf3-4c62-8358-7b6fec01db3b/Untitled.png" alt="Untitled"></p>
+<p>小型轻量级库，与服务代码集成，负责缓存主机选择.</p>
+<ul>
+<li>知道所有缓存服务器,</li>
+<li>所有 client都应该有相同的列表</li>
+<li>按序存储缓存主机列表（用于快速主机查找）</li>
+<li>二分搜索binary search找到server</li>
+<li>使用 TCP 或 UDP 协议与server通信</li>
+<li>如果缓存主机不可用，客户端会继续进行，就像缓存未命中一样。</li>
+</ul>
+<p>client端最重要【cache server list】</p>
+<p>如何创建维护和共享cache server list</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/701b561e-a701-4423-a157-a62dbb2d9435/Untitled.png" alt="Untitled"></p>
+<p>第一种：</p>
+<p>把host存到一个file里，然后通过一些持续部署管道deployment pipeline把它们部署到主机，像chef、puppet等。</p>
+<p>pros cons：简单，但不灵活。列表更改的时候就要全重新部署</p>
+<p>第二种：</p>
+<p>保留这个file，但是把它放到共享storage里like S3，并让service定期轮询文件.</p>
+<p>要引入一个守护进程，在每个servers上运行并几分钟轮询一次这个storage</p>
+<p>pros cons：仍然需要手动维护文件，有更新时就更改并update到storage里</p>
+<p>第三种：</p>
+<p>使用单独的配置中心configuration service，来发现cache hosts并监控它们的健康</p>
+<p>每个server在configuration service上自己注册，并给它定期发送心跳。periodically。</p>
+<p>心跳一来就注册。心跳停了就注销。</p>
+<p>每个client都从这个配置中心获取server list</p>
+<p>pros cons：难，运营成本高operational cost，但自动维护</p>
+<p>总结：</p>
+<p>为了在内存存更多数据：分片，并将每个分片放在自己的服务器上。</p>
+<p>每个缓存客户端都知道所有缓存分片。</p>
+<p>缓存客户端使用一致的哈希算法来选择一个分片来存储和检索特定的缓存键。</p>
+<p>高性能否？yes：</p>
+<p>LRU：常数时间淘汰。binary search：logN查找。connect：TCPUDP</p>
+<p>总之就是快</p>
+<p>可扩展性？yes:</p>
+<p>可以轻松创建更多分片</p>
+<p>（分片常见问题：hot）</p>
+<p>高可用？无</p>
+<p>如果shard挂了，这个分片所有的data就没了</p>
+<p>使用：replication</p>
+<p>replication:</p>
+<p>两类复制协议：</p>
+<p>① gossip, epidemic broadcast trees, bimodal multicast. 支持最终一致性</p>
+<p>② 2 or 3 phase commit, paxos, raft, chain replication. 支持强一致性</p>
+<p>keep it simple：使用主从复制</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42d28a04-dac5-451e-9b1d-1b348cc326e7/Untitled.png" alt="Untitled"></p>
+<pre><code>  一主两从
+</code></pre>
+<p>每次 主master和从replica断连时，从都会尝试重连</p>
+<p>从位于不同的数据中心，防止一个中心故障</p>
+<p>主可以读写，从只读</p>
+<p>因为对缓存分片的调用分布在不同的node，所以处理热分片要容易的多</p>
+<p>可以通过添加更多的只读副本来扩展</p>
+<p>leader如何产生：</p>
+<p>两种选择：</p>
+<p>① 用一个单独组件 就叫configuration service</p>
+<p>它负责监控主和从，以及故障转移，如果leader不work就重选一个</p>
+<p>它本质就是个分布式服务，通常由奇数个节点组成，为了更容易实现仲裁quorum。节点位于独立机器上，高可用。相互之间使用TCP通信。</p>
+<p>可以用zookeeper 👆 or Redis Sentinel</p>
+<p>② 在cache集群中选举</p>
+<p>但是还不够高可用。复制数据时数据还有可能丢失。但是可接受，主要是要快。</p>
+<p>other thing：</p>
+<p>consistency：</p>
+<p>①异步复制时</p>
+<p>②client有个不一样的service list</p>
+<p>可用同步解决，但是会增加延迟</p>
+<p>data expiration：</p>
+<p>LRU：但是当不满时，有些items可能待很久。——&gt;引入存储时间属性。</p>
+<p>两种方式清除：</p>
+<p>① 被动，访问时如果发现过期就丢掉</p>
+<p>② 主动，创建一个定期运行的维护栈维护</p>
+<p>如果数据量很大，无法遍历，就使用一些随机算法。</p>
+<p>local and remote cache：</p>
+<p>两个都用，本地cache没找到，就启用分布式cache</p>
+<p>不用两个都处理，可用在client内部实现对local cache的支持。</p>
+<p>so在创建缓存客户端实例时，我们还构建了一个本地缓存。</p>
+<p>可以用LRU缓存或者知名第三方缓存like guava实现</p>
+<p>security：</p>
+<p>一般不将缓存服务器直接暴露给 Internet</p>
+<p>so应该使用防火墙来限制对缓存服务器端口的访问，并确保只有经过批准的客户端才能访问缓存。</p>
+<p>client还可以在将数据存储在缓存中之前对其进行加密，并在输出时对其进行解密。但是要考虑性能</p>
+<p>Monitoring and logging:</p>
+<p>对分布式cache很重要</p>
+<p>monitor指标：number of faults while calling the cache, latency, number of hits and misses, CPU and memory utilization on cache hosts, network I/O.</p>
+<p>cache client：</p>
+<p>职责很多：维护缓存服务器列表、选择一个分片以将请求路由到、处理远程调用和任何潜在的故障、发出指标。</p>
+<p>可以简化：</p>
+<p>①引入代理，位于client和service之间，负责选shard</p>
+<p>②由service负责选shard：client向随机service发请求，service用一致hash（or其它）重定向该请求到目的分片。Redis cluster就这样</p>
+<p>一致哈希：</p>
+<p>两个flaws:</p>
+<p>①domino effect</p>
+<p>一个service挂掉导致后面压力很大，超载，也挂掉。loop</p>
+<p>② ⚪不能均分</p>
+<p>虚拟节点</p>
+<p>真总结：</p>
+<p>单机 &amp; LRU （本地容量有限无法扩展）→ LRU cache作为独立进程在它的主机上运行</p>
+<p>→ 引入一致性hash分配service → 引入cache client负责将每个请求路由到特定shard</p>
+<p>→ 为了高可用和扩展，引入主从复制 → 为了监控主从和故障转移，引入配置服务</p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">System Design</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            <p class="jump-post">这就是第一篇文章了</p>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/" class="jump-post">[笔记] 分布消息队列｜Distributed Message Queue</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/">系统设计笔记：俄罗斯大叔系列</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

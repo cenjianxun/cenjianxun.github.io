@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[存档备忘] 配置开发环境以及项目管理-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[存档备忘] 配置开发环境以及项目管理</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装-homebrew">安装 homebrew</a></li>
+    <li><a href="#终端设置和dotfiles文件">终端设置和dotfiles文件</a>
+      <ul>
+        <li><a href="#文档管理">文档管理</a></li>
+        <li><a href="#配置文件的注意点">配置文件的注意点</a></li>
+        <li><a href="#环境语言">环境语言</a></li>
+        <li><a href="#shell设置">shell设置</a>
+          <ul>
+            <li><a href="#zshrc">zshrc</a></li>
+            <li><a href="#prompt">prompt</a></li>
+          </ul>
+        </li>
+        <li><a href="#vim的设置">vim的设置</a></li>
+      </ul>
+    </li>
+    <li><a href="#git-配置">GIT 配置</a>
+      <ul>
+        <li><a href="#初始配置">初始配置</a></li>
+        <li><a href="#git-配置文件">git 配置文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#语言配置--软件安装">语言配置 &amp; 软件安装</a>
+      <ul>
+        <li><a href="#安装-python">安装 python</a>
+          <ul>
+            <li><a href="#python-设置">python 设置</a></li>
+            <li><a href="#sublime-设置">sublime 设置</a></li>
+          </ul>
+        </li>
+        <li><a href="#安装-go">安装 Go</a></li>
+        <li><a href="#安装-react">安装 React</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他">其他</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[存档备忘] 配置开发环境以及项目管理</h1>
+        <div class="post-time">May 30 2018</div>
+    </header>
+
+    <div class="post-content"><p>初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。
+目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。</p>
+<h2 id="安装-homebrew">安装 homebrew <a href="#%e5%ae%89%e8%a3%85-homebrew" style="border:none;"></a></h2><p>因为被墙的关系，很多文章记录的都行不通。故记录。</p>
+<ol>
+<li>
+<p><a href="https://github.com/Homebrew/install" target="_blank" rel="noopener">官网</a>下载，步骤点进去有</p>
+</li>
+<li>
+<p>如果<code>ping github</code>不通，就要<a href="https://github.com/ineo6/hosts" target="_blank" rel="noopener">改host</a></p>
+</li>
+<li>
+<p>在终端用vpn下载方法：</p>
+<ol>
+<li>选择clashX的“复制终端代理命令”，黏贴到终端运行</li>
+<li>运行完了再进行步骤1</li>
+</ol>
+<p>* <em>此命令关掉此终端就没了</em></p>
+</li>
+<li>
+<p>如果遇到错误命令
+<code>error: Not a valid ref: refs/remotes/origin/master</code>
+运行
+<code>export HOMEBREW_NO_INSTALL_FROM_API=1</code></p>
+</li>
+</ol>
+<h2 id="终端设置和dotfiles文件">终端设置和dotfiles文件 <a href="#%e7%bb%88%e7%ab%af%e8%ae%be%e7%bd%ae%e5%92%8cdotfiles%e6%96%87%e4%bb%b6" style="border:none;"></a></h2><h3 id="文档管理">文档管理 <a href="#%e6%96%87%e6%a1%a3%e7%ae%a1%e7%90%86" style="border:none;"></a></h3><p>这段是第一段，但是是后面补的。当各种文件配置越来越多，就会需要一个统一的规范将这些配置文档管理起来。也有很多学名，此文件夹一般叫做<code>dotfiles</code>。 意思就是里面放置了各软件的配置文件，包括shell zsh/bash，vim，等等一些配置。这样统一托管起来，一键拉下就可以在不同的系统环境上使用熟悉的配置。
+比较系统的介绍是这篇：<a href="https://farseerfc.me/using-gnu-stow-to-manage-your-dotfiles.html" target="_blank" rel="noopener">使用 GNU stow 管理你的點文件</a></p>
+<p>我参考了许多，综合了一下，目前的方案是这样。
+dotfiles：
+&ndash; init.sh  # 初始化shell，启动设置以及source prompt.sh 和 config.sh，如果当前是zsh，source zsh.zshrc，如果是bash，目前还没用到，就先source ~/.bashrc
+&ndash; prompt.sh  # 放prompt提示符样式的配置，zsh和sh都可以
+&ndash; config.sh  # 放普通的通用设置，颜色啊历史啊，以及export各文件path。这下就没有用.zshenv这个文件了。
+&ndash; zsh.zshrc  # zsh专用配置，分出此脚本因为绑定热键的时候发现zsh和bash语法又不一样。目前配了一些快捷键，主要是想用前缀查找历史命令
+&ndash; init.vim  # 和init.sh对应，初始化vim配置。但目前还没有太多功能需求，所以都写在这里面了。
+&ndash; bootstrap.sh  # 运行一下，把init.sh 添到~/.zshrc （bash是~/.bashrc）里去，把init.vim 添到 ~/.vimrc里去。</p>
+<h3 id="配置文件的注意点">配置文件的注意点 <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e7%9a%84%e6%b3%a8%e6%84%8f%e7%82%b9" style="border:none;"></a></h3><ul>
+<li>此时（2023年）之后mac默认shell是zsh。查看 <code>echo $SHELL</code> （需大写）。
+而root的shell是sh，且没有软链到bash 。查看<code>-lh /bin/sh</code></li>
+<li>以前一般bash的默认配置在<code>~/.bashrc</code>里，mac的shell是zsh的话，用<code>~/.zshrc</code>。
+普通bash和zsh这两者，不登陆模式也加载，但是每次开新shell都会加载，多了启动会慢。
+这两者还分别有对应文件<code>~/.bash_profile</code>和<code>~/.zprofile</code>。这两个只初始加载一次，但需要登陆。</li>
+<li>本机（普通和root都）初装没有<code>.zshrc</code>，也没有<code>.bash_profile</code> 和 <code>.bashrc</code>。</li>
+<li>现在一般都只留rc系列，即 mac默认配置shell的话，普通用户配置 <code>~/.zshrc</code>指向 <code>/User/[USERNAME]/.zshrc</code>，root用户（bash版）配置<code>~/.bashrc</code>指向 <code>/var/root/.bashrc</code>。</li>
+<li><code>~/.zshrc</code>不分登不登陆。
+<code>~/.bashrc</code> ，如果只有它的话就都读它，如果还存在<code>~/.bash_profile</code>，且是登陆方式，就会跳过<code>/.bashrc </code> 。</li>
+<li>但是root的sh初始化是POSIX模式，为了兼容。只初始化尽可能少的内容，只有$ENV变量扩展而得到的文件，其他文件通通不执行。所以相当于上一条那些文件都没有的样子，所以命令行启动项是这样子的：
+<pre tabindex="0"><code> sh-3.2#
+</code></pre>因为sh不是bash，不会加载 <code>/etc/bashrc</code> 来规范 <code>PS1</code> 的变量。<br>
+且由于<code>sudo su</code>过来什么都不执行，所以source各种下次再开也没用。</li>
+</ul>
+<h3 id="环境语言">环境语言 <a href="#%e7%8e%af%e5%a2%83%e8%af%ad%e8%a8%80" style="border:none;"></a></h3><ul>
+<li>
+<p>在iTerm2里面，profile-terminal下的<code>Set locale variables automatically</code> 去掉。</p>
+</li>
+<li>
+<p>此时默认locale就为空了，那么再<code>export LANG=&quot;zh_CN.UTF-8&quot;</code>，考虑到语言是全局设定，在<code>/etc/profile</code>里添加此设置。</p>
+</li>
+<li>
+<p>此时vim编辑时中文乱码，在<code>~/.vimrc</code>中添加</p>
+<pre tabindex="0"><code>set termencoding=utf-8
+set encoding=utf8
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
+</code></pre><p><div role='note' class='notation'>
+        
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        
+
+    
+    <p>后面配置文件改成<code>[mypath]/init.vim</code>了，在<code>~/.vimrc</code>中source。
+如果后面vim配置文件多了，再拆分init.vim</p>
+    </div>
+<div role='note' class='notation'>
+        
+        <span class="point"></span>
+        <span class="point"></span>
+        
+
+    
+    <p>忽然又ls乱码了，source了一下<code>etc/profile</code>。为啥要手动source？</p>
+    </div></p>
+</li>
+<li>
+<p>最后在git的时候，文件名里的中文也不能显示，敲命令<code>git config --global core.quotepath off</code></p>
+</li>
+</ul>
+<h3 id="shell设置">shell设置 <a href="#shell%e8%ae%be%e7%bd%ae" style="border:none;"></a></h3><p>搜索了一圈，拒绝ohmyzsh，太重了，所以后面的配置都是自己弄的。但是以下这三个官方插件，权衡很久还是很有必要装一下。</p>
+<ul>
+<li>zsh-autosuggestions # 自动补全</li>
+<li>zsh-syntax-highlighting # 代码错误高亮</li>
+<li>zsh-history-substring-search # 前缀搜索<br>
+在终端运行：<code>brew install [插件名称]</code></li>
+</ul>
+<p>shell设置复杂的多。现在已经有三个文件，<code>$HOME/.zshrc</code>的本机文件。给所有通用的配了init.sh文件，放在<code>/Users/config/</code>下面，终端的样式prompt配置单独写了一个<code>prompt.sh</code>也放在这里。最后因为热键绑定zsh和sh又不一样，最后又单独分离出一个zsh.zshrc文件出来写专门zsh的配置，给init.sh只留下通用的启动项。</p>
+<p>目前方案是，单独本机的配置先放在<code>~/.zshrc</code>中，它source <code>init.sh</code>，which放一些公共的设置，<code>init.sh</code> 再source <code>zsh.zshrc</code> 和 <code>prompt.sh</code>，which设置zsh的配置和终端外观。等我思考一下如何从github上将它们一键布置。</p>
+<p>目前~/.zshrc的设置只有source init.sh和 各语言的alias和export path。</p>
+<p>init.sh是一些通用配置，目前有color，history大小，启动propmt和zsh专有配置。</p>
+<p>zshrc和prompt单独说。</p>
+<h4 id="zshrc">zshrc <a href="#zshrc" style="border:none;"></a></h4><p>先阅读 <a href="https://wiki.archlinuxcn.org/wiki/Zsh" target="_blank" rel="noopener">archwiki-zsh</a></p>
+<p>zsh.zshrc的热键映射语法和sh不一样，所以单独分出来。这边绑热键，涉及键盘键位、iterm设置，终端设置，所以绕了好久。</p>
+<div role='note' class='notation'>
+        
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        
+
+    
+    <p>补：
+Zsh 使用自带的 zle 代替 readline，并且不会读取 /etc/inputrc 或者 ~/.inputrc。 Zle 有 emacs 和 vi 两个模式，默认根据环境变量 $EDITOR 来决定模式，为空/默认为 emacs 模式。bindkey -e 或者 bindkey -v 来手动指定模式。</p>
+    </div>
+<p>首先是键盘，目前是宁芝x99（嘿嘿），先设置了mac布局。
+然后下载了karabiner，主要在这里改键盘热键。
+主要是我还是想用win的ctrl+cv复制黏贴，短手caps用不了一点，默认的大拇指折进去也费劲。<strong>且同时</strong>win和mac的cmd和alt好像换了键位，导致涉及三个键的更改，后面配屏幕显示和实际按键的时候已经晕了，又从头开始捋。</p>
+<p>一层一层加。先在mac系统配键盘快捷键→修饰键那里，互换ctrl和cmd。这一层是为了用ctrl+cv来复制黏贴。
+💡 这里要注意的是，如果使用了karabiner，在mac设置里，要选karabiner键盘，选物理键盘改键没用。</p>
+<p>然后这时cmd和alt的键位是错的，再进入karabiner，互换左comd和左opt（alt），以及右opt和右ctrl又反了不知为何，这里也换过来。
+复杂映射目前配了鼠标的侧键复制黏贴（感觉上键有点费劲）；改了用left_shift切换输入法；用shift+esc代替cmd+backspace来删除文件夹中的文件；将caps_lock映射成cmd+ctrl+opt+shift。
+caps映射这里本来我用caps映射了fn的，但是很容易误触，因为我打开了fn唤出表情符号，而且这四个+其他键还可以组好多快捷键，所以后面换成这个了。但是我的fn又没地方放了，宁芝键盘没有单纯的fn键，fn+F1这些就很难按。
+💡 这里要注意的是，我已经换了ctrl和opt，所以删文件的json原本是opt的地方要改成ctrl。</p>
+<p>顺便在karabiner重新配了f1-f12，宁芝默认音量和播放那些键和系统默认的不一样，改一下。并打开as standard function keys，意思是音量和播放这些键要配合辅助键使用。默认的f1-f12这些，又回mac设置里绑了启动台，调度中心这些。</p>
+<p>mac默认没有json，所以浅记录一下目前弄的mac系统快捷键</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>键盘按下</th>
+<th>屏幕显示</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打开/关闭程序坞</td>
+<td>ctrl+esc</td>
+<td>⌘⎋</td>
+<td></td>
+</tr>
+<tr>
+<td>显示启动台</td>
+<td>F1</td>
+<td>F1</td>
+<td></td>
+</tr>
+<tr>
+<td>聚焦搜索</td>
+<td>F2</td>
+<td>F2</td>
+<td></td>
+</tr>
+<tr>
+<td>打开/关闭台前调度</td>
+<td>F9</td>
+<td>F9</td>
+<td></td>
+</tr>
+<tr>
+<td>应用程序窗口</td>
+<td>F10</td>
+<td>F10</td>
+<td></td>
+</tr>
+<tr>
+<td>调度窗口</td>
+<td>F11</td>
+<td>F11</td>
+<td></td>
+</tr>
+<tr>
+<td>显示桌面</td>
+<td>F12</td>
+<td>F12</td>
+<td></td>
+</tr>
+<tr>
+<td>截屏</td>
+<td>alt+1</td>
+<td>⌥1</td>
+<td></td>
+</tr>
+<tr>
+<td>截屏内容拷到剪贴板</td>
+<td>alt+2</td>
+<td>⌥2</td>
+<td></td>
+</tr>
+<tr>
+<td>全屏拷到剪贴板</td>
+<td>alt+3</td>
+<td>⌥3</td>
+<td></td>
+</tr>
+<tr>
+<td>服务→通用→newfile</td>
+<td>caps+t</td>
+<td>⌃⌥⇧⌘T</td>
+<td>自己建的，新建文件，建法请搜索</td>
+</tr>
+<tr>
+<td>服务→文本→半全繁简</td>
+<td>cmd+拼音首字母</td>
+<td>⌃拼音首字母</td>
+<td>起作用了一下就失灵了不知为何</td>
+</tr>
+<tr>
+<td>服务→下面想唤出应用笺条和iterm</td>
+<td>caps+字母</td>
+<td>⌃⌥⇧⌘字母</td>
+<td>应用想统一用ctrl，但不起作用不知为何</td>
+</tr>
+<tr>
+<td>访达搜索窗</td>
+<td>ctrl+shift+f</td>
+<td>⇧⌘F</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>其他的目前还没懂啥意思。</p>
+<p>====</p>
+<p>自此可以在zsh.zshrc里配置快捷键了，其实我想记的也不多，就是想实现ipython中上下翻历史前缀匹配，和按word和line移动和删除。但是❗️要时刻注意的是，映射的时候，^名字是叫ctrl，但是alt映射上去的。反之一样。</p>
+<p>这里面涉及到两个地方，三个概念。两个地方是指iterm2的preference，和终端的zshrc文件设置。三个概念是指，需要将键盘的按键，按键所指的ascii（之类的）码，以及需要绑定的动作，都对应起来。
+为什么要这么多，因为终端bindkey命令的字符，竟然系统跟系统都能不一样，照别人的配完了有的都不起作用。
+而来到iterm配置，send映射的又有两种，一种是send esc+[让你填]，这里面填的码和终端的部分一样。一种是直接send hexcode，这个code我翻了很久也不知道它如果用终端代码写对应的是什么。</p>
+<p>终端查看已有的映射 敲命令<code>bindkey</code>，结果like：</p>
+<pre tabindex="0"><code>&#34;^[[3~&#34; delete-char
+&#34;^[[A&#34; up-line-or-history
+&#34;^[[B&#34; down-line-or-history
+&#34;^_&#34; undo
+&#34; &#34;-&#34;~&#34; self-insert
+&#34;^?&#34; backward-delete-char
+&#34;\M-^@&#34;-&#34;\M-^?&#34; self-insert
+&#34;^U&#34; kill-whole-line
+&#34;^X^U&#34; undo
+</code></pre><p>结合iterm的key，esc写死了，delete-char为<code>[3~</code>，可知esc的码为<code>^[</code>（虽然不知为什么，并没按下esc键啊），不过照猫画虎可以模仿一些命令。但是不以<code>^[</code>开头的就不懂了。
+又搜了一阵，开始使用命令【我按下的是】<code>cmd+v</code>，然后输入想看的组合键，看屏幕上显示什么，就是该组合键的码。发现^也大概是ctrl，（但我要按cmd键），譬如^U我就按了cmd+U。但是我按<code>ctrl+←</code> 还是什么也出现的是<code>^U</code>，而且我在zshrc里bindkey它也不起作用。真的很confuse。还有很多比如<code>ctrl+backspace</code>用这个方式不显示。
+<div role='note' class='notation'>
+        
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        
+
+    
+    <p>后面知道这个码叫做 <code>CSI序列</code>。
+按 <code>ctrl+v</code> 或输入<code>cat &gt; /dev/null</code>，之后输入想查的按键可得。</p>
+    </div></p>
+<p>最先确定和有效的是 backward/forward-word/line，上下左右键底层对应的是ABCD。ctrl（我按下alt）应该对应<code>^[[1;5</code>，alt（我按下ctrl）应该对应<code>^[[1;3</code>。但其中alt【按键，非显示】没有对应，于是在iterm设置里的key，send了esc+<code>[1;5D</code>/<code>[1;5C</code> map上alt【按键，非显示】+←/→
+我私自许cmd对应<code>^[[1;4</code>，不过没绑。</p>
+<p><strong>iterm里有两处可设置key，我设在全局里。profile的按终端设置处，先配置了<code>Natural Text Editing</code>，再适当删减冲突。</strong></p>
+<p>相应zshrc里写</p>
+<pre tabindex="0"><code>bindkey &#39;^[[1;3D&#39; backward-word  # [ctrl-left]
+bindkey &#39;^[[1;3C&#39; forward-word  # [ctrl-right]
+bindkey &#39;^[[1;5D&#39; beginning-of-line  # [alt-left]
+bindkey &#39;^[[1;5C&#39; end-of-line  # [alt-right]
+</code></pre><p>然后解决上下键查历史前缀匹配，<code>^[[A</code>是上，这个比较好确认。在上面下载history插件的基础上，唯一迷惑了一下的就是<code>history-substring-search-*</code> 和 <code>history-beginning-search-*</code> 有什么区别。原来前者是前缀匹配，后者是全string中任意匹配。
+此部分代码如下：</p>
+<pre tabindex="0"><code>autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey &#34;^[[A&#34; up-line-or-beginning-search # Up
+bindkey &#34;^[[B&#34; down-line-or-beginning-search # Down
+</code></pre><p>然后又各种搜索，发现一张<a href="https://www.zsh.org/mla/users//2014/msg00266.html" target="_blank" rel="noopener">唯一看起来靠谱的表</a>。copy过来。</p>
+<pre tabindex="0"><code>key[F1]        = &#39;^[[[A&#39;
+key[F2]        = &#39;^[[[B&#39;
+key[F3]        = &#39;^[[[C&#39;
+key[F4]        = &#39;^[[[D&#39;
+key[F5]        = &#39;^[[[E&#39;
+key[F6]        = &#39;^[[17~&#39;
+..
+key[F10]       = &#39;^[[21~&#39;
+key[F11]       = &#39;^[[23~&#39; # 缺22
+key[F12]       = &#39;^[[24~&#39;
+
+key[Shift-F1]  = &#39;^[[25~&#39;
+key[Shift-F2]  = &#39;^[[26~&#39;
+key[Shift-F3]  = &#39;^[[28~&#39; # 缺27
+key[Shift-F4]  = &#39;^[[29~&#39;
+key[Shift-F5]  = &#39;^[[31~&#39; # 缺30
+..
+key[Shift-F8]  = &#39;^[[34~&#39;
+
+key[Insert]    = &#39;^[[2~&#39;
+key[Delete]    = &#39;^[[3~&#39;
+key[Home]      = &#39;^[[1~&#39;
+key[End]       = &#39;^[[4~&#39;
+key[PageUp]    = &#39;^[[5~&#39;
+key[PageDown]  = &#39;^[[6~&#39;
+key[Up]        = &#39;^[[A&#39;
+key[Down]      = &#39;^[[B&#39;
+key[Right]     = &#39;^[[C&#39;
+key[Left]      = &#39;^[[D&#39;
+
+key[Bksp]      = &#39;^?&#39;
+key[Bksp-Alt]  = &#39;^[^?&#39;
+key[Bksp-Ctrl] = &#39;^H&#39;    console only.
+
+key[Esc]       = &#39;^[&#39;
+key[Esc-Alt]   = &#39;^[^[&#39;
+
+key[Enter]     = &#39;^M&#39;
+key[Enter-Alt] = &#39;^[^M&#39;
+
+key[Tab] = &#39;^I&#39; or &#39;\t&#39; unique form! can be bound, but does not &#39;showkey -a&#39;.
+key[Tab-Alt]   = &#39;^[\t&#39;
+
+A            = &#39;a&#39;    (duhhh)
+A-Shift      = &#39;A&#39;    (who would have guessed?)
+A-Alt        = &#39;^[a&#39;
+A-Ctrl       = &#39;^A&#39;
+A-Alt-Ctrl   = &#39;^[^A&#39;
+A-Alt-Shift  = &#39;^[A&#39;
+A-Ctrl-Shift = &#39;^A&#39;   (Shift has no effect)
+
+/-Shift-Ctrl = Bksp      = &#39;^?&#39;
+[-Ctrl       = Esc       = &#39;^[&#39;
+M-Ctrl       = Enter     = &#39;^M&#39;
+I-Ctrl       = Tab       = &#39;^I&#39; or &#39;\t&#39;
+
+# Actually that is ASCII DELete not Backspace.  Backspace is ^H ... but 
+of course the Del key might send any of ^? or ^H or ^[[3~ etc., and
+the key labeled Backspace often sends ^?.
+</code></pre><p>它还解释了为什么缺以及</p>
+<pre tabindex="0"><code>for some reason if you use &#39;bindkey&#39; within a script (as in &#39;.zshrc&#39;) &#39;^[&#39; must be replaced with &#39;\e&#39;  
+bindkey -s &#39;^[[[A&#39; &#39;my-command \C-m&#39; 
+bind &#39;F1&#39; to &#39;my-command&#39; and execute it (the &#39;\C-m&#39; simulates the &#39;Enter&#39; key).
+in &#39;.zshrc&#39;:
+bindkey -s &#39;\e[25&#39; &#39;my-command1 ; my command2 \C-m&#39;
+bind &#39;Shift-F1&#39; to &#39;my-command1&#39; followed by &#39;my-command2&#39; and execute both of them.
+</code></pre><p>回来试试\e的。
+可惜它没写del的。我恨。</p>
+<p>由于 <code>ctrl+backspace</code> 为 <code>^H</code>，直接写在终端我这不起作用，在iterm的send esc处又无法分解，bindkey里现有的码又不知道它代表什么键。只能转向iterm的send hexcode。
+浅收下最终映射表：
+<div role='note' class='notation'>
+        
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        
+
+    
+    <p>后面用着调整了回删
+alt+backspace删word更顺手一点。</p>
+    </div></p>
+<table>
+<thead>
+<tr>
+<th>意义</th>
+<th>hex code</th>
+<th>CSI 序列</th>
+<th>我附加的weight【按键版】</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>往前删一个词</td>
+<td>0x1b 0x08</td>
+<td></td>
+<td>alt + backspace</td>
+</tr>
+<tr>
+<td>往后删一个词</td>
+<td>0x1b 0x64</td>
+<td></td>
+<td>alt + del</td>
+</tr>
+<tr>
+<td>往前删到头</td>
+<td>0x17</td>
+<td></td>
+<td>ctrl + backspace</td>
+</tr>
+<tr>
+<td>往后删到头</td>
+<td>0x0b</td>
+<td></td>
+<td>ctrl + del</td>
+</tr>
+<tr>
+<td>删整行</td>
+<td>0x15</td>
+<td>cmd + backspace</td>
+<td></td>
+</tr>
+<tr>
+<td>左移一个词</td>
+<td>0x1b 0x62</td>
+<td>^[[1;5D</td>
+<td>ctrl + ←</td>
+</tr>
+<tr>
+<td>右移一个词</td>
+<td>0x1b 0x66</td>
+<td>^[[1;5C</td>
+<td>ctrl + →</td>
+</tr>
+<tr>
+<td>移至行首</td>
+<td>0x01</td>
+<td>^[[1;3D</td>
+<td>alt + ←</td>
+</tr>
+<tr>
+<td>移至行尾</td>
+<td>0x05</td>
+<td>^[[1;3C</td>
+<td>alt + →</td>
+</tr>
+<tr>
+<td>undo</td>
+<td>0x1f</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>redo</td>
+<td>0x18 0x1f</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>最后我的整个删除都是直接在iterm里配的没有用bindkey。</p>
+<div role='note' class='notation'>
+        
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        
+
+    
+    <p>上面的还是得更新一下。
+此外cmd+c是kill进程，ctrl+c是copy，因为我的ctrl按下去是cmd。
+用<code>stty -a</code>可查看kill进程快捷键</p>
+    </div>
+<p>最后搜到了权威的wiki定义：<a href="https://zh.wikipedia.org/wiki/ANSI%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97" target="_blank" rel="noopener">ANSI转义序列</a>，部分相关。</p>
+<p>还要研究一下ctrl+z 的undo和停止进程的冲突问题。</p>
+<p>参考：
+<a href="https://blog.lilydjwg.me/tag/zsh" target="_blank" rel="noopener">依云的zsh tag</a>
+<a href="https://blog.quarticcat.com/zh/posts/how-do-i-make-my-zsh-smooth-as-fuck/" target="_blank" rel="noopener">我是如何让我的 Zsh 像丝般顺滑的</a>
+<a href="https://github.com/wszqkzqk/wszqkzqk.github.io/blob/master/_posts/2022-06-24-%E5%9C%A8%E4%B8%8D%E5%80%9F%E5%8A%A9oh-my-zsh%E7%9A%84%E5%89%8D%E6%8F%90%E4%B8%8B%E8%BF%9B%E8%A1%8CZsh%E9%85%8D%E7%BD%AE.md" target="_blank" rel="noopener">在不借助oh-my-zsh的前提下进行Zsh配置</a>
+<a href="https://a-wing.top/shell/2021/05/10/zsh-config" target="_blank" rel="noopener">如何使用 shell（3/3）—— 配置 zsh</a></p>
+<p>配置：
+<a href="https://github.com/Aloxaf/dotfiles" target="_blank" rel="noopener">https://github.com/Aloxaf/dotfiles</a>
+<a href="https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh" target="_blank" rel="noopener">https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh</a>
+<a href="https://github.com/goreliu/zshguide/wiki/.zshrc" target="_blank" rel="noopener">https://github.com/goreliu/zshguide/wiki/.zshrc</a>
+<a href="https://github.com/QuarticCat/dotfiles/blob/main/zsh/.zshrc" target="_blank" rel="noopener">https://github.com/QuarticCat/dotfiles/blob/main/zsh/.zshrc</a>
+<a href="https://github.com/ckelsel/vim-init/blob/master/init.vim" target="_blank" rel="noopener">https://github.com/ckelsel/vim-init/blob/master/init.vim</a></p>
+<p><del>M1芯片的mac: <code>omz reload 97bcde</code></del></p>
+<h4 id="prompt">prompt <a href="#prompt" style="border:none;"></a></h4><p>单独说一下prompt终端样式配置。目前放在 <code>[mypath]/prompt.sh</code>下，里面zsh，bash都有配。从 <code>[mypath]/init.sh</code>内source。</p>
+<p>我需要的：
+不要ohmyzsh。简单，不要复杂图案，颜色不要跳。
+错误提示；
+git提示，韦易笑主张不要但我还是加上；但是是自己写的
+单行，韦易笑又主张不要但是我看依云两行也挺好看的，她要命令起始位置相同，方便看；
+path除了最后一个其他缩进；</p>
+<p>几个坑点：bash和zsh语法又不一样；mac切换root变成了sh环境，最后也简单配了一下。但是其他linux适配还是等有机器再说；语法真的好难懂。</p>
+<div role='note' class='notation'>
+        
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        
+
+    
+    <p>目前我的bash_profile.sh里面都是配置终端样式的内容。
+我的终端样式：
+<img src="./image.png" alt="Alt text">
+ 表示是mac，输错命令会变红；
+路径折叠，节省行空间；
+添加git提示；
+右端添加显示时间；又更新了
+背景是黄其淋gucci官摄，加了透明度。</p>
+<p>好好看呀。</p>
+    </div>
+<p>一些参考资料：</p>
+<ul>
+<li><a href="http://chuquan.me/2020/11/01/oh-my-zsh/" target="_blank" rel="noopener">ohmyzsh的源码解读</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/107004124" target="_blank" rel="noopener">翻译整理「Moving to zsh」（三）</a></li>
+<li><a href="https://www.ditig.com/256-colors-cheat-sheet" target="_blank" rel="noopener">256色表</a></li>
+<li><a href="https://www.zhihu.com/question/21418449/answer/300879747" target="_blank" rel="noopener">韦易笑对zsh的一些配置和心得</a></li>
+</ul>
+<h3 id="vim的设置">vim的设置 <a href="#vim%e7%9a%84%e8%ae%be%e7%bd%ae" style="border:none;"></a></h3><p>目前设置在<code>init.vim</code>中。</p>
+<p>vim和sh编辑器不一样 注释符号是👉 &quot;</p>
+<p>vim的设置退出后不用source。</p>
+<p>这个blog<a href="https://ixyzero.com/blog/archives/2305.html" target="_blank" rel="noopener">Vim中的按键映射</a>科普的比较好。
+这个blog<a href="https://ppwwyyxx.com/blog/2013/vim/" target="_blank" rel="noopener">My Vim</a>是唯一见的写的比较好的，配置不是复制黏贴。
+其他都不如这两个。</p>
+<p>记录一下坑：
+首先除了必要的文字编码、语法高亮、缩进等等内容，用vim比较少，我目前最想设置的还是跟shell一样的复制黏贴，左右移动和删除。但是始终两个地方很迷乱。</p>
+<p>一是vim的寄存器太多，状态也多，什么visual、insert，试了好多命令都没法达到在所有状态下选中可复制黏贴。最后成功的设置是这样的：</p>
+<pre tabindex="0"><code>set mouse=v
+set clipboard=unnamed
+&#34; CTRL-A Select all
+noremap &lt;快捷键&gt; gggH&lt;C-O&gt;G “ggVG是光标自动移到行尾
+&#34; CTRL-X Cut
+inoremap &lt;快捷键&gt; &#34;+x
+&#34; CTRL-C Copy
+noremap &lt;快捷键&gt; &#34;+y
+inoremap &lt;快捷键&gt; &lt;C-o&gt;&#34;+y
+&#34; CTRL-V Paste
+noremap &lt;快捷键&gt; &#34;*p
+inoremap &lt;快捷键&gt; &lt;Esc&gt;&#34;*p
+</code></pre><p>参考：https://gist.githubusercontent.com/razrLeLe/76cecb05d5b0e282f2a6/raw/57ab6f21f945307ef587e690d45fbf175757d398/.vimrc</p>
+<p>原来mouse=a之后，用鼠标复制黏贴就失效了。但是不设=a，又不能使用鼠标，必须用上下左右移动。
+且可以复制的时候，多行复制行号也复制进去了。世事难两全。
+搜到了和我设置一样的<a href="https://www.worldhello.net/2010/12/08/2190.html" target="_blank" rel="noopener">Vim 复制粘贴探秘</a>，也没有解决。
+先不搞了，有时间再精进……</p>
+<p>二是mac中，又又又是alt和ctrl的问题。上面代码中的<code>&lt;快捷键&gt;</code>，比如复制，应该是ctrl+c，即<!-- raw HTML omitted -->，但我按下ctrl映射的是alt，所以我应该改成<!-- raw HTML omitted -->或<!-- raw HTML omitted -->，但是不知为何alt失效的彻底。
+后面排查到是alt+快捷键没用，不止vim，在shell里都没用，而且alt+F1到F12有效，只是0-9a-zA-Z没用，打开了iterm的设置option to esc+也没用，在vim强硬设置也没用。不知道怎么回事，暂且搁置吧。</p>
+<h2 id="git-配置">GIT 配置 <a href="#git-%e9%85%8d%e7%bd%ae" style="border:none;"></a></h2><h3 id="初始配置">初始配置 <a href="#%e5%88%9d%e5%a7%8b%e9%85%8d%e7%bd%ae" style="border:none;"></a></h3><ol>
+<li>生成 SSH key
+<pre tabindex="0"><code># 配置用户名(&#34;username&#34;是自己GitHub上的用户名)
+git config --global user.name &#34;username&#34;
+
+# 配置邮箱(&#34;username@email.com&#34;是注册GitHub账号时所用的邮箱)
+git config --global user.email &#34;username@email.com&#34;
+
+# 看配好没 
+git config --global --list
+
+# 检查电脑是否已经有 SSH key
+ls ~/.ssh
+# 此时应该无
+
+# 生成本台电脑的ssh 
+ssh-keygen -t rsa
+# 一路空格
+</code></pre>然后把.pub结尾的文件内容复制进github.com。<br>
+然后看好了没有。
+<pre tabindex="0"><code># 不要按回车！要输入yes
+ssh -T git@github.com
+</code></pre></li>
+<li>开始
+<pre tabindex="0"><code># 在当前目录新建一个Git代码库
+git init
+
+# 新建一个目录，将其初始化为Git代码库
+git init &lt;project-name&gt;
+
+# 下载一个项目和它的整个代码历史
+git clone &lt;url&gt;
+</code></pre></li>
+</ol>
+<p>目前软件path设置都放在<code>&lt;mypath&gt;/config.sh</code>下，从 <code>&lt;mypath&gt;/init.sh</code>内source。</p>
+<h3 id="git-配置文件">git 配置文件 <a href="#git-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" style="border:none;"></a></h3><p>git 有三个配置文件</p>
+<ul>
+<li>system 系统<br>
+系统所有用户都会生效，一般在安装路径下<br>
+查看此文件路径：<code>git config -e --system</code>
+我的在：<code>/opt/homebrew/etc/gitconfig</code></li>
+<li>global 全局<br>
+当前用户生效
+路径：<code>$HOME/.gitconfig</code></li>
+<li>local 本地
+仅当前项目生效
+路径：<code>(当前项目)/.git/config</code></li>
+</ul>
+<p>优先级：local &gt; global &gt; system</p>
+<p>设置用户名密码的时候使用的命令<code>git config --global &lt;用户名&gt;</code>，global意思就是改在了global config里。</p>
+<p>给global，因为是我自己电脑，我就设系统里了，添加下面配置：</p>
+<pre tabindex="0"><code>[init]
+    defaultBranch = main  # 初始分支设为main
+[core]
+    quotepath = off  # 允许中文显示
+[gui]
+    encoding = utf-8  # 代码库统一使用utf-8
+[i18n]
+    commitencoding = utf-8  # log编码
+[svn]
+    pathnameencoding = utf-8  # 支持中文路径
+</code></pre><p>此外，我的dotfiles文件也要建仓库，但本地文件没放在当前user下，而是放在根目录下，所以上传的时候报错<code>fatal: Could not read from remote repository.</code>
+增添设置：</p>
+<pre tabindex="0"><code>[core]
+    sshCommand = &#34;ssh -i &lt;想设的路径&gt;/.ssh/id_rsa&#34;
+[user]
+	name = xxx
+	email = xxx@xxx.com
+</code></pre><p>主要是ssh路径，下面的user想想也添上了。
+再pull，大成功。</p>
+<h2 id="语言配置--软件安装">语言配置 &amp; 软件安装 <a href="#%e8%af%ad%e8%a8%80%e9%85%8d%e7%bd%ae--%e8%bd%af%e4%bb%b6%e5%ae%89%e8%a3%85" style="border:none;"></a></h2><h3 id="安装-python">安装 python <a href="#%e5%ae%89%e8%a3%85-python" style="border:none;"></a></h3><h4 id="python-设置">python 设置 <a href="#python-%e8%ae%be%e7%bd%ae" style="border:none;"></a></h4><p>使用brew可以安装指定版本的python，且不用配置环境。</p>
+<pre tabindex="0"><code>brew search python@ # 搜索版本
+brew install python@3.10 #安装
+brew uninstall python@3.9 #卸载
+brew cleanup python@3.11 #清一下不用的包
+</code></pre><p>目前mac默认安装了python3.9，而且软链是python3，所以要换。
+先查探</p>
+<pre tabindex="0"><code>which python # 这条会error 因为此时python还没连
+which python3 # 这条会在/usr/bin/python3，默认那版
+which python3.10 # 这条会在/opt/homebrew/bin/python3.10，刚下的
+</code></pre><p>而且brew下的python已经默认被brew link了，因为 <code>%python3.10</code> 回车有东西：</p>
+<pre tabindex="0"><code>brew link python@3.10
+&gt;&gt; Warning: Already linked: /opt/homebrew/Cellar/python@3.10/3.10.12_1
+</code></pre><p>每个python都有pip,所以python10的pip也叫pip3.10</p>
+<pre tabindex="0"><code>whereis pip3.10
+&gt;&gt; pip3.10: /opt/homebrew/bin/pip3.10
+</code></pre><p>所以需要alias上面which的那个地址</p>
+<pre tabindex="0"><code>alias python=&#34;/opt/homebrew/bin/python3.10&#34;
+alias pip=&#34;/opt/homebrew/bin/pip3.10&#34;
+</code></pre><p>然后source</p>
+<h4 id="sublime-设置">sublime 设置 <a href="#sublime-%e8%ae%be%e7%bd%ae" style="border:none;"></a></h4><p>我默认需要：自动换行 和 显示路径。
+设置path：</p>
+<ul>
+<li>win <code>Preferens - Settings</code></li>
+<li>mac <code>Sublime Text - Settings - Settings</code></li>
+</ul>
+<p>我的设置</p>
+<pre tabindex="0"><code>{
+  &#34;word_wrap&#34;: &#34;true&#34;,
+  &#34;save_on_focus_lost&#34;: true,
+  &#34;show_full_path&#34;: true
+}
+</code></pre><h3 id="安装-go">安装 Go <a href="#%e5%ae%89%e8%a3%85-go" style="border:none;"></a></h3><p>设置path</p>
+<pre tabindex="0"><code># Go
+export GOROOT=&#34;$(brew --prefix golang)/libexec&#34;  # go的安装环境，由brew决定
+export GOPATH=$HOME/Work/Go   # go的运行环境，工作地点，新建个
+
+# 添加path看到有可能重复添加，防止重复添加：
+if [[ &#34;:${PATH}:&#34; != *&#34;${GOROOT}/bin&#34;* ]]; then
+	export PATH=&#34;$PATH:${GOROOT}/bin&#34;
+fi
+
+if [[ &#34;:${PATH}:&#34; != *&#34;${GOPATH}/bin&#34;* ]]; then
+	export PATH=&#34;$PATH:${GOPATH}/bin&#34;
+fi
+</code></pre><h3 id="安装-react">安装 React <a href="#%e5%ae%89%e8%a3%85-react" style="border:none;"></a></h3><p>几个步骤：</p>
+<ol>
+<li>安装node。
+node是js的开发环境，要运行js脚本必须安装
+<pre tabindex="0"><code>brew install node
+</code></pre></li>
+<li>安装create-react-app
+是官方推出的构建react单页应用的手脚架工具。集成了webpack，并配置了一系列内置的loader和默认的npm的脚本。
+<pre tabindex="0"><code>sudo npm install -g create-react-app
+</code></pre></li>
+</ol>
+<p>顺便装一个TypeScript</p>
+<pre tabindex="0"><code>sudo npm install -g typescript
+</code></pre><h2 id="其他">其他 <a href="#%e5%85%b6%e4%bb%96" style="border:none;"></a></h2><ul>
+<li>解决v2ex打不开的问题。<br>
+它在clash里是直连。打开配置文件夹-西部世界，在rule下找到v2ex，把direct改成proxy。然后重载文件夹。</li>
+<li>给vscode换主题。<br>
+<a href="https://vscodethemes.com/" target="_blank" rel="noopener">vscode主题大赏</a>
+vscode关闭烦人的悬停大提示框：
+<ol>
+<li>不知为何直接选reference的setting点不开，要去help里敲setting</li>
+<li>我的设置在：editor &gt; hover: enabled。取消它。</li>
+<li>世界清净了。</li>
+</ol>
+</li>
+</ul></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98">存档备忘</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/macos">macOS</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/shell">shell</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/git">git</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E4%BB%8A%E6%97%A5%E7%94%9F/" class="jump-post">今日生</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/" class="jump-post">[进阶知识] Python底层</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>设计视频流架构-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">设计视频流架构</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#需求">需求</a></li>
+    <li><a href="#估算">估算</a></li>
+    <li><a href="#api">API</a></li>
+    <li><a href="#high-level">high-level</a>
+      <ul>
+        <li><a href="#上传">上传</a></li>
+        <li><a href="#观看">观看</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库">数据库</a></li>
+    <li><a href="#detail-design">detail design</a>
+      <ul>
+        <li><a href="#瓶颈">瓶颈</a></li>
+      </ul>
+    </li>
+    <li><a href="#优化">优化</a></li>
+    <li><a href="#微博解决方案">微博解决方案</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>设计视频流架构</h1>
+        <div class="post-time">Mar 6 2021</div>
+    </header>
+
+    <div class="post-content"><p>推衍一下设计视频</p>
+<h2 id="需求">需求 <a href="#%e9%9c%80%e6%b1%82" style="border:none;"></a></h2><p>功能需求：</p>
+<ul>
+<li>必须：上传 / 观看</li>
+<li>非必需：搜索 / 留言 / 推荐</li>
+</ul>
+<p>非功能需求：</p>
+<ul>
+<li>一致性 avaibility scable → 最终一致性</li>
+<li>低延迟 <strong>视频总需要低延迟</strong></li>
+</ul>
+<h2 id="估算">估算 <a href="#%e4%bc%b0%e7%ae%97" style="border:none;"></a></h2><p>前提：共2billion（youtube）；PAU（算一半）1billion</p>
+<p>人：读写<strong>人数</strong> 100:1；平均每天观看时长50min；7天上传一个；</p>
+<p>video：每分钟带宽10mb；每个视频10min；</p>
+<p>→
+每天看5个视频：
+1080:50Mb/min；720:30Mb/min；480:10Mb/min ……
+⇒ SUM：100Mb/min</p>
+<p>QPS：
+read：1b * 5个 / 86400 = 57k 个 /sec
+write：1b * 1% / 7day / 86400 = 16.5个 /sec
+* <em>QPS按活跃人数算</em>
+* <em>QPS means video <strong>个数</strong></em></p>
+<p>Storage（日）：
+1b * 1% / 7day * 10min * 100Mb/min = 1.42TB / day</p>
+<p>Bandwidth：
+upload：1b * 1% / 7day * 10min/个 * 10Mb/min / 86400 = 1.65GB/s
+watch/download： 1b * 50min/day * 10Mb/min / 86400 = 5.7T/s</p>
+<h2 id="api">API <a href="#api" style="border:none;"></a></h2><p>传输：
+client：init request → server
+server: vid, url → client
+client: upload videos by chunks → server</p>
+<p>upload：
+token/key，<del>vid</del> title, content, description
+* <em>这里用户不用传id，只用传title</em></p>
+<p>streamvideo：
+token/key, vid, offset, codec, description
+* <em>offset 是时间戳，任意时间都可以看</em></p>
+<p>还有delete/search api</p>
+<h2 id="high-level">high-level <a href="#high-level" style="border:none;"></a></h2><h3 id="上传">上传 <a href="#%e4%b8%8a%e4%bc%a0" style="border:none;"></a></h3><p>（缺图）
+client → LB → upload service → 队列、分布视频存储、DB元数据存储 → video processing server → completion queue → processing server → CDN</p>
+<p>upload:
+视频本身放到media storage
+视频和用户info放到DB
+传、转码耗时 → 异步 → 任务放队列</p>
+<p>processing：
+processing server从queue里取任务处理（转码）
+处理完之后，把视频和缩略图放文件系统
+同时向DB meta里更新视频和缩略图地址</p>
+<p>distruibuting：
+需要低延迟观看：用CDN
+还是耗时：异步，用队列</p>
+<p>processing server做的事：</p>
+<ul>
+<li>把视频分解成chunks</li>
+<li>编码解码，分辨率</li>
+<li>做缩略图 or ML提取主要内容</li>
+</ul>
+<p>CDN存储：<strong>静态内容很适合存CDN</strong>
+存热门视频，冷门由原数据中心分发</p>
+<h3 id="观看">观看 <a href="#%e8%a7%82%e7%9c%8b" style="border:none;"></a></h3><p>client → LB → video playback service →  distributed midia storage、DB
+Host Identify service → CDN</p>
+<p>Host Identify:
+用来查找视频地址
+给视频和用户信息，查找里这个用户最近的视频CDN地址
+找到了就返回，找不到就从distribute返回
+info和meta从DB返回</p>
+<h2 id="数据库">数据库 <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93" style="border:none;"></a></h2><p>user table：uid，name，email，createTime……
+video metadata： vid，uid，title vpath，createtime
+comment table：comment ID， uid， vid， content，createtime</p>
+<p>sql存user video info
+nosql存缩略图，但一般存 blob storage：S3（nexfilx）
+file system： HDFS /</p>
+<h2 id="detail-design">detail design <a href="#detail-design" style="border:none;"></a></h2><h3 id="瓶颈">瓶颈 <a href="#%e7%93%b6%e9%a2%88" style="border:none;"></a></h3><p>read heavy：
+→ shading: by vid via 一致性哈希：① 要搜全局 ② hot video加cache
+→ replication：读写分离 → 破坏一致性 → 最终一致</p>
+<p>latency：
+→ caching： 20-80. cache也要分布：一致性哈希 ｜ 在LB之前加cache（netflix）
+→ CDN：提前存可能的视频，定期分发</p>
+<h2 id="优化">优化 <a href="#%e4%bc%98%e5%8c%96" style="border:none;"></a></h2><p>扩展DB
+最重要的是视频 → 分成两个集群：视频/通用</p>
+<p>缓存：
+server cache：贵，so 磁盘 replica
+前端cache 也重要</p>
+<p>安全：
+限制ip观看次数 / 检查浏览器代理 and 历史记录
+提取真实观看数量、分享评论、观看时间等</p>
+<p>web server
+扩展：多副本，前面+LB</p>
+<p>一些问题：
+大量硬盘查找，页面缓存
+单目录文件限制
+每秒大量请求
+高负载请求易崩
+图片多，存储不够
+重启慢
+⇒
+用bigtable：将多个文件数据合并存到一个block，快有容错，低延迟
+同video：多个图一起读；小图拼接 客户端切</p>
+<h2 id="微博解决方案">微博解决方案 <a href="#%e5%be%ae%e5%8d%9a%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" style="border:none;"></a></h2><p>feed 分片。推 &amp; 拉
+推：hot user 压力大
+拉：按体量，写入开销，数据一致</p>
+<p>多级缓存</p>
+<p>弹性扩容：
+弹性扩容 + 固定时段扩容 + 突发流量扩容 + 微服务熔断机制
+通过流量监控评估
+超过最大荷载就自动降级</p>
+<p>视频去重：
+存储 / 缓存 / 网络 都要去重
+用户上传时删除。（免得search）
+视频匹配算法，查重复视频，如有，停止上传，在副本里选。
+将video分成小块，只传无的部分</p>
+<p>LB：
+hot video：
+动态http重定向（到不忙的server）
+缺点：多次重定向，高延迟，引到较远的位置
+缓存：memcache 20-80
+驱逐：LRU
+容错：①重试 ②切到备用</p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">SYSTEM DESIGN</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E9%9F%B3%E8%A7%86%E9%A2%91">音视频</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E8%87%AA%E6%88%91%E6%89%AB%E7%9B%B2-js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/" class="jump-post">[自我扫盲] js基础之HTML部分</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="jump-post">[笔记] Netflix微服务架构设计</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

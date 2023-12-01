@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>【MIT 6.824】实验整体配置-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">【MIT 6.824】实验整体配置</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#环境">环境</a>
+          <ul>
+            <li><a href="#win下操作">win下操作</a></li>
+            <li><a href="#go环境-配置">go环境 配置</a></li>
+            <li><a href="#还要安装gcc">还要安装gcc</a></li>
+          </ul>
+        </li>
+        <li><a href="#函数">函数</a>
+          <ul>
+            <li><a href="#调试">调试</a></li>
+            <li><a href="#输出-打印区别">输出 打印区别</a></li>
+            <li><a href="#定时器函数">定时器函数</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>【MIT 6.824】实验整体配置</h1>
+        <div class="post-time">Jul 10 2022</div>
+    </header>
+
+    <div class="post-content"><p>实验途中通用配置及坑点记录。</p>
+<h3 id="环境">环境 <a href="#%e7%8e%af%e5%a2%83" style="border:none;"></a></h3><h4 id="win下操作">win下操作 <a href="#win%e4%b8%8b%e6%93%8d%e4%bd%9c" style="border:none;"></a></h4><p>windows下不能动态编译go.so, 会使得第一句 go build -race -buildmode=plugin ../mrapps/wc.go 就会报错。</p>
+<p>因此使用wsl + vscode的方式。</p>
+<p>wsl：通过windows下的终端安装。 注意点：
+① 要升级到wsl2，否则后面可能报错。
+② 国内命令行下载ubuntu超级慢，可通过win自带的微软store下载</p>
+<p>vscode: 注意点：
+① 在vscode里面下载remot-wsl插件
+② 还要下go插件
+③ vscode不能write在Ubuntu里的文件，改：
+<code>sudo find /home/ -type d -user root -exec sudo chown -R $USER: {} ; </code></p>
+<p>本机传东西给ubuntu： 在虚拟机中端打开/mnt，ls c就是c盘，d就是d盘</p>
+<h4 id="go环境-配置">go环境 配置 <a href="#go%e7%8e%af%e5%a2%83-%e9%85%8d%e7%bd%ae" style="border:none;"></a></h4><p>环境配置提示：一种方法是把6.824目录设置为$GOPATH；另一种方法是使用module的方式——在src目录下使用<code>go mod init example.com/src</code>生成mod文件（网址和路径自己取，只要最后一层目录是src即可），然后把src代码中所有import ../mr替换成import 网址/src/mr。</p>
+<pre tabindex="0"><code>export GOROOT=/usr/local/go  //goroot就是安装go的文件夹
+export GOPATH=/home/axun/6.824  // gopath就是当前运行的文件夹
+export GO111MODULE=on
+export PATH=$PATH:$GPROOT/bin:$GOPATH/bin
+</code></pre><p>要么直接这样👆</p>
+<p>要么 <code>vim /etc/profile source /etc/profile</code>
+—————————— 如果项目import的路径是 <code>6.824/mr</code>, 就是<code>GO111MODULE=on export &quot;GOPATH=$PWD&quot;</code></p>
+<p>如果是off， 就会报错 <code>../mrapps/wc.go:9:8: cannot find package &quot;6.824/mr&quot; in any of: /usr/local/go/src/6.824/mr (from $GOROOT) /home/Go/6.824/src/6.824/mr (from $GOPATH)</code>
+如果确认开启，那么 go 会到 你的 <code>...\go\pkg\mod</code> 类似的目录下查找依赖。 而不是去到 <code>...\go\src</code> 你的 gopath 路径查找依赖。</p>
+<h4 id="还要安装gcc">还要安装gcc <a href="#%e8%bf%98%e8%a6%81%e5%ae%89%e8%a3%85gcc" style="border:none;"></a></h4><p>由于ubuntu默认没有gcc，导致<code>go build -buildmode=plugin ../mrapps/wc.go</code>命令时候编译报错 <code>sudo apt-get install build-essential</code></p>
+<p>debug时没有插件，但是又墙了。改： <code>GOPROXY=&quot;https://goproxy.io,direct&quot; </code>然后要在goroot的bin下面下： <code>go install -v github.com/go-delve/delve/cmd/dlv@latest</code></p>
+<p><code>cannot load plugin wc.go</code> 无法插件wc.so 有得救，加<code>-gcflags=&quot;all=-N -l&quot;</code>无法wc.go 无法救，手动调试罢了</p>
+<h3 id="函数">函数 <a href="#%e5%87%bd%e6%95%b0" style="border:none;"></a></h3><h4 id="调试">调试 <a href="#%e8%b0%83%e8%af%95" style="border:none;"></a></h4><p><code>mrworker.go</code> 中注释描述通过 <code>go run mrworker.go wc.so</code> 来运行工作节点，不过如果构建 <code>wc.so</code> 时开启了竞争检测（-race），则运行 mrworker.go 时也同样需要开启竞争检测，否则会提示 <code>cannot load plugin wc.so</code>，如果打印 err 则会显示 <code>plugin.Open(&quot;wc&quot;): plugin was built with a different version of package runtime</code>。</p>
+<p>同样的，如果使用 GoLand 调试程序，由于在调试模式下 GoLand 编译 Go 文件时会增加 <code>-gcflags=&quot;all=-N -l&quot;</code> 参数，所以也需要在打包 wc.so 时增加相同的参数。</p>
+<h4 id="输出-打印区别">输出 打印区别 <a href="#%e8%be%93%e5%87%ba-%e6%89%93%e5%8d%b0%e5%8c%ba%e5%88%ab" style="border:none;"></a></h4><p>Golang 格式化输出使用&quot;fmt&quot;包。 // 以下输出等效 // Println, 多个参数间自动插入空格，自动换行。【不能带%格式】 <code>fmt.Println(&quot;Hello&quot;, 23)</code></p>
+<pre tabindex="0"><code>// Print 和 Printf, 不自动插入空格，不自动换行
+fmt.Print(&#34;Hello &#34;, 23, &#34;\n&#34;)
+fmt.Printf(&#34;Hello %d\n&#34;, 23) // 【可以带%格式】
+
+// Fprint 和 Fprintf, 不自动插入空格，不自动换行
+fmt.Fprint(os.Stdout, &#34;Hello &#34;, 23, &#34;\n&#34;)
+fmt.Fprintf(os.Stdout, &#34;Hello %d\n&#34;, 23)
+
+// Sprint 和 Sprintf, 不输出，只返回字符串
+// 注意：Sprintf转换字符串（%s）时，可能隐式调用String()方法，可能出现循环调用
+fmt.Print(fmt.Sprint(&#34;Hello &#34;, 23, &#34;\n&#34;))
+fmt.Print(fmt.Sprintf(&#34;Hello %d\n&#34;, 23))
+</code></pre><h4 id="定时器函数">定时器函数 <a href="#%e5%ae%9a%e6%97%b6%e5%99%a8%e5%87%bd%e6%95%b0" style="border:none;"></a></h4><pre tabindex="0"><code>clock = time.NewTimer(100 * time.Second) // 定时100秒 
+time1 = time.Now() 
+t := &lt;- clock.c //定时器有三个属性，此属性为通道，表示要等多长时间 
+time2 = time.Now() //如果运行了&lt;- clock.c，就表示这一段儿已经计时了，time2到time1的时间就是定时的100s 
+time.reset(一个新时间) //定时器属性，重置计数 
+time.stop() //定时器属性，停止计时
+</code></pre></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/%E5%88%86%E5%B8%83%E5%BC%8F">分布式</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824go-thread/" class="jump-post">【MIT 6.824】Go Thread</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" class="jump-post">【MIT 6.824】Lab1 MapReduce 课堂笔记</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/mit-6.824/">MIT6.824 - 分布式系统</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824go-thread/">index</a>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

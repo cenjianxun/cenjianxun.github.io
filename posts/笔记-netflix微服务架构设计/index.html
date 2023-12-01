@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[笔记] Netflix微服务架构设计-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[笔记] Netflix微服务架构设计</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据">数据</a></li>
+    <li><a href="#基础特性">基础特性</a></li>
+    <li><a href="#架构">架构</a>
+      <ul>
+        <li><a href="#playback-架构">playback 架构</a></li>
+        <li><a href="#后端">后端</a></li>
+      </ul>
+    </li>
+    <li><a href="#组件">组件</a>
+      <ul>
+        <li><a href="#客户端">客户端</a>
+          <ul>
+            <li><a href="#微服务">微服务</a></li>
+            <li><a href="#数据存储">数据存储</a></li>
+            <li><a href="#流数据管道">流数据管道</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[笔记] Netflix微服务架构设计</h1>
+        <div class="post-time">Mar 10 2021</div>
+    </header>
+
+    <div class="post-content"><p>原文：<a href="https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f" target="_blank" rel="noopener">A Design Analysis of Cloud-based Microservices Architecture at Netflix</a></p>
+<h2 id="数据">数据 <a href="#%e6%95%b0%e6%8d%ae" style="border:none;"></a></h2><p>（至2019）
+用户：167 million，新增 5 million/ seaseon
+视频：4000+ movie；47000 TV series
+停留：165 million hours
+（学个词， 观众 叫 subscribers）</p>
+<h2 id="基础特性">基础特性 <a href="#%e5%9f%ba%e7%a1%80%e7%89%b9%e6%80%a7" style="border:none;"></a></h2><p>基于共有云（AWS）的微服务架构
+高可用，可扩展性的视频流系统</p>
+<h2 id="架构">架构 <a href="#%e6%9e%b6%e6%9e%84" style="border:none;"></a></h2><p>系统：AWS cloud + 内部内容交付网络 open connect CDN
+软件层：client + backend + CDN
+多终端</p>
+<p>backend包括：aws cloud的服务 + DB + storage</p>
+<p>aws服务包括：</p>
+<ul>
+<li>可扩展计算实例（AWS EC2）</li>
+<li>可扩展存储（AWS S3）</li>
+<li>业务逻辑微服务（Netflix 专用框架）</li>
+<li>可扩展的分布式数据库（AWS DynamoDB、Cassandra）</li>
+<li>大数据处理和分析作业（AWS EMR、Hadoop、Spark、Flink、Kafka 和一些 Netflix 专用工具）</li>
+<li>视频处理和转码（Netflix 专用工具）</li>
+</ul>
+<h3 id="playback-架构">playback 架构 <a href="#playback-%e6%9e%b6%e6%9e%84" style="border:none;"></a></h3><p><img src="https://filescdn.proginn.com/ada4168e33045150a4e66389f88680ac/bf99628b2e8e7f902c8e45e4efc65273.webp" alt=""></p>
+<ol>
+<li>netflix CDN的oca监控运行状态，包括负载状态、可用路由、可用视频，并发送报告给aws ec2上的cache control service</li>
+<li>client发送播放请求至aws ec2上的 nexflix play app service，获取video url</li>
+<li>2的app service验证有效后允许观看。包括用户权限、政策许可等</li>
+<li>app service和同在aws ec2中的steering service对话，获取请求视频的合适的oca服务器list，并返回。合适是指，连接质量高、快且可靠。</li>
+<li>client从返回的list中测试连接质量，选best请求视频文件</li>
+<li>选定的oca server接受client请求 开始流传输视频</li>
+</ol>
+<h3 id="后端">后端 <a href="#%e5%90%8e%e7%ab%af" style="border:none;"></a></h3><p>后端处理：注册、登录、计费，视频转码和个性化推荐……</p>
+<p>client → LB → API Gateway → 各种api接口 → 微服务 → cache、DB、stream processing pipeline。stream processing 连aws s3和hadoop</p>
+<h2 id="组件">组件 <a href="#%e7%bb%84%e4%bb%b6" style="border:none;"></a></h2><h3 id="客户端">客户端 <a href="#%e5%ae%a2%e6%88%b7%e7%ab%af" style="border:none;"></a></h3><p>客户端 连两种，一个连内容发现，一个连内容播放</p>
+<h4 id="微服务">微服务 <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1" style="border:none;"></a></h4><p>微服务可以独立工作，也能通过 REST 或 gRPC 调用其他微服务。
+个微服务能拥有自己的数据存储和一些存放近期结果的内存缓存存储。
+请求将被放入网络事件循环中，而来自其他被调用的微服务的结果将放入异步非阻塞 I/O 中的结果队列。</p>
+<h4 id="数据存储">数据存储 <a href="#%e6%95%b0%e6%8d%ae%e5%ad%98%e5%82%a8" style="border:none;"></a></h4><p>MySQL 数据库用于电影标题管理和交易/下单目的。</p>
+<p>Hadoop 用于基于用户日志的大数据处理。</p>
+<p>ElasticSearch 为 Netflix 应用提供了标题搜索能力。</p>
+<p>Cassandra 是基于列的分布式 NoSQL 数据存储，可处理大量读取请求，而没有单点故障。为了优化大规模写请求的延迟，Netflix 使用了 Cassandra，因为它具有最终的一致性能力。</p>
+<h4 id="流数据管道">流数据管道 <a href="#%e6%b5%81%e6%95%b0%e6%8d%ae%e7%ae%a1%e9%81%93" style="border:none;"></a></h4><p>kafka</p></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">SYSTEM DESIGN</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E9%9F%B3%E8%A7%86%E9%A2%91">音视频</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/" class="jump-post">设计视频流架构</a>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-cap%E5%AE%9A%E7%90%86/" class="jump-post">[笔记] CAP定理</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

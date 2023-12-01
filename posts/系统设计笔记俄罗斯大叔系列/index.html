@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>系统设计笔记：俄罗斯大叔系列-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        
+
+    <article class="post-block">
+        <header class="post-header">
+            <h1>系统设计笔记：俄罗斯大叔系列</h1>
+        </header>
+        <section class="series-list">
+        <ul >
+        
+        
+            <li>
+                <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/" class="series-link" target="_blank">
+                    <span class="series-title">[笔记] 限速服务｜Rate Limiting</span>
+                    <span class="series-time">2022.06.10</span>
+
+                </a>
+            </li>
+        
+            <li>
+                <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/" class="series-link" target="_blank">
+                    <span class="series-title">[笔记] 通知服务｜Notification Service</span>
+                    <span class="series-time">2022.06.08</span>
+
+                </a>
+            </li>
+        
+            <li>
+                <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/" class="series-link" target="_blank">
+                    <span class="series-title">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</span>
+                    <span class="series-time">2022.06.06</span>
+
+                </a>
+            </li>
+        
+            <li>
+                <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/" class="series-link" target="_blank">
+                    <span class="series-title">[笔记] 分布消息队列｜Distributed Message Queue</span>
+                    <span class="series-time">2022.06.06</span>
+
+                </a>
+            </li>
+        
+            <li>
+                <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/" class="series-link" target="_blank">
+                    <span class="series-title">[笔记] 分布缓存 | Distribute Cache</span>
+                    <span class="series-time">2022.06.06</span>
+
+                </a>
+            </li>
+        
+        </ul>
+    </section>
+        <div class="post-content"><p><a href="https://www.youtube.com/channel/UC9vLsnF6QPYuH51njmIooCQ" target="_blank" rel="noopener">俄罗斯大叔</a>的讲解比那套SD课程细很多，令人有打开新世界之感。觉得需要一套笔记记录之。</p>
+<h2 id="需求讨论关注用户-规模-性能-开销">需求讨论关注：用户 规模 性能 开销 <a href="#%e9%9c%80%e6%b1%82%e8%ae%a8%e8%ae%ba%e5%85%b3%e6%b3%a8%e7%94%a8%e6%88%b7-%e8%a7%84%e6%a8%a1-%e6%80%a7%e8%83%bd-%e5%bc%80%e9%94%80" style="border:none;"></a></h2><pre><code>Users,  who and how will use the system.
+
+总量？每小时统计？月度统计？（查询频率低）或者实时需求
+
+Scale,  how our system will handle a growing amount of data.
+
+每秒处理多少请求？每个请求查询多少数据？是否有忽增高峰期，多大？
+
+Performance,   how fast our system must be.
+
+- 如果不实时，批处理（慢）流处理都可以。
+- 如果要求响应时间短，暗示数据必须事先计算好
+
+cost,  budget constraints.
+
+- 如果要开发成本小，就用好评的开源
+- 如果要维护成本小，用云
+</code></pre>
+<ol start="2">
+<li>
+<p>需求讨论为了：定义功能性/非功能性需求</p>
+<p>功能需求：API</p>
+<p>（在白板上写）</p>
+<pre><code>like 批处理事件，每个事件都是一个对象包括视频、事件类型、发生时间等信息。
+</code></pre>
+<p>非功能需求：system qualities：fast, fault-tolerant, secure</p>
+<p>CAP 取舍</p>
+</li>
+<li>
+<p>high-level：需要一个db、一个web服务写入db、一个服务读db</p>
+<p>从简单的开始：data —— 存哪些 / 如何存</p>
+<p>如何存：</p>
+<p>两种方式：</p>
+<p>① [批式]存原始数据，当场计算：费钱，读很慢。</p>
+<p>适用于不要求时延的</p>
+<p>② [流式]聚合数据 ：读的快，可实时决策。很难换方式，需要实现聚合管道，难修bug</p>
+<p>适用于时延低，需动态更新数据</p>
+<p>③ 两者结合：原始数据存储一段时间就清除，并实时计算和存储数字</p>
+<p>可快速读取 + 以不同方式聚合数据</p>
+<p>但系统更复杂了</p>
+<p>存在哪：</p>
+<p>SQL &amp; NoSQL ：根据非功能需求：性能 可扩展性 可用性，来评估</p>
+<p>SQL: 数据规范化</p>
+<p>可能需要分区 → 引入轻量级代理服务器，可以查找正确db</p>
+<p>→ 处理和查询都只与集群代理通信，代理需要知道分片的忙闲和分片增减</p>
+<p>→引入新组建：配置服务：维护检查所有分片</p>
+<p>——— 解决了可扩展性和性能。</p>
+<p>但可用性：分片死了？丢了？</p>
+<p>→ 复制数据  + 读写分离</p>
+<p>in all: 代理 + 配置服务 + 领导者 + 副本实例</p>
+<p>NoSQL: 非规范化数据</p>
+<p>无leader，不需要配置服务监控。允许分片间相互交互信息。</p>
+<p>一致性哈希来选择存储节点</p>
+<p>仲裁写入与仲裁读取。（&gt; n/2 则通过）</p>
+<p>Cassandra：最终一致性 | 版本号判定时序</p>
+<p>nosql有四种类型：列、文档、键值、图形</p>
+<p>cassandra：异步无主复制、容错、可扩展、可以很好地处理时间序列数据</p>
+<p>mongoDB：面向文档，基于领导者复制</p>
+<p>HBase：面向列，类cassandra，也有基于leader的架构</p>
+<p>处理数据：</p>
+<p>like更新数据库中的计数器：</p>
+<p>① 每来一个事件计数器就+1</p>
+<p>②在内存里累积一段时间，再将累计值加至数据库计数器。（选这个）</p>
+<p>push &amp; pull 都是对service来说的</p>
+<p>push: other service sends events to service</p>
+<p>pull: processing service pulls events from some temporary storage</p>
+<p>更好的容错和易扩展性</p>
+<p>因为可以当还没推给db时data丢失的情况下，可以再从临时存储中拉。</p>
+</li>
+</ol>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abdbb3aa-8570-4bb1-8aa3-9e0d0ecaa7e7/Untitled.png" alt="Untitled"></p>
+<pre><code>  partition：processing service 从partition读取event，对内存中的event计数，并定期将计数值更入数据库。—— 需要一个组件component来读取event
+</code></pre>
+<p>partition consumer: 用户通过tcp连接来拿数据，无限轮询来拿，拿到了就str→object (deserializes)</p>
+<p>deduplication cache: 如果是多线程拿取，这里需要去重。</p>
+<p>like：使用分布式缓存来存唯一的事件标识符，比如10min。10min内有相同消息，则只会处理其中一条。</p>
+<p>aggregator: 然后event到达内存开始计数，called 聚合器。底层是hash，定期计算data。计算的时候，该hash停止写入，并新建一个hash，用来累积新来的data，旧hash的数据旧传入internal queue</p>
+<p>internal queue：将消费（consumption）和进程（processing）解耦decouple。（也可以将queue放在聚合器之前）</p>
+<p>database write: 负责把数据写入数据库。单线程or多线程都可以。</p>
+<p>dead letter queue：当消息无法路由到正确的目的地时，会发送到这个队列。保护性能，增强可用性。数据库变慢/下游降级也可以用。</p>
+<p>另一个选项是，将未传递的消息存储在处理服务机器的本地磁盘上。</p>
+<p>data enrichment：由于process中的事件只保存了最少量的信息like id，那么其它需要存的的信息，就放在这个embedded db嵌入式数据库里。这个嵌入数据库和处理服务在同一台机器上，方便快速检索。</p>
+<p>state store：</p>
+<p>数据在内存中待很久，或者很难现场重新计算时，</p>
+<p>定期将整个内存的数据保存到持久存储中。</p>
+<p>数据摄取管道 data ingestion path</p>
+<!-- raw HTML omitted -->
+<p>用户打开video，request通过API 网关，路由到后端服务</p>
+<p>分成三个部分：客户端、LB、分区服务</p>
+<p>client:</p>
+<p>IO：</p>
+<p>client用套接字启动连接，给服务端发请求，服务端回应。</p>
+<p>阻塞IO会产生大量线程处理请求，可能变慢甚至die，所以需要限速。</p>
+<p>可以用非阻塞IO替代，which可以用单线程来处理多个并发连接，服务只是将请求排成队列，然后等会处理。</p>
+<p>但是非阻塞IO很难debug</p>
+<p>buffering and batching:</p>
+<p>事件数量规模很大，不能单独传递，需要将事件组合在一起，就是批处理。</p>
+<p>首先将事件放入buffer，等这批满了再传递。</p>
+<p>增加了吞吐量、节省成本。但是如果个别出错，就很难挑出来。</p>
+<p>timeout &amp; retried：</p>
+<p>两种超时：连接超时 （几十毫秒） | 请求超时</p>
+<p>如果请求超时，就重试。但是要避免大量请求同时重试，或者重试太多次。</p>
+<p>用 exponential backoff 指数退避 和jitter 抖动，增加重试间隔和随机性。</p>
+<p>再用circuit breaker 断路器模式增加阈值，如果超过就停止。再过一段时间，尝试少量请求，如果成功就恢复。</p>
+<p>Load Balancer:</p>
+<p>两种：软件和硬件。硬件是买的网络设备。</p>
+<p>另一个层面的LB是服务于TCP HTTP的流量</p>
+<p>协议：</p>
+<p>TCP的LB只转发（forward）包，不检查包内容</p>
+<p>HTTP的LB会 查看消息包，并根据消息内容like cookies做出LB决策</p>
+<p>算法：</p>
+<p>轮询、LR、LF 、hash</p>
+<p>DNS:</p>
+<p>client如何知道LB？LB如何知道server？LB如何高可用？</p>
+<p>DNS：在dns中注册服务，指定域名ip。</p>
+<p>当customer点击域名时，请求被转发到LB。为了让LB了解server，需要明确告知LB每台server的IP。LB中提供API注册和注销server，并且知道哪些可用哪些不可用。</p>
+<p>LB会定期ping 每台server，如果是坏的就停止发流量，直到它恢复。</p>
+<p>高可用性：用一个辅助LB（和主LB位于不同的数据中心）</p>
+<p>Partioner Service：</p>
+<p>从客户端获取请求，检索事件，并路由到某个分区</p>
+<p>partition获取message，用log形式存在disk。（有序的sort by time）</p>
+<p>partition strategy：分区策略</p>
+<p>hash（不适合大规模，会有热点）</p>
+<p>——&gt; 如何解决：用时间分区 | 直接拆分区by一致性哈希</p>
+<p>service discovery：</p>
+<p>两种发现模式：服务端发现 &amp; 客户端发现</p>
+<p>服务端发现：客户端知道lb，lb知道server</p>
+<p>分区服务器和分区之间不需要LB，分区服务器自己就是个LB，来分发event给分区 ——— 客户端发现，每个服务器实例都会在服务注册中心注册。</p>
+<p>服务注册中心：高可用web服务，可以健康检查。</p>
+<p>客户端检查服务注册中心，得到可用服务器列表。like zookeeper</p>
+<p>服务发现还可以做：节点之间互相通信。like cassandra。client只用联系其中一个节点，就能知道整个集群。</p>
+<p>replication：</p>
+<p>三种：单主复制（扩展DB）、多主复制（多个数据中心之间复制）和无主复制（cassandra）</p>
+<p>如果只给leader写数据，如果没复制完之前leader就挂了，就会丢失数据。</p>
+<p>如果等复制完成，就会增加延迟。</p>
+<p>message format：</p>
+<p>文本格式：xml，csv，json。人类可读</p>
+<p>二进制格式：Thrift、Protocol Buffers 和 Avro。更快。用数字标签代替字段名称。</p>
+<p>Data retrieval path 数据检索路径</p>
+<!-- raw HTML omitted -->
+<pre><code>client → API 网关 → 许多web service like 检索视频信息的、评论的、推荐的
+</code></pre>
+<p>→ db 从这里拿数据 → 检索时进行数据联合，可能调用多个存储，然后拼接数据 → 然后将结果放在cache</p>
+<p>rollup data：将每分钟的计数存几天，然后将这些数据汇聚成每小时的数据，然后再存几个月，更旧的数据旧放在aws s3这种地方。</p>
+<p>冷储存：不需快速访问。 热储存：常用数据。</p>
+<p>data flow simulation</p>
+<!-- raw HTML omitted -->
+<p>tecknology stack</p>
+<!-- raw HTML omitted -->
+<pre><code>netty：高性能的非阻塞IO框架，用于开发网络应用程序
+</code></pre>
+<p>Netflix 的 Hystrix /Polly : 简化了超时、重试、断路器模式</p>
+<p>Citrix NetScaler: 著名的硬件负载均衡器</p>
+<p>NGINX: 软件负载均衡器</p>
+<p>Elastic Load Balancer：当计数系统运行在云中时用。</p>
+<p>Kafka：不用自定义patitioner服务和分区</p>
+<p>Amazon Kinesis：kafka的公共云对应物</p>
+<p>Spark / Flink:流处理框架。处理事件并将它们聚合到内存中 或者用云Kinesis</p>
+<p>Cassandra， HBase：存储时间序列数据。and InfluxDB</p>
+<p>Hadoop / AWS Redshift : 存原始数据</p>
+<p>AWS S3 ：汇总数据并 归档</p>
+<p>Vitess ：用于扩展和管理大型 MySQL 实例集群的数据库解决方案</p>
+<p>Redis：分布式缓存</p>
+<p>RabbitMQ：死信队列机制 or Amazon SQS</p>
+<p>RocksDB： 高性能嵌入式数据库，存本地富余信息</p>
+<p>Zookeeper：分布式配置服务，进行分区的领导者选举和管理服务发现（or Eureka Web）</p>
+<p>CloudWatch：云。监控每个系统设计组件 or 开源框架堆栈：Elasticsearch、Logstash、Kibana</p>
+<p>MurmurHash：散列函数，用于Partitioner 服务对数据进行分区</p>
+<p>瓶颈性能取舍</p>
+<p>how to identify bottlenecks？</p>
+<p>要识别瓶颈，需要在高负载下测试</p>
+<p>几种性能测试：</p>
+<p>负载测试：测量系统在特定预期负载下的行为</p>
+<p>压力测试：超出正常运营能力时达到的临界点</p>
+<p>找到breaking point：内存、CPU、网络、磁盘 IO</p>
+<p>浸泡测试：长时间测试具有典型生产负载的系统</p>
+<p>找到资源中的泄漏like 内存泄漏 leaks</p>
+<p>可以用Apache JMeter等工具</p>
+<p>how do you make sure the  system is running healthy?</p>
+<p>健康监测：</p>
+<p>监控的四个黄金信号：延迟、流量、错误和饱和度 latency, traffic, errors, and saturation.</p>
+<p>指标：衡量的变量，例如错误计数或处理时间</p>
+<p>仪表板：提供服务核心指标的摘要视图</p>
+<p>警报：针对服务中发生的某些问题而发送给服务所有者的通知</p>
+<p>how to make sure the system produces accurate results?</p>
+<p>构建审计系统</p>
+<p>两种：weak strong</p>
+<p>弱审计系统：一个持续运行的端到端测试。但不是100%可靠，尤其在长期运行中。</p>
+<p>我们每分钟在系统中生成几个视频观看事件时，调用查询服务并验证返回值是否等于预期计数</p>
+<p>强审核系统：使用与主系统完全不同的路径计算视频观看次数</p>
+<p>like 将原始事件存储在 Hadoop 中并使用 MapReduce 对事件进行计数。然后比较两个系统的结果。</p>
+<p>called Lambda Architecture：关键思想是将事件并行发送到批处理系统和流处理系统</p>
+<p>如果我们对延迟不敏感，我们应该使用像 MapReduce 这样的批处理框架，如果是，我们应该使用流处理框架，但除非绝对必须，否则不要尝试同时进行两者</p>
+<p>单点故障怎么办，处理速度跟不上怎么办</p>
+<p>将事件批处理并存在对象存储服务中，例如 AWS S3。</p>
+<p>每次持久化一批事件时，都会向消息代理发送一条消息，例如 SQS。</p>
+<p>然后我们有一个大型机器集群，例如 EC2，从 SQS 检索消息，从 S3 读取相应批次的事件并处理每个事件。</p>
+<p>这种方法比流处理慢一点，但比批处理快。</p>
+<h2 id="总结">总结： <a href="#%e6%80%bb%e7%bb%93" style="border:none;"></a></h2><ol>
+<li>明确需求：定义 API， 系统到底应该做什么。</li>
+</ol>
+<p>定义 API，我们与面试官讨论我们需要设计系统的哪些特定行为或功能。</p>
+<p>写下函数定义，及输入参数和返回值。</p>
+<p>可以进行多次迭代来更新 API。</p>
+<ol start="2">
+<li>讨论非功能性需求，并找出她最感兴趣的系统质量。</li>
+</ol>
+<p>建议关注可扩展性、可用性和性能。</p>
+<p>以及一致性、耐用性、可维护性和成本</p>
+<p>尽量选择不超过 3 种</p>
+<ol start="3">
+<li>概述系统的高级架构，在白板上画出一些关键部件。</li>
+</ol>
+<p>考虑数据如何进入系统、如何离开系统以及数据在系统内部的存储位置</p>
+<ol start="4">
+<li>深入研究其中的几个组件。面试官将帮助我们了解我们应该关注哪些组件。</li>
+</ol>
+<p>设计特定组件时，从数据开始，它是如何存储、传输和处理的。</p>
+<p>5.讨论瓶颈以及如何处理它们。</p></div>
+    </article>
+
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on XUN</title>
+    <link>https://cenjianxun.github.io/tags/git/</link>
+    <description>Recent content in git on XUN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-git%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-git%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;p&gt;费事搜索系列&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/configure-development-environment/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://cenjianxun.github.io/posts/configure-development-environment/</guid>
+      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。
+目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

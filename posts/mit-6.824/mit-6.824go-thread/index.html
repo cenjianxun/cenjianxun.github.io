@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>【MIT 6.824】Go Thread-XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">【MIT 6.824】Go Thread</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么用go">为什么用go：</a></li>
+    <li><a href="#闭包-closures--goroutine">闭包 closures &amp; Goroutine</a></li>
+    <li><a href="#condition-variable-条件变量">condition variable 条件变量</a></li>
+    <li><a href="#channel">channel</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>【MIT 6.824】Go Thread</h1>
+        <div class="post-time">Jul 7 2022</div>
+    </header>
+
+    <div class="post-content"><p>此实验由golang写的。专附了一节课讲go。</p>
+<h2 id="为什么用go">为什么用go： <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e7%94%a8go" style="border:none;"></a></h2><ul>
+<li>线程安全</li>
+<li>垃圾回收类型语言，不用担心回收</li>
+</ul>
+<h2 id="闭包-closures--goroutine">闭包 closures &amp; Goroutine <a href="#%e9%97%ad%e5%8c%85-closures--goroutine" style="border:none;"></a></h2><pre tabindex="0"><code>package main
+
+import &#34;sync&#34;
+
+func main(){
+    var wg sync.WaitGroup
+    for i := 0, i &lt; 5; i ++ {
+        wg.Add(i)
+        // 使用goroutine，定义匿名函数
+        go func(x int) { 
+            sendRPC(x)
+            wg.Done() // 匿名函数可以修改包外变量
+        }(i) // 意思是将i当作匿名函数的参数传给x
+    }
+    wg.Wait()
+}
+
+func sendRPC(i int){
+    println(i) // 这里打印出来的是随机排列的数字0-4
+    // 如果上面的匿名函数不传参数like：
+    // go func() {sendRPC(i)}()
+    // 就会打印45555
+    // 因为当运行sendRPC时，for循环已经改变了i的值
+}
+</code></pre><p>方便发送rpc。 当需要candidates投票选leader时，需要从所有follower那里投票，而不是one by one。
+rpc是阻塞操作。
+or leader想给所有follower发送追加内容，也适合用并行而不是串行。</p>
+<p>// ———————————— 想启动一个raft，定期发送heartbreak，然后raft调用.kill, 就要杀死所有gorounine</p>
+<pre tabindex="0"><code>import &#34;time&#34;
+import &#34;sync&#34;
+
+var done bool
+var mu sync.Mutex
+
+func main(){
+    time.Sleep(1 * time.Second)
+    println(&#34;started&#34;)
+    go periodic() // 无限循环的goroutine
+    time.Sleep(5 * time.Second) // 等待一段时间就把全局变量done设为true
+    // 因为done为共享变量，会被多个线程修改。所以改时要加锁。下锁同。
+    mu.Lock() 
+    done = true
+    mu.Unlock()
+    println(&#34;cancelled&#34;)
+    time.Sleep(3 * time.Second)
+}
+
+func periodic() {
+    for {
+        println(&#34;tick&#34;)
+        time.Sleep(1 * time.Second)
+        mu.Lock() // 为了保证可以观察到这个done已经写成true了
+        if done { // 如果done为true就结束这个goroutine
+            return
+        }
+        mu.Unlock()
+    }
+}
+</code></pre><p>如果a已经用锁了，b要是再要锁，b就会阻塞，直到a释放锁。
+如果main函数（线程）结束了（线程资源被释放），它启动的所有goroutine（协程，用的是线程资源）也都会结束。</p>
+<pre tabindex="0"><code>func main(){
+    // 银行业务 俩人各1万
+    alice := 10000
+    bob := 10000
+    var mu sync.Mutex
+    total := alice + bob
+
+    // 转钱
+    go func() {
+        for i := 0; i &lt; 1000; i++ {
+            // 如果这里不加锁，x个协程运行，可能会破坏其他协程，使最终结果不为x
+            mu.Lock()
+            defer mu.Unlock()
+            // 如果这里解锁又加锁，就无法保证原子性。这里sum需要是不变量，锁需要可以保护不变量。
+            alice -= 1
+            bob += 1
+        }
+    }()
+    go func() {
+        for i := 0; i &lt; 1000; i++ {
+            mu.Lock()
+            defer mu.Unlock()
+            alice += 1
+            bob -= 1
+        }
+    }()
+
+    start := time.Now()
+    for time.Since(start) &lt; 1 * time.Second {
+        mu.Lock()
+        if alice + bob != total {
+            fmt.Printf(&#34;observed viloation, alice = %v, bob = %v, sum = %v\n, alice, bob, alice + bob)
+        }
+        mu.Unlock()
+    }
+}
+</code></pre><h2 id="condition-variable-条件变量">condition variable 条件变量 <a href="#condition-variable-%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f" style="border:none;"></a></h2><p>raft peer变成一个candidate, 想给所有follower发投票请求，follower返回信息给candidate，表示它有无投票。 这里询问应该用并行而不是串行，而且不用问完，只要超过一半票数就可以停了。</p>
+<p>cond：通过内再变化改变外部的条件判断。 cond.signle提高效率尽量不用</p>
+<pre tabindex="0"><code>func main(){
+    rand.Seed(time.Now().UnixNano())
+    count := 0
+    finished := 0 //得到响应的数量
+    var mu sync.Mutex
+    // 解决busy waiting的好方法：cond
+    cond := sync.NewCond(&amp;mu) // 1. 锁的指针传给cond
+
+    for i := 0; i &lt; 10; i++{
+        go func(){
+            vote := requestVote()
+            mu.Lock() // 2.加锁
+            if vote {
+                count++
+            }
+            finished++
+            // 必须在有锁的条件下才能调用cond. 
+            cond.Broadcast() // 3.它唤醒在cond.wait()处等待的线程
+            mu.Unlock() // 4.然后释放锁
+        }()
+    }
+
+    mu.Lock()
+
+    //for { 
+    // !! busy waiting 反复检查一个条件，反复抢锁cpu被榨干
+    //    mu.Lock()
+    //    if count &lt; 5 &amp;&amp; finished != 10 {
+    //        break
+    //    }
+    //    mu.Unlock()
+    //    // 解决busy waiting的一个方法:但是50是一个定值
+    //    // time.Sleep(50 * time.Millisecond)
+    //}
+
+    
+    for count &lt; 5 &amp;&amp; finished != 10 { // 1. 检查条件 4.有锁时回到条件检查
+        // 2.如果条件为false，且有锁-&gt; 3
+        cond.Wait() // 3.调用wait,以原子方式释放锁，并将锁放入等待线程列表
+    }           
+    // 接4 所以这里是有锁的
+
+    if count &gt;=  5 {
+        println(&#34;received 5+ vote!&#34;)
+    } else {
+        println(&#34;lost&#34;)
+    }
+    mu.Unlock()
+}
+</code></pre><h2 id="channel">channel <a href="#channel" style="border:none;"></a></h2><p>对数量小的场景有用 (unbuffer的)： channel没有内部存储空间 channel是同步的，如果有人发了但没人接，就会阻塞 channel不能用于单个goroutine上，必须有另一个goroutine同一时刻做相反操作</p>
+<p>buffer的： channel在没填满时是异步，填满了就和unbuffer一样</p>
+<pre tabindex="0"><code>func main() {
+    c := make(chan int)
+    for i := 0; i &lt; 4; i++ {
+        go doWork(c)
+    }
+    for {
+        v := &lt;-c
+        println(v)
+    }
+}
+
+func doWork(c chan int) {
+    for {
+        time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
+        c &lt;- rand.Int()
+    }
+}
+
+// 相当于：
+func main() {
+    var wg sync.WaitGroup
+    for i := 0; i &lt; 5; i++ {
+        wg.Add(1) // 对内部counter +1
+        // 在go的外部调用wg，先执行add(1)再执行go
+        // 所以done永远在add之后调用
+        go func(x int) {
+            sendRPC(x)
+            wg.Done()
+        }(i)
+    }
+    wg.Wait() // 调用wait，它会等到直到done被调用的次数与add被调用的次数相同
+}
+
+func sendRPC(i int) {
+    println(i)
+}
+</code></pre></div>
+
+    <div class="post-meta meta">
+        
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/%E5%88%86%E5%B8%83%E5%BC%8F">分布式</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <div class="pag-prev">
+        
+            <p class="jump-post">这就是第一篇文章了</p>
+        
+        </div>
+  
+        <div class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/" class="jump-post">【MIT 6.824】实验整体配置</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </div>
+        
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/mit-6.824/">MIT6.824 - 分布式系统</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/">index</a>
+            
+        </li>
+        
+        <li>
+            
+            <p>index</p>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>
