@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>【MIT 6.824】Lab1 MapReduce 实验记录-XUN</title>
+    <meta charset="utf-8"><title>【MIT 6.824】Lab1 MapReduce 实验记录&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -69,7 +71,6 @@
         
         
             
-
 
 <div id="sidebar-toc" class="sidebar-toc">
     
@@ -151,7 +152,8 @@
         <div class="post-time">Jul 12 2022</div>
     </header>
 
-    <div class="post-content"><p>搭建map和reduce （伪）分布式架构。
+    
+    <div class="post-content"><p>搭建map和reduce （伪）分布式架构。<br>
 记录一些注意事项和坑。</p>
 <h3 id="整个代码结构">整个代码结构 <a href="#%e6%95%b4%e4%b8%aa%e4%bb%a3%e7%a0%81%e7%bb%93%e6%9e%84" style="border:none;"></a></h3><pre tabindex="0"><code>src ├─mrapps // 用来测试的不同功能的map和reduce函数 
     │ ├─wc.go // ① 测计数的正常函数 
@@ -175,49 +177,49 @@
     └─rpc.go
 </code></pre><h3 id="单线程的mapreduce">单线程的mapreduce： <a href="#%e5%8d%95%e7%ba%bf%e7%a8%8b%e7%9a%84mapreduce" style="border:none;"></a></h3><p>运行：</p>
 <pre tabindex="0"><code>go build -race -buildmode=plugin ../mrapps/wc.go go run -race mrsequential.go wc.so pg*.txt
-</code></pre><p>流程：
-src/wc.go 里有两个函数，map和reduce，负责统计单词和计算每个单词的总数 将这两个函数打包（成wc.so），传递给mrsequential.go用 在main/mrsequential.go中： other input：map reduce | | input（**.txt）
-——&gt;[{word, &ldquo;1&rdquo;}，&hellip;]
-——&gt; &ldquo;word count&rdquo; \n | 排序
-map： input：arg0=文件名，arg1=文件内容（一整篇，当string）
-output：一个元素是hash的list [{word:&ldquo;1&rdquo;},&hellip;]，是所有txt里所有word的list
-reduce：
-input：reduce的input就是map的output
+</code></pre><p>流程：<br>
+src/wc.go 里有两个函数，map和reduce，负责统计单词和计算每个单词的总数 将这两个函数打包（成wc.so），传递给mrsequential.go用 在main/mrsequential.go中： other input：map reduce | | input（**.txt）<br>
+——&gt;[{word, &ldquo;1&rdquo;}，&hellip;]<br>
+——&gt; &ldquo;word count&rdquo; \n | 排序<br>
+map： input：arg0=文件名，arg1=文件内容（一整篇，当string）<br>
+output：一个元素是hash的list [{word:&ldquo;1&rdquo;},&hellip;]，是所有txt里所有word的list<br>
+reduce：<br>
+input：reduce的input就是map的output<br>
 output：直接写入文件，每个单词一行，每行like：word count，以字符串表现</p>
 <h3 id="分布式架构">分布式架构： <a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e6%9e%b6%e6%9e%84" style="border:none;"></a></h3><p>运行：</p>
 <pre tabindex="0"><code>go build -race -buildmode=plugin ../mrapps/wc.go // rm mr-out* go run -race mrcoordinator.go pg-*.txt // run一个 go run -race mrworker.go wc.so // 另外窗口run好几个
-</code></pre><p>解释：
+</code></pre><p>解释：<br>
 一个coordinator和多个worker（实际应用中多个worker分布在不同机器上，这里再同一台机器） worker和coordinator通信用RPC worker问coordinator要task，每一个task中，input是*.txt，output是多个中间文件 coordinator要看一个worker要是正进行task，就把task分给其他worker</p>
 <p>和单线程一样的是， mrsequential.go的输入是*.txt 和 wc.so， 这里也要输入这两个，也要将wc.go的map和reduce打包成wc.so。</p>
 <p>区别是， 这里，每个*.txt相当于一个被分割的输入，作为每一个map task的输入，就是说一个*.txt对应一个map task 这里将所有*.txt作为main/mrcoordinator.go的输入，在它里面分配task by *.txt 然后起若干个main/mrworker.go，它的输入是wc.so，（和上面也对应起来）， 当这些worker运行完之后，得到的output的总和应当与上面单线程的mr-out-0相同。</p>
 <h4 id="根据test需要完成五个地方">根据test，需要完成五个地方： <a href="#%e6%a0%b9%e6%8d%aetest%e9%9c%80%e8%a6%81%e5%ae%8c%e6%88%90%e4%ba%94%e4%b8%aa%e5%9c%b0%e6%96%b9" style="border:none;"></a></h4><p>① wc：计数 go build -race -buildmode=plugin ../mrapps/wc.go 计算的是单词在所有文本里面出现的个数</p>
 <p>② indexer go build -race -buildmode=plugin ../mrapps/indexer.go 计算的是单词出现在哪几个txt里。更改mapf和reducef的输入，看代码是否有普适性。如果没有实现多进程，输入就会有问题，这个就不过。</p>
-<p>③ map parallelism
-&amp;
-④ reduce parallelism go build -race -buildmode=plugin ../mrapps/mtiming.go
+<p>③ map parallelism<br>
+&amp;<br>
+④ reduce parallelism go build -race -buildmode=plugin ../mrapps/mtiming.go<br>
 go build -race -buildmode=plugin ../mrapps/rtiming.go</p>
-<p>里面提供了一个并行文件，分别实施至map函数和reduce函数。
-worker在map/reduce阶段通过创建一个文件名为mr-worker+PID的文件，在map/reduce结束后删除该文件，通过统计存在几个特定文件名的数量，来判断同时运行的worker数量。
+<p>里面提供了一个并行文件，分别实施至map函数和reduce函数。<br>
+worker在map/reduce阶段通过创建一个文件名为mr-worker+PID的文件，在map/reduce结束后删除该文件，通过统计存在几个特定文件名的数量，来判断同时运行的worker数量。<br>
 表示一个worker只起一条进程，和一个文件对应。</p>
 <p>⑤ job count go build -race -buildmode=plugin ../mrapps/jobcount.go</p>
 <p>⑥ early exit go build -race -buildmode=plugin ../mrapps/early_exit.go 检查 worker 是否会提前退出</p>
 <p>⑦ crash go build -race -buildmode=plugin ../mrapps/crash.go 模拟进程挂掉/延迟 crash.go里的干扰：给一个随机整数，如果小于某个值就推出这个进程。（所以测试的时候要起n个进程，测的就是多个进程时如果死了一个怎么办）</p>
-<h4 id="规则和提示">规则和提示 <a href="#%e8%a7%84%e5%88%99%e5%92%8c%e6%8f%90%e7%a4%ba" style="border:none;"></a></h4><p>map要把中间值分开放在bucket里给nReduce个reduce，(nReduce作为参数从main/mrcoordinator.go传递给MakeCoordinator())
-所以每个mapper都需要创建nReduce个中间file给reduce tasks
+<h4 id="规则和提示">规则和提示 <a href="#%e8%a7%84%e5%88%99%e5%92%8c%e6%8f%90%e7%a4%ba" style="border:none;"></a></h4><p>map要把中间值分开放在bucket里给nReduce个reduce，(nReduce作为参数从main/mrcoordinator.go传递给MakeCoordinator())<br>
+所以每个mapper都需要创建nReduce个中间file给reduce tasks<br>
 第x个reduce的oupout叫mr-out-X，一个mr-out-X格式和单线程一样:(%v %v).format(key, value)</p>
-<p>要做的地方在mr/worker.go, mr/coordinator.go, and mr/rpc.go
+<p>要做的地方在mr/worker.go, mr/coordinator.go, and mr/rpc.go<br>
 worker把map 的ouput放在当前路径，之后worker再把它们当成reduce的input。</p>
 <p>main/mrcoordinator.go 要mr/coordinator.go 提供一个 Done()方法， which 如果mr job完了就返回true，然后mrcoordinator.go就退出。</p>
 <p>如果job全完了，worker也要退出。通过call()来实现： 如果workers和coordinator失联，就假设coordinator因为job完了而done，这个worker也就可以done。</p>
-<p>如果修改了mr/的任何地方，就都要重build plugins。
-开始： mr/worker.go的Worker() 传一个RPC给coordinator，要task； 然后coordinator给这个worker返回一个文件名，并call map方法
-中间文件
-命名be like: mr-X-Y, X是map task的number，Y是reduce的 可以存成json格式的，用encoding/json包。
+<p>如果修改了mr/的任何地方，就都要重build plugins。<br>
+开始： mr/worker.go的Worker() 传一个RPC给coordinator，要task； 然后coordinator给这个worker返回一个文件名，并call map方法<br>
+中间文件<br>
+命名be like: mr-X-Y, X是map task的number，Y是reduce的 可以存成json格式的，用encoding/json包。<br>
 map part可以用 worker.go里的ihash(key)方法来选一个带key的reduce task</p>
 <p>读input，排序，output都可以用单线程的方法。</p>
-<p>coordinator 作为一个RPC server，是并发的，所以要lock for 安全
-如果worker慢了或者crash了，coordinator没办法，只能等一阵，然后重发。
-这个lab设定： coordinator等10s，然后就假设这个worker死了。
+<p>coordinator 作为一个RPC server，是并发的，所以要lock for 安全<br>
+如果worker慢了或者crash了，coordinator没办法，只能等一阵，然后重发。<br>
+这个lab设定： coordinator等10s，然后就假设这个worker死了。<br>
 如果发生冲突，就可能发生中间命名也重复冲突了。可以用暂时名，完成了之后再改正式名</p>
 <p>Go RPC 发送的结构体和子结构体首字母必须大写 当传reply结构体的指针给RPC时，*reply不能带任何字段。</p>
 <h4 id="流程">流程 <a href="#%e6%b5%81%e7%a8%8b" style="border:none;"></a></h4><p>*.txt 作为输入，启动的是main/mrcoordinator.go main/mrcoordinator.go 是总控制，无具体实现，在里面调用mr/coordinator.go里的MakeCoordinator方法，给实例m。 m还有方法done（也在mr/coordinator.go里），看task totally完了没。所以这个总控制就是调用具体的mr/coordinator，并且看它完了没。</p>
@@ -226,8 +228,8 @@ map part可以用 worker.go里的ihash(key)方法来选一个带key的reduce tas
 <p>不同的地方就是每个task都生成各自的中间file，存到本地，lab建议用json存，文件名格式是mr-X-Y。X是map的num，Y是reduce的num。</p>
 <p>中间可能创建完文件但是fail了，所以建议先建一个mr-tmp-X-Y的文件，确定搞好了再转成mr-X-Y</p>
 <p>最终输出文件是mr-out-Y。</p>
-<p>X是map的个数，即一开始task的个数，即file的个数，所以这个值一开始遍历files的时候就定好了是遍历的index。
-Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相同的word一定在y序号相同的文件里，所以最终合并y相同的文件。
+<p>X是map的个数，即一开始task的个数，即file的个数，所以这个值一开始遍历files的时候就定好了是遍历的index。<br>
+Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相同的word一定在y序号相同的文件里，所以最终合并y相同的文件。<br>
 当当前task计好数、每个临时文件都生成好了之后，选择交由coordinator改名、从队列里删除，彻底完结。 所以建立一个改名、删除的func，由worker端交过来已写好的taskid触发。写好一个就处理一个。</p>
 <p>如果所有都pop出队列了，需要一个func判断是否可以trans到下个阶段。</p>
 <p>另外有一个独立的func一直运行，来判断现在队列里的task有没有超时的，超时就重新放入队列。</p>
@@ -243,6 +245,7 @@ Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相�
 
     <div class="post-meta meta">
         
+
         <span class="tags-box">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
                 class="fas-tags">
@@ -263,7 +266,7 @@ Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相�
     <div class="post-paginator">
         
         
-        <div class="pag-prev">
+        <span class="pag-prev">
         
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -276,9 +279,9 @@ Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相�
             </svg>
             <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" class="jump-post">【MIT 6.824】Lab1 MapReduce 课堂笔记</a>
         
-        </div>
+        </span>
   
-        <div class="pag-next">
+        <span class="pag-next">
             
             
             <a href="https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" class="jump-post">【MIT 6.824】Lab2 Raft 课堂笔记</a>
@@ -290,7 +293,7 @@ Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相�
                 <path d="M21 5v14" />
             </svg>
             
-        </div>
+        </span>
         
     </div>
 
@@ -302,37 +305,37 @@ Y是reduce的个数，因为它用hash对word取余而分reduce，就是说相�
         
         <li>
             
-            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">index</a>
+            <a href="/posts/mit-6.824/mit-6.824go-thread/">【MIT 6.824】Go Thread</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            <a href="/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/">【MIT 6.824】实验整体配置</a>
             
         </li>
         
         <li>
             
-            <p>index</p>
+            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">【MIT 6.824】Lab1 MapReduce 课堂笔记</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">index</a>
+            <p>【MIT 6.824】Lab1 MapReduce 实验记录</p>
             
         </li>
         
         <li>
             
-            <a href="/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/">index</a>
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">【MIT 6.824】Lab2 Raft 课堂笔记</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/mit-6.824/mit-6.824go-thread/">index</a>
+            <a href="/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/">【MIT 6.824】Lab2 Raft 实验记录</a>
             
         </li>
         

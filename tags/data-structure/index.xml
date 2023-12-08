@@ -6,15 +6,14 @@
     <description>Recent content in data structure on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cenjianxun.github.io/tags/data-structure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
+      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>[笔记] 通知服务｜Notification Service-XUN</title>
+    <meta charset="utf-8"><title>[笔记] 通知服务｜Notification Service&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -69,7 +71,6 @@
         
         
             
-
 
 <div id="sidebar-toc" class="sidebar-toc">
     
@@ -133,7 +134,8 @@
         <div class="post-time">Jun 8 2022</div>
     </header>
 
-    <div class="post-content"><p>system design 俄罗斯大叔系列
+    
+    <div class="post-content"><p>system design 俄罗斯大叔系列<br>
 消息系统</p>
 <p>场景：需要发送消息以响应某些事件</p>
 <p>like：信用卡交易金额超过限额时，需要通知持卡人</p>
@@ -142,8 +144,10 @@
 <p>当发布者以某种顺序调用每个订阅者并等待响应时，我们可以在发布者和订阅者之间建立同步通信</p>
 <p>难点：当订阅者和消息的数量增长时，系统难以扩展，并且难以扩展以支持不同类型的订阅者。</p>
 <p>so，我们可以引入一个新系统，该系统可以注册任意数量的发布者和订阅者，并协调它们之间的消息传递</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be6cdd97-038d-46cc-aacc-1d3ea80dc0e7/Untitled.png" alt="Untitled"></p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18037d27-0c51-4ebb-a19f-840ee251c267/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be6cdd97-038d-46cc-aacc-1d3ea80dc0e7/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18037d27-0c51-4ebb-a19f-840ee251c267/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>Requirement：</p>
 <p>Functional：</p>
 <p>define system behavior, or more specifically APIs - a set of operations the system will support.</p>
@@ -153,7 +157,7 @@
 <li>subscribe（topicName， endpoint）</li>
 </ul>
 <p>它相当于一个存储来自发布者的消息的存储桶，所有订阅者都从该存储桶接收消息的副本。</p>
-<p>Non-Functional：
+<p>Non-Functional：<br>
 system qualities</p>
 <ul>
 <li>scalable（support a big number of topics, publishers and subscribers）</li>
@@ -162,12 +166,13 @@ system qualities</p>
 </ul>
 <p>也可能要求其它性能like：安全、运营成本</p>
 <p>high-level architecture</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93618c33-f927-4bcb-a28d-590036855f7d/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93618c33-f927-4bcb-a28d-590036855f7d/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>client→LB→前端 → temporary storage→ sender</p>
 <pre><code>                 ↓→frontend → metadata service → metadata database
 </code></pre>
 <p>db &amp; service: 前端连一个db，用来存储有关主题和订阅的信息，但是前端和db之间用一个service连接。</p>
-<p>原因：
+<p>原因：<br>
 ① 遵循设计原则：separation of concerns 关注点分离，可以通过定义好的接口访问DB。简化了维护和更改</p>
 <pre><code>② 该service将充当DB和其它components之间的缓存层，不想每条消息都hit DB，可以先从cache里面搜索。
 </code></pre>
@@ -180,7 +185,8 @@ system qualities</p>
 <p>DB前面有一个service</p>
 <p>it&rsquo;s a 分布式缓存微服务 distributed cache microservice</p>
 <p>FrontEnd Service</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66020912-34ac-4158-af56-d765ff06b978/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66020912-34ac-4158-af56-d765ff06b978/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>a lightweight web service 轻量级web服务</p>
 <p>负责：</p>
 <ul>
@@ -218,7 +224,8 @@ system qualities</p>
 <p>agents负责数据聚合aggregation并将日志传输到其他系统，进行后期处理和存储。</p>
 <p>👆 职责分离有助于使前端服务更简单、更快、更健壮</p>
 <p>下个组件：matadata service：</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82308235-0433-4482-993f-a22179b3dc05/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82308235-0433-4482-993f-a22179b3dc05/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>一个Web 服务，负责在数据库中存储有关主题topic和订阅的信息</p>
 <p>它是个distributed cache（如果消息过多，单个内存放不下）. 在前端和storage之间</p>
 <p>它读多写少</p>
@@ -240,7 +247,8 @@ system qualities</p>
 <hr>
 <p>接下来request来到temp storage，为什么叫temp，因为message停留时间很短。</p>
 <p>Temporary Storage</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0bb10b80-0cc4-41b2-997d-0d1cbb45dbd6/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0bb10b80-0cc4-41b2-997d-0d1cbb45dbd6/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <ul>
 <li>必须快，高可用，可扩展，</li>
 <li>也需要持久性，如果订阅者不可用，message需要仍然存在</li>
@@ -262,7 +270,8 @@ system qualities</p>
 <p>like kafka Amazon kinesis</p>
 <p>然后message发送给订阅者</p>
 <p>Sender</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96065fcb-fbf6-4b3a-b4be-dfbdd74db771/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96065fcb-fbf6-4b3a-b4be-dfbdd74db771/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>（which 别种分布式系统也很好用， when 涉及数据检索、处理，and 消息fan out 并行发至多个目的地）</p>
 <p>message retriever：</p>
 <p>send做的第一件事是消息检索。通过一个线程池来实现的，其中每个线程都尝试从临时存储中读取数据。</p>
@@ -322,6 +331,7 @@ system qualities</p>
 
     <div class="post-meta meta">
         
+
         <span class="tags-box">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
                 class="fas-tags">
@@ -342,7 +352,7 @@ system qualities</p>
     <div class="post-paginator">
         
         
-        <div class="pag-prev">
+        <span class="pag-prev">
         
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -355,9 +365,9 @@ system qualities</p>
             </svg>
             <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/" class="jump-post">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
         
-        </div>
+        </span>
   
-        <div class="pag-next">
+        <span class="pag-next">
             
             
             <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/" class="jump-post">[笔记] 限速服务｜Rate Limiting</a>
@@ -369,7 +379,7 @@ system qualities</p>
                 <path d="M21 5v14" />
             </svg>
             
-        </div>
+        </span>
         
     </div>
 
@@ -381,31 +391,31 @@ system qualities</p>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">[笔记] 分布缓存 | Distribute Cache</a>
             
         </li>
         
         <li>
             
-            <p>index</p>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">[笔记] 分布消息队列｜Distributed Message Queue</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">index</a>
+            <p>[笔记] 通知服务｜Notification Service</p>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">[笔记] 限速服务｜Rate Limiting</a>
             
         </li>
         

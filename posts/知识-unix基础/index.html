@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>[知识] unix基础&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">[知识] unix基础</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>[知识] unix基础</h1>
+        <div class="post-time">Jun 8 2019</div>
+    </header>
+
+    
+    <div class="post-content"><p>unix系统一些概念<br>
+基于mac写，有的部分可能和linux有出入</p>
+<ol>
+<li>
+<p>知识点</p>
+<ul>
+<li>
+<p>在mac里，普通用户shell环境是 <em>zsh</em> ，root用户环境是 <em>sh</em> ，查看用<br>
+<code>echo $SHELL</code><br>
+zsh的配置是 <em>.zshrc</em>，bash的配置是 <em>.bashrc</em><br>
+sh没有配置文件，只加载$ENV的内容，不加载其他文件</p>
+</li>
+<li>
+<p>/etc/ 下的配置文件是全局通用，即所有用户<strong>包括root</strong> 都用<br>
+~/ 下的配置文件是当前用户的配置，只能看到自己的，切换用户后就看不到了</p>
+</li>
+<li>
+<p>普通用户的 ~ 指的是 <code>/User/[username]</code>，root 的 ~ 指的是 <code>/var/root</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>启动条件的维度</p>
+<p>1）<strong>interactive mode / non-interactive mode</strong></p>
+<ul>
+<li><em>交互模式（interactive mode）</em>* 是指你直接输入<code>bash</code>以后 , bash 出现一个 &ldquo;$&gt; &quot; 的 PROMPT，等待用户不断的输入指令，输入 &ldquo;exit&rdquo; 或者按了 CTRL+D 才会结束。</li>
+</ul>
+<p>​	ssh 登陆到一台电脑，或者命令行下面打 <code>bash</code> ，后面没有参数的话，进入的都是交互模式.</p>
+<ul>
+<li>**非交互模式（non-interactive mode）**是指你用 bash 运行一个命令或者脚本，运行完 bash 就退出。like <code>$ bash test.sh</code></li>
+<li>境变量 <code>$-</code> 里如果有字符 <code>i</code> 的话，是一个 interactive shell，否则是 non-interactive mode</li>
+</ul>
+<pre tabindex="0"><code># （登陆sell直接交互）交互模式下直接检测 $- 得到 &#34;Interactive&#34;  
+$&gt; [[ $- == *i* ]] &amp;&amp; echo &#34;Interactive&#34; || echo &#34;Not interactive&#34;
+Interactive
+# 直接运行命令属于非交互模式，所以输出 &#34;Not interactive&#34;
+$&gt;  bash -c &#39;[[ $- == *i* ]] &amp;&amp; echo &#34;Interactive&#34; || echo &#34;Not interactive&#34; &#39;
+Not interactive			
+</code></pre><ul>
+<li>
+<p>⚡️登陆过后的 shell 都是交互模式的。</p>
+</li>
+<li>
+<p>在 Bash 中，<code>source &lt;文件名&gt;</code> 是在当前 bash shell 进程内执行脚本，效果和直接敲里面的命令一样，所以是交互模式。而 <code>bash &lt;文件名&gt;</code>是启动一个新的 bash 进程执行脚本，所以是非交互模式。</p>
+</li>
+<li>
+<p>因此，我们平时写的一大堆 bash 配置，都是针对“交互模式”的，如果让 bash 执行条命令都要去运行各种初始化脚本的话，效率太低了，所以 <code>~/.bashrc</code> 开头就有一句判断：</p>
+<pre tabindex="0"><code># If not running interactively, don&#39;t do anything
+[[ &#34;$-&#34; != *i* ]] &amp;&amp; return
+</code></pre><p>就是为了避免非交互模式随便运行一条命令都要解析后面的各种配置用的。</p>
+<p>当然，新版本的 bash 如果以非交互模式启动，会直接跳过 ~/.bashrc 的解析，而这几行 bashrc 中的检测为了兼容被保留了下来。</p>
+<p>因此，如果我们不确定 bash/zsh 的版本和行为，又自己从头开始写配置的话，需要在配置开头增加相应的检测代码，避免不必要的工作。</p>
+</li>
+</ul>
+<p>2）<strong>Login shell / Non-login shell</strong></p>
+<ul>
+<li>
+<p><strong>交互模式</strong> 与<strong>非交互模式</strong>区别的是 bash/zsh 用于接受用户命令，还是执行运行一段脚本。</p>
+<p>而这里的 <strong>登陆 shell</strong> 和 <strong>非登陆 shell</strong>决定的是 bash 加载哪个登陆脚本：</p>
+<ul>
+<li>登陆 shell：终端登陆时，ssh链接时，<code>su --login &lt;username&gt;</code> 切换用户时。</li>
+<li>非登陆 shell：直接运行 bash 时，<code>su &lt;username&gt; 切换用户时</code>（前面没有加 &ndash;login）。</li>
+</ul>
+<p>判断当前模式：</p>
+<pre tabindex="0"><code>shopt -q login_shell &amp;&amp; echo &#34;Login shell&#34; || echo &#34;Not login shell&#34;
+
+#zsh下没有shopt 使用
+[[ -o login ]] &amp;&amp; echo &#34;Login shell&#34; || echo &#34;Not login shell&#34;
+</code></pre></li>
+</ul>
+<p>​				su 切换是非登陆模式，除非显式声明-login</p>
+<ul>
+<li>
+<p>bash 在登陆和非登陆状态下，初始化脚本不同</p>
+<ul>
+<li>非登陆模式：只加载 ~/.bashrc，加载完就继续了。</li>
+<li>登陆模式：只加载 ~/.bash_profile，加载完就继续了，除非 ~/.bash_profile 不存在，那么尝试加载 ~/.bashrc，然后再继续。</li>
+</ul>
+<p>如果系统里只有一个 ~/.bashrc 文件，那么不论哪种模式它都会被加载。</p>
+<p>而如果系统中同时存在 ~/.bashrc 和 ~/.bash_profile，就会根据是否 login shell 而选择性加载。</p>
+<p>如果同时都有且登陆，~/.bashrc 中的文件就会被跳过。</p>
+<p>现在一般只留~/.bashrc，如果想both，可以在<!-- raw HTML omitted -->~/.bash_profile<!-- raw HTML omitted -->里调用<!-- raw HTML omitted -->~/.bashrc<!-- raw HTML omitted -->脚本以便统一配置用户环境。</p>
+</li>
+<li>
+<p>区分登陆/非登陆，可以检测只有登陆时才做一些事情，比如登陆欢迎提示。如果su切换或运行bash就不需要此提示。除非加上了 &ndash;login 参数。</p>
+</li>
+<li>
+<p>login shell 下可以用 logout 或者 exit 退出，而 non-login shell 下面，则只能使用 exit 退出。</p>
+</li>
+<li>
+<p>zsh 无论登陆与否都会加载~/.zshrc，需要在文件里判断情况</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>​</p>
+<ol start="3">
+<li>
+<p>读取顺序</p>
+<ul>
+<li>
+<p>sh</p>
+<p>当以<code>sh</code>的方式调用时，Bash在启动文件被读取后进入POSIX模式，它就会尽量模仿<code>sh</code>的历史版本的启动行为，同时也符合POSIX标准。</p>
+<p>当以<code>sh</code>的名字作为交互式Shell调用时，Bash会寻找变量 <code>ENV</code>，如果有就调用。</p>
+</li>
+<li>
+<p>bash</p>
+<ul>
+<li>非登陆：仅会读取 <code>~/.bashrc</code></li>
+<li>登陆：<br>
+1⃣️ 先整体环境设置 /etc/profile<br>
+2⃣️ 个人配置，读取下面三个之一：<br>
+按优先级：<code>~/.bash_profile</code>，<code>~/.bash_login</code>，<code>~/.profile</code><br>
+前面的不存在，就往后读，读到了，再后面就不读了。<br>
+.bash_profile会去调用.bashrc，如果没有就调用/etc/bashrc<center class="md__image"><img src="https://zq99299.github.io/linux-tutorial/assets/img/image-20191201181925883.3d391ba7.png" width="50%" alt="image-20191201181925883"  />
+</center></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>POSIX mode</p>
+<p>有几种不同的调用方式：</p>
+<ol>
+<li><code>sh</code>: Bash enters POSIX mode after reading startup files.</li>
+<li><code>bash --posix</code>: Bash enters POSIX mode <em>before</em> reading startup files.</li>
+<li><code>set -o posix</code>: Bash switches to POSIX mode.</li>
+<li><code>POSIXLY_CORRECT</code>: If this variable is in the environment when bash starts, the shell enters posix mode <em>before</em> reading the startup files, like <code>bash --posix</code>. If it is set while bash is running, like <code>set -o posix</code>.</li>
+</ol>
+</li>
+<li>
+<p>一个存疑说osx相反，default for each new terminal window, calling <code>.bash_profile</code> instead of <code>.bashrc</code>. <a href="https://joshstaiger.org/archives/2005/07/bash_profile_vs.html" target="_blank" rel="noopener">https://joshstaiger.org/archives/2005/07/bash_profile_vs.html</a></p>
+</li>
+<li>
+<p><code>~/.bashrc</code>等中设定的变量(局部)只能继承<!-- raw HTML omitted -->/etc/profile<!-- raw HTML omitted -->中的变量,他们是&quot;父子&quot;关系</p>
+</li>
+</ul>
+<p><center class="md__image"><img src="https://picx.zhimg.com/v2-f1a6987eb9c1192d20b4e21d6af6cacc_720w.jpg?source=d16d100b" width="50%" alt="img"  />
+</center></p>
+<ul>
+<li>
+<p><strong>【主】macOS下打开的shell是登录式交互shell，登录Shell(不管是不是交互式的)</strong></p>
+<p><code>/etc/profile</code> ➡️ <code>~/.bash_profile</code> ➡️ <code>~/.bashrc</code>➡️<code>/etc/bashrc</code></p>
+<p>💡 如果安装了zsh，则.bash_profile 文件中的环境变量就无法起到作用，会加载<!-- raw HTML omitted -->~/.zprofile<!-- raw HTML omitted -->，这里面可以配置python环境变量等）</p>
+<p>​	且不执行/etc/profile，登陆执行~/.zshrc与/etc/zshenv与/etc/zshrc</p>
+</li>
+<li>
+<p><strong>文本模式登录</strong></p>
+<p><code>/etc/profile</code>➡️<code>~/.bash_profile</code>➡️<code>~/.bashrc</code>➡️<code>/etc/bashrc</code></p>
+</li>
+<li>
+<p><strong>图形模式登录</strong></p>
+<p>顺序读取：<code>/etc/profile</code>➡️<code>~/.profile</code></p>
+</li>
+<li>
+<p><strong>图形模式登录后，打开终端时</strong></p>
+<p>顺序读取：<code>~/.bashrc</code>➡️<code>/etc/bashrc</code></p>
+</li>
+<li>
+<p><strong>从其它用户su到该用户</strong></p>
+<p>① 带-l参数（&ndash;login），如：<!-- raw HTML omitted -->su -l username<!-- raw HTML omitted -->，则bash是lonin的</p>
+<p>​     顺序读取：<code>/etc/profile</code>➡️<code>~/.bash_profile</code>➡️<code>~/.bashrc</code>➡️<code>/etc/bashrc</code></p>
+<p>② 没有带-l参数，则bash是non-login的</p>
+<p>​     顺序读取：<code>~/.bashrc</code>➡️<code>/etc/bashrc</code></p>
+<p>​    并从父进程继承其环境变量</p>
+</li>
+<li>
+<p>上面的例子凡是读取到<!-- raw HTML omitted -->~/.bash_profile<!-- raw HTML omitted -->的，若该文件不存在，则读取<!-- raw HTML omitted -->~/.bash_login<!-- raw HTML omitted --></p>
+<p>若前两者不存在，读取<code>~/.profile</code></p>
+</li>
+</ul></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/unix">unix</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E5%85%A5%E9%97%A8">入门</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/" class="jump-post">[知识] bloom过滤器</a>
+        
+        </span>
+  
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-git%E5%91%BD%E4%BB%A4/" class="jump-post">[归档手册] git命令</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

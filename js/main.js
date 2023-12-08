@@ -31,12 +31,14 @@
   var activeClass = "toc-active";
   function toggleToc() {
     let sidebarToc = document.querySelector(tocContainer);
-    let toc = document.getElementById("sidebar-toc");
-    console.log(sidebarToc);
-    console.log(toc);
+    if (!sidebarToc) {
+      console.warn("lose #sidebar-toc !");
+      return;
+    }
     let sidebarInfo = document.querySelector(asideContainer);
     let style = window.getComputedStyle(sidebarToc)["display"];
-    if (!sidebarToc || style == "none") {
+    if (style == "none") {
+      console.log("- toc display none now -");
       return;
     }
     window.info = true;
@@ -81,9 +83,11 @@
     const sectionLinkRef = {};
     navigation.forEach((navigationElement) => {
       const link = navigationElement.querySelector("a");
-      const href = link.getAttribute("href");
-      if (href.startsWith("#")) {
-        sectionLinkRef[href.slice(1)] = navigationElement;
+      if (link) {
+        const href = link.getAttribute("href");
+        if (href.startsWith("#")) {
+          sectionLinkRef[href.slice(1)] = navigationElement;
+        }
       }
     });
     return sectionLinkRef;
@@ -118,7 +122,6 @@
     scrollableNavigation.addEventListener("mouseleave", debounced(() => tocHovered = false));
     let activeSectionLink;
     let idToNavigationElement = buildIdToNavigationElementMap(navigation);
-    console.log(idToNavigationElement);
     function scrollHandler() {
       let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
       let newActiveSection;

@@ -6,16 +6,14 @@
     <description>Recent content in macOS on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cenjianxun.github.io/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/configure-development-environment/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/configure-development-environment/</guid>
-      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。
-目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
+      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。&lt;br&gt;&#xA;目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

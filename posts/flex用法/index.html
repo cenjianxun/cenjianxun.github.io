@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>Flex用法-XUN</title>
+    <meta charset="utf-8"><title>Flex用法&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -69,7 +71,6 @@
         
         
             
-
 
 <div id="sidebar-toc" class="sidebar-toc">
     
@@ -143,6 +144,7 @@
         <div class="post-time">Aug 15 2023</div>
     </header>
 
+    
     <div class="post-content"><p>查阅flex概念</p>
 <h2 id="属性">属性 <a href="#%e5%b1%9e%e6%80%a7" style="border:none;"></a></h2><p>flex 弹性布局，是一种布局的形式，故有容器框和被包裹内容两种元素，称为 Flex容器（container） 和 Flex项目（item）。它们分别有各自属性。</p>
 <h3 id="容器-container-属性">容器 container 属性： <a href="#%e5%ae%b9%e5%99%a8-container-%e5%b1%9e%e6%80%a7" style="border:none;"></a></h3><ul>
@@ -201,36 +203,36 @@
 <ul>
 <li><code>order</code></li>
 </ul>
-<p>// 项目的放大比例，默认为<code>0</code>。
+<p>// 项目的放大比例，默认为<code>0</code>。<br>
 // 0表示如果存在剩余空间，也不放大。数字越大越优先放大。</p>
 <ul>
 <li><code>flex-grow</code></li>
 </ul>
-<p>// 定义了项目的缩小比例，默认为1。
+<p>// 定义了项目的缩小比例，默认为1。<br>
 // 1 表示如果空间不足，该项目将缩小。0表示不缩小。</p>
 <ul>
 <li><code>flex-shrink</code></li>
 </ul>
-<p>// 在分配多余空间之前，项目占据的主轴空间。
-// 默认值为<code>auto</code>，即项目的本来大小。
+<p>// 在分配多余空间之前，项目占据的主轴空间。<br>
+// 默认值为<code>auto</code>，即项目的本来大小。<br>
 // 可以设为跟<code>width</code>或<code>height</code>属性一样的值（like350px），则项目将占据固定空间。</p>
 <ul>
 <li><code>flex-basis</code></li>
 </ul>
-<p>//<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写。推荐使用flex缩写语法
+<p>//<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写。推荐使用flex缩写语法<br>
 // 默认值为<code>0 1 auto</code></p>
 <ul>
 <li><code>flex</code>
 <ul>
-<li>flex:initial 即 0 1 auto。不扩展，收缩，自适应。
+<li>flex:initial 即 0 1 auto。不扩展，收缩，自适应。<br>
 适合小控件元素的分布布局，或者某一项内容动态变化的布局；</li>
-<li>flex:0        即 0 1 0%。 不扩展，收缩，最小内容宽度。
+<li>flex:0        即 0 1 0%。 不扩展，收缩，最小内容宽度。<br>
 适用场景较少，适合设置在替换元素的父元素上；</li>
-<li>flex:none 即 0 0 auto。不扩展，不收缩，自适应。
+<li>flex:none 即 0 0 auto。不扩展，不收缩，自适应。<br>
 适用于不换行的内容固定或者较少的小控件元素上，如按钮；</li>
-<li>flex:1        即 1 1 0%。扩展，也收缩，尺寸不足时会优先最小化内容尺寸
+<li>flex:1        即 1 1 0%。扩展，也收缩，尺寸不足时会优先最小化内容尺寸<br>
 适合等分布局；</li>
-<li>flex:auto  即 1 1 auto。扩展，也收缩，尺寸不足时会优先最大化内容尺寸
+<li>flex:auto  即 1 1 auto。扩展，也收缩，尺寸不足时会优先最大化内容尺寸<br>
 适合基于内容动态适配的布局；</li>
 </ul>
 </li>
@@ -245,6 +247,7 @@
 
     <div class="post-meta meta">
         
+
         <span class="tags-box">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
                 class="fas-tags">
@@ -268,7 +271,7 @@
     <div class="post-paginator">
         
         
-        <div class="pag-prev">
+        <span class="pag-prev">
         
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -281,9 +284,9 @@
             </svg>
             <a href="https://cenjianxun.github.io/posts/rpc-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E6%80%9D%E6%83%B3/" class="jump-post">RPC: 网络通信协议思想</a>
         
-        </div>
+        </span>
   
-        <div class="pag-next">
+        <span class="pag-next">
             
             
             <a href="https://cenjianxun.github.io/posts/%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83%E5%8F%8A%E6%B5%8B%E8%AF%95/" class="jump-post">文档规范及测试</a>
@@ -295,7 +298,7 @@
                 <path d="M21 5v14" />
             </svg>
             
-        </div>
+        </span>
         
     </div>
 

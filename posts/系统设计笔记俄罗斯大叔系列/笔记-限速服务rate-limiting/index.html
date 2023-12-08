@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>[笔记] 限速服务｜Rate Limiting-XUN</title>
+    <meta charset="utf-8"><title>[笔记] 限速服务｜Rate Limiting&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -69,7 +71,6 @@
         
         
             
-
 
 <div id="sidebar-toc" class="sidebar-toc">
     
@@ -133,7 +134,8 @@
         <div class="post-time">Jun 10 2022</div>
     </header>
 
-    <div class="post-content"><p>system design 俄罗斯大叔系列
+    
+    <div class="post-content"><p>system design 俄罗斯大叔系列<br>
 限速</p>
 <p>一个client忽然发送异常多的请求。</p>
 <p>可能有很多原因：</p>
@@ -163,7 +165,8 @@
 </ul>
 <p>solution：</p>
 <p>从简单的方案开始，逐渐扩展。</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0728397a-0f78-4891-8b6c-7898980a98e9/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0728397a-0f78-4891-8b6c-7898980a98e9/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>so ① rules retriever：</p>
 <p>是一个后台进程，每个rule指定每秒允许的特定客户端的请求数，并轮询检查是否有新rule或修改</p>
 <p>rule自己定义并存在数据库，并且通过一个web服务来管理操作。并在内存中有存储。</p>
@@ -199,7 +202,8 @@
 </li>
 </ul>
 <p>类和接口：</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b3c29ca-d0bb-4f5b-9240-959a510f36d6/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b3c29ca-d0bb-4f5b-9240-959a510f36d6/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <pre><code>  JobScheduler: 负责调度job和从规则库里检索规则
 </code></pre>
 <p>RulesCache：负责将规则存储在内存中</p>
@@ -213,7 +217,8 @@
 <p>可用修改桶，让它允许负数令牌存在。</p>
 <p>比如这时来了12个请求，共享消息后每个桶有-8个令牌，那么接下来两秒内都不允许有请求了。</p>
 <p>所以关键是共享信息</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c42c9176-9467-4476-b21a-f8134664b1cf/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c42c9176-9467-4476-b21a-f8134664b1cf/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>第一种：全网状广播：tell everyone everything</p>
 <p>如何发现host？</p>
 <p>①先择第三方服务，监听每个host的心跳，新的来了就注册，心跳停止就注销。</p>
@@ -240,7 +245,8 @@
 <p>UDP：不保证收到所有data也不保证数据。但快。</p>
 <p><strong>integrate 集成这些组件</strong></p>
 <p>两种</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6de0e5bb-59ca-4957-8f9b-decc8db24a60/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6de0e5bb-59ca-4957-8f9b-decc8db24a60/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>① rate limiter 作为服务进程的一部分运行</p>
 <p>作为类的集合分发</p>
 <p>pros：更快。无需进程间调用，也就没有进程调用失败。</p>
@@ -268,7 +274,8 @@
 <p>exponential backoff and jitter  指数退避和抖动：</p>
 <p>多次重试请求，但每次重试都等待更长的时间。</p>
 <p>抖动增加了重试间隔的随机性以分散负载</p>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4aeb87f-7bf7-4737-bf61-e6c70557ad9b/Untitled.png" alt="Untitled"></p>
+<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4aeb87f-7bf7-4737-bf61-e6c70557ad9b/Untitled.png" width="50%" alt="Untitled"  />
+</center></p>
 <p>最终选择：</p>
 <p>小 cluster &lt;x000 nodes, active buckets/sec &lt; 10,000 :</p>
 <p>UDP， gossip communication</p>
@@ -277,6 +284,7 @@
 
     <div class="post-meta meta">
         
+
         <span class="tags-box">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
                 class="fas-tags">
@@ -297,7 +305,7 @@
     <div class="post-paginator">
         
         
-        <div class="pag-prev">
+        <span class="pag-prev">
         
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -310,13 +318,13 @@
             </svg>
             <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/" class="jump-post">[笔记] 通知服务｜Notification Service</a>
         
-        </div>
+        </span>
   
-        <div class="pag-next">
+        <span class="pag-next">
             
             <p class="jump-post">这就是最新的文章了</p>
             
-        </div>
+        </span>
         
     </div>
 
@@ -328,31 +336,31 @@
         
         <li>
             
-            <p>index</p>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">[笔记] 分布缓存 | Distribute Cache</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">[笔记] 分布消息队列｜Distributed Message Queue</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">[笔记] 通知服务｜Notification Service</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">index</a>
+            <p>[笔记] 限速服务｜Rate Limiting</p>
             
         </li>
         

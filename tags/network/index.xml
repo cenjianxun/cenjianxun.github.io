@@ -6,16 +6,14 @@
     <description>Recent content in network on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Sun, 11 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cenjianxun.github.io/tags/network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/rpc-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E6%80%9D%E6%83%B3/</link>
       <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/rpc-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E6%80%9D%E6%83%B3/</guid>
-      <description>&lt;p&gt;RPC（remote procedure call）
-是一种计算机通信协议，允许调用不同进程的程序，而不必了解底层网络技术的协议。&lt;/p&gt;</description>
+      <description>&lt;p&gt;RPC（remote procedure call）&lt;br&gt;&#xA;是一种计算机通信协议，允许调用不同进程的程序，而不必了解底层网络技术的协议。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

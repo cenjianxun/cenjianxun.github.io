@@ -6,18 +6,14 @@
     <description>Recent content in Raft on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Fri, 22 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/raft/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cenjianxun.github.io/tags/raft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
-      <description>&lt;p&gt;三个小实验：
-A: 实现raft：一个replicated state machine protocol 复制状态机协议
-B: 实现日志传输
-C：持久化&lt;/p&gt;</description>
+      <description>&lt;p&gt;三个小实验：&lt;br&gt;&#xA;A: 实现raft：一个replicated state machine protocol 复制状态机协议&lt;br&gt;&#xA;B: 实现日志传输&lt;br&gt;&#xA;C：持久化&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

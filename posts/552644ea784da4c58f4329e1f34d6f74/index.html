@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>语言工具箱之Python&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">语言工具箱之Python</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-menu-items">
+        <ul class="menu-items"><li class="menu-item">
+                <a href="/" target="_self">HOME</a>
+            </li><li class="menu-item">
+                <a href="/archive/" target="_self">ARCHIVE</a>
+            </li><li class="menu-item">
+                <a href="/notes/" target="_self">NOTES</a>
+            </li><li class="menu-item">
+                <a href="/about/" target="_self">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>语言工具箱之Python</h1>
+        <div class="post-time">Dec 2 2020</div>
+    </header>
+
+    
+    <div class="post-content"><p>语法细节，数据结构，使用时容易出错的和忽略的地方<br>
+之python篇</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> len(heap) <span style="color:#f92672">&lt;</span> k:
+</span></span><span style="display:flex;"><span>    heapq<span style="color:#f92672">.</span>heappush(heap, x)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    heapq<span style="color:#f92672">.</span>heappushpop(heap, x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> heap[<span style="color:#ae81ff">0</span>]
+</span></span></code></pre></div><hr>
+<pre tabindex="0"><code class="language-pyhton" data-lang="pyhton"># 1. 插入：[list].insert  
+
+是插入原list，而不是返回新list 
+有两个参数，[list].insert([值], [位置])   
+
+
+# 2. str｜list 通用｜有区别的参数
+in str和list都可以用。
+
+find 和 index:
+① find 只可以用在 str，不存在会返回-1；
+② index可用在str和list，不存在会error；
+
+
+# 3. 判断list是否相等
+① 必须位置、值全相等才算相等
+② 可以使用 operator
+
+import operator
+operator.eq(a, b)
+
+对象创建后hash值在生命周期里不可变
+可hash：不可变的数据结构 str tuple object
+不可hash：可变的数据结构 list dict set  
+
+使用hash算法的数据结构叫hash表，也叫散列表。
+
+
+# 4. 相等
+is：值和地址都相等
+==：只有值相等
+__eq__：和==一样。即引用相等。
+
+__hash__：返回一个int值：hash(id(self))，为这个对象设定一个唯一hash值
+
+set 去重
+① 当两个变量hash值不同，就认为两个变量不同
+② 当两个变量hash值一样时，调用__eq__方法，true去重，false不去。
+
+
+# 5. 时间开销
+默认长度皆为n。k代表随机。x是随便一个字符。
+
+LIST：
+.append()   O(1)
+.pop()      O(1)  
+.pop[k]     O(k)
+.insert()   O(n)
+.extend()   O(k)
+[x] in      O(n)
+min()/max() O(n)
+len()       O(1)
+
+SET/DICT：
+in  平均 1 | 最差 n
+get 平均 1 | 最差 n
+set 平均 1 | 最差 n
+del 平均 1 | 最差 n
+
+* 最坏是因为摊销 *
+* ep: dic[N]，删除N-1个元素，会重新为N个元素调整大小 *
+
+
+# 6. 删除
+LIST：
+.pop(索引)
+.remove(值)
+del list[索引]
+
+DICT：
+.pop(key)  O(1)
+.popitem() 【随机】
+del dict[key]
+.clear()  【删所有】
+
+SET：
+.pop() 【随机】 O(1) 
+.remove(值) O(1)
+.discard(值) 
+
+其中，
+list的.remove(值)为删除首个该值；
+dict的 del dict[key]没有返回值，.pop(key)有返回值。
+
+
+# 7. random
+.randint(i, j) # [i, j] 范围内整数。**注意是闭区间**
+.random() # 0-1间浮点数
+.uniform(i, j) # [i, j] 范围内浮点数
+.choice(str)
+.randrange(i, j, gap)
+.shuffle() # 打乱原函数
+
+
+# 8. 堆
+import heapq # 默认是小顶堆/最小堆 min_heap,也就是堆顶元素始终是堆中最小的元素
+
+大顶堆就是根最大。小顶堆就是根最小。
+
+import heapq # 它是小顶堆/最小堆 min_heap,也就是堆顶元素始终是堆中最小的元素
+1. 创建：
+	heap = []
+	for n in data:
+	    heapq.heappush(heap, n) # heap要提前创建个list
+	或者：
+	heapq.heapify(data) # data本身就变成堆
+
+2. 弹出：
+	heapq.heapify(data)
+	for i in range(2):
+		smallest = heapq.heappop(data)
+
+3. 删除并替换成新值
+	heapq.heapify(data)
+	for n in [0, 13]:
+	    smallest = heapq.heapreplace(data, n)
+
+	# 在一个操作中将num添加到堆并从heap中删除最小项
+	heapq.heappushpop(heap, num)
+
+4. 找范围
+	heapq.nlargest(3, data) # 最大的前3个 按从大到小
+	heapq.nsmallest(3, data) # 最小的前3个 按从小到大
+
+5. 找第k
+	找第k大的元素，用小顶堆。因为当 len(list)&gt;=k时，再进去值时，被替换出来的是堆顶=【最小的值】。
+	所以当循环完了之后，里面剩的是最大的k个值，且第k个是堆里最小的。
+
+	找第k小的元素，用大顶堆。pushpop出的是堆定=最大的值。完之后剩的是最小的k个值
+
+	模板：
+		if len(heap) &lt; k:
+			heapq.heappush(heap, x)
+		else:
+			heapq.heappushpop(heap, x)
+
+		return heap[0]
+
+**创建大顶堆和大顶堆排序不一样。**
+大顶堆排序 = 创建大顶堆 + 不断交换 n[0] 和 n[-1]，并重复创建剩下的数为大顶堆。
+创建大顶堆关键：找出最后一个有子树的i = len(n) // 2 - 1
+
+
+# 9. 队列 queue
+四种队列
+queue.Queue ｜ 面向多生产/多消费线程的队列
+asyncio.Queue ｜ 面向多生产/多消费协程的队列
+multiprocessing.Queue ｜ 面向多生产/多消费进程的队列
+collections.deque ｜ 在数据结构层面实现队列，无应用场景的基础数据结构
+
+① collections.deque
+一般做数据结构就用这种
+
+from collections import deque
+
+# 初始化
+queue = deque(maxlen=10)
+
+queue可原地初始化
+q = queue(alist) | queue(&#39;astring&#39;)
+
+添加：O(1)
+.append(元素) ｜ .appendleft(元素)
+.extend(数组) ｜ .extendleft(数组)
+
+插入：O(n)
+insert(index, 值)
+
+弹出：O(1)
+.pop() | .popleft()
+
+往后挪k个：
+.rotate(k) # k为正值为顺时针旋转，k为负值为逆时针旋转
+
+可以使用 in
+
+**线程安全**
+以上都是原子操作，是GIL保护下的线程安全方法
+
+② queue.Queue VS asyncio.Queue
+共性：
+都支持多生产者、多消费者的队列
+基于collections.deque
+都提供了Queue（FIFO队列），PriorityQueue（优先级队列），LiftQueue（LIFO队列）
+
+区别：
+queue.Queue 适用多线程场景
+asyncio.Queue 适用协程场景下的通信，返回协程对象
+
+|      | queue.Queue | asyncio.Queue |
+| ---- | ---- | ---- | 
+| 线程安全 | ✔︎    | ✘   | 
+| 超时机制 | timeout | asyncio.wait.for() |
+| qsize() | 预估的队列长度（可能被其它线程修改） | 准确的队列长度（单线程，不会被其它线程修改）|
+| put()/set() | put(item, block=true,timeout=None) | put()返回协程对象，so无block/timeout。非阻塞方法：put_nowait   | 
+
+③ multiprocessing.Queue
+三种队列：Queue . simpleQueue . JoinableQueue
+
+线程安全 &amp; 进程安全
+支持put/get 操作
+底层结构是multiprocessing Pipe
+不支持join()和task_done操作
+
+
+#10. 树
+完全二叉树：中间没有空的，按顺序排列
+
+平衡二叉树：左右子树深不超过1
+
+二叉搜索树 = 二叉排序树：左 &lt; 中 &lt; 右
+
+满二叉树：这样行满了的完全二叉树。深度为k，且有2^k-1个结点。
+
+字典树：
+① 根节点不包含字符
+② 子 = 父 + 路径
+③ 子节点各不相同
+④ 是现实，会在节点中是一个flag，标记该节点处是否构成一个单词
+
+
+# 11. 位运算
+左移：&lt;&lt; ｜ 相当于 ×2
+    高位舍掉，低位补0
+右移：&gt;&gt; ｜ 相当于 ÷2
+    有符号数，符号为随同移动。+，最高位补0；-，最高位补1。这个取决于编译系统。
+&gt;&gt;&gt;：无视符号的右移。
+
+
+# 12. sort 和 operator
+**py3的sort取消了cmp，可以用key**
+
+itemgetter
+
+from operator import itemgetter
+
+sort(nums, key=itemgetter(0, 1))
+= sort(nums, key=lambda x:(x[0], x[1]))
+
+
+methodcaller
+
+from operator import methodcaller
+
+# 这里面count是内置函数，这条意思是按元素里&#39;!&#39;的个数排序
+sort(messages, key=methodcaller(&#39;count&#39;, &#39;!&#39;))
+
+cmp_to_key
+
+sort(nums, key=cmp_to_key(func_compare))
+
+func_compare(a, b) #如果a在b前面返回-1，后面返回1，相等返回0
+
+
+# ord() 转ascii码
+a的码：95；A的码：65
+
+str转int 可使用：ord(&#39;c&#39;) - ord(&#39;0&#39;) # &#39;c&#39;是当前想改的字母
+</code></pre></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/python">python</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/" class="jump-post">[知识] js基础之HTML部分</a>
+        
+        </span>
+  
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/" class="jump-post">设计视频流架构</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

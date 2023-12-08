@@ -1,351 +1,271 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>首页 on XUN</title>
+    <title>XUN</title>
     <link>https://cenjianxun.github.io/</link>
-    <description>Recent content in 首页 on XUN</description>
+    <description>Recent content on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Sat, 11 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cenjianxun.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E5%89%81%E6%89%8B%E7%9B%98%E7%82%B9%E4%B9%8B%E7%94%B5%E8%84%91%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E5%99%A8/</link>
       <pubDate>Sat, 11 Nov 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E5%89%81%E6%89%8B%E7%9B%98%E7%82%B9%E4%B9%8B%E7%94%B5%E8%84%91%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E5%99%A8/</guid>
       <description>&lt;p&gt;真的很爱买电子数码类😭&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8B%E7%AF%87%E5%BC%80%E5%8F%91blog%E6%96%B0%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Sun, 15 Oct 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8B%E7%AF%87%E5%BC%80%E5%8F%91blog%E6%96%B0%E5%8A%9F%E8%83%BD/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83%E5%8F%8A%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Wed, 06 Sep 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83%E5%8F%8A%E6%B5%8B%E8%AF%95/</guid>
-      <description>&lt;p&gt;本文确立一些文档规范，兼样式测试。
-譬如这是一个引言。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文确立一些文档规范，兼样式测试。&lt;br&gt;&#xA;譬如这是一个引言。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>About</title>
       <link>https://cenjianxun.github.io/about/</link>
       <pubDate>Mon, 21 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/about/</guid>
       <description>关于我 醺 程序媛。 写代码是12岁起的第一志愿，但也没有什么炫酷成就，而越写越觉得知识浩渺如海。 喜欢夏天。 爱吃辣和豆腐苦瓜。后来发现人生其他方面也一样。想想还是不能忘记冰淇淋和东方树叶。 剩下看文章吧。 打假：凉皮不能不放麻酱。 关于本站 本站为个人网站。主要记录技术、代码方面的内容。之后可</description>
     </item>
-    
     <item>
       <title>世界的门</title>
       <link>https://cenjianxun.github.io/worlds/</link>
       <pubDate>Mon, 21 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/worlds/</guid>
       <description>虽然简中网络环境和质量整体不如十余年前，但后知后觉从博客链出去才发现，原来还是有非常、非常多精彩、有趣、优秀的人，还有那么多人精彩努力的生活，和用心、质量高的文字。无异于打开新世界。一个个链就是一扇门。 故名。 欢迎联系！但你想加链由你心意，我加链由我心意。 个人站 苏洋的博客 ｜ 目测偏架</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/flex%E7%94%A8%E6%B3%95/</link>
       <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/flex%E7%94%A8%E6%B3%95/</guid>
       <description>&lt;p&gt;查阅flex概念&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/</link>
       <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/</guid>
-      <description>&lt;p&gt;记录建此博客的过程。包括前后端技术及决策的点。
-完全从0开始。&lt;/p&gt;</description>
+      <description>&lt;p&gt;记录建此博客的过程。包括前后端技术及决策的点。&lt;br&gt;&#xA;完全从0开始。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/rpc-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E6%80%9D%E6%83%B3/</link>
       <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/rpc-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E6%80%9D%E6%83%B3/</guid>
-      <description>&lt;p&gt;RPC（remote procedure call）
-是一种计算机通信协议，允许调用不同进程的程序，而不必了解底层网络技术的协议。&lt;/p&gt;</description>
+      <description>&lt;p&gt;RPC（remote procedure call）&lt;br&gt;&#xA;是一种计算机通信协议，允许调用不同进程的程序，而不必了解底层网络技术的协议。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
-      <description>&lt;p&gt;三个小实验：
-A: 实现raft：一个replicated state machine protocol 复制状态机协议
-B: 实现日志传输
-C：持久化&lt;/p&gt;</description>
+      <description>&lt;p&gt;三个小实验：&lt;br&gt;&#xA;A: 实现raft：一个replicated state machine protocol 复制状态机协议&lt;br&gt;&#xA;B: 实现日志传输&lt;br&gt;&#xA;C：持久化&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Mon, 18 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;两篇paper&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
-      <description>&lt;p&gt;搭建map和reduce （伪）分布式架构。
-记录一些注意事项和坑。&lt;/p&gt;</description>
+      <description>&lt;p&gt;搭建map和reduce （伪）分布式架构。&lt;br&gt;&#xA;记录一些注意事项和坑。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;实验途中通用配置及坑点记录。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824go-thread/</link>
       <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824go-thread/</guid>
       <description>&lt;p&gt;此实验由golang写的。专附了一节课讲go。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/</link>
       <pubDate>Fri, 10 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/</guid>
-      <description>&lt;p&gt;system design 俄罗斯大叔系列
-限速&lt;/p&gt;</description>
+      <description>&lt;p&gt;system design 俄罗斯大叔系列&lt;br&gt;&#xA;限速&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/</link>
       <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/</guid>
-      <description>&lt;p&gt;system design 俄罗斯大叔系列
-消息系统&lt;/p&gt;</description>
+      <description>&lt;p&gt;system design 俄罗斯大叔系列&lt;br&gt;&#xA;消息系统&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/</link>
       <pubDate>Mon, 06 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/</guid>
-      <description>&lt;p&gt;system design 俄罗斯大叔系列
-top k 问题&lt;/p&gt;</description>
+      <description>&lt;p&gt;system design 俄罗斯大叔系列&lt;br&gt;&#xA;top k 问题&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/</link>
       <pubDate>Mon, 06 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97distributed-message-queue/</guid>
-      <description>&lt;p&gt;system design 俄罗斯大叔系列
-分布消息队列&lt;/p&gt;</description>
+      <description>&lt;p&gt;system design 俄罗斯大叔系列&lt;br&gt;&#xA;分布消息队列&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/</link>
       <pubDate>Mon, 06 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/</guid>
-      <description>&lt;p&gt;system design 俄罗斯大叔系列
-分布缓存&lt;/p&gt;</description>
+      <description>&lt;p&gt;system design 俄罗斯大叔系列&lt;br&gt;&#xA;分布缓存&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-cap%E5%AE%9A%E7%90%86/</link>
+      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-cap%E5%AE%9A%E7%90%86/</link>
       <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-cap%E5%AE%9A%E7%90%86/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-cap%E5%AE%9A%E7%90%86/</guid>
       <description>&lt;p&gt;Consistency，Availability，Partition tolerance 不可能同时做到。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</link>
       <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</guid>
       <description>&lt;p&gt;原文：&lt;a href=&#34;https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;A Design Analysis of Cloud-based Microservices Architecture at Netflix&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/</link>
       <pubDate>Sat, 06 Mar 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/</guid>
       <description>&lt;p&gt;推衍一下设计视频&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E8%87%AA%E6%88%91%E6%89%AB%E7%9B%B2-js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/</link>
-      <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E8%87%AA%E6%88%91%E6%89%AB%E7%9B%B2-js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/</guid>
-      <description>&lt;p&gt;js本身是一门语言，概念和其它语言相通。唯和html相关的部分比较特殊，单独学下这部分。
-不懂为什么大部分教程打包一起讲，都又从字符串概念讲起。&lt;/p&gt;</description>
+      <link>https://cenjianxun.github.io/posts/552644ea784da4c58f4329e1f34d6f74/</link>
+      <pubDate>Wed, 02 Dec 2020 20:22:54 +0800</pubDate>
+      <guid>https://cenjianxun.github.io/posts/552644ea784da4c58f4329e1f34d6f74/</guid>
+      <description>&lt;p&gt;语法细节，数据结构，使用时容易出错的和忽略的地方&lt;br&gt;&#xA;之python篇&lt;/p&gt;</description>
     </item>
-    
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/</link>
+      <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/</guid>
+      <description>&lt;p&gt;js本身是一门语言，概念和其它语言相通。唯和html相关的部分比较特殊，单独学下这部分。&lt;br&gt;&#xA;不懂为什么大部分教程打包一起讲，都又从字符串概念讲起。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>linux路径下文件都是什么意思</title>
       <link>https://cenjianxun.github.io/posts/linux%E8%B7%AF%E5%BE%84%E4%B8%8B%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/</link>
       <pubDate>Sun, 04 Aug 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/linux%E8%B7%AF%E5%BE%84%E4%B8%8B%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/</guid>
       <description>&lt;p&gt;opt，usr，&amp;ndash;wrx，终端显示的各种文件颜色……都是什么意思啊&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-git%E5%91%BD%E4%BB%A4/</link>
+      <link>https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-git%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-git%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-git%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;p&gt;费事搜索系列&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E8%87%AA%E6%88%91%E6%89%AB%E7%9B%B2-unix%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-unix%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Sat, 08 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E8%87%AA%E6%88%91%E6%89%AB%E7%9B%B2-unix%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
-      <description>&lt;p&gt;unix系统一些概念
-基于mac写，有的部分可能和linux有出入&lt;/p&gt;</description>
+      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-unix%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;unix系统一些概念&lt;br&gt;&#xA;基于mac写，有的部分可能和linux有出入&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
+      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-shell%E5%91%BD%E4%BB%A4/</link>
+      <link>https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-shell%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Sat, 30 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-shell%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-shell%E5%91%BD%E4%BB%A4/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-redis%E6%A6%82%E5%BF%B5/</link>
+      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BB-redis/</link>
       <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-redis%E6%A6%82%E5%BF%B5/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BB-redis/</guid>
       <description>&lt;p&gt;一些基础概念。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/</link>
+      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BB-%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BB-%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description>&lt;p&gt;一些基础概念。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/</link>
+      <link>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BB-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E5%9F%BA%E7%A1%80-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BB-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
       <description>&lt;p&gt;一些基础概念。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/</link>
+      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/</link>
       <pubDate>Wed, 06 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/</guid>
-      <description>&lt;p&gt;目前包括 部分底层架构，运行原理。&lt;/p&gt;
-&lt;p&gt;* &lt;em&gt;2023年回看也没有多进阶……&lt;/em&gt;&lt;/p&gt;</description>
+      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/</guid>
+      <description>&lt;p&gt;目前包括 部分底层架构，运行原理。&lt;/p&gt;&#xA;&lt;p&gt;* &lt;em&gt;2023年回看也没有多进阶……&lt;/em&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/configure-development-environment/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/configure-development-environment/</guid>
-      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。
-目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
+      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。&lt;br&gt;&#xA;目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/%E4%BB%8A%E6%97%A5%E7%94%9F/</link>
       <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/%E4%BB%8A%E6%97%A5%E7%94%9F/</guid>
       <description>&lt;p&gt;今日种种譬如今日生。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>test</title>
       <link>https://cenjianxun.github.io/test/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/test/test/</guid>
       <description>折叠面板 Vegetables Fruits Fish 标签kind是term，archive kind是section，tags kind是taxonomy type=posta &amp;amp;&amp;amp; (kind=page || len &amp;gt; 2) ge&amp;gt;= gt&amp;gt; le&amp;lt; lt&amp;lt;= About kind:page | Type: page | Section: ｜ ispage：true | isNode: false | isSection: false .file.ContentBaseName:::about .file.BaseFileName:::about .CurrentSection.Title::::首页 .CurrentSection.RelPermalink:::/ 用 hugo 开发 blog 新功能 kind:page | Type: posts | Section:posts ｜ isp</description>
     </item>
-    
   </channel>
 </rss>

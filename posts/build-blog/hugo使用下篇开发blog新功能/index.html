@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>Hugo使用下篇：开发blog新功能-XUN</title>
+    <meta charset="utf-8"><title>Hugo使用下篇：开发blog新功能&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -70,7 +72,6 @@
         
             
 
-
 <div id="sidebar-toc" class="sidebar-toc">
     
     <header>
@@ -90,6 +91,12 @@
             <li><a href="#问题">问题</a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+    <li><a href="#换行换段-字符集和好看样式">换行换段 字符集和好看样式</a></li>
+    <li><a href="#代码高亮">代码高亮</a>
+      <ul>
+        <li><a href="#hugo默认配置highlight">hugo默认配置highlight</a></li>
       </ul>
     </li>
   </ul>
@@ -147,11 +154,12 @@
         <div class="post-time">Oct 15 2023</div>
     </header>
 
+    
     <div class="post-content"><h2 id="短代码">短代码 <a href="#%e7%9f%ad%e4%bb%a3%e7%a0%81" style="border:none;"></a></h2><p>两部分构成：① 短代码本身 ② 调用短代码</p>
 <p>使用原理：在正常html（layout/shortcodes）处写一次短代码 mycodename.html，然后在正常文档中（content/xxx.md）可多次使用</p>
 <pre tabindex="0"><code>&lt;mycodename&gt; 想让它成为此样式的部分 &lt;/mycodename&gt;
 </code></pre><p>注：有两种，一种是有首尾的 ⬆，一种不用比如嵌入video</p>
-<h2 id="toc">toc <a href="#toc" style="border:none;"></a></h2><div role='note' class='notation'>
+<h2 id="toc">toc <a href="#toc" style="border:none;"></a></h2><div role='note' class='notice'>
         
         <span class="point point4"></span>
         <span class="point point4"></span>
@@ -160,32 +168,51 @@
         
 
     
-    <p>补：
+    <p>补：<br>
 2023.11.18 实现此功能</p>
     </div>
-<h3 id="实现方法">实现方法 <a href="#%e5%ae%9e%e7%8e%b0%e6%96%b9%e6%b3%95" style="border:none;"></a></h3><p>hugo有内置的方法<code>.TableOfContents</code>，可以直接用。
-此部分的id = TableOfContents，写样式的时候 就<code>#TableOfContents { }</code>。
+<h3 id="实现方法">实现方法 <a href="#%e5%ae%9e%e7%8e%b0%e6%96%b9%e6%b3%95" style="border:none;"></a></h3><p>hugo有内置的方法<code>.TableOfContents</code>，可以直接用。<br>
+此部分的id = TableOfContents，写样式的时候 就<code>#TableOfContents { }</code>。<br>
 此时 toc.html内容如下：</p>
-<pre tabindex="0"><code>{{ if .IsPage }}
-  {{ if and (.Site.Params.toc.enable) (gt .WordCount .Site.Params.toc.wordCount) }}
-    &lt;div id=&#34;toc&#34; class=&#34;sidebar-toc&#34;&gt;
-      &lt;header&gt;
-        &lt;span class=&#34;toc-header&#34;&gt;- CATALOG -&lt;/span&gt;
-      &lt;/header&gt;
-      {{ .TableOfContents }} 
-    &lt;/div&gt;
-  {{end}}
-{{ $built := resources.Get &#34;js/toc.js&#34; | js.Build &#34;js/toc.js&#34; }}
-&lt;script type=&#34;text/javascript&#34; src=&#34;{{ $built.RelPermalink }}&#34; defer&gt;&lt;/script&gt;
-
-{{end}}
-</code></pre><p>给头部加了一个判断，给toc加了一个标题。
-但是这时toc不能自动跟随文章内容，需要自己写js。
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .IsPage }}
+</span></span><span style="display:flex;"><span>  {{ if and (.Site.Params.toc.enable) (gt .WordCount .Site.Params.toc.wordCount) }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;toc&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sidebar-toc&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;toc-header&#34;</span>&gt;- CATALOG -&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>      {{ .TableOfContents }} 
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  {{end}}
+</span></span><span style="display:flex;"><span>{{ $built := resources.Get &#34;js/toc.js&#34; | js.Build &#34;js/toc.js&#34; }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ $built.RelPermalink }}&#34;</span> <span style="color:#a6e22e">defer</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{end}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>给头部加了一个判断，给toc加了一个标题。<br>
+但是这时toc不能自动跟随文章内容，需要自己写js。<br>
 如果要写，有一个很方便的地方就是hugo已经自动生成了<em>文章正文</em>和<em>TOC</em>的H1-H6部分的id。可以拿来用。</p>
 <hr>
-<p>网上搜了一个插件，tocbot。它的方便之处是全给你写好了。虽然不那么自由，但还是记录一下<del>好不容易成功的</del>用法。
-这个插件不需要TableOfContents，它是直接根据文章正文内容生成新的toc，所以要去掉这部分。
-此外script引用一定要放在body最底端，放在<code>toc.html</code>会没用。我放在<code>footer.html</code>里面了。
+<p>网上搜了一个插件，tocbot。它的方便之处是全给你写好了。虽然不那么自由，但还是记录一下<del>好不容易成功的</del>用法。<br>
+这个插件不需要TableOfContents，它是直接根据文章正文内容生成新的toc，所以要去掉这部分。<br>
+此外script引用一定要放在body最底端，放在<code>toc.html</code>会没用。我放在<code>footer.html</code>里面了。<br>
 此时toc.html内容：</p>
 <pre tabindex="0"><code>{{ if .IsPage }}
   {{ if and (.Site.Params.toc.enable) (gt .WordCount .Site.Params.toc.wordCount) }}
@@ -203,13 +230,13 @@
         hasInnerContainers: true 
     });
 &lt;/script&gt; 
-</code></pre><p>英文注释实为迷惑，待我释义：
-tocSelector 指的是，要生成toc的地方。如上面所说，此插件是直接用文章内容生成全新toc，所以只用给它留地方就行了。
-contentSelector 指的是，文章正文内容。同理，需要文章正文位置。
+</code></pre><p>英文注释实为迷惑，待我释义：<br>
+tocSelector 指的是，要生成toc的地方。如上面所说，此插件是直接用文章内容生成全新toc，所以只用给它留地方就行了。<br>
+contentSelector 指的是，文章正文内容。同理，需要文章正文位置。<br>
 其它参数还没研究。</p>
 <hr>
 <p>此外还在中文网上发现一版实现样式，在hugo内，但不用tablesofcontents，而是自己实现toc，用正则式提取标题内容，好几个blog提到，中文起源是一个blog叫《AllinOne》的姑娘。root起源是一个github的issue。这个姑娘不是程序员却改的很细致，很厉害。</p>
-<p>但是我没有使用此方法。
+<p>但是我没有使用此方法。<br>
 一是因为她说hugo内置方法不能使用H1？可能是版本更新，hugo现在是支持更改选择标题的，在hugo的config里设置就行了。</p>
 <pre tabindex="0"><code>[markup]
   [markup.tableOfContents]
@@ -219,22 +246,22 @@ contentSelector 指的是，文章正文内容。同理，需要文章正文位�
     
 </code></pre><p>上面意思就是从h2-h4。orderde=true打开之后，每个标题块的标签就从<!-- raw HTML omitted -->改为了<!-- raw HTML omitted -->。</p>
 <p>其次我看到好几个人用这个方法，都说对中文的识别有点问题。</p>
-<p>最后是我发现，它的逻辑是，如果有子标题的话，<!-- raw HTML omitted -->标签包了一群<!-- raw HTML omitted -->，这样写js逻辑的时候非常难受。
+<p>最后是我发现，它的逻辑是，如果有子标题的话，<!-- raw HTML omitted -->标签包了一群<!-- raw HTML omitted -->，这样写js逻辑的时候非常难受。<br>
 正常的，以及Hugo内置toc的逻辑是，每一层级是一个<!-- raw HTML omitted -->，每个标题文本是一个<!-- raw HTML omitted -->包含一个<!-- raw HTML omitted -->，如果有子标题，<!-- raw HTML omitted -->再包含一个<!-- raw HTML omitted -->块。这样层级逻辑比较清楚。</p>
 <h4 id="我的实现">我的实现 <a href="#%e6%88%91%e7%9a%84%e5%ae%9e%e7%8e%b0" style="border:none;"></a></h4><p>我选择了hugo内置，自己写js跟随的方法。研究了一下js，略跪门闩。</p>
 <p>上面的代码实现完了之后，目录可以展示出来。但是还需添加跟随功能，计算高亮路径，自动展开缩起功能。</p>
 <p>跟随功能学习了其他人的笔记。看了一下实现的思想，大概是硬计算当前位置和其它header的位置差，来确定当前toc位置。还有给当前toc位置添加active的class的功能。后面写样式要用到这个class。</p>
-<p>实现了之后，又想让当前标题的父标题也一起高亮。我才想到，有些实现是直接将父active的块在js里一起标记了，我看到写的比较规整的是这位<a href="https://zhyjor.github.io/archives/" target="_blank" rel="noopener">秋染蒹葭
+<p>实现了之后，又想让当前标题的父标题也一起高亮。我才想到，有些实现是直接将父active的块在js里一起标记了，我看到写的比较规整的是这位<a href="https://zhyjor.github.io/archives/" target="_blank" rel="noopener">秋染蒹葭<br>
 </a>的toc实现。但是我实在不想再改js啦。<del>其实是不熟。</del> 于是就在css里实现了。</p>
 <p>基本逻辑是，active的块（一般是<!-- raw HTML omitted -->标签）的子<!-- raw HTML omitted -->，也就是当前标题高亮，这个没得说；同时如果当前块的后代，只要有active类，它的<!-- raw HTML omitted -->就也高亮。代码如下：</p>
 <pre tabindex="0"><code>    .mytoc li.toc-active &gt; a,
     .mytoc li:has( li.toc-active) &gt; a {
         // 想设的样式
     }
-</code></pre><p>然后，因为我设了三层目录，所以又想实现没滚到的部分的目录缩起来，滚到它再展开。
+</code></pre><p>然后，因为我设了三层目录，所以又想实现没滚到的部分的目录缩起来，滚到它再展开。<br>
 这部分核心思想是，展开就设<code>display:block</code>，将当前目录，及同级目录，及他们的所有直系祖先，当做一块。不active的就是除了一层目录，其它所有都<code>display:none</code>。</p>
-<p>如果在js里实现的话，就需要两个变量，当前目录标记active，父目录也需要标记一个不同的active。这样css就只用给active添加样式就行了。上面的秋染蒹葭就这样实现。
-如果用css实现的话，逻辑一样的。只是由于我只有当前标题一个active，所以相对关系都以这一个为参照原点。子孙有激活的，当前的<!-- raw HTML omitted -->就block；当前激活的，它的子<!-- raw HTML omitted -->，以及这个<!-- raw HTML omitted -->的子<!-- raw HTML omitted -->就block。后者是满足，此<!-- raw HTML omitted -->有子标题，但是滚轮还没滑进子标题时，子标题也展开，这种情况。
+<p>如果在js里实现的话，就需要两个变量，当前目录标记active，父目录也需要标记一个不同的active。这样css就只用给active添加样式就行了。上面的秋染蒹葭就这样实现。<br>
+如果用css实现的话，逻辑一样的。只是由于我只有当前标题一个active，所以相对关系都以这一个为参照原点。子孙有激活的，当前的<!-- raw HTML omitted -->就block；当前激活的，它的子<!-- raw HTML omitted -->，以及这个<!-- raw HTML omitted -->的子<!-- raw HTML omitted -->就block。后者是满足，此<!-- raw HTML omitted -->有子标题，但是滚轮还没滑进子标题时，子标题也展开，这种情况。<br>
 代码：</p>
 <pre tabindex="0"><code>    .mytoc nav &gt; ul ul{
         display: none;
@@ -250,13 +277,36 @@ contentSelector 指的是，文章正文内容。同理，需要文章正文位�
 <p>然后又顺手添加微弱发光。嘿嘿。</p>
 <p>最后没有实现平滑滚动。瞬移也挺酷的。</p>
 <h4 id="问题">问题 <a href="#%e9%97%ae%e9%a2%98" style="border:none;"></a></h4><p>一是想给section的_index.md文章，即list类的，也加toc。但是list类没有tableofcontent。</p>
+<p>结果发现是我没搞清，尴尬。是可以自己写逻辑筛选谁可以生成toc的。然后去修改了逻辑。</p>
+<p>然后发现有几个页面仍然不能生成。发现是该文章内容，我调皮了，在正文部分打了<!-- raw HTML omitted -->等标签，它好像依据标签捕获heading的。于是它捕获的<!-- raw HTML omitted -->为空于是报错。更改一波js逻辑。</p>
 <hr>
 <p>二是如果全局设定链接在新标签点开，点目录或回到顶部，也会在新页面点开。这个不行。应该永远在原页面点开。</p>
-<p>这个用render-hook解决。
-在layout的<code>_default/markup</code>下添加<code>render-link.html</code>和<code>render-heading.html</code>。具体看官网。</p></div>
+<p>这个用render-hook解决。<br>
+在layout的<code>_default/markup</code>下添加<code>render-link.html</code>和<code>render-heading.html</code>。具体看官网。</p>
+<h2 id="换行换段-字符集和好看样式">换行换段 字符集和好看样式 <a href="#%e6%8d%a2%e8%a1%8c%e6%8d%a2%e6%ae%b5-%e5%ad%97%e7%ac%a6%e9%9b%86%e5%92%8c%e5%a5%bd%e7%9c%8b%e6%a0%b7%e5%bc%8f" style="border:none;"></a></h2><h2 id="代码高亮">代码高亮 <a href="#%e4%bb%a3%e7%a0%81%e9%ab%98%e4%ba%ae" style="border:none;"></a></h2><p>初次看攻略的时候都略过这部分，但扫过好多篇都把这部分单独写一小节，还以为要配什么惊天复杂配置。结果好像没有，就是加载custom.js或者设置hugo默认配置。但仍然存在一些细节疑惑的解惑需要记录在这里。所以我也单开了一part（。</p>
+<p>秉着如无必要不增实体的原则，先使用hugo默认配置，如有需要之后再加js。</p>
+<h3 id="hugo默认配置highlight">hugo默认配置highlight <a href="#hugo%e9%bb%98%e8%ae%a4%e9%85%8d%e7%bd%aehighlight" style="border:none;"></a></h3><p>几乎所有人又又又都在抄一份相同的[markup.highlight]，将所有默认属性遍历了一遍。</p>
+<p>其实只需要设置style，然后选自己喜好的style。所有高亮部分的配置包括：</p>
+<pre tabindex="0"><code>[markup]
+  [markup.highlight]
+    style = &#34;monokai&#34;
+</code></pre><p>为什么。<br>
+是这样的。其它大部分配置不写，我试了，它都是默认那样子的。那个人只不过翻译了一遍。<br>
+我自己只有两个属性，其实是一个属性需要考虑，<code>linenos</code>，行号。说一个属性，是hugo好像update了<code>linenos</code>的值不仅有<code>true</code>和<code>false</code>，还添加了行号样式<code>table</code>和<code>inline</code>。之前好像有单独的<code>linenosintable=true</code>这种属性。<br>
+hugo默认是不开行号的。但是我需要分开这两种，比如👆这个配置，我并不想要行号。</p>
+<p>此外，<code>table</code>和<code>inline</code>的区别是，在渲染出来的html中，代码部分，<code>inline</code>由<!-- raw HTML omitted --><!-- raw HTML omitted -->解析，<code>table</code>由<!-- raw HTML omitted -->解析，<!-- raw HTML omitted -->由两组<!-- raw HTML omitted -->构成，一组为行号，一组为内容。这样据说是因为<code>table</code>属性可以复制代码的时候不复制行号，但是我试了<code>inline</code>复制，也并没有复制行号。而且默认table的样式，丑的要命。只好自己修改样式。</p>
+<p>那么怎么动态设置要不要行号，以及如何设置不同的样式呢。</p>
+<p>在三个反引号之后加上特定的语言名字，<!-- raw HTML omitted -->的外层会多一块class=&ldquo;highlight&quot;的<!-- raw HTML omitted -->，而不加就没有这个<!-- raw HTML omitted -->。这样就方便我在css里自己调整它的样式了。<br>
+而在语言名字之后设置<code>linenos</code>，就可以控制要不要行号。当然也可以在这里设置其它的markup.highlight属性。<br>
+我的方案是，在config里就不写，于是默认为没行号。此时我有一个默认的<!-- raw HTML omitted -->样式。当要写特定语言时，再开行号。整体样貌就像：</p>
+<pre tabindex="0"><code>```go {linenos=table} 
+// 这里是你的代码
+</code></pre><p>以上。再修改下css就大功告成。</p>
+<p>但是这样简单配置就没有代码自动折叠和一键复制功能。我恨。</p></div>
 
     <div class="post-meta meta">
         
+
         <span class="tags-box">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
                 class="fas-tags">
@@ -274,7 +324,7 @@ contentSelector 指的是，文章正文内容。同理，需要文章正文位�
     <div class="post-paginator">
         
         
-        <div class="pag-prev">
+        <span class="pag-prev">
         
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -287,13 +337,13 @@ contentSelector 指的是，文章正文内容。同理，需要文章正文位�
             </svg>
             <a href="https://cenjianxun.github.io/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/" class="jump-post">Hugo使用上篇：笔记及踩坑</a>
         
-        </div>
+        </span>
   
-        <div class="pag-next">
+        <span class="pag-next">
             
             <p class="jump-post">这就是最新的文章了</p>
             
-        </div>
+        </span>
         
     </div>
 
@@ -305,19 +355,19 @@ contentSelector 指的是，文章正文内容。同理，需要文章正文位�
         
         <li>
             
-            <p>index</p>
+            <a href="/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/">blog搭建和启用</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/">index</a>
+            <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/">Hugo使用上篇：笔记及踩坑</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/">index</a>
+            <p>Hugo使用下篇：开发blog新功能</p>
             
         </li>
         

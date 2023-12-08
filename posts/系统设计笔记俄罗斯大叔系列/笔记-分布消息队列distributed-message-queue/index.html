@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>[笔记] 分布消息队列｜Distributed Message Queue-XUN</title>
+    <meta charset="utf-8"><title>[笔记] 分布消息队列｜Distributed Message Queue&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -69,7 +71,6 @@
         
         
             
-
 
 <div id="sidebar-toc" class="sidebar-toc">
     
@@ -149,17 +150,18 @@
         <div class="post-time">Jun 6 2022</div>
     </header>
 
-    <div class="post-content"><p>system design 俄罗斯大叔系列
+    
+    <div class="post-content"><p>system design 俄罗斯大叔系列<br>
 分布消息队列</p>
 <p>假设有个producer和consumer，需要互相通信。</p>
 <!-- raw HTML omitted -->
-<p>两个选项：
-① 直接 synchronous communication，等response
-pro：简单 可快速实现
-con：处理失败更困难
+<p>两个选项：<br>
+① 直接 synchronous communication，等response<br>
+pro：简单 可快速实现<br>
+con：处理失败更困难<br>
 → 要考虑失败重试、请求过多、加快速度</p>
-<p>② 引入可以异步通信的新组件，called 队列
-它是分布式的，因为数据存在n台机器上
+<p>② 引入可以异步通信的新组件，called 队列<br>
+它是分布式的，因为数据存在n台机器上<br>
 但是和标题有点不同，标题的情况会发给n个subscriber，这里一个queue有且只有一个customer</p>
 <h2 id="requirement">Requirement <a href="#requirement" style="border:none;"></a></h2><p>Functional：</p>
 <ul>
@@ -176,11 +178,11 @@ con：处理失败更困难
 <li>可能：不重复提交/安全性/cost</li>
 </ul>
 <h2 id="high-level-architecture">High-level Architecture <a href="#high-level-architecture" style="border:none;"></a></h2><!-- raw HTML omitted -->
-<p>需要一个虚拟ip，把hostname解析给LB system。
-所以也需要一个LB
-next， 一个前端服务，负责处理身份验证等
+<p>需要一个虚拟ip，把hostname解析给LB system。<br>
+所以也需要一个LB<br>
+next， 一个前端服务，负责处理身份验证等<br>
 一个metadata database，负责存一些信息（名称、日期等）<br>
-db之前需要一个service，处理对db的调用
+db之前需要一个service，处理对db的调用<br>
 需要一个地方来存queue message，所以需要一个backend web service，负责消息的persistence and processing</p>
 <h2 id="virtual-ip--load-balancer">Virtual IP &amp; Load Balancer <a href="#virtual-ip--load-balancer" style="border:none;"></a></h2><!-- raw HTML omitted -->
 <p>（LB很大，除非问否则不要偏离主题）</p>
@@ -206,44 +208,44 @@ db之前需要一个service，处理对db的调用
 <p>负责：</p>
 <ul>
 <li>
-<p>request validation 请求验证
+<p>request validation 请求验证<br>
 有助于确保请求中存在所有必需的参数，并且这些参数的值符合约束条件,并且消息大小不超过指定阈值</p>
 </li>
 <li>
-<p>authentication / authorization 身份验证和授权
-验证消息发送者是否message queue服务的registered customer
+<p>authentication / authorization 身份验证和授权<br>
+验证消息发送者是否message queue服务的registered customer<br>
 是否可以发到它想发的那个队列</p>
 </li>
 <li>
-<p>TLS（SSL） termination SSL 终止
-TLS是一种提供隐私和数据完整性的协议
-TLS 终止是指解密请求并将解密的请求传递给后端服务的过程
-最好在frontend 上进行这步，因为LB的TLS很贵
+<p>TLS（SSL） termination SSL 终止<br>
+TLS是一种提供隐私和数据完整性的协议<br>
+TLS 终止是指解密请求并将解密的请求传递给后端服务的过程<br>
+最好在frontend 上进行这步，因为LB的TLS很贵<br>
 通常不是由 FrontEnd 服务本身处理，而是由一个单独运行在同一主机上的 HTTP 进程代理处理。</p>
 </li>
 <li>
-<p>server-side data encryption 服务器端数据加密
-保证消息安全存在后端，所以frontend收到消息就加密 encrypt
+<p>server-side data encryption 服务器端数据加密<br>
+保证消息安全存在后端，所以frontend收到消息就加密 encrypt<br>
 只在return 给customer时解密</p>
 </li>
 <li>
-<p>caching 缓存
-缓存副本。
+<p>caching 缓存<br>
+缓存副本。<br>
 缓存常用queue的metadata，和用来身份验证和授权的用户身份信息</p>
 </li>
 <li>
-<p>rate limiting (also known as throttling) 速率限制（也称为限制）
+<p>rate limiting (also known as throttling) 速率限制（也称为限制）<br>
 可以用漏桶算法</p>
 </li>
 <li>
-<p>request dispatching 请求调度
-frontend服务至少远程调用两个web：metadata service &amp; backend service
-并为它俩创建http client，且保证它们isolated，means 如果一个服务速度下降，另一个不受影响impacted
+<p>request dispatching 请求调度<br>
+frontend服务至少远程调用两个web：metadata service &amp; backend service<br>
+并为它俩创建http client，且保证它们isolated，means 如果一个服务速度下降，另一个不受影响impacted<br>
 一些常见的模式，like bulkhead he circuit breaker可以帮忙隔离，当远程调用挂的时候让系统更有弹性</p>
 </li>
 <li>
-<p>request deduplication 请求重复数据删除
-如果消息没到达client可能有重复请求，就可能有重复数据。
+<p>request deduplication 请求重复数据删除<br>
+如果消息没到达client可能有重复请求，就可能有重复数据。<br>
 所以cache提前存用过的request ID，来过滤</p>
 </li>
 <li>
@@ -256,37 +258,37 @@ frontend服务至少远程调用两个web：metadata service &amp; backend servi
 <p>强一致性不强求</p>
 <p>有不同的organize缓存集群的方法</p>
 <ol>
-<li>缓存小：将整个数据set存在每个cluster的node上
+<li>缓存小：将整个数据set存在每个cluster的node上<br>
 frontend host可以随便调一个metadata service host，因为所有cache cluter上都一样有完整信息</li>
-<li>data大：分片
+<li>data大：分片<br>
 frontend知道哪个分片存了数据并直接调用这个分片</li>
-<li>仍然分片，但frontend不知道地址
+<li>仍然分片，但frontend不知道地址<br>
 so frontend随机调metadata service host，host知道转发到哪里</li>
 </ol>
-<p>对①，可以引入LB，因为传到所有host都一样
+<p>对①，可以引入LB，因为传到所有host都一样<br>
 对②和③，metadata host代表一个一致性哈希环</p>
 <p>** 刚刚这个组件集：</p>
 <p>visual IP + LB + frontend web service + metadata web service，一个在DB之上的缓存层，非常流行，广泛适用。</p>
 <h2 id="backend-service">Backend Service <a href="#backend-service" style="border:none;"></a></h2><p>如果卡住，先问问题：like:</p>
 <ul>
 <li>
-<p>where and how do we store messages?
-→ DB可以吗？可以但不优。因为分布message queue有高throughput，都会被store到DB里。
-so 问题变成：构建能处理high throughput的DB的问题
-这种DB有现成的。初级回答：用第三方db。高级：需要解释如何构建分布式db
-→ 那么就用RAM 和 local disk of a backend host
+<p>where and how do we store messages?<br>
+→ DB可以吗？可以但不优。因为分布message queue有高throughput，都会被store到DB里。<br>
+so 问题变成：构建能处理high throughput的DB的问题<br>
+这种DB有现成的。初级回答：用第三方db。高级：需要解释如何构建分布式db<br>
+→ 那么就用RAM 和 local disk of a backend host<br>
 长久存的用本地disk，短暂存的用memory</p>
 </li>
 <li>
-<p>how do we replicate data?
-→ copies of messages send给其它hots 备用
+<p>how do we replicate data?<br>
+→ copies of messages send给其它hots 备用<br>
 replicate within a group of hosts 在集群内发送消息的拷贝，防止单点故障</p>
 </li>
 <li>
-<p>frontend host 怎么知道从哪搜？怎么知道data send to哪
+<p>frontend host 怎么知道从哪搜？怎么知道data send to哪<br>
 → metadata service</p>
 <!-- raw HTML omitted -->
-<p>message到达frontend，frontend问metadata service发到哪个backend，message发过去并复制
+<p>message到达frontend，frontend问metadata service发到哪个backend，message发过去并复制<br>
 当接收消息来的时候，frontend talks to Metadata service确定存的是哪个backend host</p>
 </li>
 </ul>
@@ -298,8 +300,8 @@ replicate within a group of hosts 在集群内发送消息的拷贝，防止单�
 <li>send message传到frontend，到达q1队列 ——&gt; 前端服务call metadata service来识别这个q的后端leader实例，like B ——&gt; message传给leader B，B负责复制</li>
 <li>receive message到达frontend ——&gt; 也发个request to metadata找这个q的leader ——&gt;从leader instance里面检索消息，leader负责清理用过的data</li>
 </ul>
-<p>需要一个组件，帮忙进行leader的选举和管理，called in-cluster manager
-它负责维护一个在queues、leaders、followers之间的mapping
+<p>需要一个组件，帮忙进行leader的选举和管理，called in-cluster manager<br>
+它负责维护一个在queues、leaders、followers之间的mapping<br>
 这个组件很复杂，得reliable scalable performant</p>
 <p>② 一个小型集群，每个cluster都有分布在多个数据中心的3-4个机器</p>
 <!-- raw HTML omitted -->
@@ -330,46 +332,46 @@ replicate within a group of hosts 在集群内发送消息的拷贝，防止单�
 <p>out可以跨cluster拆分queue，so queue可以在多个cluster之间均分</p>
 <h2 id="其它">其它 <a href="#%e5%85%b6%e5%ae%83" style="border:none;"></a></h2><ul>
 <li>
-<p>queue 创建和删除
-可以自动创建，when 第一条message到达frontend时，也可以创建create API
+<p>queue 创建和删除<br>
+可以自动创建，when 第一条message到达frontend时，也可以创建create API<br>
 delete 要谨慎，所以一般不公开接口，用命令行删</p>
 </li>
 <li>
-<p>消息 删除
-① 消费完不立刻删除
-所以consumer得一直知道它们消费了什么
-所以必须维持有序，并跟踪offset
-几天之后mssage可以通过一些job删除掉
-kafka就这样
-② 也不删除，而是立刻标记为不可见，让其他consumer无法检索到
-amazon SQS就这样
+<p>消息 删除<br>
+① 消费完不立刻删除<br>
+所以consumer得一直知道它们消费了什么<br>
+所以必须维持有序，并跟踪offset<br>
+几天之后mssage可以通过一些job删除掉<br>
+kafka就这样<br>
+② 也不删除，而是立刻标记为不可见，让其他consumer无法检索到<br>
+amazon SQS就这样<br>
 收到消息的consumer，需要call deleteAPI，从后端来删除，如果没删，message就会可见，可能被重复消费</p>
 </li>
 <li>
-<p>message replication
-可以同步or异步复制
-同步：复制完才return给producer
-持久性高，延迟也高
-异步：存完一份就返回，稍后复制
+<p>message replication<br>
+可以同步or异步复制<br>
+同步：复制完才return给producer<br>
+持久性高，延迟也高<br>
+异步：存完一份就返回，稍后复制<br>
 性能高，但可能丢</p>
 </li>
 <li>
-<p>messages delivery semantics 传递保证
-三种，只有一次，最多一次，最少一次
-为啥要这么多种？因为分布式系统可能有很多地方出bug，消息没办法处理
-所以要最少一次，保证了持久、可用、性能之间的平衡
-防丢：
-生产消费端：确认机制
-中间：批量，副本 cluster leader
-防重：=幂等
-生产及过程中：全局唯一id
+<p>messages delivery semantics 传递保证<br>
+三种，只有一次，最多一次，最少一次<br>
+为啥要这么多种？因为分布式系统可能有很多地方出bug，消息没办法处理<br>
+所以要最少一次，保证了持久、可用、性能之间的平衡<br>
+防丢：<br>
+生产消费端：确认机制<br>
+中间：批量，副本 cluster leader<br>
+防重：=幂等<br>
+生产及过程中：全局唯一id<br>
 消费：要考虑入库时丢失：①事务 ② 乐观锁：version</p>
 </li>
 <li>
 <p>push vs pull</p>
 <ul>
 <li>
-<p>push：新消息到达message时，通知consumer
+<p>push：新消息到达message时，通知consumer<br>
 queue大量写，写能力 存储能力：</p>
 <ul>
 <li>多线程 写入性能好的db引擎</li>
@@ -379,31 +381,31 @@ queue大量写，写能力 存储能力：</p>
 </ul>
 </li>
 <li>
-<p>pull：consumer不断发送检索消息的请求，当queue里有新消息时，发给consumer
-解决了推的延迟，存储成本降低，扩展性更好
-但 查询聚合成本高：缓存聚合.
-优化:
-①只缓存最近的
-②增加多个副本
+<p>pull：consumer不断发送检索消息的请求，当queue里有新消息时，发给consumer<br>
+解决了推的延迟，存储成本降低，扩展性更好<br>
+但 查询聚合成本高：缓存聚合.<br>
+优化:<br>
+①只缓存最近的<br>
+②增加多个副本<br>
 pull对queue来说简单，push对consumer来说简单</p>
 </li>
 </ul>
 </li>
 <li>
-<p>FIFO
-分布式里很难维持order
+<p>FIFO<br>
+分布式里很难维持order<br>
 所以要么不要求顺序，要么不要求速度</p>
 </li>
 <li>
-<p>security
-通过https使用ssl加密
+<p>security<br>
+通过https使用ssl加密<br>
 还可以在后端存的时候加密</p>
 </li>
 <li>
-<p>monitoring
-monitor每个组件：fronted ，metadata，backend
-要监控系统的health 并让consumer track它们的队列状态
-每个服务都必须emit metrics且写log
+<p>monitoring<br>
+monitor每个组件：fronted ，metadata，backend<br>
+要监控系统的health 并让consumer track它们的队列状态<br>
+每个服务都必须emit metrics且写log<br>
 还要能设置警报，所以要和监控系统集成</p>
 </li>
 </ul>
@@ -414,6 +416,7 @@ monitor每个组件：fronted ，metadata，backend
 
     <div class="post-meta meta">
         
+
         <span class="tags-box">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
                 class="fas-tags">
@@ -434,7 +437,7 @@ monitor每个组件：fronted ，metadata，backend
     <div class="post-paginator">
         
         
-        <div class="pag-prev">
+        <span class="pag-prev">
         
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -447,9 +450,9 @@ monitor每个组件：fronted ，metadata，backend
             </svg>
             <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/" class="jump-post">[笔记] 分布缓存 | Distribute Cache</a>
         
-        </div>
+        </span>
   
-        <div class="pag-next">
+        <span class="pag-next">
             
             
             <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/" class="jump-post">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
@@ -461,7 +464,7 @@ monitor每个组件：fronted ，metadata，backend
                 <path d="M21 5v14" />
             </svg>
             
-        </div>
+        </span>
         
     </div>
 
@@ -473,31 +476,31 @@ monitor每个组件：fronted ，metadata，backend
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">[笔记] 分布缓存 | Distribute Cache</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">index</a>
+            <p>[笔记] 分布消息队列｜Distributed Message Queue</p>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-top-k-%E9%97%AE%E9%A2%98top-k-problem-heavy-hitters/">[笔记] Top K 问题｜Top K Problem (Heavy Hitters)</a>
             
         </li>
         
         <li>
             
-            <p>index</p>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1notification-service/">[笔记] 通知服务｜Notification Service</a>
             
         </li>
         
         <li>
             
-            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">index</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0-%E9%99%90%E9%80%9F%E6%9C%8D%E5%8A%A1rate-limiting/">[笔记] 限速服务｜Rate Limiting</a>
             
         </li>
         

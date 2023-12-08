@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>建站记-XUN</title>
+    <meta charset="utf-8"><title>建站记&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -13,7 +13,9 @@
     
     
     
-    <link rel='stylesheet' type='text/css' href='/css/main.min.5ae33b93e01cdb04e67b5ecc3082588e9445a3184d3d80a16893ff500fca8e7e.css' />
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -70,6 +72,31 @@
         
             
 
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">建站记</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#结构">结构</a></li>
+    <li><a href="#新增">新增</a></li>
+    <li><a href="#todo">TODO</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
         
 
     </section>
@@ -114,39 +141,36 @@
         <header class="post-header">
             <h1>建站记</h1>
         </header>
-        <section class="series-list">
+        <section class="section-list">
         <ul >
         
         
             <li>
-                <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8B%E7%AF%87%E5%BC%80%E5%8F%91blog%E6%96%B0%E5%8A%9F%E8%83%BD/" class="series-link" target="_blank">
-                    <span class="series-title">Hugo使用下篇：开发blog新功能</span>
-                    <span class="series-time">2023.10.15</span>
-
+                <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8B%E7%AF%87%E5%BC%80%E5%8F%91blog%E6%96%B0%E5%8A%9F%E8%83%BD/" class="section-link" target="_blank">
+                    <span class="section-title">Hugo使用下篇：开发blog新功能</span>
+                    <span class="section-time">2023.10.15</span>
                 </a>
             </li>
         
             <li>
-                <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/" class="series-link" target="_blank">
-                    <span class="series-title">Hugo使用上篇：笔记及踩坑</span>
-                    <span class="series-time">2023.08.15</span>
-
+                <a href="/posts/build-blog/hugo%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%AF%87%E7%AC%94%E8%AE%B0%E5%8F%8A%E8%B8%A9%E5%9D%91/" class="section-link" target="_blank">
+                    <span class="section-title">Hugo使用上篇：笔记及踩坑</span>
+                    <span class="section-time">2023.08.15</span>
                 </a>
             </li>
         
             <li>
-                <a href="/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/" class="series-link" target="_blank">
-                    <span class="series-title">blog搭建和启用</span>
-                    <span class="series-time">2023.08.08</span>
-
+                <a href="/posts/build-blog/blog%20%E6%90%AD%E5%BB%BA%E5%92%8C%E5%90%AF%E7%94%A8/" class="section-link" target="_blank">
+                    <span class="section-title">blog搭建和启用</span>
+                    <span class="section-time">2023.08.08</span>
                 </a>
             </li>
         
         </ul>
     </section>
         <div class="post-content"><p>此blog用hugo搭建，主题是自己写的，且没有名字。目前是初版，功能也不够完善，但已完成的部分比较满意。架构设计仍然是，简约，直观，从实用出发，如无必要不增实体。</p>
-<h2 id="目录">目录 <a href="#%e7%9b%ae%e5%bd%95" style="border:none;"></a></h2><p>第一篇<a href="./blog%e5%90%af%e5%8a%a8">启动</a>，做了很多搜集工作……以及方便查询启动步骤及代码。
-第二篇Hugo笔记及踩坑，由于计划变成自己写主题，研究了一下Hugo。
+<h2 id="目录">目录 <a href="#%e7%9b%ae%e5%bd%95" style="border:none;"></a></h2><p>第一篇<a href="./blog%e5%90%af%e5%8a%a8">启动</a>，做了很多搜集工作……以及方便查询启动步骤及代码。<br>
+第二篇Hugo笔记及踩坑，由于计划变成自己写主题，研究了一下Hugo。<br>
 第三篇初次趟前端自我基础扫盲，应该不全算这个系列的，因为之前偶尔用，停留在概念，有一些琐碎笔记。这次实际使用驱动过了一遍，更新了一大部分。可能前端人都觉得是很简单的问题，见笑。</p>
 <h2 id="结构">结构 <a href="#%e7%bb%93%e6%9e%84" style="border:none;"></a></h2><p>大体不想标新立异，先实现了主流功能：首页概览，目录查询，关于。</p>
 <p>link是改变了传统意义的初衷，因此变了暗链，替代一个我颇为需要的功能，平时几句话那种灵感需要记录，目前还没做。且这个功能的app有很多，怎么分配还没想好。这part先搁置。</p>
@@ -157,10 +181,10 @@
 <p>内容页，没有添加统计时间等功能，很严肃课堂，虽然大多是技术文章，还是想（主观徒劳地）散发一种，想看多久看多久想不看就不看的轻松随意氛围。</p>
 <p>需要toc，即自动生成文章目录。读正文时替换掉侧边栏，这个idea很喜欢。<del>目前样式先用hugo默认的，比较简陋，之后再完善。</del></p>
 <p>除了上一篇下一篇，之后还想在尾部添加系列文章导航功能。留言是个坑，之后再说。</p>
-<p>主题，不需要没有实际功能的特殊衬线，3D效果。
-不爱滑动条，代码块中也不要！
+<p>主题，不需要没有实际功能的特殊衬线，3D效果。<br>
+不爱滑动条，代码块中也不要！<br>
 基础配色，底类纸色，护眼，缀低饱和绿色，护眼，之后可能添加深色主题，可能是素黑+淡黄，为了护眼。主打一个护眼，兼及小部分原因见tab部分头像，不过不重要。</p>
-<h2 id="新增">新增 <a href="#%e6%96%b0%e5%a2%9e" style="border:none;"></a></h2><p>✔︎ 2023.11.11 短代码功能，toc完成
+<h2 id="新增">新增 <a href="#%e6%96%b0%e5%a2%9e" style="border:none;"></a></h2><p>✔︎ 2023.11.11 短代码功能，toc完成<br>
 ✔︎ 2023.11.20 文章summary增加标题模式</p>
 <h2 id="todo">TODO <a href="#todo" style="border:none;"></a></h2><p>原则是如无必要不增实体，只是想到，未必一定做，用到再做。</p>
 <ol>

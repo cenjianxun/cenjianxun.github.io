@@ -6,34 +6,28 @@
     <description>Recent content in shell on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://cenjianxun.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cenjianxun.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>linux路径下文件都是什么意思</title>
       <link>https://cenjianxun.github.io/posts/linux%E8%B7%AF%E5%BE%84%E4%B8%8B%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/</link>
       <pubDate>Sun, 04 Aug 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/linux%E8%B7%AF%E5%BE%84%E4%B8%8B%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/</guid>
       <description>&lt;p&gt;opt，usr，&amp;ndash;wrx，终端显示的各种文件颜色……都是什么意思啊&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-shell%E5%91%BD%E4%BB%A4/</link>
+      <link>https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-shell%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Sat, 30 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cenjianxun.github.io/posts/%E5%AD%98%E6%A1%A3%E5%A4%87%E5%BF%98-shell%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E5%BD%92%E6%A1%A3%E6%89%8B%E5%86%8C-shell%E5%91%BD%E4%BB%A4/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/configure-development-environment/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://cenjianxun.github.io/posts/configure-development-environment/</guid>
-      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。
-目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
+      <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。&lt;br&gt;&#xA;目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
