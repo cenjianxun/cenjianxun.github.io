@@ -261,12 +261,15 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
     </div><br>
 <div role='note' class='notice'>
         
-        <span class="point"></span>
-        <span class="point"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
+        <span class="point point4"></span>
         
 
     
-    <p>忽然又ls乱码了，source了一下<code>etc/profile</code>。为啥要手动source？</p>
+    <p>忽然又ls乱码了，source了一下<code>etc/profile</code>。为啥要手动source？<br>
+原来是因为zsh不会加载此文件，于是改成将<code>LANG</code>的设置添入<code>/etc/zshenv</code>，因为搜了一下，这个文件在交互/不交互各种模式都会加载。</p>
     </div></p>
 </li>
 <li>
