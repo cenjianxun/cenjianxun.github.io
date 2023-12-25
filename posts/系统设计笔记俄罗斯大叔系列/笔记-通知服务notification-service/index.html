@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.ec2829703735eaa7170982f2fe9f19ceb03c1fb0e4ce9a557734b4a0f30ea39b.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -109,23 +109,26 @@
 </aside>
     <div class="content-container">
       <nav class="nav-container">
-    <div class="nav-menu-items">
-        <ul class="menu-items"><li class="menu-item">
-                <a href="/" target="_self">HOME</a>
-            </li><li class="menu-item">
-                <a href="/archive/" target="_self">ARCHIVE</a>
-            </li><li class="menu-item">
-                <a href="/notes/" target="_self">NOTES</a>
-            </li><li class="menu-item">
-                <a href="/about/" target="_self">ABOUT</a>
-            </li>
-        </ul>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
     </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+ 
+
 </nav>
       <main class="content">
         <div class="page"><article class="post-block">
@@ -144,9 +147,9 @@
 <p>当发布者以某种顺序调用每个订阅者并等待响应时，我们可以在发布者和订阅者之间建立同步通信</p>
 <p>难点：当订阅者和消息的数量增长时，系统难以扩展，并且难以扩展以支持不同类型的订阅者。</p>
 <p>so，我们可以引入一个新系统，该系统可以注册任意数量的发布者和订阅者，并协调它们之间的消息传递</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be6cdd97-038d-46cc-aacc-1d3ea80dc0e7/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be6cdd97-038d-46cc-aacc-1d3ea80dc0e7/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18037d27-0c51-4ebb-a19f-840ee251c267/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18037d27-0c51-4ebb-a19f-840ee251c267/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>Requirement：</p>
 <p>Functional：</p>
@@ -166,7 +169,7 @@ system qualities</p>
 </ul>
 <p>也可能要求其它性能like：安全、运营成本</p>
 <p>high-level architecture</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93618c33-f927-4bcb-a28d-590036855f7d/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93618c33-f927-4bcb-a28d-590036855f7d/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>client→LB→前端 → temporary storage→ sender</p>
 <pre><code>                 ↓→frontend → metadata service → metadata database
@@ -185,7 +188,7 @@ system qualities</p>
 <p>DB前面有一个service</p>
 <p>it&rsquo;s a 分布式缓存微服务 distributed cache microservice</p>
 <p>FrontEnd Service</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66020912-34ac-4158-af56-d765ff06b978/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66020912-34ac-4158-af56-d765ff06b978/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>a lightweight web service 轻量级web服务</p>
 <p>负责：</p>
@@ -224,7 +227,7 @@ system qualities</p>
 <p>agents负责数据聚合aggregation并将日志传输到其他系统，进行后期处理和存储。</p>
 <p>👆 职责分离有助于使前端服务更简单、更快、更健壮</p>
 <p>下个组件：matadata service：</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82308235-0433-4482-993f-a22179b3dc05/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82308235-0433-4482-993f-a22179b3dc05/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>一个Web 服务，负责在数据库中存储有关主题topic和订阅的信息</p>
 <p>它是个distributed cache（如果消息过多，单个内存放不下）. 在前端和storage之间</p>
@@ -247,7 +250,7 @@ system qualities</p>
 <hr>
 <p>接下来request来到temp storage，为什么叫temp，因为message停留时间很短。</p>
 <p>Temporary Storage</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0bb10b80-0cc4-41b2-997d-0d1cbb45dbd6/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0bb10b80-0cc4-41b2-997d-0d1cbb45dbd6/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <ul>
 <li>必须快，高可用，可扩展，</li>
@@ -270,7 +273,7 @@ system qualities</p>
 <p>like kafka Amazon kinesis</p>
 <p>然后message发送给订阅者</p>
 <p>Sender</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96065fcb-fbf6-4b3a-b4be-dfbdd74db771/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96065fcb-fbf6-4b3a-b4be-dfbdd74db771/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>（which 别种分布式系统也很好用， when 涉及数据检索、处理，and 消息fan out 并行发至多个目的地）</p>
 <p>message retriever：</p>

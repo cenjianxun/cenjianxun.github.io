@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.ec2829703735eaa7170982f2fe9f19ceb03c1fb0e4ce9a557734b4a0f30ea39b.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -109,23 +109,26 @@
 </aside>
     <div class="content-container">
       <nav class="nav-container">
-    <div class="nav-menu-items">
-        <ul class="menu-items"><li class="menu-item">
-                <a href="/" target="_self">HOME</a>
-            </li><li class="menu-item">
-                <a href="/archive/" target="_self">ARCHIVE</a>
-            </li><li class="menu-item">
-                <a href="/notes/" target="_self">NOTES</a>
-            </li><li class="menu-item">
-                <a href="/about/" target="_self">ABOUT</a>
-            </li>
-        </ul>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
     </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+ 
+
 </nav>
       <main class="content">
         <div class="page"><article class="post-block">
@@ -169,13 +172,13 @@ top k 问题</p>
 <p>② 把它加入head（更快）O(nlogk)</p>
 <p>不能scale。如何scale：</p>
 <p>引入LB，将每个事件分发到集群中的主机上， called processor hosts，算好再集中存。</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bfddccdd-bf88-4386-b48a-f37e7c8728fb/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bfddccdd-bf88-4386-b48a-f37e7c8728fb/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <pre><code>  吞吐增加了，但是内存不够。
 </code></pre>
 <p>这些都是在内存中算的，hash表会变很大。</p>
 <p>和分布式缓存的解决方法一样，这里选择将数据分成更小的块。</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18b7c057-afbf-498c-abe4-1387cba73be8/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18b7c057-afbf-498c-abe4-1387cba73be8/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>引入新组件，叫 Data Partitioner。用来把每个video id路由到它自己的processor host，这样每个processor host只存部分data</p>
 <p>（每个host）仍然建一个hash，建一个heap，把所有数据放进去，</p>
@@ -195,14 +198,14 @@ top k 问题</p>
 <p>但是不重要，先跳过。</p>
 <p>研究一下：前k问题有更简便解法吗？有。如果准确性不太重要的话。</p>
 <p>called count-min sketch 一个二维数组</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/17678576-0ea9-464f-a7b5-c1c3adbbe51f/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/17678576-0ea9-464f-a7b5-c1c3adbbe51f/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>width有几千，height很小代表hash  functions</p>
 <p>（原理待补）</p>
 <p>如何选择宽高：一些公式</p>
 <p>用这个sketch代替可能会变大的hash</p>
 <p>目前为止的high-level architecture</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7942fc52-b493-40b1-a509-fa4c27e69eb0/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7942fc52-b493-40b1-a509-fa4c27e69eb0/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>用户点击视频→请求进入网关→网关将请求路由到后端</p>
 <p>网关：关注一下日志：</p>
@@ -248,16 +251,16 @@ top k 问题</p>
 <p>所以host1发A和B，host2发A和C，host3发A</p>
 <p>fast：</p>
 <p>fast processor1接收并处理消息1，fast processor2 do 消息2，几个fast processor合一起就是结果</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2120572f-04db-47b0-8a51-eabbacd3785f/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2120572f-04db-47b0-8a51-eabbacd3785f/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>slow：</p>
 <p>用data partitioner。like，message1去partitioner1和2，message2去p2和p3，m3去p2</p>
 <p>计数用mapreduce读这些文件并按某个时间间隔（例如 1 小时）创建一个最终列表。</p>
 <p>计算前k的mapreduce计算前k</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/785ab02a-c0b9-40a2-8981-f5ea02d50594/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/785ab02a-c0b9-40a2-8981-f5ea02d50594/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>mapreduce job：</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/688beeae-d3d3-444b-9ba2-82fefad20143/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/688beeae-d3d3-444b-9ba2-82fefad20143/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>计数 MR：</p>
 <p>input: 一组文件</p>
@@ -273,7 +276,7 @@ top k 问题</p>
 <p>reduce：聚合上个结果</p>
 <p>output：输出最终结果</p>
 <p>data retrieval 数据检索：</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a307f35-8ab9-4e56-8d1b-bcd8fdd734af/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a307f35-8ab9-4e56-8d1b-bcd8fdd734af/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>API Gateway 收到检索请求，把数据检索的调用路由到存储service</p>
 <p>storage 从底层db检索数据。</p>

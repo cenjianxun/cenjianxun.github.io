@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.ec2829703735eaa7170982f2fe9f19ceb03c1fb0e4ce9a557734b4a0f30ea39b.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -114,23 +114,26 @@
 </aside>
     <div class="content-container">
       <nav class="nav-container">
-    <div class="nav-menu-items">
-        <ul class="menu-items"><li class="menu-item">
-                <a href="/" target="_self">HOME</a>
-            </li><li class="menu-item">
-                <a href="/archive/" target="_self">ARCHIVE</a>
-            </li><li class="menu-item">
-                <a href="/notes/" target="_self">NOTES</a>
-            </li><li class="menu-item">
-                <a href="/about/" target="_self">ABOUT</a>
-            </li>
-        </ul>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
     </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+ 
+
 </nav>
       <main class="content">
         
@@ -251,7 +254,7 @@ cost,  budget constraints.
 <p>因为可以当还没推给db时data丢失的情况下，可以再从临时存储中拉。</p>
 </li>
 </ol>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abdbb3aa-8570-4bb1-8aa3-9e0d0ecaa7e7/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abdbb3aa-8570-4bb1-8aa3-9e0d0ecaa7e7/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <pre><code>  partition：processing service 从partition读取event，对内存中的event计数，并定期将计数值更入数据库。—— 需要一个组件component来读取event
 </code></pre>

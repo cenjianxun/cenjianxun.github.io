@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.fa33f2a80fbe55ee9b953e64e34e14d5dc5377b2546ce35aa2cbbbc56bd24add.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.ec2829703735eaa7170982f2fe9f19ceb03c1fb0e4ce9a557734b4a0f30ea39b.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -109,23 +109,26 @@
 </aside>
     <div class="content-container">
       <nav class="nav-container">
-    <div class="nav-menu-items">
-        <ul class="menu-items"><li class="menu-item">
-                <a href="/" target="_self">HOME</a>
-            </li><li class="menu-item">
-                <a href="/archive/" target="_self">ARCHIVE</a>
-            </li><li class="menu-item">
-                <a href="/notes/" target="_self">NOTES</a>
-            </li><li class="menu-item">
-                <a href="/about/" target="_self">ABOUT</a>
-            </li>
-        </ul>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
         <span class="menu-bar"></span>
     </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+ 
+
 </nav>
       <main class="content">
         <div class="page"><article class="post-block">
@@ -164,7 +167,7 @@
 <p>用常量时间复杂度增删的队列：双向链表</p>
 <p><strong>distributed world</strong></p>
 <p>有多台主机，每个的cache只存一部分，called shard 分片</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/af7cb4dc-af88-4668-b20c-d67b32a99847/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/af7cb4dc-af88-4668-b20c-d67b32a99847/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>分布式缓存集群</p>
 <p>隔离cache环境，cache和service不share memory和CPU</p>
@@ -180,7 +183,7 @@
 <p>进一步：用一致性哈希</p>
 <p>👆 知道了怎么put和get，但是谁负责？：</p>
 <p>cache client</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eeccc6ce-bcf3-4c62-8358-7b6fec01db3b/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eeccc6ce-bcf3-4c62-8358-7b6fec01db3b/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>小型轻量级库，与服务代码集成，负责缓存主机选择.</p>
 <ul>
@@ -193,7 +196,7 @@
 </ul>
 <p>client端最重要【cache server list】</p>
 <p>如何创建维护和共享cache server list</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/701b561e-a701-4423-a157-a62dbb2d9435/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/701b561e-a701-4423-a157-a62dbb2d9435/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <p>第一种：</p>
 <p>把host存到一个file里，然后通过一些持续部署管道deployment pipeline把它们部署到主机，像chef、puppet等。</p>
@@ -226,7 +229,7 @@
 <p>① gossip, epidemic broadcast trees, bimodal multicast. 支持最终一致性</p>
 <p>② 2 or 3 phase commit, paxos, raft, chain replication. 支持强一致性</p>
 <p>keep it simple：使用主从复制</p>
-<p><center class="md__image"><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42d28a04-dac5-451e-9b1d-1b348cc326e7/Untitled.png" width="50%" alt="Untitled"  />
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42d28a04-dac5-451e-9b1d-1b348cc326e7/Untitled.png" width="70%" alt="Untitled"  />
 </center></p>
 <pre><code>  一主两从
 </code></pre>
