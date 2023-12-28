@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.860760013131a76bcf8635c6c78a08a58c8a0c9a861ff7051bd0953d7dc0a67e.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -216,13 +216,14 @@
 <strong>复制系列顺序：创建并切到other分支 ➡️ 提交other ➡️ 切回主分支并提交 ➡️ 切回other ➡️ rebase main</strong></p>
 <p>一股脑复制：<code>git cherry-pick &lt;想挪的所有分支依次&gt;</code> # 要按顺序。被挪的地方当前分支的下面<br>
 一股脑复制删除：<code>git rebase -i HEAD~&lt;x&gt;</code> # -i是点开 可以编辑想要和不需要的节点</p>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p><code>git rebase &lt;A&gt; &lt;B&gt;</code><br>
@@ -233,30 +234,34 @@
 两参数是<code>&lt;主人地址&gt; &lt;客人地址&gt;</code> 的顺序。</p>
 <p>此外，挪动是从它们的共同祖先开始的。</p>
     </div>
+
 <p>利用head挪动：<br>
 head目前感觉相当于当前指针，如果想将某个分支的当前指向停在任意节点，可以先将head指过去，再令当前分支指向head。<br>
 可以用hash值，也可以用相对路径。parent:<code>^</code>，x代祖先：<code>~x</code><br>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>^x：平级的第几个爸爸，~x：竖着的第几代祖先<br>
 <code>git checkout HEAD~^2~3</code>：当前的爹的二号爹的爹的爹的爹</p>
-    </div></p>
+    </div>
+</p>
 <p>head挪过去：<code>git checkout &lt;hash值/HEAD ~x&gt;</code><br>
 分支头再挪过去：<code>git branch -f &lt;分支名&gt; HEAD~x</code> # -f 强制挪动</p>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>branch这个命令就是可以用来将一个指针挪到指定位置。<br>
@@ -265,64 +270,73 @@ head目前感觉相当于当前指针，如果想将某个分支的当前指向�
 这两个参数 <!-- raw HTML omitted -->是被挪的指针 <!-- raw HTML omitted -->是目标节点</p>
 <p>注意这里面的A B 都可以自由的加<code>^``~</code>这些</p>
     </div>
+
 <p>想改之前的分支：<br>
 cherry-pick或者rebase<br>
-<div role='note' class='notice'>
-        
-        <span class="point"></span>
-        <span class="point"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point"></span>
+    <span class="point"></span>
+    
 
     
     <p>我个人觉得cherry-pick比较好理解，操作的都是本分支，命令中将想要的节点依次罗列就行了。想给哪个分支加点，就先switch到哪个下面就行。</p>
-    </div></p>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+    </div>
+</p>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>branch 和 rebase都有一个<code>git xxx &lt;A&gt; &lt;B&gt;</code>这样的命令，两个区别是branch是挪动指针，rebase是复制过来。</p>
 <p>rebase还有一个点，如果A和B在一条线上，B落后，要用rebase A B，即将A新commit的部分复制给B。而不能用branch。</p>
     </div>
+
 <h4 id="撤销提交">撤销提交 <a href="#%e6%92%a4%e9%94%80%e6%8f%90%e4%ba%a4" style="border:none;"></a></h4><p>指的是commit之后的回撤。<br>
 本地撤销：<code>git reset &lt;当前分支的parent&gt;</code> # 注意一定要加^, 是目标节点。比如main^<br>
 远程撤销：<code>git revert &lt;当前分支&gt;</code> # 注意是本身，因为原理是开一个子节点和父节点一样，而不是直接回父。</p>
 <h4 id="标签">标签 <a href="#%e6%a0%87%e7%ad%be" style="border:none;"></a></h4><p>添加标签：<code>git tag &lt;分支名字&gt; &lt;标签名字&gt;</code></p>
 <h4 id="远程">远程 <a href="#%e8%bf%9c%e7%a8%8b" style="border:none;"></a></h4><p>远程叫法：<!-- raw HTML omitted -->/<!-- raw HTML omitted --> &lt;远程仓库名&gt;/&lt;分支名&gt;<br>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>意思是 本地存的，和远程进度一样的节点的指针。<br>
 如果fetch，是从指向o/main的节点算起</p>
-    </div><br>
+    </div>
+<br>
 下载：<code>git fetch</code><br>
 git pull = git fetch + git merge<br>
 <code>git pull origin foo</code><br>
 相当于：<br>
 <code>git fetch origin foo; git merge o/foo</code></p>
 <p>如果本地尚未明晰merge哪个，就先把远程fetch下来<br>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>merge和rebase的区别是：merge显示合并的样子，rebase是直接挪的复制过来，变成一条线</p>
 <p>git merge A，是将A合并至当前分支。主人视角。</p>
-    </div></p>
+    </div>
+</p>
 <p>推送：<code>git push origin &lt;localname&gt;:&lt;remotename&gt;</code><br>
 这个命令暗含了远程追踪。如果俩名字一样，可以省略成一个名字。如果远程分支不存在，也可以用这个命令新创建。</p>
 <p>空：<br>

@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.860760013131a76bcf8635c6c78a08a58c8a0c9a861ff7051bd0953d7dc0a67e.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -254,32 +254,35 @@
 <h2 id="本地搭建">本地搭建 <a href="#%e6%9c%ac%e5%9c%b0%e6%90%ad%e5%bb%ba" style="border:none;"></a></h2><p>需求：<br>
 简约。一定要有文章大纲显示（TOC ）。不要纯横版，两边特别浪费 看着还不紧凑。</p>
 <p>hugo必须一开始就选择主题，于是挑了一圈。<del>最后选定了<a href="wangchucheng.com/hugo-eureka">eureka</a></del></p>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>补充：<br>
 您猜怎么着，最后没用hugo发布的主题，纯自己写了原生html+css。<br>
 所以需要单独剥离出一篇Hugo内容，和一篇html+css的基础前端笔记。</p>
     </div>
+
 <h3 id="搭建步骤">搭建步骤 <a href="#%e6%90%ad%e5%bb%ba%e6%ad%a5%e9%aa%a4" style="border:none;"></a></h3><p>下载，基本不用复杂安装 —&gt; 选主题。主题配置好 —&gt; 文章发布流程 —&gt; 启动服务</p>
 <ol>
 <li>
 <p>下载<code>brew install hugo</code><br>
 下载前还要在终端翻墙，参见<a href="/posts/%e5%ae%89%e8%a3%85%e5%ad%98%e6%a1%a3">安装存档</a><br>
 验证: <code>hugo version</code></p>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <pre><code>更新版本：
@@ -288,6 +291,7 @@ brew upgrade hugo
 hugo version
 </code></pre>
     </div>
+
 </li>
 <li>
 <p>初始化blog<br>
@@ -302,18 +306,20 @@ git submodule add &lt;GITHUB URL&gt; themes/&lt;THEME NAME&gt;
 # 这里的GITHUB URL是该主题提供给你的，它仓库地址。 THEME NAME是你自己自由起的名字，一般就命名为该主题名字。
 </code></pre><p>搜了一圈下载有两种命令，git clone，git submodules，又搜了一圈区别。<br>
 概括就是sub方式比较严谨安全，此命令隔绝原版来拉代码，保证自己拉的分支和原作master不起冲突。那用这个命令。<br>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>因为后面在.gitignore里添加了theme文件夹，导致后面拉theme要使用：<br>
 <code>git submodule add -f &lt;GITHUB URL&gt; themes/&lt;THEME NAME&gt;</code></p>
-    </div></p>
+    </div>
+</p>
 </li>
 <li>
 <p>根据各个主题要求操作，比如可能主题代码content中没内容，要去theme文件夹中复制，等等。然后就可以自己配置了。<br>
@@ -367,19 +373,21 @@ hugo的文章都需要有一些文章头部设定的声明，但不用担心，�
 git init # 创建子层本地仓库
 git remote add origin &lt;SSH path&gt;
 </code></pre><p>接下来的步骤就是最基本的，每次发文章都需执行的步骤。</p>
-<div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>结果有一次删掉了public。幸好这里做了笔记。<br>
 除了要重新执行上面三行代码之外，还需要在push的那一步改成执行强制推送：<code>git push origin main -f</code></p>
 <p>所以不要删除public！！！</p>
     </div>
+
 <h3 id="发布文章步骤">发布文章步骤 <a href="#%e5%8f%91%e5%b8%83%e6%96%87%e7%ab%a0%e6%ad%a5%e9%aa%a4" style="border:none;"></a></h3><pre tabindex="0"><code>  #（写文章）
 
   # 编译

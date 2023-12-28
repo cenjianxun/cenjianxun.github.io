@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.860760013131a76bcf8635c6c78a08a58c8a0c9a861ff7051bd0953d7dc0a67e.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -162,18 +162,20 @@
 <p>使用原理：在正常html（layout/shortcodes）处写一次短代码 mycodename.html，然后在正常文档中（content/xxx.md）可多次使用</p>
 <pre tabindex="0"><code>&lt;mycodename&gt; 想让它成为此样式的部分 &lt;/mycodename&gt;
 </code></pre><p>注：有两种，一种是有首尾的 ⬆，一种不用比如嵌入video</p>
-<h2 id="toc">toc <a href="#toc" style="border:none;"></a></h2><div role='note' class='notice'>
-        
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        <span class="point point4"></span>
-        
+<h2 id="toc">toc <a href="#toc" style="border:none;"></a></h2>
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
 
     
     <p>补：<br>
 2023.11.18 实现此功能</p>
     </div>
+
 <h3 id="实现方法">实现方法 <a href="#%e5%ae%9e%e7%8e%b0%e6%96%b9%e6%b3%95" style="border:none;"></a></h3><p>hugo有内置的方法<code>.TableOfContents</code>，可以直接用。<br>
 此部分的id = TableOfContents，写样式的时候 就<code>#TableOfContents { }</code>。<br>
 此时 toc.html内容如下：</p>
