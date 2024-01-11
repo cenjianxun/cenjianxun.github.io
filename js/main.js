@@ -1,5 +1,5 @@
 (() => {
-  // ns-hugo:/Users/xun/work/Site/assets/js/init/backTop.js
+  // ns-hugo:/Users/xun/work/hugo-site/assets/js/init/backTop.js
   var toTopQuery = "#func-top";
   function backTop_default() {
     let toTop = document.querySelector(toTopQuery);
@@ -22,7 +22,7 @@
     );
   }
 
-  // ns-hugo:/Users/xun/work/Site/assets/js/init/initToc.js
+  // ns-hugo:/Users/xun/work/hugo-site/assets/js/init/initToc.js
   var asideContainer = "#sidebar-info";
   var tocContainer = "#sidebar-toc";
   var contentHeaders = ".post-content h1[id], .post-content h2[id], .post-content h3[id], .post-content h4[id], .post-content h5[id], .post-content h6[id]";

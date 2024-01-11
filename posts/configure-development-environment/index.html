@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>[归档手册] 配置开发环境以及项目管理&nbsp;-&nbsp;XUN</title>
+    <meta charset="utf-8"><title>归档手册｜配置开发环境以及项目管理&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -76,13 +76,17 @@
     
     <header>
         <span class="toc-bar"></span>
-        <h4 class="toc-header">[归档手册] 配置开发环境以及项目管理</h4>
+        <h4 class="toc-header">归档手册｜配置开发环境以及项目管理</h4>
         <span class="toc-bar"></span>
     </header>
     
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#安装-homebrew">安装 homebrew</a></li>
+    <li><a href="#安装-homebrew">安装 homebrew</a>
+      <ul>
+        <li><a href="#brew-一些命令的说明">brew 一些命令的说明</a></li>
+      </ul>
+    </li>
     <li><a href="#终端设置和dotfiles文件">终端设置和dotfiles文件</a>
       <ul>
         <li><a href="#文档管理">文档管理</a></li>
@@ -108,13 +112,13 @@
         <li><a href="#安装-python">安装 python</a>
           <ul>
             <li><a href="#python-设置">python 设置</a></li>
-            <li><a href="#sublime-设置">sublime 设置</a></li>
           </ul>
         </li>
         <li><a href="#安装-go">安装 Go</a></li>
         <li><a href="#安装-react">安装 React</a></li>
       </ul>
     </li>
+    <li><a href="#mac配置">mac配置</a></li>
     <li><a href="#其他">其他</a>
       <ul>
         <li><a href="#vscode">vscode</a>
@@ -122,8 +126,10 @@
             <li><a href="#换主题">换主题</a></li>
             <li><a href="#关闭烦人的悬停大提示框">关闭烦人的悬停大提示框：</a></li>
             <li><a href="#多个标签页显示">多个标签页显示</a></li>
+            <li><a href="#leetcode的坑">leetcode的坑</a></li>
           </ul>
         </li>
+        <li><a href="#鼠须管">鼠须管</a></li>
       </ul>
     </li>
   </ul>
@@ -180,7 +186,7 @@
       <main class="content">
         <div class="page"><article class="post-block">
     <header class="post-header">
-        <h1>[归档手册] 配置开发环境以及项目管理</h1>
+        <h1>归档手册｜配置开发环境以及项目管理</h1>
         <div class="post-time">May 30 2018</div>
     </header>
 
@@ -210,7 +216,18 @@
 <code>export HOMEBREW_NO_INSTALL_FROM_API=1</code></p>
 </li>
 </ol>
-<h2 id="终端设置和dotfiles文件">终端设置和dotfiles文件 <a href="#%e7%bb%88%e7%ab%af%e8%ae%be%e7%bd%ae%e5%92%8cdotfiles%e6%96%87%e4%bb%b6" style="border:none;"></a></h2><h3 id="文档管理">文档管理 <a href="#%e6%96%87%e6%a1%a3%e7%ae%a1%e7%90%86" style="border:none;"></a></h3><p>这段是第一段，但是是后面补的。当各种文件配置越来越多，就会需要一个统一的规范将这些配置文档管理起来。也有很多学名，此文件夹一般叫做<code>dotfiles</code>。 意思就是里面放置了各软件的配置文件，包括shell zsh/bash，vim，等等一些配置。这样统一托管起来，一键拉下就可以在不同的系统环境上使用熟悉的配置。<br>
+<h3 id="brew-一些命令的说明">brew 一些命令的说明 <a href="#brew-%e4%b8%80%e4%ba%9b%e5%91%bd%e4%bb%a4%e7%9a%84%e8%af%b4%e6%98%8e" style="border:none;"></a></h3><pre tabindex="0"><code>brew list  # 列出通过brew安装的所有包
+brew list go  # 查看go实际安装的路径
+&gt;&gt; /usr/local/Cellar/go/1.21.6/bin/go
+&gt;&gt; /usr/local/Cellar/go/1.21.6/bin/gofmt
+&gt;&gt; /usr/local/Cellar/go/1.21.6/libexec/api/ (24 files)
+...
+&gt;&gt; /usr/local/Cellar/go/1.21.6/libexec/ (6 files)
+
+brew --prefix  # brew本身的安装路径
+brew --prefix go  # 显示出来是软链，指向当前激活的go版本
+&gt;&gt; /usr/local/opt/go
+</code></pre><h2 id="终端设置和dotfiles文件">终端设置和dotfiles文件 <a href="#%e7%bb%88%e7%ab%af%e8%ae%be%e7%bd%ae%e5%92%8cdotfiles%e6%96%87%e4%bb%b6" style="border:none;"></a></h2><h3 id="文档管理">文档管理 <a href="#%e6%96%87%e6%a1%a3%e7%ae%a1%e7%90%86" style="border:none;"></a></h3><p>这段是第一段，但是是后面补的。当各种文件配置越来越多，就会需要一个统一的规范将这些配置文档管理起来。也有很多学名，此文件夹一般叫做<code>dotfiles</code>。 意思就是里面放置了各软件的配置文件，包括shell zsh/bash，vim，等等一些配置。这样统一托管起来，一键拉下就可以在不同的系统环境上使用熟悉的配置。<br>
 比较系统的介绍是这篇：<a href="https://farseerfc.me/using-gnu-stow-to-manage-your-dotfiles.html" target="_blank" rel="noopener">使用 GNU stow 管理你的點文件</a></p>
 <p>我参考了许多，综合了一下，目前的方案是这样。<br>
 dotfiles：<br>
@@ -287,6 +304,9 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 <li>zsh-history-substring-search # 前缀搜索<br>
 在终端运行：<code>brew install [插件名称]</code></li>
 </ul>
+<p>要source的path是：<code>&quot;$(brew --prefix)/share/$pkg/$pkg.zsh&quot;</code>。<br>
+其中 $pkg是包名字。<br>
+$(brew &ndash;prefix)是brew的安装路径。*这里不能直接取包路径，因为包安装路径和它source的路径还不一样。</p>
 <p>shell设置复杂的多。现在已经有三个文件，<code>$HOME/.zshrc</code>的本机文件。给所有通用的配了init.sh文件，放在<code>/Users/config/</code>下面，终端的样式prompt配置单独写了一个<code>prompt.sh</code>也放在这里。最后因为热键绑定zsh和sh又不一样，最后又单独分离出一个zsh.zshrc文件出来写专门zsh的配置，给init.sh只留下通用的启动项。</p>
 <p>目前方案是，单独本机的配置先放在<code>~/.zshrc</code>中，它source <code>init.sh</code>，which放一些公共的设置，<code>init.sh</code> 再source <code>zsh.zshrc</code> 和 <code>prompt.sh</code>，which设置zsh的配置和终端外观。等我思考一下如何从github上将它们一键布置。</p>
 <p>目前~/.zshrc的设置只有source init.sh和 各语言的alias和export path。</p>
@@ -676,7 +696,7 @@ path除了最后一个其他缩进；</p>
     
     <p>目前我的bash_profile.sh里面都是配置终端样式的内容。<br>
 我的终端样式：<br>
-<center class="md__image"><img loading='lazy' src="./myterminal.png" width="70%" alt="my-termial"  />
+<center class="md__image"><img loading='lazy' src="myterminal.png" width="70%" alt="my-termial"  />
 </center><br>
  表示是mac，输错命令会变红；<br>
 路径折叠，节省行空间；<br>
@@ -783,7 +803,7 @@ git clone &lt;url&gt;
 [svn]
     pathnameencoding = utf-8  # 支持中文路径
 </code></pre><p>此外，我的dotfiles文件也要建仓库，但本地文件没放在当前user下，而是放在根目录下，所以上传的时候报错<code>fatal: Could not read from remote repository.</code><br>
-增添设置：</p>
+给全局文件dotfiles的<code>.git/config</code>增添设置：</p>
 <pre tabindex="0"><code>[core]
     sshCommand = &#34;ssh -i &lt;想设的路径&gt;/.ssh/id_rsa&#34;
 [user]
@@ -811,30 +831,34 @@ which python3.10 # 这条会在/opt/homebrew/bin/python3.10，刚下的
 <pre tabindex="0"><code>alias python=&#34;/opt/homebrew/bin/python3.10&#34;
 alias pip=&#34;/opt/homebrew/bin/pip3.10&#34;
 </code></pre><p>然后source</p>
-<h4 id="sublime-设置">sublime 设置 <a href="#sublime-%e8%ae%be%e7%bd%ae" style="border:none;"></a></h4><p>我默认需要：自动换行 和 显示路径。<br>
-设置path：</p>
-<ul>
-<li>win <code>Preferens - Settings</code></li>
-<li>mac <code>Sublime Text - Settings - Settings</code></li>
-</ul>
-<p>我的设置</p>
-<pre tabindex="0"><code>{
-  &#34;word_wrap&#34;: &#34;true&#34;,
-  &#34;save_on_focus_lost&#34;: true,
-  &#34;show_full_path&#34;: true
-}
-</code></pre><h3 id="安装-go">安装 Go <a href="#%e5%ae%89%e8%a3%85-go" style="border:none;"></a></h3><p>设置path</p>
+
+    <div class='notice patch'>
+    
+    <span class="point"></span>
+    <span class="point"></span>
+    
+
+    
+    <p>最后改成了 <code>alias python=python3</code></p>
+    </div>
+
+<h3 id="安装-go">安装 Go <a href="#%e5%ae%89%e8%a3%85-go" style="border:none;"></a></h3><p>go的path委实太迷惑了，而且所有项目都在一个/go下面，蛮奇葩的。幸亏在v1.12之后改成go module模式，不用纠结go path了。<br>
+以下的设置都基于v1.12及以后的版本。</p>
+<p>如果不自己设路径，go会自动分配。看了一下，<code>goroot</code>，which应该设置为go的安装路径，是对的。所以不用管goroot了。<br>
+❗️但是<code>go env</code>出的GOROOT是go运行时的环境变量，而<code>echo $GOROOT</code>则会显示当前shell环境中的GOROOT环境变量，which是没有赋值的，而<code>GOBIN</code>，还需要设置一下，而<code>GOBIN</code>是<code>GOROOT/bin</code>（应该是吧！），所以要在脚本中使用，还是需要手动获取一下<code>GOROOT</code>。</p>
+<p><code>gopath</code>它是自动设了一个<code>/usr/user_name/go</code>的路径，此文件夹之后存放的是下载的第三方包之类的东西。可以自己重新设置。</p>
 <pre tabindex="0"><code># Go
-export GOROOT=&#34;$(brew --prefix golang)/libexec&#34;  # go的安装环境，由brew决定
-export GOPATH=$HOME/Work/Go   # go的运行环境，工作地点，新建个
+go env -w GO111MODULE=on  # 爱gomodule模式，开。
+GOROOT=$(go env GOROOT)  # 获取GOROOT
+export GOPATH=&#34;$(brew --prefix go)&#34;  # 此时 gopath就可以随便设置文件了，我设到brew go软链的路径下了。
+export GOBIN=&#34;${GOROOT}/bin&#34;
 
 # 添加path看到有可能重复添加，防止重复添加：
-if [[ &#34;:${PATH}:&#34; != *&#34;${GOROOT}/bin&#34;* ]]; then
-	export PATH=&#34;$PATH:${GOROOT}/bin&#34;
+if [[ &#34;:${PATH}:&#34; != *&#34;${GOBIN}&#34;* ]]; then
+  export PATH=&#34;$PATH:${GOBIN}&#34;
 fi
-
 if [[ &#34;:${PATH}:&#34; != *&#34;${GOPATH}/bin&#34;* ]]; then
-	export PATH=&#34;$PATH:${GOPATH}/bin&#34;
+  export PATH=&#34;$PATH:${GOPATH}/bin&#34;
 fi
 </code></pre><h3 id="安装-react">安装 React <a href="#%e5%ae%89%e8%a3%85-react" style="border:none;"></a></h3><p>几个步骤：</p>
 <ol>
@@ -849,7 +873,8 @@ node是js的开发环境，要运行js脚本必须安装
 </ol>
 <p>顺便装一个TypeScript</p>
 <pre tabindex="0"><code>sudo npm install -g typescript
-</code></pre><h2 id="其他">其他 <a href="#%e5%85%b6%e4%bb%96" style="border:none;"></a></h2><ul>
+</code></pre><h2 id="mac配置">mac配置 <a href="#mac%e9%85%8d%e7%bd%ae" style="border:none;"></a></h2><p>finder显示资源库：<code>chflags nohidden ~/Library</code></p>
+<h2 id="其他">其他 <a href="#%e5%85%b6%e4%bb%96" style="border:none;"></a></h2><ul>
 <li>解决v2ex打不开的问题。<br>
 它在clash里是直连。打开配置文件夹-西部世界，在rule下找到v2ex，把direct改成proxy。然后重载文件夹。</li>
 </ul>
@@ -870,7 +895,22 @@ node是js的开发环境，要运行js脚本必须安装
 不想用多行显示，丑。<br>
 不想用快捷键。<br>
 本来想找有没有像浏览器那样前后翻页的，没找到。<br>
-最后找到一个setting: workbrench &gt; editor:Tab Sizing，改为shrink。</p></div>
+最后找到一个setting: workbrench &gt; editor:Tab Sizing，改为shrink。</p>
+<h4 id="leetcode的坑">leetcode的坑 <a href="#leetcode%e7%9a%84%e5%9d%91" style="border:none;"></a></h4><p>首先是登录的时候总登不上去。【就不登cn版】<br>
+选择使用cookies登录。获取cookies的路径：<br>
+<code>leetcode.com网页版登录 → 检查的network选all → 刷新 → 选request标头的cookie</code></p>
+<p>其次leetcode的配置怎么找：<br>
+<code>gui的最左选extension图标 → 右键leetcode选extension setting</code></p>
+<p>然后很让人裂开的一件事，一直提示缺插件让安然后它安装又fail。此是准备工作没做好：</p>
+<ol>
+<li>先要设置go mod</li>
+<li>要设置go proxy<br>
+怎么设见 [go语法笔记]<br>
+最后我怎么找不见test和submit呢。原来是，已经保存的文件它就不会改了，比如已经有<code>1.two_sum.go</code>了，然后改了配置：题目写在文件里，但是默认打开的还是这个文件，它就没有更改。要把这个文件删了，然后重新从题目那边<code>code now</code>，才会生成正确的file。不用自己写测试函数！</li>
+</ol>
+<h3 id="鼠须管">鼠须管 <a href="#%e9%bc%a0%e9%a1%bb%e7%ae%a1" style="border:none;"></a></h3><p><a href="https://www.hawu.me/others/2666" target="_blank" rel="noopener">https://www.hawu.me/others/2666</a><br>
+<a href="https://sh.alynx.one/posts/My-RIME-2/" target="_blank" rel="noopener">https://sh.alynx.one/posts/My-RIME-2/</a><br>
+<a href="https://www.xiebruce.top/1235.html" target="_blank" rel="noopener">https://www.xiebruce.top/1235.html</a></p></div>
 
     <div class="post-meta meta">
         
@@ -919,7 +959,7 @@ node是js的开发环境，要运行js脚本必须安装
         <span class="pag-next">
             
             
-            <a href="https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/" class="jump-post">[知识] Python底层</a>
+            <a href="https://cenjianxun.github.io/posts/%E6%A6%82%E5%BF%B5python%E5%BA%95%E5%B1%82/" class="jump-post">概念｜Python底层</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-arrow-right-to-line">
@@ -940,7 +980,7 @@ node是js的开发环境，要运行js脚本必须安装
     </div>
       </main>
       <footer class="footer">
-    <p class="copyright"> © 2018 - 2023 &nbsp; XUN
+    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
     </p>
 </footer>
 

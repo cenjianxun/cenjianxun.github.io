@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>基础｜js基础之HTML部分&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">基础｜js基础之HTML部分</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概念和语法">概念和语法</a>
+      <ul>
+        <li><a href="#dom-文档对象模型">DOM 文档对象模型</a>
+          <ul>
+            <li><a href="#查">查</a></li>
+            <li><a href="#改">改</a></li>
+            <li><a href="#增">增</a></li>
+            <li><a href="#删">删</a></li>
+            <li><a href="#htmlcollection--nodelist">HTMLCollection &amp; NodeList</a></li>
+          </ul>
+        </li>
+        <li><a href="#bom-浏览器对象模型">BOM 浏览器对象模型</a></li>
+        <li><a href="#事件">事件</a>
+          <ul>
+            <li><a href="#事件绑定">事件绑定</a></li>
+            <li><a href="#执行机制和事件代理">执行机制和事件代理</a></li>
+          </ul>
+        </li>
+        <li><a href="#其它零碎概念">其它零碎概念</a>
+          <ul>
+            <li><a href="#变量-var-let-和-const">变量: var let 和 const</a></li>
+            <li><a href="#函数-匿名函数-箭头函数-this-和-bind">函数: 匿名函数 箭头函数 this 和 bind</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#其它">其它</a>
+      <ul>
+        <li><a href="#模块化">模块化</a></li>
+      </ul>
+    </li>
+    <li><a href="#js框架">js框架</a>
+      <ul>
+        <li><a href="#jquery">jQuery</a>
+          <ul>
+            <li><a href="#jquery怎么用">jQuery怎么用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+ 
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>基础｜js基础之HTML部分</h1>
+        <div class="post-time">Oct 29 2019</div>
+    </header>
+
+    
+    <div class="post-content"><p>js本身是一门语言，概念和其它语言相通。唯和html相关的部分比较特殊，单独学下这部分。<br>
+不懂为什么大部分教程打包一起讲，都又从字符串概念讲起。</p>
+<h2 id="概念和语法">概念和语法 <a href="#%e6%a6%82%e5%bf%b5%e5%92%8c%e8%af%ad%e6%b3%95" style="border:none;"></a></h2><h3 id="dom-文档对象模型">DOM 文档对象模型 <a href="#dom-%e6%96%87%e6%a1%a3%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b" style="border:none;"></a></h3><p>DOM，Document Object Model，文档对象模型。<br>
+网页加载的时候，浏览器会构建dom树。<br>
+可以增删查改html，都是在<code>document</code>函数下操作。</p>
+<h4 id="查">查 <a href="#%e6%9f%a5" style="border:none;"></a></h4><p>ID查找：<code>getElementById</code><br>
+类名查找：<code>getElementsByClassName</code><br>
+标签名查找：<code>getElementsByTagName</code><br>
+注意：id的element是单数，下面两个是复数。</p>
+<p>可以嵌套：<br>
+<code>var ele = document.getElementById(&quot;myId&quot;).getElementsByTagName(&quot;p&quot;);  // 查找myId下的p标签</code></p>
+<hr>
+<p>后面update的用法，CSS 选择器。<code>querySelector</code>和<code>querySelectorAll</code>，前者选第一个，后者选所有。更加宽泛，不框定类型。推荐这一种。</p>
+<p>注意这种方式，是选class还是选id，就完全根据引号里的输入确定，所以比上面的方式，要在前面加标记，<code>#</code>、<code>.</code>这些。</p>
+<p>查id（一个）：<code>var ele = document.querySelector(&quot;#myId&quot;);</code><br>
+查类（所有）：<code>var ele = document.querySelectorAll(&quot;.myClass&quot;);</code></p>
+<h4 id="改">改 <a href="#%e6%94%b9" style="border:none;"></a></h4><p>假设已经拿到上面特定的元素ele，现在想改。</p>
+<p>改内容：<code>ele.innerHTML = 新内容&quot;;</code><br>
+改属性：<code>ele.src=&quot;landscape.jpg&quot;;</code><br>
+改样式：<code>ele.style.color=&quot;blue&quot;;</code> // color也可以换</p>
+<h4 id="增">增 <a href="#%e5%a2%9e" style="border:none;"></a></h4><p>一般逻辑是，创建一个新元素，然后把它加到已存在的元素/dom树上，变为它的一个子节点。<br>
+创建：<br>
+创建一个元素节点：<code>var node = document.createElement(&quot;p&quot;);</code><br>
+创建一个文本节点：<code>var text = document.createTextNode(&quot;试试就逝世&quot;);</code></p>
+<p>添加：<br>
+有两个函数，<code>appendChild()</code> 和 <code>insertBefore()</code>。一个是添加到最后一个，一个是添加到指定元素之前。<br>
+注意都是添加为<strong>被加节点</strong>的<strong>子节点</strong>；<br>
+注意appendChild是默认加到最后，所以参数只有一个，insertBefore要指定参照元素，所以有两个参数。</p>
+<p>文本加入p：<code>node.appendChild(text);</code><br>
+父元素：<code>parent = document.getElementById(&quot;div1&quot;);</code><br>
+// 添加到最后<br>
+p加到现存div里；<code>parent.appendChild(text);</code><br>
+// 添加到任意位置<br>
+找到一个参照元素：<code>ele = document.getElementById(&quot;otherP&quot;);</code><br>
+添加到参照元素之前：<code>parent.insertBefore(node, ele)</code></p>
+<p>这里被加的元素写第一个。</p>
+<h4 id="删">删 <a href="#%e5%88%a0" style="border:none;"></a></h4><p>需要知道父节点，函数是<code>removeChild</code>。但是可以通过该元素本身来确定。</p>
+<p>要删的：<code>var node = document.getElementById(&quot;p1&quot;);</code><br>
+删：<code>node.parentNode.removeChild(node);</code></p>
+<hr>
+<p>还可以换元素：<code>replaceChild</code></p>
+<p>直接用上面的html结构好了，将parent里的ele换为自己创建的node<br>
+<code>parent.replaceChild(node, ele)</code><br>
+这里想要换上去的元素写第一个。</p>
+<h4 id="htmlcollection--nodelist">HTMLCollection &amp; NodeList <a href="#htmlcollection--nodelist" style="border:none;"></a></h4><p>做了一大轮功课发现，都没有什么准话，只是大略上的分类。以下都是大略：</p>
+<p>htmlcollection一般是动态引用，但nodelist不一定是静态引用。</p>
+<p>动态意思是，更改一小下都会重新计算，所以比较慢，所以最好把结果缓存起来。</p>
+<p><code>querySelector</code>，<code>childNodes</code> 这些一般是nodelist；<code>getElementXXX</code> 这些一般是htmlcollection。</p>
+<p>它俩都可以像list一样通过index访问，<code>y = nlist[1];</code>，所以可以用for遍历。<br>
+但叫做类数组，而不是list。所以都不能用 <code>foreach</code> 这些函数。<br>
+都有 length 属性，<code>nlist.length</code> 这样引用。</p>
+<pre tabindex="0"><code class="language-var" data-lang="var">var i;
+for (i = 0; i &lt; myNodelist.length; i++) {
+    myNodelist[i].style.backgroundColor = &#34;red&#34;;
+}
+</code></pre><p>可以用array 把nodelist转成普通数组：<code>Array.from(nodeList)</code></p>
+<h3 id="bom-浏览器对象模型">BOM 浏览器对象模型 <a href="#bom-%e6%b5%8f%e8%a7%88%e5%99%a8%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b" style="border:none;"></a></h3><p>BOM，Browser Object Model，文档对象模型。</p>
+<p>HTML DOM 的 document 也是 window 对象的属性：<code>window.document.getElementById(&quot;header&quot;);</code></p>
+<p>可以直接在window上定义属性，当作全局变量，在函数外部访问。<br>
+window定义的可以直接删除，正常全局变量不行。没定义的可以判断是不是存在，也不会报错。</p>
+<p>一些属性：<br>
+<strong>下面没说的都可以不使用 window 这个前缀</strong></p>
+<p>win尺寸：<br>
+<code>window.innerHeight</code> | <code>document.body.clientWidth</code></p>
+<p>屏幕：<br>
+指不包括窗口任务栏这些的纯屏幕。</p>
+<pre tabindex="0"><code>&lt;script&gt;
+document.write(&#34;可用宽度: &#34; + screen.availWidth);
+&lt;/script&gt;
+</code></pre><p>打印可以用document.write() 学到了。</p>
+<p>当前页地址：<br>
+url：<code>location.href</code><br>
+主机域名：<code>location.hostname</code><br>
+页面路径和文件名：<code>location.pathname</code><br>
+主机端口：<code>location.port</code><br>
+web 协议：<code>location.protocol</code></p>
+<p>history：<br>
+前进后退：<code>history.forward()</code> ｜ <code>history.back()</code><br>
+别的方法：<code>history.go(n)</code> // n为-1后退，1前进，0刷新</p>
+<p>弹窗：<br>
+警告框：<code>alert()</code><br>
+确认框：<code>confirm()</code><br>
+提示框：<code>prompt()</code><br>
+<strong>弹窗使用 反斜杠 + &ldquo;n&rdquo;(\n) 来设置换行</strong></p>
+<p>记时：<br>
+一直循环：<code>setInterval()</code><br>
+定时执行：<code>setTimeout()</code><br>
+显示记时，按钮停止：</p>
+<pre tabindex="0"><code>&lt;p id=&#34;demo&#34;&gt;&lt;/p&gt;
+&lt;button onclick=&#34;myStopFunction()&#34;&gt;停止&lt;/button&gt;
+&lt;script&gt;
+var myVar=setInterval(function(){myTimer()},1000);
+function myTimer(){
+    var d=new Date();
+    var t=d.toLocaleTimeString();
+    document.getElementById(&#34;demo&#34;).innerHTML=t;
+}
+function myStopFunction(){
+    clearInterval(myVar);
+}
+&lt;/script&gt;
+</code></pre><h3 id="事件">事件 <a href="#%e4%ba%8b%e4%bb%b6" style="border:none;"></a></h3><p>这部分很多文章都写的云里雾里。我自己理解讲下。</p>
+<p>首先，我理解事件，就是在页面上发生的事情。用户和浏览器的交互，点击、打字等，以及其它类型的页面发生的改动。有一个之前我模糊的概念，这里面有两种函数，一个是事件发生的动作，有可能需要自定义函数，也有可能有默认函数及属性；一个是浏览器需要监听、绑定这些发出的动作，这里又需要一个函数。这两个是不同的。</p>
+<h4 id="事件绑定">事件绑定 <a href="#%e4%ba%8b%e4%bb%b6%e7%bb%91%e5%ae%9a" style="border:none;"></a></h4><p>要让用户的动作给程序知道，必须将事件和已有程序绑定起来。<br>
+事件发生的动作，有不同的方式来绑定。<br>
+一是对html属性，可以在元素的属性里直接绑定。</p>
+<pre tabindex="0"><code>&lt;button id=&#34;btn&#34; onclick=&#34;console.log(&#39;试试就逝世&#39;);&#34;&gt;Click&lt;/button&gt;
+</code></pre><p>上面的元素是<code>&lt;button&gt;</code>，它的属性是<code>onclick</code>，在<code>onclick</code>这个属性上绑定click事件，这个事件就是console这个函数，打印一行字。</p>
+<p>二是dom绑定。<br>
+上文说到的button元素比较特殊，有这些提供绑定的属性。如果直接想在页面上绑定事件，比如window或document下输出，就要使用on-event handle处理。说人话就是自己写一个function，不用给的onclick这种属性，然后绑定到DOM上。</p>
+<pre tabindex="0"><code>window.onload = function(){
+  document.write(&#34;试试就逝世&#34;);
+};
+</code></pre><p>dom绑定也可以处理上面的实体元素。</p>
+<pre tabindex="0"><code>var btn = document.getElementById(&#39;btn&#39;);
+
+btn.onclick = function(){
+  console.log(&#39;试试就逝世&#39;);
+};
+</code></pre><p>三是使用事件监听器<code>addEventListener()</code></p>
+<p><code>要处理的元素对象.addEventListener(&quot;事件名称&quot;, 事件处理器函数, boolen[捕获/冒泡])</code><br>
+要处理的元素对象，比如buttom，或者div等其它元素。<br>
+事件名称，是预设好的，比如点击&quot;click&quot;、加载&quot;load&quot;、滚动&quot;scroll&quot;等等。<br>
+事件处理器函数，和上面二一样，自己定义的函数function。<br>
+最后的可选参数，选择执行机制是捕获还是冒泡，默认是冒泡。下面再解释。</p>
+<p>这个方法是最推荐的，一是最不推荐的。<br>
+它的一个好处是，同一个要处理的对象，可以绑定多次事件，就处理多个函数。上面的只能绑定一个。</p>
+<h4 id="执行机制和事件代理">执行机制和事件代理 <a href="#%e6%89%a7%e8%a1%8c%e6%9c%ba%e5%88%b6%e5%92%8c%e4%ba%8b%e4%bb%b6%e4%bb%a3%e7%90%86" style="border:none;"></a></h4><p>用户的动作被程序捕获之后，就可以处理了。但这里需要引入一个概念，如何传递这个事件消息，如何确定这个事件动作的管辖范围。</p>
+<p>像地图一样，从宏观到精准定位这个元素，比如要控制一个表单其中一个格子，依次分别是：<br>
+window → document → html → body → table → tbody → tr → td</p>
+<p>两种执行机制就是这条path的来回，从宏观到精确叫捕获，从精确回宏观到冒泡。</p>
+<p>上面的监听事件就在这条path的途中截获。IE只有 →，addEventListener两回都有。</p>
+<p>这样带依赖的传递，可以利用它提升处理性能。具体是使用addEventListener的事件委托。<br>
+如果要给巨量元素添加事件，可以凭着事件冒泡，直接将事件加给它们的父节点。 这样只注册父元素一个就行了，不至于句柄保存太多，让事件把内存撑满，而且调用、解绑的时候也比较方便。</p>
+<p>性能差的循环绑定：</p>
+<pre tabindex="0"><code>    var boxes = document.getElementsByTagName(&#39;boxex&#39;);
+        for(var i=0, j=boxes.length; i&lt;j; i++){
+            var text = boxes[i];
+            text.onclick = function(){
+                alert(&#39;someone like u&#39;);
+            }
+            text.parentNode.removeChild(text);
+            text.onclick()
+        }
+</code></pre><p>性能好的依赖绑定：</p>
+<pre tabindex="0"><code>    var table = document.getElementById(&#39;event-table&#39;);
+    table.addEventListener(&#39;click&#39;, function(e){
+        //获取当前被点击的元素
+        var target = e.target;
+        //这里可以先针对不同的元素进行不同的获取参数的方法，稍后添加
+        var text = target.getAttribute(&#39;data&#39;);
+        //如果不满足条件，尽早跳出过程
+        if(!text){return;}
+        //阻止符合条件的元素的冒泡以及默认行为
+        e.preventDefault(),e.stopPropagation();
+
+        switch(text){
+            case &#39;A&#39;:
+                alert(&#39;a&#39;);
+                break;
+            case &#39;B&#39;:
+                alert(&#39;b&#39;);
+                break;
+            case &#39;x&#39;:
+                //同样执行删除，但是会干净好多
+                target.parentNode.removeChild(target);
+                alert(target.onclick);
+                break;
+        }
+    }, false);
+</code></pre><h3 id="其它零碎概念">其它零碎概念 <a href="#%e5%85%b6%e5%ae%83%e9%9b%b6%e7%a2%8e%e6%a6%82%e5%bf%b5" style="border:none;"></a></h3><h4 id="变量-var-let-和-const">变量: var let 和 const <a href="#%e5%8f%98%e9%87%8f-var-let-%e5%92%8c-const" style="border:none;"></a></h4><p>是ES版本所致，ES6新增let和const。</p>
+<p>var 是全局变量，在块域内定义，块域外仍可以用。<br>
+let 是局部变量，只在块域内有效。但如果在全局定义它，它就也是全局的。<br>
+要注意它们在for循环括号里声明的区别。</p>
+<p>在html代码中使用，var 定义的变量x，可以用window.x调用。let不行。</p>
+<p>var有变量提升的特性，即可以先使用后声明。let不行。</p>
+<p>const：<br>
+固定常量声明。<br>
+和let都是块级作用域。<br>
+但是不能修改。<br>
+但是如果声明数组，数组的值可以改。</p>
+<h4 id="函数-匿名函数-箭头函数-this-和-bind">函数: 匿名函数 箭头函数 this 和 bind <a href="#%e5%87%bd%e6%95%b0-%e5%8c%bf%e5%90%8d%e5%87%bd%e6%95%b0-%e7%ae%ad%e5%a4%b4%e5%87%bd%e6%95%b0-this-%e5%92%8c-bind" style="border:none;"></a></h4><p>js的函数也是对象。（为什么要说也）</p>
+<p>首先，普通函数：</p>
+<pre tabindex="0"><code>function funcName(params) {
+    return params + 2;
+}
+</code></pre><p>函数表达式的方式，即函数没名字，直接被赋给一个变量。一般给这个变量起的名字，和普通函数的函数名一样。所以在很多教程里面，尤其是对比的时候，把这俩名字写一样，弄到后面复杂的就给我弄混了。实际上，此种方式的函数本身没名字，即是匿名函数。只是要赋给一个变量，可以起跟函数名一样的名字。</p>
+<pre tabindex="0"><code>var varName = function (params) {
+    return params + 2;
+}
+</code></pre><p>这种方式比较省空间。还有一些别的区别，先撂下。</p>
+<p>函数表达式可以化简成箭头函数：</p>
+<pre tabindex="0"><code>const fn = params =&gt; { return params + 2 }
+</code></pre><p>这里面params是参数。非一个参数，0个，多个的，加括号；只一个表达式的，省大括号：<code>() =&gt; console.log(111)</code>。其它语法先撂下。</p>
+<p><strong>箭头函数不绑定this。即不改变this本来的绑定。</strong> 一般函数里面定义的this.变量，就变成指向这个函数的this了。</p>
+<p>如果fa函数里面定义了一个this.变量，同时嵌套了一个child函数，调用了this.变量，那么此时该变量就相相当于child函数.变量。而这个child函数没new，没被变量引用，也没绑定bing、call、apply，一般child的this指向window，相当于child.变量=window.变量。如果想引用的是 fa函数.变量，就错了。<br>
+如果这个child函数换成箭头函数，再调用this.变量，这个this就还指向fa函数，相当于fa.变量。</p>
+<p>this：<br>
+普通函数定义并调用，相当于该函数.call(window, args)<br>
+即call，是显式强调了它绑定的this，普通函数没声明别的，就是window。</p>
+<pre tabindex="0"><code>var person = {
+  name:&#34;aa&#34;,
+  say: function(word) {
+    console.log(this + &#34;say:&#34; + word)
+  }
+}
+</code></pre><p>这种样式的变量person，相当于一个class，里面的参数name和say相当于python的</p>
+<pre tabindex="0"><code>class: 
+  __init__(self):
+    self.name = &#34;&#34;
+  
+  def say(self, word):
+    console.log(self.name + &#34;say:&#34; + word)
+</code></pre><p>然后调用这个person的函数就：<br>
+<code>person.say('blabla')</code> 等同于 <code>person.say.call(person, 'blabla')</code></p>
+<p>剩下的碰到了再学。</p>
+<h2 id="其它">其它 <a href="#%e5%85%b6%e5%ae%83" style="border:none;"></a></h2><h3 id="模块化">模块化 <a href="#%e6%a8%a1%e5%9d%97%e5%8c%96" style="border:none;"></a></h3><p>模块化的意思就是，把一个文件里的功能拆成不同的子文件，统一调用，方便统筹。</p>
+<p>javascript 模块化我<del>竟然</del>不知道的东西：<br>
+&ndash; 都在html里script标签引入之后，js 里面定义的函数和变量就可以直接用了。<br>
+&ndash; 所以多个需要直接被script标签引入的js文件里的变量和函数名不能互相重复。<br>
+&ndash; 多个 JS 文件之间存在依赖关系，必需严格的保证 JS 的加载顺序。</p>
+<p>→ 解决<br>
+使用模块化规范。有很多标准，这些不同的标准有不同的语法支持。默认先说 es6。</p>
+<p>最主要的特性就是，用export把常量、函数、文件、模块等打包export出去，需要用的地方import进来。</p>
+<p>规则：<br>
+&ndash; export、import可以有多个，export default仅有一个<br>
+&ndash; export与export default均可用于导出常量、函数、文件、模块等<br>
+&ndash; 通过export方式导出，在导入时要加{ }，export default则不需要&ndash; export能直接导出变量表达式，export default不行</p>
+<p>其它注意的：<br>
+import 也可以用来只导入文件</p>
+<pre tabindex="0"><code>&lt;script type=&#34;module&#34;&gt;
+  import &#34;./module.js&#34;;
+&lt;/script&gt;
+
+&lt;!--相当于：--&gt;
+&lt;script type=&#34;module&#34; src=&#34;./module.js&#34;&gt;&lt;/script&gt;
+</code></pre><p>如果js里直接是调用函数，就可以直接用这种方式import，如下：</p>
+<pre tabindex="0"><code>(function() {
+  console.log(&#39;IIFE&#39;);
+})();
+
+import &#39;./fn.js&#39;;
+</code></pre><p>ES6和commonJS 区别<br>
+es6是异步加载，编译时输出接口；commonJS是同步加载，运行时加载。</p>
+<p>es6输出：export { count, add };<br>
+commonJS输出：module.exports = { count, add };</p>
+<h2 id="js框架">js框架 <a href="#js%e6%a1%86%e6%9e%b6" style="border:none;"></a></h2><h3 id="jquery">jQuery <a href="#jquery" style="border:none;"></a></h3><p>是一个JavaScript函数库，封装了一些JS的任务，用起来更方便。<br>
+比如js中获取元素：<code>document.getElementById()</code><br>
+jQuery获取元素：<code>$()</code></p>
+<h4 id="jquery怎么用">jQuery怎么用 <a href="#jquery%e6%80%8e%e4%b9%88%e7%94%a8" style="border:none;"></a></h4><ul>
+<li>官网下载它的库，放进项目包，like [path]/jquery.min.js。
+<ul>
+<li>然后在html中用 <!-- raw HTML omitted --> 引用</li>
+<li>或者从其它js文件中<code>import $ from '../libs/jquery.min';</code></li>
+</ul>
+</li>
+<li>从CDN载入</li>
+</ul>
+<pre tabindex="0"><code>&lt;head&gt;
+  &lt;script src=&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/js">js</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E5%89%8D%E7%AB%AF">前端</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E5%9F%BA%E7%A1%80">基础</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/linux%E8%B7%AF%E5%BE%84%E4%B8%8B%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/" class="jump-post">linux路径下文件都是什么意思</a>
+        
+        </span>
+  
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/552644ea784da4c58f4329e1f34d6f74/" class="jump-post">操作文档｜Python</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

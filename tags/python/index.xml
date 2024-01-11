@@ -17,9 +17,16 @@
     </item>
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/</link>
+      <link>https://cenjianxun.github.io/posts/%E6%93%8D%E4%BD%9C%E6%96%87%E6%A1%A3python-pandas/</link>
+      <pubDate>Tue, 25 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://cenjianxun.github.io/posts/%E6%93%8D%E4%BD%9C%E6%96%87%E6%A1%A3python-pandas/</guid>
+      <description>&lt;p&gt;pandas 命令查阅&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/%E6%A6%82%E5%BF%B5python%E5%BA%95%E5%B1%82/</link>
       <pubDate>Wed, 06 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>https://cenjianxun.github.io/posts/%E7%9F%A5%E8%AF%86-python%E5%BA%95%E5%B1%82/</guid>
+      <guid>https://cenjianxun.github.io/posts/%E6%A6%82%E5%BF%B5python%E5%BA%95%E5%B1%82/</guid>
       <description>&lt;p&gt;目前包括 部分底层架构，运行原理。&lt;/p&gt;&#xA;&lt;p&gt;* &lt;em&gt;2023年回看也没有多进阶……&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>

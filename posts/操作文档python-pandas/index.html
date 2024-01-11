@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>操作文档｜python - pandas&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">操作文档｜python - pandas</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" class="home-link" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+ 
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>操作文档｜python - pandas</h1>
+        <div class="post-time">Dec 25 2018</div>
+    </header>
+
+    
+    <div class="post-content"><p>pandas 命令查阅</p>
+<p>默认改ipython<br>
+<code>IPYTHONDIR/profile_default/startup</code><br>
+新建一个py</p>
+<pre tabindex="0"><code>import pandas as pd
+
+# -----
+# 设置
+# -----
+
+# 显示所有列
+pd.set_option(&#39;display.max_colums&#39;, None)
+
+# 显示所有行
+pd.set_option(&#39;display.max_rows&#39;, None)
+
+# 设置value的显示col为100 （默认50）
+pd.set_option(&#39;max_colwidth&#39;, 100)
+
+# -----
+# 读取
+# -----
+
+# 读
+data = pd.read_sql(&#34;&#34;, conn)
+
+# 返回前a行
+.head(a)
+
+# 返回尾a行
+.tail(a)
+
+# 返回某行索引名字
+.iloc[i].name  # i
+
+# 返回列名
+.columns
+
+# 按行遍历
+for index, row in data.iterrows():
+
+# 取某行
+df.iloc[[行index]]
+df.loc[[行名]]
+
+# 取列A
+df.loc[:, &#39;A&#39;]
+
+# 取某行某列
+df.loc[行名, 列名]
+
+# 取a列和c列的前两行
+df.loc[0:2, [&#39;A&#39;, &#39;C&#39;]]
+
+# 选择列&#39;B&#39; 值为指定value的行
+df.loc[df[&#39;B&#39;]==value]
+
+# 选择列&#39;B&#39; 值在list的行
+df.loc[df[&#39;B&#39;].isin([&#39;a&#39;, &#39;c&#39;])]
+
+# 反过来包含？
+df[df[&#39;city_name&#39;].str.contains(&#39;北京&#39;)]
+
+# 选择某列 值不等于value的行
+df.loc[df[&#39;column_name&#39;]!=value]
+
+# 选择某列 值不在可迭代values的行
+df.loc[~df[&#39;column_name&#39;].isin(values)]
+
+# 多条件过滤（要有括号）
+dataframe[(mydf.colA==chunks[0]) &amp; (mydf.colB==beta[0][0])]
+
+# 选任意出现空值的一行
+df[df.T.isnull().any()]
+
+# 选任意没有空值的一行
+df[~df.T.isnull().any()]
+
+# 选了特定类型的列的列名
+.select_dtypes(inclues=[&#39;datetime64&#39;]).columns[0]
+
+# 某列最大值的那行的index
+series.idxmax()  # idxmax和argmax一样，但是idxmax可以用在dataframe，所以多用这个。
+
+# 多层索引选择
+df.loc[(&#39;A&#39;, slice(None)),:]
+# loc[(a, b), c]中第一个参数元祖为索引内容，a为level0索引，b为level1，c为列（dataframe专有）
+# slice(None) 是python中的切片操作，这里用来选择任意id
+# &#39;:&#39;用来指定dataframe任意列
+
+# -----
+# 添加
+# -----
+
+# 添加一行
+df = pd.DataFrame(columns=[&#39;r1&#39;, &#39;r2&#39;, &#39;r3&#39;])
+for i in range(5):
+    df.loc[i] = [randint(-1, 1) for j in range(3)]
+
+# 添加一列
+df[&#39;col1&#39;] = [2, 3, 4, 2, 2]
+
+# -----
+# 写入
+# -----
+
+# 把data的一部分（carID，carType，fatherCar）三列赋值给car
+car = pd.DataFrame(data, columns=[&#39;carID&#39;, &#39;carType&#39;, &#39;fatherCar&#39;])
+
+# 替换None
+df = df.replace([None], &#39;something&#39;)
+
+# ❗️【值里有NaN时会变浮点】
+
+# ==== 处理每个元素 ====
+# 将存在一个属性，由空格分隔的字符串分开成list
+data[&#39;cartype&#39;] = data[&#39;cartype&#39;].str.split(&#39; &#39;, 1)
+
+data[&#39;cartype&#39;][0]
+&gt;&gt;&gt; [&#39;2014款‘, &#39;1.3L&#39;]
+
+data[&#39;cartype&#39;].str[0].head(0)
+&gt;&gt;&gt; 2014款
+
+# 用str之后分成两列
+data[&#39;name&#39;].str.split(&#39;|&#39;, expand=True)
+
+# -----
+# 合并
+# -----
+
+# merge 主要是交叉
+pd.merge(left, right, how=&#39;inner&#39;, on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False, suffixes=(&#39;_x&#39;, &#39;_y&#39;), copy=True)
+# on=None 指定连接的列明，若两列列名不一样，可以通过left_on和right_on指定
+# how=&#39;inner&#39; 指合并时存在不重合的行时，取结果的方式：inner交集，outer并集，left/right取某一边，left就是保持左边行数不变，拿右边表与之合并
+# on=&#39;x1&#39; 表以x1为主键进行连接
+
+# concat 主要是拼接
+concat(objs, axis=0, join=&#39;outer&#39;, join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verigy_integrity=False)
+# 只是合并两个表，可以横向拼接也可以纵向拼接，用axis控制，默认0为纵拼接
+# objs 为被拼接的对象集合，一般为列表或字典
+concat([df1, df2]) 相当于 df1.append(df2)
+concat([df1, df2], axis=1) 相当于 merge(df1, df2, left_index=True, right_index=True, how=&#39;outer&#39;)
+
+# a和b取差集
+a.append(b)
+a = a.drop_duplicates(keep=&#39;false&#39;)
+# keep=&#39;false&#39; 意思是凡重复的都去掉。默认为true，就是保留第一条记录。
+
+
+# -----
+# index操作
+# -----
+
+# 重新排序index
+.reindex(columns=一个index名字的list)  # 里面的index name可以已有也可以没有
+
+# 已存在正常列转化成index
+.set_index(&#39;aCol&#39;, inplace=True)
+
+# index转化成正常的列
+.reset_index()  # 重设索引用 df.reset_index(drop=True)
+
+# reindex //todo
+
+# columns 换名字
+.rename(columns={&#39;index&#39;:&#39;month_rank&#39;, 2:4}, inplace=True)
+df.columns = df.columns.map(lambda x:x[1:])
+df.columns = df.columns.str.strip(&#39;$&#39;)
+df.rename(columns=lambda x:x.replace(&#39;$&#39;, &#39;&#39;), inplace=True)
+# series 改名的时候不用加columns
+.rename({&#39;relation&#39;:&#39;relationBefore&#39;}, inplace=True)
+
+# 选择特定的index
+.loc[select_index]  # select_index是一个list
+
+# -----
+# 删除
+# -----
+
+# 删除16，17行，返回新表
+.drop([16, 17])
+
+# 删除列&#39;ax&#39;，在原地删除
+.drop([&#39;ax&#39;], axis=1, replace=1)
+
+# 去重。找出和显示重复值。不重复为false，重复为true。支持从前查找和从后查找
+.duplicated()  
+
+# 去重。删除数据表的重复值，判断标准和逻辑和⬆️一样。返回一个只包含唯一值的数据表
+.drop_duplicates()
+
+# 删除指定列（&#39;age&#39;, &#39;sex&#39;）含有空数据的全部行
+df = df.dropna(subset=[&#39;age&#39;, &#39;sex&#39;])
+
+
+# ------
+# 格式转换
+# ------
+
+# datetime类型只保留年月日，去掉时间
+data[&#39;public_time&#39;].dt.normalize()
+
+# datetime转str
+data[col].dt.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)
+
+# str转datetime
+dates = pd.to_datetime(pd.Series([&#39;20010101&#39;, &#39;20010331&#39;]), format=&#39;%Y%m%d&#39;)
+
+# pandas转python list
+.value.tolist()
+
+# 把data转换成python可用的data格式
+t.to_pydatetime()  # 出来格式是datetime.datetime(2016, 3, 3, 0, 0)
+t.date()  # 出来格式是datetime.date(2016, 3, 3)
+
+# int64换成int32
+cols = tt.select_dtypes(include=[&#39;int64&#39;]).columns
+tt[cols] = tt[cols].astype(&#39;int32&#39;)
+
+# ------
+# 排序、groupby 和 apply
+# ------
+
+# A列降值排序
+pd.sort_values(by=&#39;A&#39;, inplace=True, ascending=False)
+# by 可以是str或list
+# axis=0时 by=&#39;列名‘；axis=1时 by=&#39;行名&#39;
+
+# 分组并排序
+df.sort_values([&#39;name&#39;, &#39;score&#39;], ascending=[True, False], inplace=True)
+
+
+df[参与的列们].groupby(按该列分组)[对该组运算].sum()
+
+# 按A分类，求其他列均值
+df.groupby(&#39;A&#39;).mean()
+
+# 按A、B分类，求C列之和
+df.groupby([&#39;A&#39;, &#39;B&#39;])[&#39;C&#39;].sum()
+
+# 按A分类，求B列均值及C列之和
+df.groupby([&#39;A&#39;]).agg({&#39;B&#39;:&#39;mean&#39;, &#39;C&#39;:&#39;sum&#39;})
+
+# size和count的区别：size计数时包含NaN值，而count不包含
+
+# 复杂计算 用lambda
+df.groupby(&#39;A&#39;).apply(lambda x:(x[&#39;C&#39;]-x[&#39;B&#39;]).mean())
+
+# 根据函数、数组分类： key_list = [&#39;one&#39;, &#39;one&#39;, &#39;one&#39;, &#39;two&#39;, &#39;two&#39;]
+groupby([len, key_list]).min()
+
+# transform: 保持和原始数据集相同数量的项目
+df[&#39;order_total&#39;] = df.groupby(&#39;order&#39;)[&#39;ext price&#39;].transform(&#39;sum&#39;) # 可直接写进原df
+
+
+# apply: DataFrame/Series。f是函数，函数的参数x是整行/整列
+apply(f)  # 列
+apply(f, axis=1)  # 行
+ 
+# applymap: DataFrame/Series。f是函数，函数的参数x是每个元素
+applymap(f)
+
+# map: Series。x是每个元素
+map(x)
+</code></pre></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/python">python</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+        
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/bloom%E8%BF%87%E6%BB%A4%E5%99%A8/" class="jump-post">bloom过滤器</a>
+        
+        </span>
+  
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E5%9F%BA%E7%A1%80unix%E5%9F%BA%E7%A1%80/" class="jump-post">基础｜unix基础</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+        
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>
