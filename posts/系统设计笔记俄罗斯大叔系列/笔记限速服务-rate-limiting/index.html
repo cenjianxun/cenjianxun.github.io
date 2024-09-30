@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>笔记｜限速服务 - Rate Limiting&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">笔记｜限速服务 - Rate Limiting</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents"></nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>笔记｜限速服务 - Rate Limiting</h1>
+        <div class="post-time">Oct 10 2021</div>
+    </header>
+
+    
+    <div class="post-content"><p>system design 俄罗斯大叔系列<br>
+限速</p>
+<p>一个client忽然发送异常多的请求。</p>
+<p>可能有很多原因：</p>
+<p>测试人员在压测、流量高峰、恶意攻击</p>
+<p>可能导致的问题：</p>
+<p>他占用了大量cpu、内存、硬盘、网络IO资源</p>
+<p>导致其它用户的请求产生高延迟或高失败率</p>
+<p>所以要引入限速：要么延迟解决要么立刻拒绝</p>
+<p>为什么不用自动化扩展？</p>
+<p>因为有可能太慢，还没扩完就崩了</p>
+<p>为什么不用LB来限速？</p>
+<p>因为每个部件情况不一样有的快有的慢，LB不能识别。所以需要定制服务来限速</p>
+<p>为什么一定要用分布式？不能各自服务器独立解决吗？</p>
+<p>还是上面的原因，we will need a solution where application servers will communicate with each other and share information about how many client requests each one of them processed so far.</p>
+<p>Requirements：</p>
+<p>Functional：</p>
+<ul>
+<li>allowRequest(request)</li>
+<li>return boolean</li>
+</ul>
+<p>Non-Functional:</p>
+<ul>
+<li>low latency:make decision as soon as possible</li>
+<li>accurate: as accurate as we can get</li>
+<li>scalable: supports an arbitrarily large number of hosts in the cluster</li>
+<li>容错和高可用呢？不重要。如果不知道是否限速，就不限。</li>
+</ul>
+<p>solution：</p>
+<p>从简单的方案开始，逐渐扩展。</p>
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0728397a-0f78-4891-8b6c-7898980a98e9/Untitled.png" width="70%" alt="Untitled"  />
+</center></p>
+<p>so ① rules retriever：</p>
+<p>是一个后台进程，每个rule指定每秒允许的特定客户端的请求数，并轮询检查是否有新rule或修改</p>
+<p>rule自己定义并存在数据库，并且通过一个web服务来管理操作。并在内存中有存储。</p>
+<p>请求到来时，第一件事是建立一个client identifier = key，是该client的唯一标识。</p>
+<p>然后key传到rate limiter，rate limiter根据cache里的rule检查key，</p>
+<p>如果match，rate limiter会检查这个client最后的请求是否超速。</p>
+<p>如果没超，request就move further；如果超了，就拒绝请求rejected。</p>
+<p>这时有三种选项：</p>
+<p>①response 特定的status code</p>
+<p>②延迟处理</p>
+<p>③直接丢掉</p>
+<p>总结：</p>
+<p>需要一个数据库来存规则，这个数据库需要crud</p>
+<p>需要一个过程定期检索规则，并将它放入内存</p>
+<p>需要一个做决定的组件。（构建client key要单独还是放一起都可以）</p>
+<p>接下来的几个走向：：：</p>
+<p>——&gt; 算法：实现rate limiter算法</p>
+<p>——&gt; OOD: 定义这个库的主要类和接口</p>
+<p>——&gt; 分布式留解决方案，server之间如何共享数据</p>
+<p>算法：</p>
+<ul>
+<li>
+<p>Google Guava RateLimiter</p>
+</li>
+<li>
+<p>滑动窗口</p>
+</li>
+<li>
+<p>令牌桶算法：最简单。好理解易于实现。</p>
+<p>每个桶有：可容纳的最大令牌量，当前可用的令牌数，令牌加入桶的速率</p>
+<p>有请求到来时，从桶中取一个令牌。如果没有，就拒绝请求。</p>
+<p>并且桶用恒定的速率填充令牌。</p>
+</li>
+</ul>
+<p>类和接口：</p>
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b3c29ca-d0bb-4f5b-9240-959a510f36d6/Untitled.png" width="70%" alt="Untitled"  />
+</center></p>
+<pre><code>  JobScheduler: 负责调度job和从规则库里检索规则
+</code></pre>
+<p>RulesCache：负责将规则存储在内存中</p>
+<p>ClientIdentifier：构建唯一标识客户端的密钥</p>
+<p>RateLimiter：负责决策</p>
+<p>distributed：</p>
+<p>有一个问题是，假设初始有三个桶，整个系统要求是每秒上限是4，初始时【每个桶内需要有4！】因为它们不知道请求要去哪个桶</p>
+<p>然后当消耗完四个，假设A桶剩1，B桶剩2，C桶剩1</p>
+<p>这时【这三个桶需要互相知道它们总共已经消耗了四个！】，所以下一刻这三个桶都更新成剩余0。</p>
+<p>这时有一个问题，如果在三个桶互通消息的时候，又有请求进来了怎么办。</p>
+<p>可用修改桶，让它允许负数令牌存在。</p>
+<p>比如这时来了12个请求，共享消息后每个桶有-8个令牌，那么接下来两秒内都不允许有请求了。</p>
+<p>所以关键是共享信息</p>
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c42c9176-9467-4476-b21a-f8134664b1cf/Untitled.png" width="70%" alt="Untitled"  />
+</center></p>
+<p>第一种：全网状广播：tell everyone everything</p>
+<p>如何发现host？</p>
+<p>①先择第三方服务，监听每个host的心跳，新的来了就注册，心跳停止就注销。</p>
+<p>②解析特定用户的信息，有特别用户存了所有人的信息。</p>
+<p>③通过配置文件提供主机列表。但是不太灵活，每次更新都要重新部署。</p>
+<p>但是只适合小cluster。需要大量消息。</p>
+<p>第二种：gossip protocal</p>
+<p>随机的对等选择形式实现：每个机器随机跳另一台机器并共享数据。（雅虎）</p>
+<p>异步是它的优点，</p>
+<p>缺点：消息冗余，不适合用在对实时性要求较高的场景下</p>
+<p>第三种：distributed cache</p>
+<p>pros：distributed cache cluster相对较小，服务cluster可独立扩展，可在不同团队之间共享。</p>
+<p>第四种：coordination service 单主</p>
+<p>依赖第三方组件，帮助选择领导者的协调服务。</p>
+<p>每个人消息都发给leader，leader计算并返回结果</p>
+<p>pros：有助于减少集群内广播的消息数量</p>
+<p>可以用paxos、raft等共识算法来实现coordination service</p>
+<p>cons：必须维护这个协调系统，它很复杂，必须很可靠，而且要确保选出有且只有一个领导者</p>
+<p>第五种：random leader selection</p>
+<p>如果每个leader对得票率消息共享，可能过计算但就不会出现选出多个leader的情况。</p>
+<p>communication protocals 通信协议：how hosts talk to each other</p>
+<p>两种选择：TCP UDP</p>
+<p>TCP：保证数据安全及按顺序传递。但慢。</p>
+<p>UDP：不保证收到所有data也不保证数据。但快。</p>
+<p><strong>integrate 集成这些组件</strong></p>
+<p>两种</p>
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6de0e5bb-59ca-4957-8f9b-decc8db24a60/Untitled.png" width="70%" alt="Untitled"  />
+</center></p>
+<p>① rate limiter 作为服务进程的一部分运行</p>
+<p>作为类的集合分发</p>
+<p>pros：更快。无需进程间调用，也就没有进程调用失败。</p>
+<p>cons: 👇</p>
+<p>② rate limiter 作为它自己的进程运行</p>
+<p>两个库：守护进程本身和客户端，client和服务代码集成在一起 integrate</p>
+<p>pros：可用不同的语言编写（守护进程而不是client），不用在代码级别集成。</p>
+<p>有自己的内存空间，可用更好的控制服务和守护进程，内存分配可预测。</p>
+<p>当有一个与集群种其它主机通信的守护进程时，很好用。</p>
+<p>cons: 👆qi</p>
+<p>其它：</p>
+<p>如果有大量请求，是否会有大量桶在内存当中？</p>
+<p>如果没有请求，可以不用把桶保存在内存里。请求间隔时常短时就创建放进内存，否则就删掉。</p>
+<p>故障模式 failure scenarios：</p>
+<p>守护进程fail，导致集群中其它主机无法看的这个失败的守护进程。所以这个机器失联了，但仍然继续执行任务。只是限制的请求更少罢了。</p>
+<p>（通信：all 只允许4个。无法通信：每个允许4个，一共12个）</p>
+<p>rule的管理：</p>
+<p>需要引入一个自助服务工具，以便增删改rules</p>
+<p>同步：synchronization</p>
+<p>令牌桶中需要同步。更好的办法是在这个类中实现线程安全，like原子引用</p>
+<p>令牌桶缓存需要同步，当删除不用桶、建立新桶时，会最终同步。所以需要用concurrentHashMap （线程安全）</p>
+<p>大部分服务不会请求那么大，所以同步这一块不会增加太多开销成为瓶颈</p>
+<p>client 应如何处理受限制的调用呢</p>
+<p>重试。丢进队列。</p>
+<p>exponential backoff and jitter  指数退避和抖动：</p>
+<p>多次重试请求，但每次重试都等待更长的时间。</p>
+<p>抖动增加了重试间隔的随机性以分散负载</p>
+<p><center class="md__image"><img loading='lazy' src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4aeb87f-7bf7-4737-bf61-e6c70557ad9b/Untitled.png" width="70%" alt="Untitled"  />
+</center></p>
+<p>最终选择：</p>
+<p>小 cluster &lt;x000 nodes, active buckets/sec &lt; 10,000 :</p>
+<p>UDP， gossip communication</p>
+<p>大 hosts &gt; 10,000</p>
+<p>需要单独集群</p></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/system-design">System Design</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1-notification-service/" class="jump-post">笔记｜通知服务 - Notification Service</a>
+            
+        </span>
+
+        <span class="pag-next">
+            
+            <p class="jump-post">这就是最新的文章了</p>
+            
+        </span>
+
+    </div>
+
+    
+    
+    <div class="post-series">
+        <span class="block-bar"></span>
+        <header><a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/">系统设计笔记：俄罗斯大叔系列</a> 系列文章</header>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0%E5%88%86%E5%B8%83%E7%BC%93%E5%AD%98-distribute-cache/">笔记｜分布缓存 - Distribute Cache</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0%E5%88%86%E5%B8%83%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-distributed-message-queue/">笔记｜分布消息队列 - Distributed Message Queue</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0top-k-%E9%97%AE%E9%A2%98-top-k-problem-heavy-hitters/">笔记｜Top K 问题 - Top K Problem (Heavy Hitters)</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0%E4%BF%84%E7%BD%97%E6%96%AF%E5%A4%A7%E5%8F%94%E7%B3%BB%E5%88%97/%E7%AC%94%E8%AE%B0%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1-notification-service/">笔记｜通知服务 - Notification Service</a>
+            
+        </li>
+        
+        <li>
+            
+            <span>笔记｜限速服务 - Rate Limiting</span>
+            
+        </li>
+        
+    </div>
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

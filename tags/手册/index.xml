@@ -6,26 +6,12 @@
     <description>Recent content in 手册 on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cenjianxun.github.io/tags/%E6%89%8B%E5%86%8C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/%E5%9F%BA%E7%A1%80git-github-%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5%E5%92%8C%E6%93%8D%E4%BD%9C/</link>
-      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://cenjianxun.github.io/posts/%E5%9F%BA%E7%A1%80git-github-%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5%E5%92%8C%E6%93%8D%E4%BD%9C/</guid>
-      <description>&lt;p&gt;费事搜索系列&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://cenjianxun.github.io/posts/%E6%93%8D%E4%BD%9Cshell%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Sat, 30 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>https://cenjianxun.github.io/posts/%E6%93%8D%E4%BD%9Cshell%E5%91%BD%E4%BB%A4/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
       <link>https://cenjianxun.github.io/posts/configure-development-environment/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
       <guid>https://cenjianxun.github.io/posts/configure-development-environment/</guid>
       <description>&lt;p&gt;初装系统，初装软件安装，搭建开发环境等的步骤。重装备用。会持续更新。&lt;br&gt;&#xA;目前（2023）包括mac zshell，vim，git及常用软件。这次比较折腾了一下的是vim主题，忍不住跑偏。&lt;/p&gt;</description>
     </item>

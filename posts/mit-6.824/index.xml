@@ -6,49 +6,49 @@
     <description>Recent content in MIT6.824 - 分布式系统 on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Thu, 07 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cenjianxun.github.io/posts/mit-6.824/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
       <description>&lt;p&gt;三个小实验：&lt;br&gt;&#xA;A: 实现raft：一个replicated state machine protocol 复制状态机协议&lt;br&gt;&#xA;B: 实现日志传输&lt;br&gt;&#xA;C：持久化&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Mon, 18 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 26 Feb 2022 00:00:00 +0000</pubDate>
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab2-raft-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;两篇paper&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
-      <description>&lt;p&gt;搭建map和reduce （伪）分布式架构。&lt;br&gt;&#xA;记录一些注意事项和坑。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/</link>
-      <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 21 Feb 2022 00:00:00 +0000</pubDate>
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824%E5%AE%9E%E9%AA%8C%E6%95%B4%E4%BD%93%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;实验途中通用配置及坑点记录。&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
+      <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;搭建map和reduce （伪）分布式架构。&lt;br&gt;&#xA;记录一些注意事项和坑。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824go-thread/</link>
-      <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 17 Feb 2022 00:00:00 +0000</pubDate>
       <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824go-thread/</guid>
       <description>&lt;p&gt;此实验由golang写的。专附了一节课讲go。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://cenjianxun.github.io/posts/mit-6.824/mit-6.824lab1-mapreduce-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

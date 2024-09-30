@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -23,7 +23,7 @@
   <div class="body-container">
     <aside>
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <section class="sidebar">
         <div id="sidebar-info" class="sidebar-info">
@@ -138,13 +138,12 @@
                 </svg>
             </a>
         </div>
-
     </section>
 </aside>
     <div class="content-container">
       <nav class="nav-container">
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
@@ -161,7 +160,7 @@
             <a href="/about/" target="_self">ABOUT</a>
         </li>
     </ul>
- 
+
 
 </nav>
       <main class="content">
@@ -172,11 +171,14 @@
     </header>
 
     
-    <div class="post-content"><h2 id="一些概念">一些概念 <a href="#%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5" style="border:none;"></a></h2><p>shell默认命令阻塞</p>
+    <div class="post-content"><p>==了解== 熟悉 掌握 精通</p>
+<h2 id="一些概念">一些概念 <a href="#%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5" style="border:none;"></a></h2><p>shell默认命令阻塞</p>
 <h2 id="shell独有的">shell独有的 <a href="#shell%e7%8b%ac%e6%9c%89%e7%9a%84" style="border:none;"></a></h2><h4 id="取当前路径">取当前路径 <a href="#%e5%8f%96%e5%bd%93%e5%89%8d%e8%b7%af%e5%be%84" style="border:none;"></a></h4><p>pwd：获取的是工作目录，而不是正执行脚本命令。<br>
 意思是，从哪里调用的这个脚本，就显示哪里，而不是此脚本存在的路径。</p>
-<p>$0：<br>
-bash下的命令，存的是当前文件名。但在zsh下会输出-zsh。</p>
+<p>$：<br>
+<code>$0</code> 当前文件名。在zsh下会输出-zsh。<br>
+<code>$1</code>，<code>$2</code>，<code>$3</code>&hellip; 输入的第几个参数。运行<code>./script.sh arg1 arg2 arg3</code>，第一个就是$1，以此类推。<br>
+<code>$@</code>和<code>$*</code>，输入的全部参数。区别是<code>$@</code>的每个参数独立，类似list。<code>$*</code>参数当成一个整体，参数之间用 IFS（内部字段分隔符，默认为空格）分隔。</p>
 <p>bash和zsh都适用的命令，获取当前执行脚本的父目录：</p>
 <pre tabindex="0"><code># 此脚本文件的绝对路径
 SCRIPT_FILE=$(readlink -f $0)
@@ -197,6 +199,7 @@ echo &#39;$n&#39;
 echo &#34;$n&#34;
 [打印]&gt;&gt; 3
 </code></pre><p>需要提示的是，如果写的内容本身没有需要转义的，那它就退化成直接输出。比如<code>&quot;path=/Users/Local Document&quot;</code>和上面效果一样。</p>
+<p>💡 所以一般变量保险起见要加引号，以防变量里有空格。</p>
 <p>反引号：执行命令。相当于$()，且$()支持嵌套。但反引号支持的sh多。</p>
 <pre tabindex="0"><code>USERS=`who | wc -l`
 echo &#34;Logged in user are $USERS&#34;
@@ -204,6 +207,28 @@ echo &#34;Logged in user are $USERS&#34;
 </code></pre><p>显示变量 前面加$<br>
 var=value //赋值操作，等号左右空格var = value 是相等操作<br>
 echo $var</p>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>遇到的一个问题 涉及到引号的使用。<br>
+当前用户目录都知道可以写成<code>~</code>，但是当定义了包含<code>~</code>的path时，<code>&quot;</code>本身不会转义。即：<br>
+<code>$mypath=&quot;~/work&quot;</code><br>
+然后再 <code>cp $mypath/file.txt /folder</code>时，第一个路径直接是<code>~/work</code>，而不是当作<code>/Users/你的用户名/work</code>，即双引号下它没有解析，而是直接当字符串用了。</p>
+<p>解决这个问题比较方便的方式：</p>
+<ol>
+<li>定义的时候不加双引号，直接<code>$mypath=~/work</code></li>
+<li>用<code>$HOME</code>代替<code>~</code>，写成<code>$mypath=$HOME/work</code></li>
+</ol>
+<p>我感觉第二个比较好一点。</p>
+    </div>
+
 <h4 id="条件测试">条件测试 <a href="#%e6%9d%a1%e4%bb%b6%e6%b5%8b%e8%af%95" style="border:none;"></a></h4><p><code>[</code> 和 <code>]</code> 用于条件测试；</p>
 <h4 id="状态返回值">状态返回值 <a href="#%e7%8a%b6%e6%80%81%e8%bf%94%e5%9b%9e%e5%80%bc" style="border:none;"></a></h4><p>用 <code>echo $?</code> 查看<br>
 返回0为成功。非0为错。</p>
@@ -272,7 +297,7 @@ done
             <a class="tag-link" href="/%20/tags/shell">shell</a>
             
             ,&nbsp;
-            <a class="tag-link" href="/%20/tags/%E6%89%8B%E5%86%8C">手册</a>
+            <a class="tag-link" href="/%20/tags/%E6%A6%82%E5%BF%B5">概念</a>
             
         </span>
         
@@ -282,7 +307,7 @@ done
         
         
         <span class="pag-prev">
-        
+            
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
@@ -292,14 +317,14 @@ done
                 <path d="M7 12h14" />
             </svg>
             </svg>
-            <a href="https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BBredis/" class="jump-post">八股汇总｜redis</a>
-        
+            <a href="https://cenjianxun.github.io/posts/%E6%80%BB%E7%BB%93python%E5%BA%95%E5%B1%82/" class="jump-post">总结｜Python底层</a>
+            
         </span>
-  
+
         <span class="pag-next">
             
             
-            <a href="https://cenjianxun.github.io/posts/bloom%E8%BF%87%E6%BB%A4%E5%99%A8/" class="jump-post">bloom过滤器</a>
+            <a href="https://cenjianxun.github.io/posts/%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8Cpython-pandas/" class="jump-post">操作手册｜python - pandas</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-arrow-right-to-line">
@@ -309,7 +334,7 @@ done
             </svg>
             
         </span>
-        
+
     </div>
 
     
@@ -320,7 +345,7 @@ done
     </div>
       </main>
       <footer class="footer">
-    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
+    <p> © 2018 - 2024 &nbsp; XUN
     </p>
 </footer>
 

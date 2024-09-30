@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>笔记｜Docker 简介和命令&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">笔记｜Docker 简介和命令</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#init">init</a>
+      <ul>
+        <li><a href="#一些概念简介">一些概念简介</a></li>
+      </ul>
+    </li>
+    <li><a href="#命令">命令</a>
+      <ul>
+        <li><a href="#镜像命令-image">镜像命令 image</a></li>
+        <li><a href="#容器命令">容器命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#一些练习">一些练习</a>
+      <ul>
+        <li><a href="#连redis">连redis</a></li>
+        <li><a href="#安装--连mongodb">安装 &amp; 连mongoDB</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>笔记｜Docker 简介和命令</h1>
+        <div class="post-time">Mar 27 2023</div>
+    </header>
+
+    
+    <div class="post-content"><p>初级使用记录</p>
+<p>==了解== 熟悉 掌握 精通</p>
+<h2 id="init">init <a href="#init" style="border:none;"></a></h2><p>下载docker，macOS版<br>
+<code>brew install --cask --appdir=/Applications docker</code></p>
+<p>本机启动docker 服务</p>
+<pre tabindex="0"><code># service 命令的用法
+$ sudo service docker start
+
+# systemctl 命令的用法
+$ sudo systemctl start docker
+</code></pre><p>💡注意<code>service</code>和<code>systemctl</code>都不能在macOS中使用，macOS的命令是<code>launchctl</code>，但是在macOS中brew install，就会自动下载docker Desktop，使用客户端界面打开好了。</p>
+<h3 id="一些概念简介">一些概念简介 <a href="#%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5%e7%ae%80%e4%bb%8b" style="border:none;"></a></h3><p>docker有镜像和容器的概念。下载docker之后，需要哪个应用，比如mysql，就下载相应的镜像，里面装的是该应用程序及其依赖。通过镜像，可以再生成容器的实例，一个镜像可以反复生成多个容器。<br>
+镜像在<a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>下载。</p>
+<h2 id="命令">命令 <a href="#%e5%91%bd%e4%bb%a4" style="border:none;"></a></h2><h3 id="镜像命令-image">镜像命令 image <a href="#%e9%95%9c%e5%83%8f%e5%91%bd%e4%bb%a4-image" style="border:none;"></a></h3><p>列出所有镜像：</p>
+<pre tabindex="0"><code>docker images
+
+# 会列出
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+# 参数
+-a # 列出所有
+-q # 只显示镜像id
+</code></pre><p>搜索镜像：</p>
+<pre tabindex="0"><code>docker search &lt;名字&gt;
+</code></pre><p>下载镜像：</p>
+<pre tabindex="0"><code>docker pull &lt;名字&gt;
+</code></pre><p>删除镜像</p>
+<pre tabindex="0"><code>docker rmi &lt;名字/id&gt;
+
+循环删除：
+docker rmi -f $(docker image -aq)
+</code></pre><h3 id="容器命令">容器命令 <a href="#%e5%ae%b9%e5%99%a8%e5%91%bd%e4%bb%a4" style="border:none;"></a></h3><p>💡 有了镜像才可以创建容器。所以要先<br>
+<code>docker pull &lt;容器&gt;</code></p>
+<p>新建容器并启动</p>
+<pre tabindex="0"><code>docker run &lt;参数&gt; image
+
+# 参数说明
+--name=&#34;name&#34; 容器名字
+-d            后台方式运行
+-it           交互方式运行，进入容器查看内容
+-p            端口，可映射  -p （主机端口：）容器端口
+</code></pre><p>启动一个centos并进入：<br>
+docker run -it centos /bin/bash</p>
+<p>退出：<br>
+exit</p>
+<p>列出运行的容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker ps &lt;参数&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 如果不带参数，就是查看当前运行的容器</span>
+</span></span><span style="display:flex;"><span>-a  <span style="color:#75715e"># 列出当前运行的容器 + 历史运行的容器</span>
+</span></span><span style="display:flex;"><span>-n<span style="color:#f92672">=</span>? <span style="color:#75715e"># 显示最近创建的容器</span>
+</span></span><span style="display:flex;"><span>-q  <span style="color:#75715e"># 只显示容器的编号</span>
+</span></span></code></pre></div><p>退出容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>exit  <span style="color:#75715e"># 直接容器停止并退出</span>
+</span></span><span style="display:flex;"><span>ctrl + p + q <span style="color:#75715e"># 容器不停止退出</span>
+</span></span></code></pre></div><p>删除容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker rm &lt;容器id&gt;   <span style="color:#75715e"># 删除指定容器， 不能删除运行中的id</span>
+</span></span><span style="display:flex;"><span>docker rm -f <span style="color:#e6db74">${</span>docker ps -aq<span style="color:#e6db74">}</span>  <span style="color:#75715e">#删除所有容器</span>
+</span></span><span style="display:flex;"><span>docker ps -a -q | xargs docker rm <span style="color:#75715e"># 删除所有容器</span>
+</span></span></code></pre></div><p>启动和停止容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker start &lt;容器id&gt;   <span style="color:#75715e"># 启动容器</span>
+</span></span><span style="display:flex;"><span>docker restart &lt;容器id&gt;  <span style="color:#75715e"># 重启</span>
+</span></span><span style="display:flex;"><span>docker stop &lt;容器id&gt;  <span style="color:#75715e"># 停止正运行的容器</span>
+</span></span><span style="display:flex;"><span>docker kill &lt;容器id&gt;  <span style="color:#75715e"># 强制停止当前容器</span>
+</span></span></code></pre></div><p>后台启动容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker run -d centos
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker容器使用后台运行，必须要有一个前台进程，如果没有就会自动停止</span>
+</span></span></code></pre></div><p>查看日志</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 写一段脚本</span>
+</span></span><span style="display:flex;"><span>docker run -d centos /bin/bash -c <span style="color:#e6db74">&#34;while true; do echo 测试测试;sleep 1;  done&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看id，假设是 bcdefg</span>
+</span></span><span style="display:flex;"><span>docker ps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看最后10条日志  </span>
+</span></span><span style="display:flex;"><span>-t  <span style="color:#75715e"># 显示日志</span>
+</span></span><span style="display:flex;"><span>-f  <span style="color:#75715e"># 显示时间戳</span>
+</span></span><span style="display:flex;"><span>-tail num
+</span></span><span style="display:flex;"><span>docker logs -tf -tail <span style="color:#ae81ff">10</span> bcdefg
+</span></span></code></pre></div><p>查看容器中进程信息</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker top &lt;容器id&gt;
+</span></span></code></pre></div><p>查看镜像元数据</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker inspect &lt;镜像id&gt;
+</span></span></code></pre></div><p>进入当前正运行的容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>-it  <span style="color:#75715e"># 交互模式</span>
+</span></span><span style="display:flex;"><span>docker exec -it &lt;容器id&gt; bashShell（比如bin/bash） <span style="color:#75715e"># 进入后 开启新的终端</span>
+</span></span><span style="display:flex;"><span>docker attach &lt;容器id&gt; bashShell（比如bin/bash） <span style="color:#75715e"># 进入在容器正在执行的终端</span>
+</span></span></code></pre></div><p>从容器内copy到主机上</p>
+<pre tabindex="0"><code>docker cp &lt;容器id&gt;:&lt;容器路径&gt; &lt;主机命令&gt;
+</code></pre><h2 id="一些练习">一些练习 <a href="#%e4%b8%80%e4%ba%9b%e7%bb%83%e4%b9%a0" style="border:none;"></a></h2><p>查看docker状态</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 看docker有无安装</span>
+</span></span><span style="display:flex;"><span>docker --version  <span style="color:#75715e"># 如果不带`--`，信息会多一些</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看docker状态</span>
+</span></span><span style="display:flex;"><span>systemctl status docker  <span style="color:#75715e"># linux系统</span>
+</span></span><span style="display:flex;"><span>docker ps  <span style="color:#75715e"># 其实可以直接用这个命令看docker有没有run</span>
+</span></span></code></pre></div><p>删除容器</p>
+<pre tabindex="0"><code># 删除容器，❗️但是必须是不在运行的容器
+docker rm [容器名字/id]  
+# 停止容器
+docker stop [容器名字/id]  
+# 强制停止容器
+docker kill [容器名字/id]  
+</code></pre><h3 id="连redis">连redis <a href="#%e8%bf%9eredis" style="border:none;"></a></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 下载镜像</span>
+</span></span><span style="display:flex;"><span>docker pull redis
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动redis容器</span>
+</span></span><span style="display:flex;"><span>docker run -p 6379:6379 --name my-redis -d redis
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进入redis容器</span>
+</span></span><span style="display:flex;"><span>docker exec -it my-redis redis-cli
+</span></span></code></pre></div><p>然后进入之后跟普通命令操作一样。</p>
+<h3 id="安装--连mongodb">安装 &amp; 连mongoDB <a href="#%e5%ae%89%e8%a3%85--%e8%bf%9emongodb" style="border:none;"></a></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 下载镜像</span>
+</span></span><span style="display:flex;"><span>docker pull mongodb/mongodb-community-server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动容器</span>
+</span></span><span style="display:flex;"><span>docker run -d --name my-mongo -p 27017:27017 -v $HOME/.local/share/mongo-data:/data/db mongo
+</span></span></code></pre></div></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/"></a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/88715dae21671821d2c4cfc9570e50e1/" class="jump-post">操作｜[无root权限] 远程服务器一些安装和连接</a>
+            
+        </span>
+
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E5%89%81%E6%89%8B%E7%9B%98%E7%82%B9%E4%B9%8B%E7%94%B5%E8%84%91%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E5%99%A8/" class="jump-post">剁手盘点之电脑键盘鼠标显示器</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

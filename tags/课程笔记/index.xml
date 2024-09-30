@@ -6,12 +6,12 @@
     <description>Recent content in 课程笔记 on XUN</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Thu, 07 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cenjianxun.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MIT6.824 - 分布式系统</title>
       <link>https://cenjianxun.github.io/posts/mit-6.824/</link>
-      <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 14 Feb 2022 00:00:00 +0000</pubDate>
       <guid>https://cenjianxun.github.io/posts/mit-6.824/</guid>
       <description>&lt;p&gt;MIT的6.824课程为分布式系统，共有四个lab，目前只做了三个。语言为golang。此博客记录实验笔记。根据课程要求，不会放出源代码。&lt;/p&gt;</description>
     </item>

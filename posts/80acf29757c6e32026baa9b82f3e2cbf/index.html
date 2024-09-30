@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>配置适合写markdown程序员体质的rime-鼠须管&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">配置适合写markdown程序员体质的rime-鼠须管</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置文件">配置文件</a></li>
+    <li><a href="#用法">用法</a></li>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#特殊配置">特殊配置</a></li>
+    <li><a href="#全局办公运行方案">全局办公运行方案</a></li>
+    <li><a href="#todo">todo</a></li>
+    <li><a href="#安卓手机安装的坑">安卓手机安装的坑</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>配置适合写markdown程序员体质的rime-鼠须管</h1>
+        <div class="post-time">Jan 11 2024</div>
+    </header>
+
+    
+    <div class="post-content"><p>谨慎引入新欢。但对markdown确实很方便。</p>
+<p>全部配置见我的 <a href="https://github.com/cenjianxun/dotfiles" target="_blank" rel="noopener">dotfiles</a></p>
+<p>本来打定主意只用各终端自带的输入法了，但是写markdown的代码部分，需要反引号，不停切换中英文真是要疯。本来一直在键盘映射上动脑筋，最后发现鼠须管可以自定义映射<code>按键：输出字符</code>，这个方便不止提升一点点。</p>
+<p>所以配置一下。网上教程很多了已经，这里只挑我配置时卡住的点记录一下。</p>
+<h2 id="配置文件">配置文件 <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" style="border:none;"></a></h2><p>初始卡在，==我以为自己写的配置文件都在同一个文件里。但其实不是。== 它分了好几类配置，每一种配置都要写在相应的文件里，写错地方没反应。<br>
+最终自己自定义创建的文件包括这四个：</p>
+<pre tabindex="0"><code>~/Library/Rime/   # 一般rime的mac中路径就是这个
+├── squirrel.custom.yaml  # 第一个修改的文件，配置相当于输入法的框的主题皮肤样式，以及指定应用默认的配置（like iterm2就想默认英文）。
+├── default.custom.yaml   # 第二个配置的文件，这个里面设置快捷键、输入法等等。
+├── luna_pinyin.custom.yaml   # 本来只想配通用设置，不想针对某个输入法，但有几个关键的配置必须放在这里面，其他地方不起作用
+└── symbols.yaml  # 最后发现按键映射可以写这里，还是尽量挪到通用配置文件里。
+</code></pre><p>鼠须管文件的命名规律类似于：<code>文件名.yaml</code> 对应的用户自定义文件叫 <code>文件名.custom.yaml</code>，加了个custom。<br>
+用户自定义文件的优先级更高，会覆盖默认版。默认版一般在 <code>&lt;rootpath&gt;/build/</code>里，custom版就在<code>&lt;rootpath&gt;/</code>下。</p>
+<h2 id="用法">用法 <a href="#%e7%94%a8%e6%b3%95" style="border:none;"></a></h2><p>mac可参考。<br>
+安装好了以后，没有直接出现在输入法那栏。而是【我还重启了一次】，要打开系统设置 → 键盘 → 输入法的编辑 → 点<code>+</code>，在简体中文那里。点添加。</p>
+<p>然后会出现一条横list让你选，这里面这些乱七八糟的都是输入法的名字。我就删的剩一个了，就是明月拼音。<br>
+选择对应的序号就进入下级菜单，这里面黑点的字就是当前正用的，灰字就是可以换，点序号就直接换了。我当前的设置就是：简体、半角、中文。<br>
+<center class="md__image"><img loading='lazy' src="image.png" width="70%" alt="Alt text"  />
+</center></p>
+<p>我的样式是上面这样的是因为我配置了</p>
+<pre tabindex="0"><code># ~/Library/Rime/default.custom.yaml
+
+patch:
+  schema_list:  # 其他输入法都删了，有个雾凇拼音蛮火，等熟悉下rime再试。
+    - schema: luna_pinyin # 朙月拼音
+
+  switcher:
+    hotkeys:  # 叫出这个配置的快捷键。grave就是反引号的键。
+      - F3
+      - Alt+grave
+    caption: 
+      &#34;【设置菜单】&#34;  # 把默认的繁体名字改成简体了
+
+  menu:
+    page_size: 9  # 候选字数 
+</code></pre><p>以及</p>
+<pre tabindex="0"><code># ~/Library/Rime/squirrel.custom.yaml
+
+patch:
+  style:  # 修改程序外观
+    horizontal: true      # 候选词是否横排
+    #font_face: Hei      # 字体
+    font_point: 16         # 候选词大小
+    inline_preedit: false   # 輸入碼內嵌
+    color_scheme: clean_white  # 这个选择列表在 ~/Library/Rime/build/squirrel.yaml 里选
+</code></pre><p>❗️然后改完任何配置需要重新部署，才会生效。遗憾我还没找到设置重新部署的快捷键，所以每次都在它的图标里点。谁知道这个可以告诉我🥀</p>
+<h2 id="语法">语法 <a href="#%e8%af%ad%e6%b3%95" style="border:none;"></a></h2><p>自定义文件里的配置都要写在<code>patch:</code>后，但<code>symbols.yaml</code>好像不用。<br>
+就像我第一个上手改的，把候选列表改成横的</p>
+<pre tabindex="0"><code># ~/Library/Rime/squirrel.custom.yaml
+
+patch:
+  style:  # 修改程序外观
+    horizontal: true      # 候选词是否横排
+</code></pre><p>其次要注意的是，这个分级可以合并，比如上面可以写成 <code>style/horizontal:</code>，但是有比较复杂的触发条件，但是分开换行写，是所有都可以适用，所以我一律分开换行写。</p>
+<p>还有一个是变量和值不用引号都可以，不分什么string，int的，很自由。比如</p>
+<pre tabindex="0"><code>  key_binder:
+    bindings:
+      - { accept: equal, send: Page_Down, when: has_menu }  # Tab 向下翻页
+</code></pre><h2 id="特殊配置">特殊配置 <a href="#%e7%89%b9%e6%ae%8a%e9%85%8d%e7%bd%ae" style="border:none;"></a></h2><p>其实这样就已经可以了。我就留了abc和鼠须管，默认切换就用mac默认的caps。然后鼠须管内部中英文切换用shift，一般就用shift就够了。</p>
+<p>然后到很好用的地方：<br>
+鼠须管默认中文下，仍然可以自由置换全角和半角。没意外都用半角，是因为==英文也有全角==，打出来字母之间空的特别大的那种英文，一般没人用。而在中文下，也会需要输入英文，空格强制上屏。所以一般都用半角。</p>
+<p>* 上屏意思就是，输入拼音，出现一排候选，选择某个词，它就打到屏幕上。</p>
+<p>鼠须管且还可以设置，按下一个键，出现一排候选，选择某个之后，才上屏它。有时候这样比较方便，有时候就需要直接上屏，不要多一个选择的步骤，比如说markdown常用的反引号。这些都可以设置。</p>
+<p>最后我的部分个人设置：</p>
+<pre tabindex="0"><code># ~/Library/Rime/custom_symbols.yaml
+
+punctuator:
+  symbols:
+    &#34;;fh&#34;: [❗️, 💢, 💡, ⌘, ⌥, ⎋, , ♂, ♀]
+    &#34;;jt&#34;: [→, ➜, ☞, ➡︎, ←, ☜, ⬅︎, ↑, ☝︎, ⬆︎, ↓, ☟, ⬇︎,↔︎, ⇄, ⬌, ↕︎, ⇅, ⬍, ↖, ↘]
+    &#34;;dc&#34;: [√,✔,✅, ✕,✖, ❌]
+    &#34;;sx&#34;: [&#34;±&#34;, &#34;÷&#34;, &#34;≠&#34;,&#34;≈&#34;, &#34;∞&#34;, &#34;≤&#34;, &#34;≥&#34;, &#34;≦&#34;, &#34;≧&#34;, &#34;㏑&#34;, &#34;㏒&#34;, &#34;∫&#34;]
+  full_shape:
+    &#34;#&#34;: &#34;#&#34;
+    &#34;`&#34;: &#34;`&#34;
+    &#34;/&#34;: [&#34;、&#34;, &#34;､&#34;, &#34;/&#34;, &#34;／&#34;, &#34;÷&#34;]
+    &#34;@&#34;: [&#34;@&#34;, &#34;￥&#34;, &#34;÷&#34;, &#34;°&#34;, &#34;‰&#34;, &#34;℉&#34;, &#34;©&#34;, &#34;®&#34;]
+  half_shape:
+    &#34;#&#34;: &#34;#&#34;
+    &#34;`&#34;: &#34;`&#34; 
+    &#34;+&#34;: &#34;+&#34;
+    &#34;=&#34;: &#34;=&#34;
+    &#34;/&#34;: &#34;/&#34; 
+    &#34;_&#34;: &#34;——&#34;
+    &#34;~&#34;: &#34;~&#34; #[&#34;~&#34;, &#34;～&#34;]
+    &#39;\&#39;: [&#39;\&#39;, &#34;、&#34;]
+    &#34;.&#34;: &#34;。&#34; # [&#34;。&#34;, &#34;.&#34;]
+    &#34;,&#34;: &#34;，&#34; # [&#34;，&#34;, &#34;,&#34;]
+    &#34;?&#34;: &#34;？&#34;
+    &#34;!&#34;: &#34;！&#34; 
+    &#34;:&#34;: &#34;：&#34; #[&#34;：&#34;, &#34;:&#34;]
+    &#34;;&#34;: [&#34;；&#34;, &#34;;&#34;]
+    &#34;(&#34;: &#34;(&#34; #{pair: [&#34;（&#34;, &#34;）&#34;]}  # [&#34;（&#34;, &#34;(&#34;]
+    &#34;)&#34;: &#34;）&#34;  # [&#34;）&#34;, &#34;)&#34;] 
+</code></pre><p>这里面<code>symbols</code>，就是一些常用词，用快捷输入绑定；<br>
+全角<code>full_shape</code>随便设设，半角<code>half_shape</code>是通常边用变设的。写代码常用的&quot;<code>&quot;（code），&quot;#&quot;（注释），&quot;/&quot;（注释），&quot;~&quot;（shell的$HOME）等等都确定直接上屏。 其他句号什么的看顺手度，比如句号中文的更常用，就设了中文句号，如果要用英文句号就shift一下；问号感叹号还没用多，暂时半角版先，如果要用中文的再快捷键（自己设）切全角。 这中间可能有多次调整。比如中文破折号用了一下，发现各种切换都找不到，就先映射了半角的</code>—<code>映射</code>——<code>，但是后面发现markdown列list要用</code>—<code>，就改了</code>shift+减号<code>即</code>_<code>映射为</code>——`。<br>
+以及{pair}，是按两次出现第二个，而不是按一次同时出现俩，个人感觉不太好用。</p>
+<p>还有两个要特别设置的。</p>
+<p>一是反引号不能直接上屏。用鼠须管就是冲着能自由用反引号来的，这个不能直接上屏对我就没意义了。后来查到反引号是被它用做什么反编译的先置符号了。这个取消设置是在：</p>
+<pre tabindex="0"><code># ~/Library/Rime/luna_pinyin.custom.yaml
+
+patch:
+ 【一些别的】
+
+  recognizer/patterns/reverse_lookup: {}  # 这一行
+</code></pre><p>二是rime唤出特殊符号表情那些，快捷键是<code>/</code>+自定义字符。因此<code>/</code>映射的时候，不能设置为直接上屏，需要有多于一个候选词，否则就轮不到后面自定义字符跟它组合，就直接确定了。但是❗️，<code>/</code>在代码里很常用的，路径、注释什么的经常打，所以我换了不太常用的<code>;</code>，改这个的地方找了好久，最后是在：</p>
+<pre tabindex="0"><code># ~/Library/Rime/luna_pinyin.custom.yaml
+
+patch:
+ 【一些别的】
+
+  recognizer:
+    patterns:
+      reverse_lookup: {}
+      punct: &#34;^;([0-9]0?|[A-Za-z]+)$&#34;  # 这个是正则表达式。^;的意思就是以;开头。
+</code></pre><p>差不多就这么多。恰好关键的这两个设置，都必须设置在特定的输入法中，我当前用的默认的明月，所以就没办法又开了一个<code>luna_pinyin.custom.yaml</code>配置文件。之后试其他输入方案雾凇拼音之类的再配。</p>
+<h2 id="全局办公运行方案">全局办公运行方案 <a href="#%e5%85%a8%e5%b1%80%e5%8a%9e%e5%85%ac%e8%bf%90%e8%a1%8c%e6%96%b9%e6%a1%88" style="border:none;"></a></h2><p>因为我有dotfiles，存了一份上述四个文件在<code>dotfiles/Rime</code>下。安装路径<code>~/Library/Rime</code>下又有一份，这样同步又是问题。每次本地更改之后还要传到dotfiles里，传上git给其他地方用。</p>
+<p>一开始就写了个脚本，每次cp，类似<code>cp *.yaml $RIME_PATH/</code>。傻了几天自问为什么不用软链？？<br>
+然后把脚本改成<code>ln -s $PWD/$rfile $RIME_PATH/$rfile</code>。</p>
+<p>不怕说出低级语法错误，① 自定义path千万不能直接定义成<code>PATH</code>；② 软链的path必须是绝对路径，所以rfile前必须加<code>$PWD</code>。</p>
+<h2 id="todo">todo <a href="#todo" style="border:none;"></a></h2><p>自定义词，什么表情词典，都还没设，其他输入方案也没试，就已经挺丝滑了（除了丝滑这个词）。其他就之后再试吧。</p>
+<p>目前有一个bug，因为把<code>;</code>设成了快捷词组前置符号，所以按<code>;</code>键会出现两个候选项，like：<br>
+<code>1.； 2.;</code><br>
+但是我又设置了;123456789的映射，所以直接选2，选不上<code>;</code>，而是出现<code>;2</code>的候选表。<br>
+目前选<code>；</code>还罢了，可以直接空格。选<code>;</code>只能用箭头。<br>
+只多设了tab移动光标缓解一下。</p>
+<h2 id="安卓手机安装的坑">安卓手机安装的坑 <a href="#%e5%ae%89%e5%8d%93%e6%89%8b%e6%9c%ba%e5%ae%89%e8%a3%85%e7%9a%84%e5%9d%91" style="border:none;"></a></h2><p>手机安装需要安装两个东西。一个是rime本身的安装文件，一个是输入法。它的安装文件竟没有安装任何输入法。所以下两个github链的文件，一个安装文件，一个明月输入法的全部配置文件。<br>
+我的坑是，把输入法的配置文件挑了几个自以为重要的复制进去了，结果发现无法运行。最后发现需要把下载的东西全copy进去才生效。不知道没拷哪个导致错误了……回头再研究这个吧。</p>
+<h2 id="参考">参考 <a href="#%e5%8f%82%e8%80%83" style="border:none;"></a></h2><p>感觉写的比较好的几个参考文章：<br>
+<a href="https://www.hawu.me/others/2666" target="_blank" rel="noopener">https://www.hawu.me/others/2666</a><br>
+<a href="https://sh.alynx.one/posts/My-RIME-2/" target="_blank" rel="noopener">https://sh.alynx.one/posts/My-RIME-2/</a><br>
+<a href="https://www.xiebruce.top/1235.html" target="_blank" rel="noopener">https://www.xiebruce.top/1235.html</a></p></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/%E6%8A%98%E8%85%BE">折腾</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/rime">rime</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E5%89%81%E6%89%8B%E7%9B%98%E7%82%B9%E4%B9%8B%E7%94%B5%E8%84%91%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E5%99%A8/" class="jump-post">剁手盘点之电脑键盘鼠标显示器</a>
+            
+        </span>
+
+        <span class="pag-next">
+            
+            <p class="jump-post">这就是最新的文章了</p>
+            
+        </span>
+
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

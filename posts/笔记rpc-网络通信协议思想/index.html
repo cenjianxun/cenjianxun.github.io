@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>笔记｜RPC: 网络通信协议思想&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">笔记｜RPC: 网络通信协议思想</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#对比本地调用">对比本地调用</a></li>
+        <li><a href="#选择序列化的方式">选择序列化的方式</a></li>
+        <li><a href="#提升网络通信性能">提升网络通信性能</a></li>
+        <li><a href="#确定超时时间">确定超时时间</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级">高级</a>
+      <ul>
+        <li><a href="#注册中心">注册中心</a></li>
+        <li><a href="#负载均衡">负载均衡</a></li>
+        <li><a href="#容错">容错</a></li>
+        <li><a href="#rpc-vs-rest">RPC vs REST</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>笔记｜RPC: 网络通信协议思想</h1>
+        <div class="post-time">Apr 11 2022</div>
+    </header>
+
+    
+    <div class="post-content"><p>RPC（remote procedure call）<br>
+是一种计算机通信协议，允许调用不同进程的程序，而不必了解底层网络技术的协议。</p>
+<h2 id="基础">基础 <a href="#%e5%9f%ba%e7%a1%80" style="border:none;"></a></h2><h3 id="对比本地调用">对比本地调用 <a href="#%e5%af%b9%e6%af%94%e6%9c%ac%e5%9c%b0%e8%b0%83%e7%94%a8" style="border:none;"></a></h3><p>本地调用：</p>
+<pre tabindex="0"><code>def multiply(l, r):
+    y = l * r
+    return y
+
+lvalue = 10
+rvalue = 20
+result = mutiply(lvalue, rvalue)
+
+# 本地执行顺序：
+# ① lvalue 和 rvalue 压栈
+# ② 进入multiply函数，取出 lvalue rvalue，赋给lv
+# ③ 计算，返回结果y
+# ④ y值压栈，从函数返回
+# ⑤ 从栈中取出值，赋给result
+</code></pre><p>rpc调用：</p>
+<pre tabindex="0"><code>result = call(serverAddr, multiply, lvalue, rvalue)
+# 这里边除了函数multiply在server，其余都是client的。
+</code></pre><p>client:<br>
+① 将⬆️的调用映射为call ID（假设用just str作ID）<br>
+② 将call ID，rvalue，lvalue序列化为二进制打包<br>
+③ 将②中得到的数据包发给serveraddr（需网络层传输）<br>
+④ 等server结果<br>
+⑤ if server调用成功，反序列化结果赋给result</p>
+<p>server：<br>
+① 本地维护一个call ID到函数的map<br>
+② 等待请求<br>
+③ 得到请求后反序列化得到call ID<br>
+④ 查找map得到函数指针<br>
+⑤ lvalue，rvalue反序列化后本地调用multiply得到结果<br>
+⑥ 结果序列化后通过网络返回给client的result</p>
+<p><strong>如此看来，比起本地调用就是多了一层，将内容 序列化/反序列化的包装，以及网络层通信。那么这两个就是关键。</strong></p>
+<h3 id="选择序列化的方式">选择序列化的方式 <a href="#%e9%80%89%e6%8b%a9%e5%ba%8f%e5%88%97%e5%8c%96%e7%9a%84%e6%96%b9%e5%bc%8f" style="border:none;"></a></h3><p>好的可以提升封包解包性能。<br>
+要考虑时间、空间开销，以及兼容性。</p>
+<p>常见的方式：<br>
+json，文本，空间开销大<br>
+hessian，二进制，性能✔︎，体积✔︎<br>
+protobuf，google的，体积✔︎✔︎，兼容性✔︎</p>
+<h3 id="提升网络通信性能">提升网络通信性能 <a href="#%e6%8f%90%e5%8d%87%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1%e6%80%a7%e8%83%bd" style="border:none;"></a></h3><blockquote>
+<p>网络编程五个I/O模型：<br>
+同步阻塞BIO，同步非阻塞IO，I/O多路复用NIO，信号驱动，异步AIO</p>
+</blockquote>
+<p>RPC主流用I/O多路复用</p>
+<h3 id="确定超时时间">确定超时时间 <a href="#%e7%a1%ae%e5%ae%9a%e8%b6%85%e6%97%b6%e6%97%b6%e9%97%b4" style="border:none;"></a></h3><p>依据：根据每个微服务TP99的请求耗时 + 业务场景<br>
+区分可重传/不可重传：看有无上下服务依赖</p>
+<h2 id="高级">高级 <a href="#%e9%ab%98%e7%ba%a7" style="border:none;"></a></h2><h3 id="注册中心">注册中心 <a href="#%e6%b3%a8%e5%86%8c%e4%b8%ad%e5%bf%83" style="border:none;"></a></h3><p>通信时client需要知道server地址。<br>
+但把server地址配置在client文件中，会出现一些时延、消息丢失等问题。</p>
+<p>所以出现了注册中心。client和server都和此中心通信。<br>
+→ 新问题：如果server有故障，注册中心难知道<br>
+解决：<br>
+① 注册中心定时主动探测。但成本高<br>
+② server向注册中心发心跳。</p>
+<p>注册中心问题：<br>
+① 单点 → 变集群<br>
+② 主从延迟导致all摘除 → 设置摘除下限<br>
+③ 通知风暴 → 扩容，设置阈值，单点变更则单点通知</p>
+<h3 id="负载均衡">负载均衡 <a href="#%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1" style="border:none;"></a></h3><p>完全由自身框架实现<br>
+策略：随机，hash，轮询</p>
+<h3 id="容错">容错 <a href="#%e5%ae%b9%e9%94%99" style="border:none;"></a></h3><p>重试、限流、降级、熔断、隔离</p>
+<h3 id="rpc-vs-rest">RPC vs REST <a href="#rpc-vs-rest" style="border:none;"></a></h3><p>restf通过http实现。rpc是一种思想。<br>
+prc需要知道对方方法，专注业务逻辑，通常用于server之间通信。</p></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/network">network</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E6%91%98%E6%8A%84%E7%AC%94%E8%AE%B0netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="jump-post">摘抄笔记｜Netflix微服务架构设计</a>
+            
+        </span>
+
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/%E7%AC%94%E8%AE%B0flex%E7%94%A8%E6%B3%95/" class="jump-post">笔记｜Flex用法</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

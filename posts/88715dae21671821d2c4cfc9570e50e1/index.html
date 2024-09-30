@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>操作｜[无root权限] 远程服务器一些安装和连接&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">操作｜[无root权限] 远程服务器一些安装和连接</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#连接远程服务器">连接远程服务器</a>
+      <ul>
+        <li><a href="#普通连接远程服务器">普通连接远程服务器</a></li>
+        <li><a href="#iterm2连远程服务器">iterm2连远程服务器</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建隔离环境">创建隔离环境</a>
+      <ul>
+        <li><a href="#无root安装mysql">无root安装mysql</a></li>
+      </ul>
+    </li>
+    <li><a href="#坑">坑</a></li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>操作｜[无root权限] 远程服务器一些安装和连接</h1>
+        <div class="post-time">Mar 13 2023</div>
+    </header>
+
+    
+    <div class="post-content"><h2 id="连接远程服务器">连接远程服务器 <a href="#%e8%bf%9e%e6%8e%a5%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8" style="border:none;"></a></h2><p>一些查看命令</p>
+<p>看内存<br>
+<code>free -h</code></p>
+<p>看已挂载磁盘空间<br>
+<code>df -h</code></p>
+<p>看当前目录的磁盘使用情况<br>
+<code>du -sh .</code></p>
+<p>复制到远程  # 带-r是文件夹， 不带是文件<br>
+<code>scp -r [本地path/文件] [用户名]@[ip地址]:[远程path/文件]</code></p>
+<p>rsync方法  # 带-r是文件夹， 不带是文件<br>
+<code>rsync -r [本地path/文件] [用户名]@[ip地址]:[远程path/文件]</code></p>
+<p>关闭ssh连接<br>
+<code>Ctrl+d</code></p>
+<p>设置这个避免远程连接不用，等一会就断连了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># /etc/ssh/ssh_config 或 ~/.ssh/config</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">24</span> Host *
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">25</span> ServerAliveInterval <span style="color:#ae81ff">60</span>
+</span></span></code></pre></div><h3 id="普通连接远程服务器">普通连接远程服务器 <a href="#%e6%99%ae%e9%80%9a%e8%bf%9e%e6%8e%a5%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8" style="border:none;"></a></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 连接</span>
+</span></span><span style="display:flex;"><span>ssh <span style="color:#f92672">[</span>用户名<span style="color:#f92672">]</span>@<span style="color:#f92672">[</span>远程ip<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 一些配置可设可不设</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ~/.ssh/config</span>
+</span></span><span style="display:flex;"><span>Host remote-server
+</span></span><span style="display:flex;"><span>	HostName 10.184.17.27
+</span></span><span style="display:flex;"><span>	User liukun
+</span></span><span style="display:flex;"><span>	IdentityFile ~/.ssh/id_rsa_10.184.17.27
+</span></span><span style="display:flex;"><span>	PubkeyAuthentication yes
+</span></span><span style="display:flex;"><span>	PasswordAuthentication no
+</span></span></code></pre></div><h3 id="iterm2连远程服务器">iterm2连远程服务器 <a href="#iterm2%e8%bf%9e%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8" style="border:none;"></a></h3><p>我是想用key连接，不想用用户名密码，所以</p>
+<ol>
+<li>
+<p>创建key, 可能需要改下名字<br>
+<code>ssh-keygen</code></p>
+</li>
+<li>
+<p>把公钥（带pub的）传到远程server<br>
+<code>ssh-copy-id -i [path/公钥的名字.pub] [用户名]@[远程ip]</code></p>
+</li>
+<li>
+<p>写一个登录脚本，一般就在<code>.ssh</code>下</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ~/.ssh/expect的脚本.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>spawn ssh -i <span style="color:#f92672">[</span>path/私钥的名字<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>用户名<span style="color:#f92672">]</span>@<span style="color:#f92672">[</span>远程ip<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>interact
+</span></span></code></pre></div><ol start="4">
+<li>
+<p>在iterm2的setting的profiles下创建一个新的profile，主要是改名字，以及设置<code>command -&gt; </code> 选择command，然后路径设置：<br>
+<code>expect ~/.ssh/expect的脚本.sh</code></p>
+</li>
+<li>
+<p>在iterm2的profiles里面找到4设置的名字，点击连接。</p>
+</li>
+</ol>
+<h2 id="创建隔离环境">创建隔离环境 <a href="#%e5%88%9b%e5%bb%ba%e9%9a%94%e7%a6%bb%e7%8e%af%e5%a2%83" style="border:none;"></a></h2><p>因为没有root权限，所以安装要安装在<code>~</code>路径下，和其他用户分隔开。</p>
+<p>其实一些软件自带了隔离环境的tool，比如python可以使用<code>venv</code>，node.js用<code>nvm</code>，前端用<code>npm</code>。</p>
+<p>统一的方法：将软件所在的路径加入到 PATH 环境变量<br>
+执行方式：<br>
+在 .bashrc 配置文件中把 <code>~/.local/bin/</code> 加入到 PATH 环境变量中，且优先于原本 PATH 中的系统路径：</p>
+<pre tabindex="0"><code>export PATH=&#34;$HOME/.local/bin/:$PATH&#34;
+</code></pre><p>ps：查看本机shell<br>
+<code>echo $SHELL</code> 或者 <code>echo $0</code></p>
+<h3 id="无root安装mysql">无root安装mysql <a href="#%e6%97%a0root%e5%ae%89%e8%a3%85mysql" style="border:none;"></a></h3><p>就要自己在<a href="https://downloads.mysql.com/archives/community/" target="_blank" rel="noopener">官网</a>下载。<br>
+注意格式选<code>Linux - Generic</code>。下载链接在<code>download</code>按钮右键复制<br>
+❗️ 这里我刚开始下载了mysql-8版本，后面提示说太高，最后是降到mysql-5版本成功的。<br>
+<code>wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.44-linux-glibc2.28-x86_64.tar.xz</code></p>
+<p>解压。刚开始用<code>tar -zxvf</code>光报错，结果我是<code>tar.xz</code>不是<code>tar.gz</code>格式<br>
+<code>tar -xvf mysql-5.7.44-linux-glibc2.28-x86_64.tar.xz</code></p>
+<p>移到<code>~/.local/bin/</code>并改名。没有<code>bin</code>就mkdir<br>
+<code>mv mysql-5.7.44-linux-glibc2.28-x86_64 ~/.local/bin/mysql-5.7.44</code></p>
+<p>然后进<code>mysql-5.7.44</code>创建<code>my.cnf</code>并编辑</p>
+<pre tabindex="0"><code>[client]
+port=3306
+socket=$HOME/.local/bin/mysql-5.7.44/mysql.sock
+
+[mysqld]
+port=3306
+basedir=$HOME/.local/bin/mysql-5.7.44
+datadir=$HOME/.local/bin/mysql-5.7.44/data
+pid-file=$HOME/.local/bin/mysql-5.7.44/mysql.pid
+socket=$HOME/.local/bin/mysql-5.7.44/mysql.sock
+log_error=$HOME/.local/bin/mysql-5.7.44/error.log
+server-id=100
+# 大小写不敏感
+# lower_case_table_names=1
+</code></pre><p>运行☟，初始化mysql<br>
+<code>bin/mysqld  --defaults-file=$HOME/.local/bin/mysql-5.7.44/my.cnf  --initialize  --user=你的username</code><br>
+然后就会报错<br>
+<code>bin/mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</code><br>
+然后在<a href="https://pagure.io/libaio/releases" target="_blank" rel="noopener">这里</a>下载<br>
+<code>wget https://pagure.io/libaio/archive/libaio-0.3.113/libaio-libaio-0.3.113.tar.gz</code><br>
+解压<br>
+<code>tar -zxvf libaio-libaio-0.3.113.tar.gz</code><br>
+这里安装，又要绕开root</p>
+<pre tabindex="0"><code>make
+# 这里要指定安装路径，最后这个libaio是自己定义的文件夹
+make install prefix=$HOME/.local/bin/libaio
+</code></pre><p>然后在lib64里添加软链，如果没有lib64就mkdir。我也不知道放在lib里还是lib64里，就都放了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd $HOME/.local/bin/mysql-xxx/lib<span style="color:#f92672">(</span>or lib64<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>ln -snf $HOME/.local/bin/libaio/lib/libaio.so.1.0.2 libaio.so.1
+</span></span></code></pre></div><p>我这里是libaio.so.1.0.2，需要看自己的libaio包里是什么。<br>
+这里的逻辑是，将libaio安装到一个地方比如$HOME/.local/bin里，然后在mysql的lib里，将libaio.so.1软链到安装后的libaio文件夹里的libaio.so.1.0.2上。之前看的教程，这里步骤说的不是很清楚。</p>
+<p>然后增添环境变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ~/.bashrc</span>
+</span></span><span style="display:flex;"><span>export LD_LIBRARY_PATH<span style="color:#f92672">=</span>$HOME/.local/bin/libaio/lib
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:$HOME.local/bin/mysql-5.7.44/bin
+</span></span></code></pre></div><p>这里的意思是，将mysql的bin加入环境变量path，并且将这个libaio的执行路径（libaio.so.1.0.2的文件夹）加入这个LD_LIBRARY_PATH。<br>
+然后source 它。</p>
+<p>然后在mysql里再运行。<br>
+💡 注意这里的<code>--user=mysql</code>我开始以为是自己的用户名，其实是</p>
+<blockquote>
+<blockquote>
+<p>mysql 用户是专门用于运行 MySQL 服务器的用户。<br>
+在安装 MySQL 时，通常会自动创建一个名为 mysql 的用户，并且 MySQL 服务器会以该用户的身份运行。</p>
+</blockquote>
+</blockquote>
+<p><code>bin/mysqld  --defaults-file=$HOME/.local/bin/mysql-5.7.44/my.cnf  --initialize  --user=mysql</code><br>
+如果啥都没返回且没报错就成功了。</p>
+<p>启动mysql，<code>&amp;</code>意思是后台运行<br>
+<code>bin/mysqld_safe --defaults-file=$HOME/.local/bin/mysql-5.7.44/my.cnf --user=mysql &amp;</code></p>
+<p>结果报了一个错，找不到<code>errmsg.sys</code>的路径，那么给<code>my.cnf</code>里添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#f92672">[</span>mysqld<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>lc-messages-dir<span style="color:#f92672">=</span>/home/liukun/.local/bin/mysql-5.7.44/share/english/
+</span></span></code></pre></div><p>这个写到文件夹就好了，不用写文件。</p>
+<p>然后再启动。如果进程没退出，且另开一个终端，在<code>mysql/</code>文件夹里运行<code>netstat -tln | grep 3306</code>能看到监听内容就成功了。</p>
+<p>之后登录。gpt说root初始没有密码，其实不对，还是在error.log里有初始密码，用：<br>
+<code>cat error.log | grep root@localhost</code><br>
+查看，登录。<br>
+<code>mysql -u root -p -S /home/project/tools/mysql/mysql.sock</code><br>
+注意咱这种方法，都要手动指定sock目录<code>-S [path]</code></p>
+<p>登录之后修改密码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET PASSWORD FOR <span style="color:#e6db74">&#39;root&#39;</span>@<span style="color:#e6db74">&#39;localhost&#39;</span> <span style="color:#f92672">=</span> PASSWORD<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;123456&#39;</span><span style="color:#f92672">)</span>;	--设置登录密码为123456
+</span></span><span style="display:flex;"><span>flush privileges;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可以顺便创建一个新用户，并给权限</span>
+</span></span><span style="display:flex;"><span>CREATE USER <span style="color:#e6db74">&#39;username&#39;</span>@<span style="color:#e6db74">&#39;%&#39;</span> IDENTIFIED BY <span style="color:#e6db74">&#39;password&#39;</span>;
+</span></span><span style="display:flex;"><span>GRANT ALL PRIVILEGES ON *.* TO <span style="color:#e6db74">&#39;username&#39;</span>@<span style="color:#e6db74">&#39;%&#39;</span>;
+</span></span></code></pre></div><p>还需要开启远程访问：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 注意这里仍然是登录mysql状态</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; use mysql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 这里查看用户认证信息，可以看到HOST列全是localhost</span>
+</span></span><span style="display:flex;"><span>mysql&gt; <span style="color:#66d9ef">select</span> User,authentication_string,Host from user;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置允许其他主机访问，by后面那里是密码</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># % 表示所有主机，也可以用具体ip表示</span>
+</span></span><span style="display:flex;"><span>mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span style="color:#e6db74">&#39;root&#39;</span>@<span style="color:#e6db74">&#39;%&#39;</span> IDENTIFIED BY <span style="color:#e6db74">&#39;123456&#39;</span>;	 
+</span></span><span style="display:flex;"><span>flush privileges;
+</span></span></code></pre></div><p>至此好了。可以再select查一次就会发现多了一行host列为%的</p>
+<h2 id="坑">坑 <a href="#%e5%9d%91" style="border:none;"></a></h2><p>round了一圈还是要sudo权限比较好TT</p></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/"></a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/05a858aa98adf20ea6a7da7f842372cb/" class="jump-post">react 项目配置及上手记录</a>
+            
+        </span>
+
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/3ad7e26b7c77d343e5b1294df999877e/" class="jump-post">笔记｜Docker 简介和命令</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

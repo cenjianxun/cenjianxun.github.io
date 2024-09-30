@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>操作文档｜Python&nbsp;-&nbsp;XUN</title>
+    <meta charset="utf-8"><title>操作手册｜Python&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -23,7 +23,7 @@
   <div class="body-container">
     <aside>
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <section class="sidebar">
         <div id="sidebar-info" class="sidebar-info">
@@ -76,7 +76,7 @@
     
     <header>
         <span class="toc-bar"></span>
-        <h4 class="toc-header">操作文档｜Python</h4>
+        <h4 class="toc-header">操作手册｜Python</h4>
         <span class="toc-bar"></span>
     </header>
     
@@ -104,13 +104,12 @@
                 </svg>
             </a>
         </div>
-
     </section>
 </aside>
     <div class="content-container">
       <nav class="nav-container">
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
@@ -127,19 +126,20 @@
             <a href="/about/" target="_self">ABOUT</a>
         </li>
     </ul>
- 
+
 
 </nav>
       <main class="content">
         <div class="page"><article class="post-block">
     <header class="post-header">
-        <h1>操作文档｜Python</h1>
+        <h1>操作手册｜Python</h1>
         <div class="post-time">Dec 2 2020</div>
     </header>
 
     
     <div class="post-content"><p>语法细节，数据结构，使用时容易出错的和忽略的地方<br>
 之python篇</p>
+<p>了解 熟悉 ==掌握== 精通</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> len(heap) <span style="color:#f92672">&lt;</span> k:
 </span></span><span style="display:flex;"><span>    heapq<span style="color:#f92672">.</span>heappush(heap, x)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
@@ -196,6 +196,7 @@ LIST：
 .pop[k]     O(k)
 .insert()   O(n)
 .extend()   O(k)
+.index()    O(n)   # 返回alsit里【第一个】astr的序列号
 [x] in      O(n)
 min()/max() O(n)
 len()       O(1)
@@ -352,7 +353,7 @@ asyncio.Queue 适用协程场景下的通信，返回协程对象
 不支持join()和task_done操作
 
 
-#10. 树
+# 10. 树
 完全二叉树：中间没有空的，按顺序排列
 
 平衡二叉树：左右子树深不超过1
@@ -367,8 +368,31 @@ asyncio.Queue 适用协程场景下的通信，返回协程对象
 ③ 子节点各不相同
 ④ 是现实，会在节点中是一个flag，标记该节点处是否构成一个单词
 
+# 11. 读写
+❗️ 读时最好用逐行方式，否则容易撑爆内存。
+# 逐行读
+with open(&#34;your_file.txt&#34;, &#34;r&#34;) as file:
+    for line in file:
+        print(line, end=&#34;&#34;)
 
-# 11. 位运算
+# 一次性读
+with open(&#34;your_file.txt&#34;, &#34;r&#34;) as file:
+    content = file.read()
+print(content)
+
+# 一次性写
+file = open(&#34;your_file.txt&#34;, &#34;w&#34;)
+file.write(&#34;Hello, World!&#34;)
+file.close()
+
+# 逐行写
+lines = [&#34;Hello, World!\n&#34;, &#34;Welcome to Python programming.\n&#34;]
+with open(&#34;your_file.txt&#34;, &#34;w&#34;) as file:
+	# file.writelines(lines)  # 此行为一次性写
+    for line in lines:
+        file.write(line)
+
+# 12. 位运算
 左移：&lt;&lt; ｜ 相当于 ×2
     高位舍掉，低位补0
 右移：&gt;&gt; ｜ 相当于 ÷2
@@ -376,7 +400,7 @@ asyncio.Queue 适用协程场景下的通信，返回协程对象
 &gt;&gt;&gt;：无视符号的右移。
 
 
-# 12. sort 和 operator
+# 13. sort 和 operator
 **py3的sort取消了cmp，可以用key**
 
 itemgetter
@@ -405,6 +429,12 @@ func_compare(a, b) #如果a在b前面返回-1，后面返回1，相等返回0
 a的码：95；A的码：65
 
 str转int 可使用：ord(&#39;c&#39;) - ord(&#39;0&#39;) # &#39;c&#39;是当前想改的字母
+
+# 14. 3.10字符串新特性
+name = &#34;Alice&#34;
+age = 25
+s = f&#34;{name} is {age} years old.&#34;
+# 格式：f&#34;{} xxx&#34; 
 </code></pre></div>
 
     <div class="post-meta meta">
@@ -428,7 +458,7 @@ str转int 可使用：ord(&#39;c&#39;) - ord(&#39;0&#39;) # &#39;c&#39;是当前
         
         
         <span class="pag-prev">
-        
+            
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
@@ -438,14 +468,14 @@ str转int 可使用：ord(&#39;c&#39;) - ord(&#39;0&#39;) # &#39;c&#39;是当前
                 <path d="M7 12h14" />
             </svg>
             </svg>
-            <a href="https://cenjianxun.github.io/posts/%E5%9F%BA%E7%A1%80js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/" class="jump-post">基础｜js基础之HTML部分</a>
-        
+            <a href="https://cenjianxun.github.io/posts/%E6%80%BB%E7%BB%93js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/" class="jump-post">总结｜js基础之HTML部分</a>
+            
         </span>
-  
+
         <span class="pag-next">
             
             
-            <a href="https://cenjianxun.github.io/posts/%E8%AE%BE%E8%AE%A1%E8%A7%86%E9%A2%91%E6%B5%81%E6%9E%B6%E6%9E%84/" class="jump-post">设计视频流架构</a>
+            <a href="https://cenjianxun.github.io/posts/%E6%91%98%E6%8A%84%E7%AC%94%E8%AE%B0netflix%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="jump-post">摘抄笔记｜Netflix微服务架构设计</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-arrow-right-to-line">
@@ -455,7 +485,7 @@ str转int 可使用：ord(&#39;c&#39;) - ord(&#39;0&#39;) # &#39;c&#39;是当前
             </svg>
             
         </span>
-        
+
     </div>
 
     
@@ -466,7 +496,7 @@ str转int 可使用：ord(&#39;c&#39;) - ord(&#39;0&#39;) # &#39;c&#39;是当前
     </div>
       </main>
       <footer class="footer">
-    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
+    <p> © 2018 - 2024 &nbsp; XUN
     </p>
 </footer>
 

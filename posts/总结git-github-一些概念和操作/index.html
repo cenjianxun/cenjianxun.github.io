@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+    <meta charset="utf-8"><title>总结｜git &amp; github 一些概念和操作&nbsp;-&nbsp;XUN</title>
+
+    <meta name="theme-color" content="#e0e0e0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-navbutton-color" content="#e0e0e0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e0e0e0">
+    
+    
+    <link rel="icon" type="image/png" href="/HQL.ico">
+    
+    
+    
+     
+    
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
+    
+    
+    <script type="text/javascript" src="/js/main.js" defer></script>
+</head><body class="mytheme">
+  <div class="body-container">
+    <aside>
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <section class="sidebar">
+        <div id="sidebar-info" class="sidebar-info">
+            <div class="sidebar-about">
+                <p class="lead">
+                    想写一个播放器想写一个传输工具想写一个通讯工具想在高速公路上自由coding一边听歌如果一个古代人技能点是写代码怎么办
+                </p>
+            </div>
+            <div class="count">文章</div>
+            <div class="social">
+                <a href="https://github.com/cenjianxun" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/> 
+                        </svg>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-twitter">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+                <a href=""  target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-rss">
+                        <path d="M4 11a9 9 0 0 1 9 9"></path>
+                        <path d="M4 4a16 16 0 0 1 16 16"></path>
+                        <circle cx="5" cy="19" r="1"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">总结｜git &amp; github 一些概念和操作</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本流程操作">基本流程操作</a>
+      <ul>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#一周期流程">一周期流程</a></li>
+        <li><a href="#产生冲突了怎么办">产生冲突了怎么办</a>
+          <ul>
+            <li><a href="#pull的时候冲突了">pull的时候冲突了</a></li>
+            <li><a href="#pull时错误需指定合并方式">pull时错误：需指定合并方式</a></li>
+          </ul>
+        </li>
+        <li><a href="#状态检查">状态检查</a></li>
+      </ul>
+    </li>
+    <li><a href="#git-配置文件">git 配置文件</a>
+      <ul>
+        <li><a href="#多账户设置">多账户设置</a>
+          <ul>
+            <li><a href="#全局设置">全局设置</a></li>
+            <li><a href="#每次单独链接sshkey">每次单独链接sshkey</a></li>
+            <li><a href="#远程配置">远程配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#ssh多账户git多账户sshhttp及切换流程">ssh多账户、git多账户，ssh/http及切换流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#github协作模式">github协作模式</a>
+      <ul>
+        <li><a href="#clone别人项目">clone别人项目</a>
+          <ul>
+            <li><a href="#clone-别人项目方式">clone 别人项目方式</a></li>
+            <li><a href="#协作者clone-私有库方案">协作者clone 私有库方案</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#简单概念">简单概念</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#分区">分区</a></li>
+            <li><a href="#其它注意的点">其它注意的点</a></li>
+          </ul>
+        </li>
+        <li><a href="#基础命令">基础命令</a>
+          <ul>
+            <li><a href="#分支">分支</a></li>
+            <li><a href="#撤销提交">撤销提交</a></li>
+            <li><a href="#标签">标签</a></li>
+            <li><a href="#远程">远程</a></li>
+            <li><a href="#系统配置-git-config">系统配置 git config</a></li>
+          </ul>
+        </li>
+        <li><a href="#版本管理">版本管理</a></li>
+        <li><a href="#bug记录">bug记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
+
+    </section>
+    <section class="func">
+        <div id="func-top" class="to-top">
+            <a href="#top" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-big-up-dash">
+                    <path d="M9 19h6" />
+                    <path d="M9 15v-3H5l7-7 7 7h-4v3H9z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+</aside>
+    <div class="content-container">
+      <nav class="nav-container">
+    <div class="nav-title">
+        <a href="/" target="_blank">XUN</a>
+    </div>
+    <button type="button" class="drop-menu-button">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <ul class="nav-menu-items"><li class="menu-item">
+            <a href="/" target="_self">HOME</a>
+        </li><li class="menu-item">
+            <a href="/archive/" target="_self">ARCHIVE</a>
+        </li><li class="menu-item">
+            <a href="/notes/" target="_self">NOTES</a>
+        </li><li class="menu-item">
+            <a href="/about/" target="_self">ABOUT</a>
+        </li>
+    </ul>
+
+
+</nav>
+      <main class="content">
+        <div class="page"><article class="post-block">
+    <header class="post-header">
+        <h1>总结｜git &amp; github 一些概念和操作</h1>
+        <div class="post-time">Jul 30 2019</div>
+    </header>
+
+    
+    <div class="post-content"><p>==了解== 熟悉 掌握 精通</p>
+<h2 id="基本流程操作">基本流程操作 <a href="#%e5%9f%ba%e6%9c%ac%e6%b5%81%e7%a8%8b%e6%93%8d%e4%bd%9c" style="border:none;"></a></h2><h3 id="初始化">初始化 <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96" style="border:none;"></a></h3><ul>
+<li><code>git clone &lt;http path&gt;</code> 直接凭空拉远程项目</li>
+<li><code>git init</code> 在已存在的文件夹使用，生成一个仓库</li>
+<li><code>git remote add origin &lt;SSH path&gt;</code> 连接到此path的远程仓库，本地须是仓库</li>
+<li>忽略. 新建的文件名是 <code>.gitignore</code>
+<ul>
+<li>符合正则，通配符那些。忽略文件夹就直接： <code>folder/</code></li>
+<li>可以建多个<code>.gitignore</code>，它负责的范围就是它所在路径为根遍历的树。</li>
+</ul>
+</li>
+<li>本地全局设定从master改成main，和github对应
+<ul>
+<li>两种方式改动：
+<ul>
+<li>在<code>.gitconfig</code>里添加
+<pre tabindex="0"><code>[init]
+    defaultBranch = main
+</code></pre></li>
+<li>用命令<code>git config --global init.defaultBranch main</code></li>
+</ul>
+</li>
+<li>但是已经生成的仓库还得手动改：
+<ol>
+<li>查看本地分支 <code>git branch</code></li>
+<li>如果不在master 则切到master <code>git checkout master</code></li>
+<li>改 <code>git branch -M main</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="一周期流程">一周期流程 <a href="#%e4%b8%80%e5%91%a8%e6%9c%9f%e6%b5%81%e7%a8%8b" style="border:none;"></a></h3><pre tabindex="0"><code>git clone 或者 git pull
+
+## 上传
+git add .
+git commit -m &#39;注释&#39;
+git push origin main
+</code></pre><h3 id="产生冲突了怎么办">产生冲突了怎么办 <a href="#%e4%ba%a7%e7%94%9f%e5%86%b2%e7%aa%81%e4%ba%86%e6%80%8e%e4%b9%88%e5%8a%9e" style="border:none;"></a></h3><h4 id="pull的时候冲突了">pull的时候冲突了 <a href="#pull%e7%9a%84%e6%97%b6%e5%80%99%e5%86%b2%e7%aa%81%e4%ba%86" style="border:none;"></a></h4><ul>
+<li>不想要本地文件了</li>
+</ul>
+<pre tabindex="0"><code>    git clean -f  # 删除本地同名文件
+    git pull  # 拉取
+</code></pre><ul>
+<li>强制覆盖本地文件</li>
+</ul>
+<pre tabindex="0"><code>    git fetch --all
+    git reset --hard origin/main
+</code></pre><ul>
+<li>两地的更改都想保留</li>
+</ul>
+<pre tabindex="0"><code>    git add *  # 将所有文件添加到git的跟踪列表中
+    git stash   # 保存本地更改
+    git pull  # 拉取
+    git stash pop  # 合并
+</code></pre><p>如果存在冲突，运行完pop之后文件就会标记冲突的地方，然后手动更改。然后再<br>
+从<code>git add &lt;刚刚的文件&gt;</code>开始按流程push。</p>
+<h4 id="pull时错误需指定合并方式">pull时错误：需指定合并方式 <a href="#pull%e6%97%b6%e9%94%99%e8%af%af%e9%9c%80%e6%8c%87%e5%ae%9a%e5%90%88%e5%b9%b6%e6%96%b9%e5%bc%8f" style="border:none;"></a></h4><p>git push了报错有远程分歧，然后又git pull提示报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>fatal: Need to specify how to reconcile divergent branches.
+</span></span></code></pre></div><p>说明此时有冲突。<br>
+先<code>git fetch</code>，下载下来，先不合并<br>
+然后可用<code>git status</code>查看哪些文档修改了，哪些文档本地远程同时修改了产生冲突了。<br>
+此时该冲突文档一定有<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>这种东西，然后手动修改。<br>
+修改好了之后就<code>git add .</code>那一套push。</p>
+<h3 id="状态检查">状态检查 <a href="#%e7%8a%b6%e6%80%81%e6%a3%80%e6%9f%a5" style="border:none;"></a></h3><p>查看本地和远程区别</p>
+<pre tabindex="0"><code>git fetch
+git diff origin/branchname
+</code></pre><p>查看本地和远程的差异提交</p>
+<pre tabindex="0"><code>git fetch
+git log origin/branch_name..branch_name
+</code></pre><p>查本地和远程分支的同步状态</p>
+<pre tabindex="0"><code>git status
+</code></pre><p>显示是否需要拉取（pull）远程更新，或推送（push）本地更改。</p>
+<p>查远程仓库的详细信息</p>
+<pre tabindex="0"><code>git remote show origin
+</code></pre><p>显示哪些本地分支落后于远程分支，哪些需要推送。</p>
+<h2 id="git-配置文件">git 配置文件 <a href="#git-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" style="border:none;"></a></h2><p>git 有三个配置文件</p>
+<ul>
+<li>system 系统<br>
+系统所有用户都会生效，一般在安装路径下<br>
+查看此文件路径：<code>git config -e --system</code><br>
+我的在：<code>/opt/homebrew/etc/gitconfig</code></li>
+<li>global 全局<br>
+当前用户生效<br>
+路径：<code>$HOME/.gitconfig</code></li>
+<li>local 本地<br>
+仅当前项目生效<br>
+路径：<code>(当前项目)/.git/config</code></li>
+</ul>
+<p>优先级：local &gt; global &gt; system</p>
+<p>设置用户名密码的时候使用的命令<code>git config --global &lt;用户名&gt;</code>，global意思就是改在了global config里</p>
+<h3 id="多账户设置">多账户设置 <a href="#%e5%a4%9a%e8%b4%a6%e6%88%b7%e8%ae%be%e7%bd%ae" style="border:none;"></a></h3><p>添加额外的rsa公私钥<br>
+<code>ssh -keygen -t rsa -C &quot;email@work.com&quot; -f &quot;id_rsa_work_user&quot;</code></p>
+<h4 id="全局设置">全局设置 <a href="#%e5%85%a8%e5%b1%80%e8%ae%be%e7%bd%ae" style="border:none;"></a></h4><p>全局设置就是不用每次配置切换</p>
+<p>在ssh config <code>~/.ssh/config</code>中添加多个账户</p>
+<pre tabindex="0"><code># Account 1
+Host &lt;nameA&gt;  # 本机域名 自己设 比如account1
+	HostName github.com  # 固定，真正的域名或ip，网站地址
+	User git  # 固定
+	IdentityFile ~/.ssh/id_rsa_account1
+
+# Account 2
+Host &lt;nameB&gt; # 本机域名 自己设 比如account2
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_account2
+</code></pre><p>==！在使用的时候比如clone，所有<code>git@github.com</code>的地方都换成 <code>git@[HOST]</code>==，<br>
+例如：<br>
+<code>git clone git@ccount1:username/repo.git</code><br>
+一个账户的时候都是<code>git@github.com</code>，因为它默认的host是<code>github.com</code></p>
+<h4 id="每次单独链接sshkey">每次单独链接sshkey <a href="#%e6%af%8f%e6%ac%a1%e5%8d%95%e7%8b%ac%e9%93%be%e6%8e%a5sshkey" style="border:none;"></a></h4><p>可以不配置全局配置，每次切换操作：</p>
+<pre tabindex="0"><code>ssh -add -D  # remote 全部配置
+ssh -add ~/.ssh/id_rsa_yours  # 添加相应的key
+</code></pre><p>如果要换已存在仓库的账户：</p>
+<pre tabindex="0"><code>git remote rm origin  # 如果之前已经和远程建立过链接，需要先清除当前连接
+git remote add origin git@[HOST]:[github上的名字/仓库名字.git]  # 重新建立连接
+</code></pre><p>查看有没有连接好：<br>
+<code>ssh -T git@[Host]</code><br>
+如果连接好了会返回：<br>
+<code>Hi xxx！....</code></p>
+<h4 id="远程配置">远程配置 <a href="#%e8%bf%9c%e7%a8%8b%e9%85%8d%e7%bd%ae" style="border:none;"></a></h4><p>查看本地对应的远程仓库：<br>
+<code>git remote -v</code></p>
+<p>如果不匹配，就重新设置<br>
+<code>git remote set-url origin git@github.com-worker_user:worker_user/repo_name.git</code></p>
+<p>新建仓库本地配置远程仓库<br>
+<code>git remote add origin git@github.com-work_user:work_user/repo_name.git</code></p>
+<h3 id="ssh多账户git多账户sshhttp及切换流程">ssh多账户、git多账户，ssh/http及切换流程 <a href="#ssh%e5%a4%9a%e8%b4%a6%e6%88%b7git%e5%a4%9a%e8%b4%a6%e6%88%b7sshhttp%e5%8f%8a%e5%88%87%e6%8d%a2%e6%b5%81%e7%a8%8b" style="border:none;"></a></h3><p>ssh多账户，是指可能有工作、个人等多个github远程账户，远程ssh连接的时候用，和提交作者无关，只用初始化的时候连接对应的HOST就可以了！<br>
+HOST在<code>/.ssh/config</code>里<code>HOST</code>设置。后续切换不用命令，只用进入对应的文件夹。<br>
+假设<code>HOST</code>的名字是<code>myhost</code>，github上本账户的名字是<code>mygithub</code>（那么此项目地址应该是<code>mygithub/project.git</code>）, 注意clone的时候是<code>git clone git@myhost:mygithub/project.git</code>就行了。</p>
+<p>git多用户，是用来记录同一个/不同项目中提交作者的信息，和ssh连接无关。有系统、全局、本地三个设置，指的是<code>/gitconfig</code>或<code>.git/config</code>里的<code>[user]</code>，设置name和email。可以和ssh的账户对应但根上无关。查看用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 设置</span>
+</span></span><span style="display:flex;"><span>git config <span style="color:#f92672">(</span>--global<span style="color:#f92672">)</span> user.name 
+</span></span><span style="display:flex;"><span>git config <span style="color:#f92672">(</span>--global<span style="color:#f92672">)</span> user.email
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看</span>
+</span></span><span style="display:flex;"><span>git config --global --list  <span style="color:#75715e"># 全局</span>
+</span></span><span style="display:flex;"><span>git config --list  <span style="color:#75715e"># 项目</span>
+</span></span></code></pre></div><p>http协议下，每次push都要输用户名密码like<br>
+<code>Username for 'https://github.com':</code> 让你输，但是！<br>
+这个不是输用户名的，而是在这个地方<br>
+<center class="md__image"><img loading='lazy' src="image.png" width="70%" alt="alt text"  />
+</center><br>
+输入这个token。没有就新建一个。<br>
+密码直接空。</p>
+<p>不是很方便，所以需要 —— http切换为ssh协议：</p>
+<pre tabindex="0"><code># 查看当前远程 URL
+git remote -v
+
+# 更改远程 URL 为 SSH
+git remote set-url origin git@github.com:username/repo.git
+
+# 验证更改
+git remote -v
+
+# 测试 SSH 连接
+ssh -T git@github.com
+</code></pre><h2 id="github协作模式">github协作模式 <a href="#github%e5%8d%8f%e4%bd%9c%e6%a8%a1%e5%bc%8f" style="border:none;"></a></h2><p>添加collaborator 比较直观就不记录了。<br>
+这里记录一个协作权限操作的问题。</p>
+<h3 id="clone别人项目">clone别人项目 <a href="#clone%e5%88%ab%e4%ba%ba%e9%a1%b9%e7%9b%ae" style="border:none;"></a></h3><p>前置知识是clone，https url和ssh url的区别：</p>
+<ul>
+<li>HTTPS：不管是谁，拿到url随便clone，但是在push的时候需要验证用户名和密码；</li>
+<li>SSH：clone的项目你必须是拥有者或者管理员，而且需要在clone前添加SSH Key。</li>
+</ul>
+<h4 id="clone-别人项目方式">clone 别人项目方式 <a href="#clone-%e5%88%ab%e4%ba%ba%e9%a1%b9%e7%9b%ae%e6%96%b9%e5%bc%8f" style="border:none;"></a></h4><p>其实一般普通下载就可以了，此情况是想要提交代码，协作修改项目的情况。</p>
+<ul>
+<li>加入协作者<br>
+具体方案是 项目拥有者or管理员添加你为collaborator，然后自己在邮件里同意。</li>
+<li>fork
+<ol>
+<li>把想clone的代码fork到自己的库，再clone</li>
+<li>提交。本地改完之后先提交到自己的库，再点击<code>pull request</code>提交pull请求。</li>
+</ol>
+</li>
+</ul>
+<h4 id="协作者clone-私有库方案">协作者clone 私有库方案 <a href="#%e5%8d%8f%e4%bd%9c%e8%80%85clone-%e7%a7%81%e6%9c%89%e5%ba%93%e6%96%b9%e6%a1%88" style="border:none;"></a></h4><p>协作者clone public库试了一下没问题，但是当我作为collaborator 去clone仓库拥有者的库的时候，遇到了问题：public库正常，但private库报错：没有权限。</p>
+<p>目前查到的结局办法是：用https的方式clone，并附token_。步骤如下：</p>
+<ol>
+<li>设置token<br>
+路径：github.com → setting → personal access tokens → generate new token（现在有两个选项了 就选general就行） → 生成<br>
+勾选我就全勾选了因为当前要用的是我自己的项目</li>
+<li>clone项目<br>
+格式：<code>git clone https://&lt;生成的token&gt;@&lt;想下载项目的原路径&gt;</code><br>
+这里<code>&lt;想下载项目的原路径&gt;</code>即<code>github.com/&lt;repo_owner_name&gt;/&lt;repo_name&gt;.git</code></li>
+</ol>
+<h2 id="简单概念">简单概念 <a href="#%e7%ae%80%e5%8d%95%e6%a6%82%e5%bf%b5" style="border:none;"></a></h2><h4 id="分区">分区 <a href="#%e5%88%86%e5%8c%ba" style="border:none;"></a></h4><p>git 分区名字必须记住，这个用的很多</p>
+<ul>
+<li>working dir，工作区，就是包括自己写代码的文件夹</li>
+<li>stage，暂存区，</li>
+<li>history，历史区</li>
+</ul>
+<p>流程依次往后。<br>
+本地到暂存，用 add；暂存回本地，用checkout；<br>
+暂存到历史，用 commit；历史回暂存，用reset；<br>
+本地直接到历史，用 commit -a；历史回本地，用checkout 指定head；</p>
+<p>历史的回退，实际上是将指针指向之前的head。</p>
+<h4 id="其它注意的点">其它注意的点 <a href="#%e5%85%b6%e5%ae%83%e6%b3%a8%e6%84%8f%e7%9a%84%e7%82%b9" style="border:none;"></a></h4><p>当远程仓库与本地仓库不同时，如果强制push本地，是<strong>全部覆盖</strong>，而不是追加，远程有本地没有的文件，将会全部消失。</p>
+<h3 id="基础命令">基础命令 <a href="#%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4" style="border:none;"></a></h3><p>追加提交：<code>git commit --amend</code></p>
+<h4 id="分支">分支 <a href="#%e5%88%86%e6%94%af" style="border:none;"></a></h4><p>创建：<code>git branch &lt;name&gt;</code> # 查看也是这个<br>
+切换：<code>git switch &lt;name&gt;</code> # 本来是checkout 但这个名字太抽象了 我决定用新版命令<br>
+合并：<code>git merge &lt;othername&gt;</code> # 这里是指将othername的分支，并到当前所在分支 主从关系这里有。要想哪个为主要先切到哪条。<br>
+<strong>合并系列顺序：创建并切到other分支 ➡️ 提交other ➡️ 切回主分支并提交 ➡️ merge other</strong></p>
+<p>复制式合并：<code>git rebase &lt;mainname&gt;</code> # 这里是将当前分支归顺到目标分支上去，跟上面主从一样，但视角是反的。<br>
+<strong>复制系列顺序：创建并切到other分支 ➡️ 提交other ➡️ 切回主分支并提交 ➡️ 切回other ➡️ rebase main</strong></p>
+<p>一股脑复制：<code>git cherry-pick &lt;想挪的所有分支依次&gt;</code> # 要按顺序。被挪的地方当前分支的下面<br>
+一股脑复制删除：<code>git rebase -i HEAD~&lt;x&gt;</code> # -i是点开 可以编辑想要和不需要的节点</p>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p><code>git rebase &lt;A&gt; &lt;B&gt;</code><br>
+相当于<br>
+<code>git switch &lt;B&gt;</code><br>
+<code>git rebase &lt;A&gt;</code><br>
+注意rebase 一参数的，相当于客人视角，给定主人地址，然后并过去<br>
+两参数是<code>&lt;主人地址&gt; &lt;客人地址&gt;</code> 的顺序。</p>
+<p>此外，挪动是从它们的共同祖先开始的。</p>
+    </div>
+
+<p>利用head挪动：<br>
+head目前感觉相当于当前指针，如果想将某个分支的当前指向停在任意节点，可以先将head指过去，再令当前分支指向head。<br>
+可以用hash值，也可以用相对路径。parent:<code>^</code>，x代祖先：<code>~x</code><br>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>^x：平级的第几个爸爸，~x：竖着的第几代祖先<br>
+<code>git checkout HEAD~^2~3</code>：当前的爹的二号爹的爹的爹的爹</p>
+    </div>
+</p>
+<p>head挪过去：<code>git checkout &lt;hash值/HEAD ~x&gt;</code><br>
+分支头再挪过去：<code>git branch -f &lt;分支名&gt; HEAD~x</code> # -f 强制挪动</p>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>branch这个命令就是可以用来将一个指针挪到指定位置。<br>
+上面这两行也相当于<br>
+<code>git branch -f &lt;A&gt; &lt;B&gt;</code><br>
+这两个参数 <!-- raw HTML omitted -->是被挪的指针 <!-- raw HTML omitted -->是目标节点</p>
+<p>注意这里面的A B 都可以自由的加<code>^``~</code>这些</p>
+    </div>
+
+<p>想改之前的分支：<br>
+cherry-pick或者rebase<br>
+
+    <div class='notice patch'>
+    
+    <span class="point"></span>
+    <span class="point"></span>
+    
+
+    
+    <p>我个人觉得cherry-pick比较好理解，操作的都是本分支，命令中将想要的节点依次罗列就行了。想给哪个分支加点，就先switch到哪个下面就行。</p>
+    </div>
+</p>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>branch 和 rebase都有一个<code>git xxx &lt;A&gt; &lt;B&gt;</code>这样的命令，两个区别是branch是挪动指针，rebase是复制过来。</p>
+<p>rebase还有一个点，如果A和B在一条线上，B落后，要用rebase A B，即将A新commit的部分复制给B。而不能用branch。</p>
+    </div>
+
+<h4 id="撤销提交">撤销提交 <a href="#%e6%92%a4%e9%94%80%e6%8f%90%e4%ba%a4" style="border:none;"></a></h4><p>指的是commit之后的回撤。<br>
+本地撤销：<code>git reset &lt;当前分支的parent&gt;</code> # 注意一定要加^, 是目标节点。比如main^<br>
+远程撤销：<code>git revert &lt;当前分支&gt;</code> # 注意是本身，因为原理是开一个子节点和父节点一样，而不是直接回父。</p>
+<h4 id="标签">标签 <a href="#%e6%a0%87%e7%ad%be" style="border:none;"></a></h4><p>添加标签：<code>git tag &lt;分支名字&gt; &lt;标签名字&gt;</code><br>
+标签是为了给版本打tag，只有重大更新完成之后可以使用这个。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span><span style="color:#75715e"># 打标签</span>
+</span></span><span style="display:flex;"><span>git tag -a v1.0.0 -m <span style="color:#e6db74">&#34;release 1.0&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看标签</span>
+</span></span><span style="display:flex;"><span>git tag --list
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将标签同步给remote</span>
+</span></span><span style="display:flex;"><span>git push --tags
+</span></span></code></pre></div><h4 id="远程">远程 <a href="#%e8%bf%9c%e7%a8%8b" style="border:none;"></a></h4><p>远程叫法：<!-- raw HTML omitted -->/<!-- raw HTML omitted --> &lt;远程仓库名&gt;/&lt;分支名&gt;<br>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>意思是 本地存的，和远程进度一样的节点的指针。<br>
+如果fetch，是从指向o/main的节点算起</p>
+    </div>
+<br>
+下载：<code>git fetch</code><br>
+git pull = git fetch + git merge<br>
+<code>git pull origin foo</code><br>
+相当于：<br>
+<code>git fetch origin foo; git merge o/foo</code></p>
+<p>如果本地尚未明晰merge哪个，就先把远程fetch下来。<br>
+如果要检查远程和local的区别，必须先fetch：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git fetch <span style="color:#75715e"># 先fetch</span>
+</span></span><span style="display:flex;"><span>git diff origin/branch_name  <span style="color:#75715e"># 看本地和远程差异</span>
+</span></span><span style="display:flex;"><span>git log origin/branch_name..branch_name  <span style="color:#75715e"># 看本地和远程分支之间的差异提交记录。</span>
+</span></span></code></pre></div>
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>merge和rebase的区别是：merge显示合并的样子，rebase是直接挪的复制过来，变成一条线</p>
+<p>git merge A，是将A合并至当前分支。主人视角。</p>
+    </div>
+
+<p>推送：<code>git push origin &lt;localname&gt;:&lt;remotename&gt;</code><br>
+这个命令暗含了远程追踪。如果俩名字一样，可以省略成一个名字。如果远程分支不存在，也可以用这个命令新创建。</p>
+<p>空：<br>
+给远程推空可以删除分支：<code>git push origin :&lt;name&gt;</code> # 删除远程name<br>
+给本地拉空可以新建分支：<code>git fetch origin :&lt;name&gt;</code> # 新建本地name</p>
+<h4 id="系统配置-git-config">系统配置 git config <a href="#%e7%b3%bb%e7%bb%9f%e9%85%8d%e7%bd%ae-git-config" style="border:none;"></a></h4><p>查看：<code>git config &lt;内容&gt;</code>，&lt;内容&gt; 可以是 <code>--list</code>，也可以是具体参数。<br>
+增删：<code>git config &lt;范围&gt; &lt;动作&gt; &lt;参数 （值）&gt;</code><br>
+范围是 <code>--global</code>，<code>--local</code>等，动作是<code>--add</code> <code>--unset</code><br>
+<code>$ git config --local -–unset site.name</code></p>
+<h3 id="版本管理">版本管理 <a href="#%e7%89%88%e6%9c%ac%e7%ae%a1%e7%90%86" style="border:none;"></a></h3><p>概览：<a href="https://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="noopener">阮一峰：Git分支管理策略</a><br>
+进化：<a href="https://arganzheng.life/git-branch-strategy.html" target="_blank" rel="noopener">Arganzheng&rsquo;s Blog：Git分支管理策略</a><br>
+实例：<a href="https://blog.gitee.com/2019/04/25/gitee-branch/" target="_blank" rel="noopener">一个 Git 分支协作模式的进化故事</a><br>
+补充：<a href="https://www.tangyuecan.com/2020/08/05/git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95/" target="_blank" rel="noopener">唐玥璨：GIT分支管理办法</a></p>
+<h3 id="bug记录">bug记录 <a href="#bug%e8%ae%b0%e5%bd%95" style="border:none;"></a></h3><p><a href="https://cs.pynote.net/sf/docker/202110307/" target="_blank" rel="noopener">docker命令行总结</a></p>
+<p><a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" target="_blank" rel="noopener">Git的基本使用命令</a></p></div>
+
+    <div class="post-meta meta">
+        
+
+        <span class="tags-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"
+                class="fas-tags">
+                <path
+                    d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+            </svg>
+            
+            
+            <a class="tag-link" href="/%20/tags/git">git</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E6%A6%82%E5%BF%B5">概念</a>
+            
+        </span>
+        
+    </div>
+
+    <div class="post-paginator">
+        
+        
+        <span class="pag-prev">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-from-line">
+                <path d="M3 19V5" />
+                <path d="m13 6-6 6 6 6" />
+                <path d="M7 12h14" />
+            </svg>
+            </svg>
+            <a href="https://cenjianxun.github.io/posts/%E5%85%AB%E8%82%A1%E6%B1%87%E6%80%BBredis/" class="jump-post">八股汇总｜redis</a>
+            
+        </span>
+
+        <span class="pag-next">
+            
+            
+            <a href="https://cenjianxun.github.io/posts/linux%E8%B7%AF%E5%BE%84%E4%B8%8B%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/" class="jump-post">linux路径下文件都是什么意思</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
+            
+        </span>
+
+    </div>
+
+    
+
+</article>
+
+
+    </div>
+      </main>
+      <footer class="footer">
+    <p> © 2018 - 2024 &nbsp; XUN
+    </p>
+</footer>
+
+
+    </div>
+  </div>
+</body>
+</html>

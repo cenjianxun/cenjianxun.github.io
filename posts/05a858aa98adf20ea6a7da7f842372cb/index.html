@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN"><head>
-    <meta charset="utf-8"><title>基础｜react&nbsp;-&nbsp;XUN</title>
+    <meta charset="utf-8"><title>react 项目配置及上手记录&nbsp;-&nbsp;XUN</title>
 
     <meta name="theme-color" content="#e0e0e0">
     
@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -23,7 +23,7 @@
   <div class="body-container">
     <aside>
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <section class="sidebar">
         <div id="sidebar-info" class="sidebar-info">
@@ -70,6 +70,52 @@
         </div>
         
         
+            
+
+<div id="sidebar-toc" class="sidebar-toc">
+    
+    <header>
+        <span class="toc-bar"></span>
+        <h4 class="toc-header">react 项目配置及上手记录</h4>
+        <span class="toc-bar"></span>
+    </header>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#初始化">初始化</a>
+      <ul>
+        <li><a href="#使用createreactapp搭建">使用create—react—app搭建</a></li>
+        <li><a href="#使用vite搭建">使用vite搭建</a>
+          <ul>
+            <li><a href="#安装tailwind-css">安装tailwind CSS</a></li>
+            <li><a href="#安装其他包">安装其他包</a></li>
+            <li><a href="#pre配置">pre配置</a></li>
+            <li><a href="#js手动迁移到ts">js手动迁移到ts</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用nextjs搭建">使用next.js搭建</a></li>
+        <li><a href="#升级js-和-css">升级js 和 css</a></li>
+        <li><a href="#一些包">一些包</a></li>
+      </ul>
+    </li>
+    <li><a href="#概念填坑">概念填坑</a></li>
+    <li><a href="#其他组件设置和定义">其他组件设置和定义</a>
+      <ul>
+        <li><a href="#tailwind-css">Tailwind CSS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+ 
+
+
+<script type="text/javascript" src="/js/toc.js" defer></script>
+
+
+
+
+        
 
     </section>
     <section class="func">
@@ -83,13 +129,12 @@
                 </svg>
             </a>
         </div>
-
     </section>
 </aside>
     <div class="content-container">
       <nav class="nav-container">
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
@@ -106,18 +151,464 @@
             <a href="/about/" target="_self">ABOUT</a>
         </li>
     </ul>
- 
+
 
 </nav>
       <main class="content">
         <div class="page"><article class="post-block">
     <header class="post-header">
-        <h1>基础｜react</h1>
-        <div class="post-time">Dec 26 2023</div>
+        <h1>react 项目配置及上手记录</h1>
+        <div class="post-time">Feb 5 2023</div>
     </header>
 
     
-    <div class="post-content"></div>
+    <div class="post-content"><p>==了解== 熟悉 掌握 精通</p>
+<h2 id="初始化">初始化 <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96" style="border:none;"></a></h2><p>假设已安装，安装见 <a href="/posts/configure-development-environment">配置开发环境及项目管理</a><br>
+要先确保有node.js噢：<code>node -v</code></p>
+<p>然后 ———— 本来默认的手脚架是create-react-app，但是现在官方竟然不支持不维护了。于是又评测了一轮，现有两种，next和vite。next支持前端和后端，vite只搭前端，比较轻量。此项目使用next，因此记录基本上基于next，但同时有vite项目开发，零碎记一下。</p>
+<p>此外有个基本知识，我竟不知。node中，如果安装代码带了-g，就是全局安装。否则，==在哪个文件夹下运行安装包代码，这个包就只会安在这个文件夹下面。==</p>
+<h3 id="使用createreactapp搭建">使用create—react—app搭建 <a href="#%e4%bd%bf%e7%94%a8createreactapp%e6%90%ad%e5%bb%ba" style="border:none;"></a></h3><p>初始化一个新项目：<code>npx create-react-app &lt;项目名字&gt;</code><br>
+进入项目，打开本地预览：<code>npm start</code>或者<code>yarn start</code>，<code>yarn</code>比较好。</p>
+
+    <div class='notice patch'>
+    
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    <span class="point point4"></span>
+    
+
+    
+    <p>💡 现在又有了个<code>pnpm</code>，我换一下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 删除yarn</span>
+</span></span><span style="display:flex;"><span>sudo npm uninstall -g yarn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  安装pnpm</span>
+</span></span><span style="display:flex;"><span>sudo npm install -g pnpm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#（在已经有yarn.lock的情况下）导入到pnpm</span>
+</span></span><span style="display:flex;"><span>pnpm import
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 然后要build</span>
+</span></span><span style="display:flex;"><span>pnpm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 然后再start</span>
+</span></span><span style="display:flex;"><span>pnpm start
+</span></span></code></pre></div><p>💡 在build过程中会有不少错误，因为pnpm格式好像更严谨。改到没错就可以start了。</p>
+<p>pnpm 有两种，pnpm install和pnpm add<br>
+如果想要将安装的包信息添加到 package.json 文件中，建议使用 pnpm add；<br>
+如果只是想简单地安装依赖包，可以使用 pnpm install。</p>
+    </div>
+
+<p>目录结构：</p>
+<pre tabindex="0"><code>react-project/
+├── node_modules/  # 如果用npm，yarn就会有此项，包含了项目所需的所有Node.js模块。 
+├── public/  # 包含了在项目中公开可访问的文件。
+│   ├── favicon.ico
+│   ├── index.html  # 入口页面。一般是整个html最外的框架，有&lt;head&gt;和&lt;body&gt;
+│   ├── manifest.json  # 配置文件。提供app相关的信息，如名称、作者、图标及描述等。
+│   └── robots.txt
+├── src/  # 包含了项目的源代码。
+│   ├── App.js  # react应用的根组件，最高层级是&lt;App /&gt;
+│   ├── index.js  # 所有node应用传统的入口点。它渲染App.js
+│   ├── index.css  # 这是应用的主要样式表。
+│   └── App.test.js：这是用于测试App组件的测试文件。
+├── ...
+├── yarn.lock # 后面换pnpm的时候就换成pnpm.lock
+└── package.json  # 包含了项目的基本信息，如项目的目的、如何安装和运行项目等。
+</code></pre><h3 id="使用vite搭建">使用vite搭建 <a href="#%e4%bd%bf%e7%94%a8vite%e6%90%ad%e5%bb%ba" style="border:none;"></a></h3><p>初始化</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 注意这里最后如果是--template react，不带ts，就会是js</span>
+</span></span><span style="display:flex;"><span>pnpm create vite <span style="color:#f92672">[</span>项目名字<span style="color:#f92672">]</span> --template react-ts
+</span></span><span style="display:flex;"><span>cd <span style="color:#f92672">[</span>项目名字<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>pnpm i
+</span></span><span style="display:flex;"><span>pnpm run dev
+</span></span></code></pre></div><p>然后地址是：<code>http://localhost:5173/</code></p>
+<h4 id="安装tailwind-css">安装tailwind CSS <a href="#%e5%ae%89%e8%a3%85tailwind-css" style="border:none;"></a></h4><ol>
+<li>
+<p>安装<br>
+<code>pnpm add -D tailwindcss postcss autoprefixer</code></p>
+</li>
+<li>
+<p>生成<code>tailwind.config.js</code>和<code>postcss.config.js</code><br>
+<code>npx tailwindcss init -p</code></p>
+</li>
+<li>
+<p>因为是ts项目，所以要改掉js，但是要改成&rsquo;.cjs'</p>
+</li>
+<li>
+<p>在<code>tailwind.config.js</code>中的content部分添加</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;./src/**/*.{js,jsx,ts,tsx}&#39;</span>, <span style="color:#75715e">// 如果项目中的JavaScript或TypeScript文件使用了Tailwind CSS类名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#e6db74">&#39;./index.html&#39;</span>, <span style="color:#75715e">// 如果项目中的HTML文件使用了Tailwind CSS类名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 可根据项目结构添加更多的路径
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>],
+</span></span></code></pre></div><ol start="5">
+<li>把<code>vite.config.ts</code>添加成为</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">defineConfig</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;vite&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">react</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@vitejs/plugin-react&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">tailwindcss</span> <span style="color:#66d9ef">from</span>  <span style="color:#e6db74">&#34;tailwindcss&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">autoprefixer</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;autoprefixer&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// https://vitejs.dev/config/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineConfig</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">react</span>()],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">css</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">postcss</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">tailwindcss</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">autoprefixer</span>,
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><ol start="6">
+<li>在<code>./src/index.css</code>文件中添加：</li>
+</ol>
+<pre tabindex="0"><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre><p>这里会有一个小警告：<code>Unknown at rule @tailwind</code><br>
+解决方法：在vscode的extensions图标点开，搜索找到<code>PostCSS Language Support</code>，并安装。</p>
+<h4 id="安装其他包">安装其他包 <a href="#%e5%ae%89%e8%a3%85%e5%85%b6%e4%bb%96%e5%8c%85" style="border:none;"></a></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 一个react规范</span>
+</span></span><span style="display:flex;"><span>pnpm add -D eslint eslint-config-react-app
+</span></span><span style="display:flex;"><span>touch .eslintrc.cjs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 对import 进行自动排序插件</span>
+</span></span><span style="display:flex;"><span>pnpm add -D prettier eslint-config-prettier prettier-plugin-organize-imports prettier-plugin-tailwindcss
+</span></span><span style="display:flex;"><span>touch .prettierrc.cjs
+</span></span></code></pre></div><p>.eslintrc.cjs里添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">extends</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;react-app&#39;</span>, <span style="color:#e6db74">&#39;prettier&#39;</span>],
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>.prettierrc.cjs里添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">singleQuote</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;prettier-plugin-organize-imports&#39;</span>, <span style="color:#e6db74">&#39;prettier-plugin-tailwindcss&#39;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">organizeImportsSkipDestructiveCodeActions</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h4 id="pre配置">pre配置 <a href="#pre%e9%85%8d%e7%bd%ae" style="border:none;"></a></h4><p>在tsconfig.json里添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;compilerOptions&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;baseUrl&#34;</span>: <span style="color:#e6db74">&#34;.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;paths&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@/*&#34;</span>: [<span style="color:#e6db74">&#34;./src/*&#34;</span>]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>vite.config.ts变成</p>
+<pre tabindex="0"><code>import path from &#34;path&#34;
+import { defineConfig } from &#39;vite&#39;
+import react from &#39;@vitejs/plugin-react&#39;
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      &#34;@&#34;: path.resolve(__dirname, &#34;./src&#34;),
+    },
+  },
+})
+</code></pre><h4 id="js手动迁移到ts">js手动迁移到ts <a href="#js%e6%89%8b%e5%8a%a8%e8%bf%81%e7%a7%bb%e5%88%b0ts" style="border:none;"></a></h4><p>如果安装了默认的js，想事后再迁移就要手动</p>
+<ul>
+<li>迁移到ts</li>
+</ul>
+<ol>
+<li>安装（💡在项目的根目录下！）<br>
+<code>pnpm install -D typescript @types/react @types/react-dom</code></li>
+<li>将所有<code>.jsx</code>扩展名改为<code>.tsx</code></li>
+<li>在<code>main.tsx</code>中，有一行<code>ReactDOM.createRoot(document.getElementById('root')).render(...)</code><br>
+加一个<code> as HTMLElement</code>变成<br>
+<code>ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(...)</code></li>
+<li><code>index.html</code>中，有一行<code>src=&quot;/src/main.jsx&quot;</code>，改成<code>main.tsx</code></li>
+<li><code>vite.config.js</code>文件的扩展名改为<code>.ts</code>。</li>
+<li>创建三个文件:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/vite-env.d.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// &lt;reference types=&#34;vite/client&#34; /&gt;
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// tsconfig.json
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;target&#34;</span>: <span style="color:#e6db74">&#34;ESNext&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;useDefineForClassFields&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;lib&#34;</span>: [<span style="color:#e6db74">&#34;ESNext&#34;</span>, <span style="color:#e6db74">&#34;DOM&#34;</span>, <span style="color:#e6db74">&#34;DOM.Iterable&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;module&#34;</span>: <span style="color:#e6db74">&#34;ESNext&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;skipLibCheck&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">Bundler</span> <span style="color:#960050;background-color:#1e0010">mode</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;moduleResolution&#34;</span>: <span style="color:#e6db74">&#34;bundler&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;allowImportingTsExtensions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;resolveJsonModule&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;isolatedModules&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;noEmit&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;jsx&#34;</span>: <span style="color:#e6db74">&#34;react-jsx&#34;</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">Linting</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;strict&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;noUnusedLocals&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;noUnusedParameters&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;noFallthroughCasesInSwitch&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;include&#34;</span>: [<span style="color:#e6db74">&#34;src&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;references&#34;</span>: [{ <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;./tsconfig.node.json&#34;</span> }]
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// tsconfig.node.json
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;composite&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;skipLibCheck&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;module&#34;</span>: <span style="color:#e6db74">&#34;ESNext&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;moduleResolution&#34;</span>: <span style="color:#e6db74">&#34;bundler&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;allowSyntheticDefaultImports&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;strict&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;include&#34;</span>: [<span style="color:#e6db74">&#34;vite.config.ts&#34;</span>]
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>都安装好之后项目的目录就是：</p>
+<pre tabindex="0"><code>react-project/ 
+├── public/  # 此文件夹不会被构建工具打包,一般用来放网站的图标或者全局配置文件。
+│   └── vite.svg
+├── src/  # 包含了项目的源代码。
+│   ├── assets/  # 放静态资源，图片字体等。
+│   │   └── vite.svg
+│   ├── App.css
+│   ├── App.tsx  # 主组件。通常包含应用的布局和路由。
+│   ├── main.tsx  # 项目主入口，负责渲染App组件。
+│   ├── index.css  # 这是应用的主要样式表。可以改为main.css
+│   ├── vite-env.d.ts  # ts声明文件
+│   ├── components/  # 组件目录。自己加的
+│   ├── router/  # 自己加的，可放路由
+│   ├── lib/  # 自己加的，可放外部/自己写的依赖库，比如jar
+│   └── utils/  # 自己加的，可存放常用函数的封装。
+├── eslinttrc.cjs  # 检查代码质量
+├── index.html
+├── postcss.config.cjs  # tailwind CSS的相关配置.PostCSS不支持es6语法，要用commonjs
+├── tailwind.config.ts  # tailwind CSS的配置
+├── tsconfig.json  # ts相关配置
+├── tsconfig.node.json  # ts相关配置
+├── vite.config.ts  # vite配置，配置服务器端口ip，项目打包构建之类
+├── pnpm-lock.yaml 
+└── package.json  # 项目基本配置，可设置项目的目的、如何安装和运行项目等。
+</code></pre><h3 id="使用nextjs搭建">使用next.js搭建 <a href="#%e4%bd%bf%e7%94%a8nextjs%e6%90%ad%e5%bb%ba" style="border:none;"></a></h3><p>初始化项目：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ----------</span>
+</span></span><span style="display:flex;"><span>npx create-next-app@latest &lt;项目名字&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进入该文件夹</span>
+</span></span><span style="display:flex;"><span>npm i  <span style="color:#75715e"># npm install, 安装package.json列出的依赖包，并将它们安装到node_modules文件夹中。</span>
+</span></span><span style="display:flex;"><span>npm run dev  <span style="color:#75715e"># 启动开发服务器</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ---------- 如果是用pnpm</span>
+</span></span><span style="display:flex;"><span>pnpm create react-app &lt;项目名字&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进入该文件夹</span>
+</span></span><span style="display:flex;"><span>pnpm install
+</span></span><span style="display:flex;"><span>pnpm start
+</span></span></code></pre></div><p><code>pnpm dev</code>和<code>pnpm run build</code>的区别：<br>
+前者用于开发和测试，后者用于创建生产环境下的应用程序。运行完<code>pnpm run build</code>要运行<code>pnpm start</code><br>
+（比如说我<code>pnpm dev</code>正常运行<code>fetch('/api/posts')</code>，但是<code>run build</code>里就不行，必须加完全部绝对路径。）</p>
+<p>命令的流程：</p>
+<ol>
+<li>开发阶段：使用pnpm dev来启动开发服务器，进行开发和测试。</li>
+<li>构建阶段：使用pnpm run build来创建优化的生产构建。（通常在package.json中配置为next build）</li>
+<li>运行阶段：使用pnpm start来启动生产服务器，为用户提供服务。（通常在package.json中配置为next start）</li>
+</ol>
+<p>目录结构：</p>
+<pre tabindex="0"><code>react-project/
+├── .next/  # next.js的缓存目录。如果用pnpm就没有node_module了
+├── public/  # 放静态资源
+├── src/  # 这个安装的时候可以选择是否创建src，我想有src结构比较清晰，因为comp可以放进去，app里就都放路由。
+│   ├── app/
+│   │   ├── about/
+│   │   │   └── page.tsx  # 在app路由模式下，只要是&#39;page&#39;就当成路由，名字为上级文件夹名。所以这个页面的内容的地址就是localhost:30000/about
+│   │   ├── archive/
+│   │   │   ├── page.tsx  # 同about。这个文件夹还可放别的，比如css等。
+│   │   │   └── index.css
+│   │   ├── page.tsx  # app路由模式，且在app/根目录下，此页面内容就是home页。
+│   │   ├── layout.tsx  # 根布局文件，有&lt;head&gt;和&lt;body&gt;及其他全局共享标签。因为包含全局元数据，所以metadata在这里定义。
+│   │   ├── template.tsx  # 根模板文件。
+│   │   ├── loading.tsx  # 定义加载界面
+│   │   ├── error.tsx   # 定义错误处理
+│   │   ├── not-found.tsx  # 定义 404 页面
+│   │   ├── globals.css  # 全局的样式
+│   │   └── favicon.ico  
+│   ├── components/   # 非页面级的共用组件，可在多个页面重复用。比如side，nav模块。因为app里都放的是路由文件夹，所以这个挪出来。
+│   │   ├── sidebar/
+│   │   │   ├── index.tsx  # 就放sidebar的内容。tip是import到别的页面时index可以不用写。
+│   │   │   └── index.css  # 也可以加样式
+│   │   ├── MDX/  # 说一下此文件夹意思是解析markdown文件到html
+│   │   │   └──index.tsx  # 同sidebar。
+│   │   └── ...
+├── ...
+├── page/  # 放页面级组件。这个文件夹我生成的时候是没有的，但gpt告诉我有，用做路由相关，暂且放在这。
+├── tailwind.config.ts  #这是Tailwind CSS的配置文件
+└── package.json  # 标准的npm配置文件，包含了项目名称、版本、描述、作者等信息，以及项目的依赖包。
+</code></pre><p>app路由模式注意的点：</p>
+<ol>
+<li>
+<p>pages 文件夹。它是 Next.js 中的一个特殊目录。在这里创建的每个文件都会成为一个自动路由的页面。like<br>
+pages/<br>
+├── index.js：博客首页<br>
+├── about.js：关于页面<br>
+├── blog/[slug].js：动态路由，用于显示博客文章</p>
+</li>
+<li>
+<p>app/文件夹下的每个子文件夹内，也都可有一套 page.tsx、layout.tsx、error.tsx等，它们的功能一样，只是作用范围就是本文件夹。那么在根目录下的这些文件，就都是根xx文件。</p>
+</li>
+<li>
+<p>layout 和 template<br>
+都能用來让子路由共享 components，区别在于状态的保持。切换路由时，layout 不会 re-render，而 template 会 re-render。<br>
+比如从home标签换到about（假设它俩共享布局页面），之前在输入框输入的文字，如果是layout就不会消失，template就会消失。<br>
+原理是，template会在导航的时候为每个子级创建一个新实例。这就意味着当用户在共享一个template的路由间导航时，将挂载组件的新实例，DOM 元素会重新创建，所以状态不会保留。</p>
+</li>
+</ol>
+<p>template常用在：<br>
+如果需要在导航（路由切换）的时候做一些事情如发送统计代码、重新加载、添加动画效果等等时使用 template.js</p>
+<p>useSelectedLayoutSegment</p>
+<h3 id="升级js-和-css">升级js 和 css <a href="#%e5%8d%87%e7%ba%a7js-%e5%92%8c-css" style="border:none;"></a></h3><p>js → tsx<br>
+在配置next.js时自动就生效了。所以还要研究一下这块怎么手动操作。</p>
+<p>css → scss<br>
+<code>yarn add sass</code> 或 <code>npm install sass</code><br>
+💡 要在react根目录下安装，不要在全局安装</p>
+<h3 id="一些包">一些包 <a href="#%e4%b8%80%e4%ba%9b%e5%8c%85" style="border:none;"></a></h3><p>shadcn单独添加组件：<br>
+<code>npx shadcn-ui@latest add</code><br>
+然后它就会让你选</p>
+<p>—————— ❗️ 接下来除非指明，记录均基于<code>next.js</code>版的react ——————</p>
+<h2 id="概念填坑">概念填坑 <a href="#%e6%a6%82%e5%bf%b5%e5%a1%ab%e5%9d%91" style="border:none;"></a></h2><ol>
+<li>global.css的作用域是什么？如何调用？</li>
+</ol>
+<ul>
+<li>
+<p>在global.css中定义的组件、参数等等，被导入layout.tsx之后，可以不用显式调用标签，而自动应用。<br>
+同时，其他地方css文件里面也可以自由使用在这里定义的参数。</p>
+</li>
+<li>
+<p>react中，一个组件必须返回一个单一的根节点。如果需要返回多个元素，但又不想添加额外的DOM元素，可以使用Fragment。Fragment是一对空标签&lt;&gt;&lt;/&gt;，就加在最外层。</p>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p>什么是组件？<br>
+在前端中（后端也有组件），实现一个页面上的功能，就是一个组件，比如一个按钮，一组导航栏。形式就是以一个自定义的标签出现的，比如自己定义了<code>&lt;mySidebar&gt;</code>，这个就是一个组件。<br>
+怎么实现呢？通常就是 <code>const mySidebar = () =&gt; { // 一些处理 return (&lt;&gt;&lt;/&gt;)}</code> 这样定义一个函数，返回一组标签，就完成了一个组件。</p>
+</li>
+<li>
+<p>包裹类型的双标签和不用包裹的单标签怎么定义呢？<br>
+单标签的，学名称为自闭合，比如<code>&lt;Header /&gt;</code>。<br>
+双标签的，叫成对闭合，比如<code>&lt;RootLayout&gt;&lt;/RootLayout&gt;</code>。</p>
+</li>
+</ol>
+<p>这两个创建的区别是，函数定义时参数放在哪。<br>
+如果没带参数，就只能使用单标签样式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Header() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">header</span>&gt;<span style="color:#960050;background-color:#1e0010">这是头部</span>&lt;/<span style="color:#f92672">header</span>&gt;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 使用 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>&lt;<span style="color:#f92672">Header</span> /&gt;
+</span></span></code></pre></div><p>如果带参数，且定义组件时return部分，参数写在元标签&lt;&gt;内部，那么使用该组件时，就也要在&lt;标签 &gt;内部带参。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Header</span>({ <span style="color:#66d9ef">class</span> }) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className </span><span style="color:#f92672">=</span> {<span style="color:#66d9ef">class</span>}&gt; &lt;/<span style="color:#f92672">div</span>&gt;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 使用 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>&lt;<span style="color:#f92672">Header</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex&#34;</span>/&gt;
+</span></span></code></pre></div><p>如果带参数，且定义组件时return部分，参数写在两标签&lt;&gt;&lt;/&gt;之间，那么使用该组件时，也写在&lt;&gt;&lt;/&gt;之间</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Header</span>({ <span style="color:#a6e22e">a</span> }) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">div</span>&gt;{<span style="color:#a6e22e">a</span>}&lt;/<span style="color:#f92672">div</span>&gt;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 使用 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>&lt;<span style="color:#f92672">Header</span>&gt;{<span style="color:#e6db74">&#34;我的标题&#34;</span>}&lt;<span style="color:#f92672">Header</span>/&gt;
+</span></span></code></pre></div><p>相应的，如果定义组件时带多个参数，位置也和使用该组件要一一对应。就不举例子了。</p>
+<p>💡 当有多层级带参数的标签时，children会自动继承。</p>
+<ol start="4">
+<li>
+<p>怎么有两种函数定义的形式？区别是啥？<br>
+定义函数式组件时，有两种不同的定义方式。<br>
+命名函数式组件<code>function Header({ pro }) { return() }</code> 和 匿名函数式组件<code>const Header = ({ pro }) =&gt; { return() } </code>，也称为箭头函数组件。<br>
+功能上没啥区别，但是箭头式更简便，一般更经常用这个。</p>
+</li>
+<li>
+<p>import时<code>@</code>是啥东西<br>
+就是简写，alias的部分路径。<br>
+先在设置中，定义映射关系。比如在<code>tsconfig.json</code>（或<code>jsconfig.json</code>）中映射<code>&quot;paths&quot;: {&quot;@/*&quot;: [&quot;./*&quot;]}</code>，就是将<code>@</code>开始的所有路径，映射到当前【相对于<code>tsconfig.json</code>来说的当前】<code>./</code>下所有路径。<br>
+引用的时候，比如<code>import Header from '@/components/Header'</code>，意思就相当于from <code>react—project/components/Header</code>。<br>
+但是我都会映射一个<code>{&quot;@/*&quot;: [&quot;/src/*&quot;]}</code></p>
+</li>
+<li>
+<p>路由是什么</p>
+</li>
+</ol>
+<p>在react中，<code>Link</code>标签可以用于项目中页面互相跳转，<code>a</code>标签可以用于站外链接。相应地，href用于传统的全页面刷新的链接，而to用于React单页应用中的客户端路由。<br>
+用的时候：<code>&lt;Link to=&quot;/achieve&quot;&gt;ACHIEVE&lt;/Link&gt;</code></p>
+<p>==以上都基于react。==</p>
+<p>如果用next引入Link，则此Link应该搭配href。<br>
+<code>next.js</code> 的路由引入：<code>import Link from 'next/link'</code></p>
+<ol start="7">
+<li>都控制路由，<code>next/link</code>和<code>next/router</code>、<code>next/navigation</code>有什么区别？<br>
+首先，<code>next/navigation</code>是<code>next/router</code>的增强， Next.js 13 中新增的模块。</li>
+</ol>
+<p><code>next/link</code>和上面两个的区别是，<!-- raw HTML omitted -->（import from next/Link）是直接直挺挺的跳转路由，进行<strong>客户端导航</strong>，创建静态链接。<br>
+而后两者，用于<strong>编程式导航</strong>，在 JavaScript 代码中实现页面之间的跳转。意思就是，如果跳转链接时，需要一些条件，比如提交表单并跳转，按条件导航（登录导到A，未登录导到B，等固定时间导航），或者处理错误/特殊情况，这些时候就需要用编程式导航，动态控制跳转。<br>
+比如，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">usePathname</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;next/navigation&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Link</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;next/link&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pathname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">usePathname</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">Link</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">`link </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">pathname</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;active&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>} <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Home</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/ Link&gt;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>这段代码，导航至首页，添加了条件，如果当前链接是首页，就增添一个<code>active</code>标签，控制样式就更灵活了。</p>
+<ol start="8">
+<li>
+<p>客户端和服务端怎么分，怎么还分哪端渲染？我怎么知道哪端渲染……<br>
+nextjs 13 所有组件均默认为服务端组件，如果需要使用客户端组件在最顶部增加 “use client” 标识<br>
+在服务端组件可直接使用 async/await 来进行异步数据的获取</p>
+</li>
+<li>
+<p>ts里加类型都怎么加，语法是什么。</p>
+</li>
+</ol>
+<h2 id="其他组件设置和定义">其他组件设置和定义 <a href="#%e5%85%b6%e4%bb%96%e7%bb%84%e4%bb%b6%e8%ae%be%e7%bd%ae%e5%92%8c%e5%ae%9a%e4%b9%89" style="border:none;"></a></h2><h3 id="tailwind-css">Tailwind CSS <a href="#tailwind-css" style="border:none;"></a></h3><p>@layer 指定样式，并注入到css文件的指定部分。</p>
+<p>我理解使用这个包裹 {body{}, .class{}}等等，可以手动设定优先级。<br>
+@layer reset, defaults, patterns, components, utilities, overrides;<br>
+从左到右，优先级递增。每个样式，覆盖它左边的样式，被它右边覆盖。</p>
+<p>一般情况下，样式定义的内容like：<br>
+base：这个层通常包含重置规则或应用于普通 HTML 元素的默认样式。比如可以在这个层中定义 h1 和 h2 的默认字体大小。<br>
+components：用于类基础的样式。比如定义.btn-blue<br>
+utilities：这个层包含小的、单一目的的类，这些类应该始终优先于任何其他样式。比如定义 .filter-none 和 .filter-grayscale 这两个类的样式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>@<span style="color:#66d9ef">tailwind</span> <span style="color:#f92672">base</span>;
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">tailwind</span> <span style="color:#f92672">components</span>;
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">tailwind</span> <span style="color:#f92672">utilities</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">layer</span> <span style="color:#f92672">base</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">h1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">@apply</span> <span style="color:#960050;background-color:#1e0010">text-2xl</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">h2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">@apply</span> <span style="color:#960050;background-color:#1e0010">text-xl</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">layer</span> <span style="color:#f92672">components</span> {
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">btn-blue</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">@apply</span> <span style="color:#960050;background-color:#1e0010">bg-blue-500</span> hover:bg-blue-700 <span style="color:#66d9ef">text</span><span style="color:#f92672">-</span><span style="color:#66d9ef">white</span> <span style="color:#66d9ef">font</span><span style="color:#f92672">-</span><span style="color:#66d9ef">bold</span> py-2 px-4 rounded;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">layer</span> <span style="color:#f92672">utilities</span> {
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">filter-none</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">filter</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">filter-grayscale</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">filter</span>: grayscale(<span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></div>
 
     <div class="post-meta meta">
         
@@ -130,7 +621,16 @@
             </svg>
             
             
-            <a class="tag-link" href="/%20/tags/"></a>
+            <a class="tag-link" href="/%20/tags/%E5%89%8D%E7%AB%AF">前端</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/react">react</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/next">next</a>
+            
+            ,&nbsp;
+            <a class="tag-link" href="/%20/tags/%E6%A6%82%E5%BF%B5">概念</a>
             
         </span>
         
@@ -140,7 +640,7 @@
         
         
         <span class="pag-prev">
-        
+            
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
@@ -150,16 +650,24 @@
                 <path d="M7 12h14" />
             </svg>
             </svg>
-            <a href="https://cenjianxun.github.io/posts/%E5%89%81%E6%89%8B%E7%9B%98%E7%82%B9%E4%B9%8B%E7%94%B5%E8%84%91%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E5%99%A8/" class="jump-post">剁手盘点之电脑键盘鼠标显示器</a>
-        
+            <a href="https://cenjianxun.github.io/posts/%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83%E5%8F%8A%E6%B5%8B%E8%AF%95/" class="jump-post">文档规范及测试</a>
+            
         </span>
-  
+
         <span class="pag-next">
             
-            <p class="jump-post">这就是最新的文章了</p>
+            
+            <a href="https://cenjianxun.github.io/posts/88715dae21671821d2c4cfc9570e50e1/" class="jump-post">操作｜[无root权限] 远程服务器一些安装和连接</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-right-to-line">
+                <path d="M17 12H3" />
+                <path d="m11 18 6-6-6-6" />
+                <path d="M21 5v14" />
+            </svg>
             
         </span>
-        
+
     </div>
 
     
@@ -170,7 +678,7 @@
     </div>
       </main>
       <footer class="footer">
-    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
+    <p> © 2018 - 2024 &nbsp; XUN
     </p>
 </footer>
 

@@ -15,7 +15,7 @@
     
      
     
-    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.0ffadbc3c2a3797d942bf72a67496fbfe56c8a73d588150e943b4d111febdfdd.css">
+    <link rel="stylesheet" href="https://cenjianxun.github.io/scss/main.min.e5295e285c64657d4f07ae8c8ebf5825bc5ecf38f1250bc775257874f6cd1a4f.css">
     
     
     <script type="text/javascript" src="/js/main.js" defer></script>
@@ -23,7 +23,7 @@
   <div class="body-container">
     <aside>
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <section class="sidebar">
         <div id="sidebar-info" class="sidebar-info">
@@ -114,22 +114,35 @@
             <li><a href="#python-设置">python 设置</a></li>
           </ul>
         </li>
+        <li><a href="#安装java和maven">安装java和maven</a></li>
         <li><a href="#安装-go">安装 Go</a></li>
         <li><a href="#安装-react">安装 React</a></li>
       </ul>
     </li>
-    <li><a href="#mac配置">mac配置</a></li>
+    <li><a href="#mac配置">mac配置</a>
+      <ul>
+        <li><a href="#rime输入法">rime输入法</a></li>
+      </ul>
+    </li>
     <li><a href="#其他">其他</a>
       <ul>
+        <li><a href="#sublime-设置">sublime 设置</a>
+          <ul>
+            <li><a href="#环境配置">环境配置</a></li>
+            <li><a href="#go-build-环境">go build 环境</a></li>
+            <li><a href="#python-build-环境">python build 环境</a></li>
+            <li><a href="#java-build-环境">java build 环境</a></li>
+            <li><a href="#个人配置">个人配置</a></li>
+          </ul>
+        </li>
         <li><a href="#vscode">vscode</a>
           <ul>
             <li><a href="#换主题">换主题</a></li>
-            <li><a href="#关闭烦人的悬停大提示框">关闭烦人的悬停大提示框：</a></li>
+            <li><a href="#一些设置">一些设置：</a></li>
             <li><a href="#多个标签页显示">多个标签页显示</a></li>
             <li><a href="#leetcode的坑">leetcode的坑</a></li>
           </ul>
         </li>
-        <li><a href="#鼠须管">鼠须管</a></li>
       </ul>
     </li>
   </ul>
@@ -157,13 +170,12 @@
                 </svg>
             </a>
         </div>
-
     </section>
 </aside>
     <div class="content-container">
       <nav class="nav-container">
     <div class="nav-title">
-        <a href="/" class="home-link" target="_blank">XUN</a>
+        <a href="/" target="_blank">XUN</a>
     </div>
     <button type="button" class="drop-menu-button">
         <span class="menu-bar"></span>
@@ -180,14 +192,14 @@
             <a href="/about/" target="_self">ABOUT</a>
         </li>
     </ul>
- 
+
 
 </nav>
       <main class="content">
         <div class="page"><article class="post-block">
     <header class="post-header">
         <h1>归档手册｜配置开发环境以及项目管理</h1>
-        <div class="post-time">May 30 2018</div>
+        <div class="post-time">May 30 2020</div>
     </header>
 
     
@@ -842,7 +854,18 @@ alias pip=&#34;/opt/homebrew/bin/pip3.10&#34;
     <p>最后改成了 <code>alias python=python3</code></p>
     </div>
 
-<h3 id="安装-go">安装 Go <a href="#%e5%ae%89%e8%a3%85-go" style="border:none;"></a></h3><p>go的path委实太迷惑了，而且所有项目都在一个/go下面，蛮奇葩的。幸亏在v1.12之后改成go module模式，不用纠结go path了。<br>
+<h3 id="安装java和maven">安装java和maven <a href="#%e5%ae%89%e8%a3%85java%e5%92%8cmaven" style="border:none;"></a></h3><p>就统一使用brew安装了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>brew install temurin
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查</span>
+</span></span><span style="display:flex;"><span>java -version
+</span></span><span style="display:flex;"><span>javac -version
+</span></span></code></pre></div><p>maven是要去官网下压缩包，然后解压。并关联环境变量。我就想把它放在java目录下。正好java无论哪种方式安装，目录都是<code>/Library/Java/JavaVirtualMachines/</code>，于是我就解压在这里。<br>
+顺便这样如果忘了，可以<code>/Lib</code>一路tab下去。</p>
+<p>然后配置环境变量。我就先不集成到dotfiles了，直接export在<code>.zshrc</code>里。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>export JAVA_HOME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>/usr/libexec/java_home<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>export MAVEN_HOME<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ls -d /Library/Java/JavaVirtualMachines/apache-maven-* | sort -V | tail -n 1<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+</span></span></code></pre></div><h3 id="安装-go">安装 Go <a href="#%e5%ae%89%e8%a3%85-go" style="border:none;"></a></h3><p>go的path委实太迷惑了，而且所有项目都在一个/go下面，蛮奇葩的。幸亏在v1.12之后改成go module模式，不用纠结go path了。<br>
 以下的设置都基于v1.12及以后的版本。</p>
 <p>如果不自己设路径，go会自动分配。看了一下，<code>goroot</code>，which应该设置为go的安装路径，是对的。所以不用管goroot了。<br>
 ❗️但是<code>go env</code>出的GOROOT是go运行时的环境变量，而<code>echo $GOROOT</code>则会显示当前shell环境中的GOROOT环境变量，which是没有赋值的，而<code>GOBIN</code>，还需要设置一下，而<code>GOBIN</code>是<code>GOROOT/bin</code>（应该是吧！），所以要在脚本中使用，还是需要手动获取一下<code>GOROOT</code>。</p>
@@ -874,11 +897,48 @@ node是js的开发环境，要运行js脚本必须安装
 <p>顺便装一个TypeScript</p>
 <pre tabindex="0"><code>sudo npm install -g typescript
 </code></pre><h2 id="mac配置">mac配置 <a href="#mac%e9%85%8d%e7%bd%ae" style="border:none;"></a></h2><p>finder显示资源库：<code>chflags nohidden ~/Library</code></p>
+<h3 id="rime输入法">rime输入法 <a href="#rime%e8%be%93%e5%85%a5%e6%b3%95" style="border:none;"></a></h3><p>为了写markdown，需要rime输入法。见<a href="/posts/80acf29757c6e32026baa9b82f3e2cbf">配置适合写markdown程序员体质的rime-鼠须管</a></p>
 <h2 id="其他">其他 <a href="#%e5%85%b6%e4%bb%96" style="border:none;"></a></h2><ul>
 <li>解决v2ex打不开的问题。<br>
 它在clash里是直连。打开配置文件夹-西部世界，在rule下找到v2ex，把direct改成proxy。然后重载文件夹。</li>
 </ul>
-<h3 id="vscode">vscode <a href="#vscode" style="border:none;"></a></h3><p>打开setting快捷键：<code>ctrl + p</code></p>
+<h3 id="sublime-设置">sublime 设置 <a href="#sublime-%e8%ae%be%e7%bd%ae" style="border:none;"></a></h3><h4 id="环境配置">环境配置 <a href="#%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae" style="border:none;"></a></h4><p>安装package control：<br>
+按<code>Ctrl+Shift+p</code>，输入<code>install package</code>，然后回车。</p>
+<h4 id="go-build-环境">go build 环境 <a href="#go-build-%e7%8e%af%e5%a2%83" style="border:none;"></a></h4><p><code>Tools → Build System → New Build System</code><br>
+打开的文档写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&#34;shell_cmd&#34;</span>: <span style="color:#e6db74">&#34;${GOPATH}/bin/go run $file&#34;</span>, <span style="color:#75715e">// $里面的内容，填自己go编译的路径，用`go env`查。一般是GOROOT，因为我把GOPATH设成系统给的运行go的软链，所以这个path我就设成了这个软链的path。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">&#34;encoding&#34;</span>: <span style="color:#e6db74">&#34;utf-8&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>保存，命名为<code>Golang</code>。这个名字就是保存后，在build system里选择编译语言的名字。然后就选这个就行了。<br>
+网上那一堆是按插件的，妈呀能不能提前说明是插件。以为是必须的，其实并没有很想要。那个gosublime存的路径在mac上怎么打开：<br>
+<code>Sublime Text → Setting → Browse Packages</code></p>
+<h4 id="python-build-环境">python build 环境 <a href="#python-build-%e7%8e%af%e5%a2%83" style="border:none;"></a></h4><h4 id="java-build-环境">java build 环境 <a href="#java-build-%e7%8e%af%e5%a2%83" style="border:none;"></a></h4><p><code>Tools → Build System → New Build System</code><br>
+打开的文档写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;shell_cmd&#34;</span>: <span style="color:#e6db74">&#34;javac -encoding utf-8 $file_name &amp;&amp; java $file_base_name&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;file_regex&#34;</span>: <span style="color:#e6db74">&#34;^ *\\[javac\\] (.+):([0-9]+):() (.*)$&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;working_dir&#34;</span>: <span style="color:#e6db74">&#34;${project_path:${folder}}&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;selector&#34;</span>: <span style="color:#e6db74">&#34;source.java&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;encoding&#34;</span>: <span style="color:#e6db74">&#34;utf-8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;shell&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>保存为<code>java.sublime-build</code>。</p>
+<p>❗️注意然后再运行的时候，一定要切换 <code>Tools → Build System → java</code>先，否则会有权限问题。</p>
+<h4 id="个人配置">个人配置 <a href="#%e4%b8%aa%e4%ba%ba%e9%85%8d%e7%bd%ae" style="border:none;"></a></h4><p>我默认需要：自动换行 和 显示路径。<br>
+设置path：</p>
+<ul>
+<li>win <code>Preferens - Settings</code></li>
+<li>mac <code>Sublime Text - Settings - Settings</code></li>
+</ul>
+<p>我的设置</p>
+<pre tabindex="0"><code>{
+&#34;word_wrap&#34;: &#34;true&#34;,   # 我爱换行
+&#34;auto_complete&#34;: false,  # 不爱提示
+&#34;save_on_focus_lost&#34;: true,  
+&#34;show_full_path&#34;: true, 
+}
+</code></pre><h3 id="vscode">vscode <a href="#vscode" style="border:none;"></a></h3><p>打开setting快捷键：<code>ctrl + p</code></p>
 <p>已安extensions：</p>
 <ul>
 <li>live server</li>
@@ -886,9 +946,12 @@ node是js的开发环境，要运行js脚本必须安装
 </ul>
 <h4 id="换主题">换主题 <a href="#%e6%8d%a2%e4%b8%bb%e9%a2%98" style="border:none;"></a></h4><p>挑theme：按<code>ctrl+shift+p</code>，再输入 <code>color theme</code></p>
 <p><a href="https://vscodethemes.com/" target="_blank" rel="noopener">vscode主题大赏</a></p>
-<h4 id="关闭烦人的悬停大提示框">关闭烦人的悬停大提示框： <a href="#%e5%85%b3%e9%97%ad%e7%83%a6%e4%ba%ba%e7%9a%84%e6%82%ac%e5%81%9c%e5%a4%a7%e6%8f%90%e7%a4%ba%e6%a1%86" style="border:none;"></a></h4><ol>
+<h4 id="一些设置">一些设置： <a href="#%e4%b8%80%e4%ba%9b%e8%ae%be%e7%bd%ae" style="border:none;"></a></h4><ol>
 <li>不知为何直接选reference的setting点不开，要去help里敲setting</li>
-<li>我的设置在：editor &gt; hover: enabled。取消它。</li>
+<li>关闭各种提示：<br>
+- editor &gt; hover: enabled。取消它。（错误提示，后面又打开了）<br>
+- editor.parameterHints.enabled。取消它。<br>
+- editor.quickSuggestions &amp; editor.suggestOnTriggerCharacters。 取消</li>
 <li>世界清净了。</li>
 </ol>
 <h4 id="多个标签页显示">多个标签页显示 <a href="#%e5%a4%9a%e4%b8%aa%e6%a0%87%e7%ad%be%e9%a1%b5%e6%98%be%e7%a4%ba" style="border:none;"></a></h4><p>多个标签页有的就给挤没了，找的时候小心翼翼又怕不小心点着❌。<br>
@@ -907,10 +970,7 @@ node是js的开发环境，要运行js脚本必须安装
 <li>要设置go proxy<br>
 怎么设见 [go语法笔记]<br>
 最后我怎么找不见test和submit呢。原来是，已经保存的文件它就不会改了，比如已经有<code>1.two_sum.go</code>了，然后改了配置：题目写在文件里，但是默认打开的还是这个文件，它就没有更改。要把这个文件删了，然后重新从题目那边<code>code now</code>，才会生成正确的file。不用自己写测试函数！</li>
-</ol>
-<h3 id="鼠须管">鼠须管 <a href="#%e9%bc%a0%e9%a1%bb%e7%ae%a1" style="border:none;"></a></h3><p><a href="https://www.hawu.me/others/2666" target="_blank" rel="noopener">https://www.hawu.me/others/2666</a><br>
-<a href="https://sh.alynx.one/posts/My-RIME-2/" target="_blank" rel="noopener">https://sh.alynx.one/posts/My-RIME-2/</a><br>
-<a href="https://www.xiebruce.top/1235.html" target="_blank" rel="noopener">https://www.xiebruce.top/1235.html</a></p></div>
+</ol></div>
 
     <div class="post-meta meta">
         
@@ -942,7 +1002,7 @@ node是js的开发环境，要运行js脚本必须安装
         
         
         <span class="pag-prev">
-        
+            
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
@@ -952,14 +1012,14 @@ node是js的开发环境，要运行js脚本必须安装
                 <path d="M7 12h14" />
             </svg>
             </svg>
-            <a href="https://cenjianxun.github.io/posts/%E4%BB%8A%E6%97%A5%E7%94%9F/" class="jump-post">今日生</a>
-        
+            <a href="https://cenjianxun.github.io/posts/9024f7d55a241ab7d7ba6bc8a731e40d/" class="jump-post">笔记｜数据库（们）的基础命令</a>
+            
         </span>
-  
+
         <span class="pag-next">
             
             
-            <a href="https://cenjianxun.github.io/posts/%E6%A6%82%E5%BF%B5python%E5%BA%95%E5%B1%82/" class="jump-post">概念｜Python底层</a>
+            <a href="https://cenjianxun.github.io/posts/%E6%80%BB%E7%BB%93js%E5%9F%BA%E7%A1%80%E4%B9%8Bhtml%E9%83%A8%E5%88%86/" class="jump-post">总结｜js基础之HTML部分</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-arrow-right-to-line">
@@ -969,7 +1029,7 @@ node是js的开发环境，要运行js脚本必须安装
             </svg>
             
         </span>
-        
+
     </div>
 
     
@@ -980,7 +1040,7 @@ node是js的开发环境，要运行js脚本必须安装
     </div>
       </main>
       <footer class="footer">
-    <p class="copyright"> © 2018 - 2024 &nbsp; XUN
+    <p> © 2018 - 2024 &nbsp; XUN
     </p>
 </footer>
 
